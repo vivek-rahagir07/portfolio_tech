@@ -549,99 +549,178 @@ strong {
 .text-gold { color: #fbbf24 !important; }
 .mt-4 { margin-top: 3rem; }
 
-/* Hacker Skills Section */
-.hacker-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-}
-
-.terminal-card {
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-}
-
-.terminal-header {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.term-dots {
-    display: flex;
-    gap: 8px;
-    margin-right: 15px;
-}
-
-.term-dots .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
-.dot.red { background-color: #ff5f56; }
-.dot.yellow { background-color: #ffbd2e; }
-.dot.green { background-color: #27c93f; }
-
-.term-title {
-    color: #a0a0a0;
-    font-family: monospace;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.terminal-body {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.skill-info {
+/* Half Circle Orbit Layout */
+.layout-half-circle {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    color: #e0e0e0;
-}
-
-.skill-info i {
-    width: 25px;
-    text-align: center;
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-.skill-pct {
-    font-family: monospace;
-    color: var(--accent);
-}
-
-.progress-bar {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 3px;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 10% 8%;
+    position: relative;
     overflow: hidden;
+    background: radial-gradient(circle at top right, rgba(155, 77, 202, 0.2) 0%, transparent 60%);
+}
+
+.skills-intro-left {
+    width: 45%;
+    z-index: 20;
+    margin-top: 2rem;
+}
+
+.skills-intro-left h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.skills-intro-left p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.skills-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.btn-purple {
+    background: #3b0764; /* deep purple */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-purple:hover {
+    background: #4c1d95;
+}
+
+.see-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.4rem;
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.see-more:hover {
+    color: white;
+}
+
+.orbit-wrapper-half {
+    position: absolute;
+    bottom: -25%; 
+    right: -5%;
+    left: auto;
+    transform: none;
+    width: 650px;
+    height: 650px;
+    pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.orbit-ring-half {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    pointer-events: auto; /* Re-enable for the ring */
+}
+
+/* Second inner dashed line */
+.orbit-ring-half::after {
+    content: '';
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.1);
+    pointer-events: none;
+}
+
+.orbit-center-half {
+    position: absolute;
+    top: 25%; /* Positioned inside the top of the arc */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 380px;
+    pointer-events: auto;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.center-icon-half {
+    font-size: 6rem;
+    filter: drop-shadow(0 0 20px currentColor);
+    transition: all 0.3s ease;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-text h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.center-text p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.orbit-item-half {
+    position: absolute;
+    top: 0; left: 0;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hexagon-icon {
+    width: 70px;
+    height: 80px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+    /* simulated border since clip-path cuts off borders */
     position: relative;
 }
 
-.progress-fill {
-    height: 100%;
-    border-radius: 3px;
-    position: relative;
-    box-shadow: 0 0 10px currentColor;
+.hexagon-icon::before {
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px; right: 2px; bottom: 2px;
+    background: #111;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: -1;
+}
+
+.orbit-item-half:hover .hexagon-icon {
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 /* Projects Section */
