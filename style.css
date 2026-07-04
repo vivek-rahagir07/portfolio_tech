@@ -117,30 +117,33 @@ ul {
 
 /* Navigation - Floating Animated Navbar */
 nav {
-    position: fixed;
-    top: -100px; /* For float-in animation */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
-    max-width: 1000px;
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    z-index: 1000;
+    position: fixed !important;
+    top: 25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 85% !important;
+    max-width: 1000px !important;
+    min-width: 600px !important;
+    height: 70px !important;
+    min-height: 70px !important;
+    max-height: 70px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 40px !important;
+    z-index: 1000 !important;
     
     /* Premium Glassmorphism */
-    background: rgba(10, 10, 10, 0.65);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50px; /* Pill shape */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.65) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 50px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
     
     /* Animation */
-    animation: navFloatIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: navFloatIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 @keyframes navFloatIn {
