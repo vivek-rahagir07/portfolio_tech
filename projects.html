@@ -10,13 +10,11 @@
 </head>
 <body>
 
-    <canvas id="particles-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;"></canvas>
-    
     <!-- Main Content -->
     <main id="main-content">
         <!-- Navigation -->
         <nav>
-            <div class="logo"><a href="index.html" style="color:white; text-decoration:none;">VY.</a></div>
+            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo" style="height: 80px; width: auto;"></a></div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -32,111 +30,179 @@
             <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Featured Projects</h2>
                 <div class="view-toggle" style="display: flex; gap: 10px;">
-                    <button class="view-btn active" data-view="grid" style="padding: 8px 16px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.5); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <button class="view-btn" data-view="grid" style="padding: 8px 16px; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
                         <i class="fa-solid fa-grid-2"></i> Grid
                     </button>
-                    <button class="view-btn" data-view="carousel" style="padding: 8px 16px; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <button class="view-btn active" data-view="carousel" style="padding: 8px 16px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.5); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
                         <i class="fa-solid fa-carousel"></i> Carousel
                     </button>
                 </div>
                 <div class="header-line" style="margin-top: 15px;"></div>
             </div>
             
-            <div class="projects-grid" id="projects-grid">
+            <div class="projects-grid" id="projects-grid" style="display: none;">
                 <!-- Project 1 -->
                 <div class="project-card glass-card">
+                    <div class="project-video">
+                        <video src="projects/Cognito attend.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-fingerprint"></i>
+                            </div>
+                            <h3>CognitoAttend</h3>
+                            <p class="project-tagline">Smart Attendance System</p>
+                        </div>
+                    </div>
                     <div class="project-content">
-                        <h3>CognitoAttend</h3>
-                        <p class="project-tagline">Smart Attendance System</p>
-                        <p class="project-desc">Full-stack attendance management platform for tracking and managing attendance digitally.</p>
+                        <p class="project-desc">Full-stack attendance management platform with biometric integration, real-time tracking, and automated reporting.</p>
                         <div class="project-tech">
                             <span>React</span> <span>Node.js</span> <span>MongoDB</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://cognitoattend.vivek-yadav.com/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 2 -->
                 <div class="project-card glass-card">
-                    <div class="project-content">
-                        <h3>NeoStream</h3>
-                        <p class="project-tagline">Music Streaming Web App</p>
-                        <p class="project-desc">Modern music streaming interface with smooth UI and dynamic playback experience.</p>
-                        <div class="project-tech">
-                            <span>React</span> <span>UI/UX</span> <span>Audio API</span>
+                    <div class="project-video">
+                        <video src="projects/neostream.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-music"></i>
+                            </div>
+                            <h3>NeoStream</h3>
+                            <p class="project-tagline">Music Streaming Platform</p>
                         </div>
-                        <div class="project-links">
-                            <a href="https://neostream-music.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Modern music streaming service with personalized playlists and real-time audio processing.</p>
+                        <div class="project-tech">
+                            <span>React</span> <span>Next.js</span> <span>Web Audio API</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 3 -->
                 <div class="project-card glass-card">
-                    <div class="project-content">
-                        <h3>Enterprise Projects</h3>
-                        <p class="project-tagline">Multiple Big Company Projects</p>
-                        <p class="project-desc">Contributed to and developed multiple live projects for large-scale enterprise companies utilizing modern tech stacks.</p>
-                        <div class="project-tech">
-                            <span>Laravel</span> <span>PHP</span> <span>Node.js</span>
+                    <div class="project-video">
+                        <video src="projects/Neoride.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-motorcycle"></i>
+                            </div>
+                            <h3>NeoRide</h3>
+                            <p class="project-tagline">Bike Rental Platform</p>
                         </div>
-                        <div class="project-links">
-                            <span class="private-link"><i class="fa-solid fa-lock"></i> Enterprise/Private</span>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Modern bike rental and sharing platform with real-time availability tracking and fleet management.</p>
+                        <div class="project-tech">
+                            <span>React</span> <span>Node.js</span> <span>MongoDB</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 4 -->
                 <div class="project-card glass-card">
-                    <div class="project-content">
-                        <h3>Carrom Online</h3>
-                        <p class="project-tagline">Multiplayer Web Game</p>
-                        <p class="project-desc">Browser-based carrom game recreating the classic board game experience using Mediapipe.</p>
-                        <div class="project-tech">
-                            <span>JavaScript</span> <span>Mediapipe</span>
+                    <div class="project-video">
+                        <video src="projects/Star cadet.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <h3>Star Cadet</h3>
+                            <p class="project-tagline">Educational Gaming Platform</p>
                         </div>
-                        <div class="project-links">
-                            <a href="https://carrom-online.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Interactive educational game platform for cadets with gamified learning modules and progress tracking.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span> <span>Canvas API</span> <span>Node.js</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
                 <div class="project-card glass-card">
-                    <div class="project-content">
-                        <h3>Library Cabin Booking</h3>
-                        <p class="project-tagline">Management System</p>
-                        <p class="project-desc">Web application to book library cabins efficiently and manage usage schedules.</p>
-                        <div class="project-tech">
-                            <span>Web Tech</span> <span>Scheduling</span>
+                    <div class="project-video">
+                        <video src="projects/jhatpatsewa.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3>JhatpatSewa</h3>
+                            <p class="project-tagline">Service Marketplace</p>
                         </div>
-                        <div class="project-links">
-                            <a href="https://vivek-yadav07.github.io/library-cabin-booking-/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Quick service marketplace connecting users with local service providers for on-demand home services.</p>
+                        <div class="project-tech">
+                            <span>React</span> <span>Laravel</span> <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card glass-card">
+                    <div class="project-video">
+                        <video src="projects/Stuck in mkv files.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-film"></i>
+                            </div>
+                            <h3>Media Converter</h3>
+                            <p class="project-tagline">Video Processing Tool</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Browser-based video conversion and processing tool with format conversion and compression capabilities.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span> <span>FFmpeg.wasm</span> <span>React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card glass-card">
+                    <div class="project-video">
+                        <video src="projects/Portfolio.mp4" autoplay loop muted playsinline></video>
+                        <div class="video-overlay">
+                            <div class="project-icon-overlay">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <h3>Portfolio Website</h3>
+                            <p class="project-tagline">Personal Branding Site</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Modern portfolio website with interactive animations, particle effects, and smooth scrolling.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Carousel View -->
-            <div class="projects-carousel" id="projects-carousel" style="display: none;">
-                <div class="carousel-container">
-                    <button class="carousel-nav prev" id="carousel-prev">
+            <div class="projects-carousel" id="projects-carousel" style="display: block;">
+                <div class="carousel-3d-container">
+                    <button class="carousel-3d-nav prev" id="carousel-3d-prev">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-3d-stage" id="carousel-3d-stage">
                         <!-- Project 1 -->
-                        <div class="carousel-item glass-card">
+                        <div class="carousel-3d-item glass-card" data-index="0">
                             <div class="project-video">
-                                <video src="vedios/linkdin.mp4" autoplay loop muted playsinline></video>
+                                <video src="projects/Cognito attend.mp4" autoplay loop muted playsinline></video>
                                 <div class="video-overlay">
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-fingerprint"></i>
+                                    </div>
                                     <h3>CognitoAttend</h3>
                                     <p class="project-tagline">Smart Attendance System</p>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <p class="project-desc">Full-stack attendance management platform for tracking and managing attendance digitally.</p>
+                                <p class="project-desc">Full-stack attendance management platform with biometric integration, real-time tracking, and automated reporting.</p>
                                 <div class="project-tech">
                                     <span>React</span> <span>Node.js</span> <span>MongoDB</span>
                                 </div>
@@ -147,18 +213,21 @@
                         </div>
 
                         <!-- Project 2 -->
-                        <div class="carousel-item glass-card">
+                        <div class="carousel-3d-item glass-card" data-index="1">
                             <div class="project-video">
-                                <video src="vedios/github.mp4" autoplay loop muted playsinline></video>
+                                <video src="projects/neostream.mp4" autoplay loop muted playsinline></video>
                                 <div class="video-overlay">
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-music"></i>
+                                    </div>
                                     <h3>NeoStream</h3>
-                                    <p class="project-tagline">Music Streaming Web App</p>
+                                    <p class="project-tagline">Music Streaming Platform</p>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <p class="project-desc">Modern music streaming interface with smooth UI and dynamic playback experience.</p>
+                                <p class="project-desc">Modern music streaming service with personalized playlists and real-time audio processing.</p>
                                 <div class="project-tech">
-                                    <span>React</span> <span>UI/UX</span> <span>Audio API</span>
+                                    <span>React</span> <span>Next.js</span> <span>Web Audio API</span>
                                 </div>
                                 <div class="project-links">
                                     <a href="https://neostream-music.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -167,66 +236,121 @@
                         </div>
 
                         <!-- Project 3 -->
-                        <div class="carousel-item glass-card">
+                        <div class="carousel-3d-item glass-card" data-index="2">
                             <div class="project-video">
-                                <video src="vedios/download.mp4" autoplay loop muted playsinline></video>
+                                <video src="projects/Neoride.mp4" autoplay loop muted playsinline></video>
                                 <div class="video-overlay">
-                                    <h3>Enterprise Projects</h3>
-                                    <p class="project-tagline">Multiple Big Company Projects</p>
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-motorcycle"></i>
+                                    </div>
+                                    <h3>NeoRide</h3>
+                                    <p class="project-tagline">Bike Rental Platform</p>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <p class="project-desc">Contributed to and developed multiple live projects for large-scale enterprise companies utilizing modern tech stacks.</p>
+                                <p class="project-desc">Modern bike rental and sharing platform with real-time availability tracking and fleet management.</p>
                                 <div class="project-tech">
-                                    <span>Laravel</span> <span>PHP</span> <span>Node.js</span>
+                                    <span>React</span> <span>Node.js</span> <span>MongoDB</span>
                                 </div>
                                 <div class="project-links">
-                                    <span class="private-link"><i class="fa-solid fa-lock"></i> Enterprise/Private</span>
+                                    <a href="#" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 4 -->
-                        <div class="carousel-item glass-card">
+                        <div class="carousel-3d-item glass-card" data-index="3">
                             <div class="project-video">
-                                <video src="vedios/linkdin.mp4" autoplay loop muted playsinline></video>
+                                <video src="projects/Star cadet.mp4" autoplay loop muted playsinline></video>
                                 <div class="video-overlay">
-                                    <h3>Carrom Online</h3>
-                                    <p class="project-tagline">Multiplayer Web Game</p>
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <h3>Star Cadet</h3>
+                                    <p class="project-tagline">Educational Gaming Platform</p>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <p class="project-desc">Browser-based carrom game recreating the classic board game experience using Mediapipe.</p>
+                                <p class="project-desc">Interactive educational game platform for cadets with gamified learning modules and progress tracking.</p>
                                 <div class="project-tech">
-                                    <span>JavaScript</span> <span>Mediapipe</span>
+                                    <span>JavaScript</span> <span>Canvas API</span> <span>Node.js</span>
                                 </div>
                                 <div class="project-links">
-                                    <a href="https://carrom-online.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                    <a href="#" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 5 -->
-                        <div class="carousel-item glass-card">
+                        <div class="carousel-3d-item glass-card" data-index="4">
                             <div class="project-video">
-                                <video src="vedios/github.mp4" autoplay loop muted playsinline></video>
+                                <video src="projects/jhatpatsewa.mp4" autoplay loop muted playsinline></video>
                                 <div class="video-overlay">
-                                    <h3>Library Cabin Booking</h3>
-                                    <p class="project-tagline">Management System</p>
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-bolt"></i>
+                                    </div>
+                                    <h3>JhatpatSewa</h3>
+                                    <p class="project-tagline">Service Marketplace</p>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <p class="project-desc">Web application to book library cabins efficiently and manage usage schedules.</p>
+                                <p class="project-desc">Quick service marketplace connecting users with local service providers for on-demand home services.</p>
                                 <div class="project-tech">
-                                    <span>Web Tech</span> <span>Scheduling</span>
+                                    <span>React</span> <span>Laravel</span> <span>MySQL</span>
                                 </div>
                                 <div class="project-links">
-                                    <a href="https://vivek-yadav07.github.io/library-cabin-booking-/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                    <a href="#" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 6 -->
+                        <div class="carousel-3d-item glass-card" data-index="5">
+                            <div class="project-video">
+                                <video src="projects/Stuck in mkv files.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-film"></i>
+                                    </div>
+                                    <h3>Media Converter</h3>
+                                    <p class="project-tagline">Video Processing Tool</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Browser-based video conversion and processing tool with format conversion and compression capabilities.</p>
+                                <div class="project-tech">
+                                    <span>JavaScript</span> <span>FFmpeg.wasm</span> <span>React</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 7 -->
+                        <div class="carousel-3d-item glass-card" data-index="6">
+                            <div class="project-video">
+                                <video src="projects/Portfolio.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <div class="project-icon-overlay">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <h3>Portfolio Website</h3>
+                                    <p class="project-tagline">Personal Branding Site</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Modern portfolio website with interactive animations, particle effects, and smooth scrolling.</p>
+                                <div class="project-tech">
+                                    <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-nav next" id="carousel-next">
+                    <button class="carousel-3d-nav next" id="carousel-3d-next">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -270,37 +394,82 @@
             });
         });
 
-        // Carousel Functionality
-        const carouselTrack = document.getElementById('carousel-track');
-        const prevBtn = document.getElementById('carousel-prev');
-        const nextBtn = document.getElementById('carousel-next');
-        let currentIndex = 0;
-        const items = document.querySelectorAll('.carousel-item');
+        // 3D Carousel Functionality
+        const carouselStage = document.getElementById('carousel-3d-stage');
+        const prevBtn = document.getElementById('carousel-3d-prev');
+        const nextBtn = document.getElementById('carousel-3d-next');
+        const items = document.querySelectorAll('.carousel-3d-item');
         const totalItems = items.length;
+        let currentIndex = 0;
 
-        function updateCarousel() {
-            const itemWidth = items[0].offsetWidth + 30; // width + gap
-            carouselTrack.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        function updateCarousel3D() {
+            items.forEach((item, index) => {
+                // Remove all classes
+                item.className = 'carousel-3d-item glass-card';
+                
+                // Calculate relative position
+                let relativeIndex = (index - currentIndex + totalItems) % totalItems;
+                
+                // Handle negative wrap-around
+                if (relativeIndex > totalItems / 2) {
+                    relativeIndex -= totalItems;
+                }
+                
+                // Apply classes based on position
+                if (relativeIndex === 0) {
+                    item.classList.add('active');
+                } else if (relativeIndex === -1) {
+                    item.classList.add('prev');
+                } else if (relativeIndex === 1) {
+                    item.classList.add('next');
+                } else if (relativeIndex === -2) {
+                    item.classList.add('prev-2');
+                } else if (relativeIndex === 2) {
+                    item.classList.add('next-2');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
         }
 
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-            updateCarousel();
+            updateCarousel3D();
         });
 
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % totalItems;
-            updateCarousel();
+            updateCarousel3D();
         });
 
         // Auto-play carousel
-        setInterval(() => {
+        let autoPlayInterval = setInterval(() => {
             currentIndex = (currentIndex + 1) % totalItems;
-            updateCarousel();
-        }, 5000);
+            updateCarousel3D();
+        }, 4000);
 
-        // Handle window resize
-        window.addEventListener('resize', updateCarousel);
+        // Pause auto-play on hover
+        carouselStage.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+
+        carouselStage.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel3D();
+            }, 4000);
+        });
+
+        // Click on item to make it active
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel3D();
+            });
+        });
+
+        // Initialize carousel
+        updateCarousel3D();
     </script>
 </body>
 </html>
