@@ -1,0 +1,39 @@
+
+/* Scroll Jacking & Video Backgrounds */
+.scroll-jack-wrapper {
+    height: 300vh; /* 3 panels * 100vh to allow scrolling */
+    position: relative;
+    background-color: transparent; /* allow particles through */
+}
+
+.sticky-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.horizontal-track {
+    display: flex;
+    height: 100%;
+    width: 300vw; /* 3 panels = 300vw */
+    will-change: transform;
+}
+
+.horizontal-panel {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    padding: 0 5%;
+}
+
+.intro-panel {
+    flex-direction: column;
+}
+
+

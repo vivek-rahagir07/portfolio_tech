@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="scroll-jacking.css">
 </head>
 <body>
 
@@ -25,55 +26,95 @@
             </ul>
         </nav>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="section-header">
-                <h2>About Me</h2>
-                <div class="header-line"></div>
-            </div>
-            <div class="about-grid">
-                <div class="about-text glass-card">
-                    <h3>Professional Summary</h3>
-                    <p>Computer Science student at <strong>BML Munjal University</strong> and <span class="highlight">Full-Stack Web Developer</span> specializing in <strong>React, JavaScript, Node.js, Laravel</strong>, and modern web technologies.</p>
-                    <p>Working as a <span class="highlight">freelance developer for over 3 years</span>, I have successfully delivered multiple <strong>live projects</strong> for various companies, adapting to diverse business needs and technical challenges.</p>
-                    <p>Currently working as a developer and content creator in <strong class="highlight">Getting Roots Coaching & Training Pvt. Ltd.</strong></p>
+        <!-- Horizontal Scroll Section -->
+        <!-- Horizontal Scroll Section -->
+        <div class="scroll-jack-wrapper">
+            <div class="sticky-container">
+                <div class="horizontal-track" id="horizontal-track">
                     
-                    <div class="philosophy">
-                        <i class="fa-solid fa-quote-left"></i>
-                        <blockquote>"You control your actions, not the results." – Bhagavad Gita.</blockquote>
-                        <p class="philosophy-sub">Focused on <strong>continuous learning</strong>, disciplined execution, and building technology that creates <span class="highlight">meaningful impact</span>.</p>
+                    <!-- Panel 1: Original About Grid (Both Cards side-by-side) -->
+                    <div class="horizontal-panel" style="flex-direction: column;">
+                        <div class="section-header" style="align-self: flex-start; margin-left: 5%; margin-bottom: 2rem;">
+                            <h2>About Me</h2>
+                            <div class="header-line"></div>
+                        </div>
+                        <div class="about-grid" style="width: 100%; max-width: 1450px; padding: 0 5%;">
+                            <!-- First Card -->
+                            <div class="about-text glass-card">
+                                <h3>Professional Summary</h3>
+                                <p>Computer Science student at <strong>BML Munjal University</strong> and <span class="highlight">Full-Stack Web Developer</span> specializing in <strong>React, JavaScript, Node.js, Laravel</strong>, and modern web technologies.</p>
+                                <p>Working as a <span class="highlight">freelance developer for over 3 years</span>, I have successfully delivered multiple <strong>live projects</strong> for various companies.</p>
+                                <p>Currently working as a developer and content creator in <strong class="highlight">Getting Roots Coaching & Training Pvt. Ltd.</strong></p>
+                                
+                                <div class="philosophy">
+                                    <i class="fa-solid fa-quote-left"></i>
+                                    <blockquote>"You control your actions, not the results." – Bhagavad Gita.</blockquote>
+                                    <p class="philosophy-sub">Focused on <strong>continuous learning</strong>, disciplined execution, and building technology that creates <span class="highlight">meaningful impact</span>.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Second Card -->
+                            <div class="leadership glass-card">
+                                <h3>Leadership & Social Impact</h3>
+                                <div class="leadership-item">
+                                    <h4>Executive Member - Savera Club</h4>
+                                    <p class="desc">Active mentor helping <span class="highlight">underprivileged students</span> prepare for competitive exams.</p>
+                                    <ul class="impact-list">
+                                        <li><i class="fa-solid fa-check text-green"></i> <strong>3 students</strong> qualified Mission Buniyaad Level 1</li>
+                                        <li><i class="fa-solid fa-check text-green"></i> <strong>2 students</strong> qualified Mission Buniyaad Level 2</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="achievements mt-4">
+                                    <h3>Achievements</h3>
+                                    <ul class="achievement-list">
+                                        <li><i class="fa-solid fa-trophy text-gold"></i> <span class="highlight">3rd Position</span> - Robothon 2.0</li>
+                                        <li><i class="fa-brands fa-microsoft" style="color: #00a4ef;"></i> <span class="highlight">Participant</span> - Microsoft AI Skill Fest</li>
+                                        <li><i class="fa-brands fa-github"></i> <span class="highlight">800+</span> GitHub contributions in the last year</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="leadership glass-card">
-                    <h3>Leadership & Social Impact</h3>
-                    <div class="leadership-item">
-                        <h4>Executive Member - Savera Club</h4>
-                        <p class="org">BML Munjal University</p>
-                        <p class="desc">Active mentor and educator helping <span class="highlight">underprivileged students</span> prepare for competitive exams (<strong>Mission Buniyaad, NMMS, Navodaya, JEE, and Olympiads</strong>).</p>
-                        <ul class="impact-list">
-                            <li><i class="fa-solid fa-check text-green"></i> <strong>3 students</strong> qualified Mission Buniyaad Level 1</li>
-                            <li><i class="fa-solid fa-check text-green"></i> <strong>2 students</strong> qualified Mission Buniyaad Level 2</li>
-                        </ul>
+
+                    <!-- Panel 2: Video 1 (LinkedIn) -->
+                    <div class="horizontal-panel video-panel">
+                        <div class="video-container glass-card" style="padding: 0; overflow: hidden; width: 75%; max-width: 1100px; height: 70vh; position: relative; border-radius: 24px;">
+                            <video src="vedios/linkdin.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                            
+                            <div class="video-overlay" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);">
+                                <h3 style="font-size: 2.5rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                                    <i class="fa-brands fa-linkedin" style="color: #0077b5;"></i> LinkedIn Presence
+                                </h3>
+                                <p style="font-size: 1.1rem; color: #ddd; max-width: 600px; line-height: 1.6;">Building connections, sharing industry insights, and discussing the future of web development and AI with professionals worldwide.</p>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="achievements mt-4">
-                        <h3>Achievements</h3>
-                        <ul class="achievement-list">
-                            <li><i class="fa-solid fa-trophy text-gold"></i> <span class="highlight">3rd Position</span> - Robothon 2.0</li>
-                            <li><i class="fa-brands fa-microsoft" style="color: #00a4ef;"></i> <span class="highlight">Participant</span> - Microsoft AI Skill Fest</li>
-                            <li><i class="fa-brands fa-github"></i> <span class="highlight">800+</span> GitHub contributions in the last year</li>
-                        </ul>
+
+                    <!-- Panel 3: Video 2 (GitHub) -->
+                    <div class="horizontal-panel video-panel">
+                        <div class="video-container glass-card" style="padding: 0; overflow: hidden; width: 75%; max-width: 1100px; height: 70vh; position: relative; border-radius: 24px;">
+                            <video src="vedios/github.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                            
+                            <div class="video-overlay" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);">
+                                <h3 style="font-size: 2.5rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                                    <i class="fa-brands fa-github"></i> Open Source Contributions
+                                </h3>
+                                <p style="font-size: 1.1rem; color: #ddd; max-width: 600px; line-height: 1.6;">Always building and shipping code. Over 800+ contributions in the last year spanning personal projects, client work, and open-source.</p>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </section>
+        </div>
 
         <footer>
             <p>Designed and Built by Vivek Yadav &copy; 2026</p>
         </footer>
     </main>
 
+    <script src="scroll-jacking.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
