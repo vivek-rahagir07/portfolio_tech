@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivek Yadav - Full Stack Web Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">VY.</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h2 class="greeting">Hello, I'm</h2>
+                <h1 class="name">Vivek Yadav</h1>
+                <h3 class="title">Full Stack Web Developer</h3>
+                <p class="tagline">Passionate about building scalable digital products and creating social impact through education.</p>
+                
+                <div class="tech-stack-hero">
+                    <span class="tech-badge"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                    <span class="tech-badge"><i class="fa-brands fa-laravel"></i> Laravel</span>
+                    <span class="tech-badge"><i class="fa-brands fa-php"></i> PHP</span>
+                    <span class="tech-badge"><i class="fa-brands fa-react"></i> React</span>
+                </div>
+                
+                <div class="hero-cta">
+                    <a href="#projects" class="btn primary-btn">View My Work</a>
+                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div id="scratch-container">
+                    <img src="photos/portrait.png" alt="Vivek Yadav Portrait" id="under-image">
+                    <canvas id="scratch-canvas"></canvas>
+                    <div class="scratch-instructions" id="scratch-instruction-ui">
+                        <i class="fa-solid fa-hand-sparkles"></i>
+                        <p>Scratch to reveal</p>
+                    </div>
+                </div>
+                <div class="image-glow"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text glass-card">
+                    <h3>Professional Summary</h3>
+                    <p>Computer Science student at BML Munjal University and Full-Stack Web Developer specializing in React, JavaScript, Node.js, Laravel, and modern web technologies.</p>
+                    <p>Currently working as a developer and content creator in <strong>Getting Roots Coaching & Training Pvt. Ltd.</strong></p>
+                    
+                    <div class="philosophy">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <blockquote>"You control your actions, not the results." – Bhagavad Gita.</blockquote>
+                        <p class="philosophy-sub">Focused on continuous learning, disciplined execution, and building technology that creates meaningful impact.</p>
+                    </div>
+                </div>
+                
+                <div class="leadership glass-card">
+                    <h3>Leadership & Social Impact</h3>
+                    <div class="leadership-item">
+                        <h4>Executive Member - Savera Club</h4>
+                        <p class="org">BML Munjal University</p>
+                        <p class="desc">Active mentor and educator helping underprivileged students prepare for competitive exams (Mission Buniyaad, NMMS, Navodaya, JEE, and Olympiads).</p>
+                        <ul class="impact-list">
+                            <li><i class="fa-solid fa-check text-green"></i> 3 students qualified Mission Buniyaad Level 1</li>
+                            <li><i class="fa-solid fa-check text-green"></i> 2 students qualified Mission Buniyaad Level 2</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievements mt-4">
+                        <h3>Achievements</h3>
+                        <ul class="achievement-list">
+                            <li><i class="fa-solid fa-trophy text-gold"></i> 3rd Position - Robothon 2.0</li>
+                            <li><i class="fa-brands fa-github"></i> 800+ GitHub contributions in the last year</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="section-header">
+                <h2>Technical Arsenal</h2>
+                <div class="header-line"></div>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category glass-card">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span>JavaScript</span>
+                        <span>TypeScript</span>
+                        <span>PHP</span>
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card">
+                    <h3>Frameworks & Libs</h3>
+                    <div class="skill-tags">
+                        <span>Node.js</span>
+                        <span>Laravel</span>
+                        <span>React.js</span>
+                        <span>Express.js</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card">
+                    <h3>Databases & Tools</h3>
+                    <div class="skill-tags">
+                        <span>MongoDB</span>
+                        <span>PostgreSQL</span>
+                        <span>Git/GitHub</span>
+                        <span>Linux</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <div class="header-line"></div>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass-card">
+                    <div class="project-content">
+                        <h3>CognitoAttend</h3>
+                        <p class="project-tagline">Smart Attendance System</p>
+                        <p class="project-desc">Full-stack attendance management platform for tracking and managing attendance digitally.</p>
+                        <div class="project-tech">
+                            <span>React</span> <span>Node.js</span> <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://cognitoattend.vivek-yadav.com/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card glass-card">
+                    <div class="project-content">
+                        <h3>NeoStream</h3>
+                        <p class="project-tagline">Music Streaming Web App</p>
+                        <p class="project-desc">Modern music streaming interface with smooth UI and dynamic playback experience.</p>
+                        <div class="project-tech">
+                            <span>React</span> <span>UI/UX</span> <span>Audio API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://neostream-music.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card glass-card">
+                    <div class="project-content">
+                        <h3>Enterprise Projects</h3>
+                        <p class="project-tagline">Multiple Big Company Projects</p>
+                        <p class="project-desc">Contributed to and developed multiple live projects for large-scale enterprise companies utilizing modern tech stacks.</p>
+                        <div class="project-tech">
+                            <span>Laravel</span> <span>PHP</span> <span>Node.js</span>
+                        </div>
+                        <div class="project-links">
+                            <span class="private-link"><i class="fa-solid fa-lock"></i> Enterprise/Private</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card glass-card">
+                    <div class="project-content">
+                        <h3>Carrom Online</h3>
+                        <p class="project-tagline">Multiplayer Web Game</p>
+                        <p class="project-desc">Browser-based carrom game recreating the classic board game experience using Mediapipe.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span> <span>Mediapipe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://carrom-online.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card glass-card">
+                    <div class="project-content">
+                        <h3>Library Cabin Booking</h3>
+                        <p class="project-tagline">Management System</p>
+                        <p class="project-desc">Web application to book library cabins efficiently and manage usage schedules.</p>
+                        <div class="project-tech">
+                            <span>Web Tech</span> <span>Scheduling</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://vivek-yadav07.github.io/library-cabin-booking-/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="header-line"></div>
+            </div>
+            
+            <div class="contact-container glass-card">
+                <div class="contact-info">
+                    <h3>Let's build something amazing together</h3>
+                    <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                    
+                    <div class="contact-methods">
+                        <a href="mailto:vivekhr36.2007@gmail.com" class="contact-method">
+                            <i class="fa-solid fa-envelope"></i> vivekhr36.2007@gmail.com
+                        </a>
+                        <a href="tel:+919996445592" class="contact-method">
+                            <i class="fa-solid fa-phone"></i> +91 9996445592
+                        </a>
+                        <div class="contact-method">
+                            <i class="fa-solid fa-location-dot"></i> Gurugram, Haryana, India
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/vivek-yadav07" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com/in/vivek-yadav-1142213a0/" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
