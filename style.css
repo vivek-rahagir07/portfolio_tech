@@ -777,12 +777,12 @@ strong {
 
 .orbit-wrapper-half {
     position: absolute;
-    bottom: -25%; 
-    right: -5%;
+    bottom: -10%; 
+    right: -10%;
     left: auto;
     transform: none;
-    width: 650px;
-    height: 650px;
+    width: 600px;
+    height: 600px;
     pointer-events: none; /* Let clicks pass through empty space */
 }
 
@@ -814,10 +814,10 @@ strong {
 
 .orbit-center-half {
     position: absolute;
-    top: 25%; /* Positioned inside the top of the arc */
+    top: 20%; /* Positioned inside the top of the arc */
     left: 50%;
     transform: translateX(-50%);
-    width: 380px;
+    width: 300px;
     pointer-events: auto;
 }
 
@@ -1806,6 +1806,12 @@ footer {
     .layout-half-circle { flex-direction: column; padding: 15% 5%; }
     .skills-intro-left { width: 100%; margin-top: 0; margin-bottom: 2rem; }
     .orbit-container { width: 100%; }
+    .orbit-wrapper-half { 
+        width: 350px; 
+        height: 350px; 
+        bottom: -5%; 
+        right: 0;
+    }
     
     /* Contact */
     .contact-wrapper { padding: 0 5%; }

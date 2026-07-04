@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!ring || items.length === 0) return;
 
     // Radius of the circle path (should match half the width of orbit-wrapper)
-    const radius = 325; 
+    const radius = 300; 
     const totalItems = items.length;
     let currentIndex = 0;
     let autoRotateInterval;
@@ -63,6 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Adjust radius for mobile
+    function adjustForMobile() {
+        if (window.innerWidth < 768) {
+            return 150; // Smaller radius for mobile
+        }
+        return 300; // Desktop radius
+    }
+
     function nextSkill() {
         currentIndex = (currentIndex + 1) % totalItems;
         positionItems(currentIndex);
@@ -94,4 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     positionItems(currentIndex);
     startAutoRotate();
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        const newRadius = adjustForMobile();
+        // Update radius variable
+        const items = document.querySelectorAll('.orbit-item-half');
+        items.forEach((item, index) => {
+            const angleOffset = -Math.PI / 2 - (currentIndex / totalItems) * Math.PI * 2;
+            const angle = (index / totalItems) * Math.PI * 2 + angleOffset;
+            const x = Math.cos(angle) * newRadius;
+            const y = Math.sin(angle) * newRadius;
+            item.style.left = `calc(50% + ${x}px)`;
+            item.style.top = `calc(50% + ${y}px)`;
+        });
+    });
 });
