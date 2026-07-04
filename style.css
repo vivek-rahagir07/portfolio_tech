@@ -388,9 +388,13 @@ nav {
 }
 
 .section {
-    padding: 120px 6%;
-    max-width: 1200px;
+    padding: 120px 4% 80px; /* Reduced side padding slightly for more width */
+    max-width: 1450px; /* Increased max width */
     margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .section-header {
@@ -421,6 +425,7 @@ nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+    align-items: start;
 }
 
 .about-grid h3 {
@@ -428,7 +433,7 @@ nav {
     text-transform: uppercase;
     letter-spacing: 3px;
     color: var(--accent);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-weight: 600;
 }
 
@@ -438,22 +443,27 @@ strong {
 }
 
 .highlight {
-    color: #60a5fa; /* bright blue */
     font-weight: 500;
-    text-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+    animation: hackerGlow 6s infinite ease-in-out;
+}
+
+@keyframes hackerGlow {
+    0%, 100% { color: #3b82f6; text-shadow: 0 0 15px rgba(59, 130, 246, 0.6); } /* Cyber Blue */
+    33% { color: #10b981; text-shadow: 0 0 15px rgba(16, 185, 129, 0.6); } /* Matrix Green */
+    66% { color: #ef4444; text-shadow: 0 0 15px rgba(239, 68, 68, 0.6); } /* Alert Red */
 }
 
 .about-text p {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 1.05rem;
-    line-height: 1.8;
+    line-height: 1.6;
     font-weight: 300;
 }
 
 .philosophy {
-    margin-top: 3rem;
-    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+    padding: 1.2rem 1.5rem;
     background: rgba(59, 130, 246, 0.03);
     border-left: 2px solid var(--accent);
     position: relative;
@@ -508,9 +518,9 @@ strong {
 .impact-list li, .achievement-list li {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.05);
-    padding: 1.2rem;
+    padding: 1rem;
     border-radius: 8px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
