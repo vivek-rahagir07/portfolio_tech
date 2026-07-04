@@ -10,6 +10,8 @@
 </head>
 <body>
 
+    <canvas id="particles-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;"></canvas>
+    
     <!-- Main Content -->
     <main id="main-content">
         <!-- Navigation -->
@@ -25,32 +27,32 @@
 
         <!-- Hero Section -->
         <section id="hero">
+            <div class="hero-bg-glow"></div>
             <div class="hero-content">
-                <h2 class="greeting">Hello, I'm</h2>
-                <h1 class="name">Vivek Yadav</h1>
-                <h3 class="title">Full Stack Web Developer</h3>
-                <p class="tagline">Passionate about building scalable digital products and creating social impact through education.</p>
+                <h2 class="greeting fade-in-up">Hello, I'm</h2>
+                <h1 class="name fade-in-up delay-1">
+                    <span class="first-name">Vivek</span> <span class="last-name">Yadav</span><br>
+                    <span class="aka-name" style="font-size: 1.2rem; font-weight: 400; letter-spacing: 12px; color: var(--text-secondary); display: block; margin-top: 15px; -webkit-text-stroke: 0; white-space: normal;">AKA RAHAGIR</span>
+                </h1>
+                <h3 class="title fade-in-up delay-2"><span id="typewriter"></span><span class="typing-cursor">|</span></h3>
+                <p class="tagline fade-in-up delay-3" style="margin-top: 1rem;">Passionate about building scalable digital products and creating social impact through education.</p>
                 
-                <div class="tech-stack-hero">
+                <div class="tech-stack-hero fade-in-up delay-4">
                     <span class="tech-badge"><i class="fa-brands fa-node-js"></i> Node.js</span>
                     <span class="tech-badge"><i class="fa-brands fa-laravel"></i> Laravel</span>
                     <span class="tech-badge"><i class="fa-brands fa-php"></i> PHP</span>
                     <span class="tech-badge"><i class="fa-brands fa-react"></i> React</span>
                 </div>
                 
-                <div class="hero-cta">
+                <div class="hero-cta fade-in-up delay-5">
                     <a href="#projects" class="btn primary-btn">View My Work</a>
                     <a href="#contact" class="btn secondary-btn">Contact Me</a>
                 </div>
             </div>
             <div class="hero-image">
                 <div id="scratch-container">
-                    <img src="photos/portrait.png" alt="Vivek Yadav Portrait" id="under-image">
+                    <img src="photos/image copy.png" alt="Vivek Yadav Portrait" id="under-image">
                     <canvas id="scratch-canvas"></canvas>
-                    <div class="scratch-instructions" id="scratch-instruction-ui">
-                        <i class="fa-solid fa-hand-sparkles"></i>
-                        <p>Scratch to reveal</p>
-                    </div>
                 </div>
                 <div class="image-glow"></div>
             </div>

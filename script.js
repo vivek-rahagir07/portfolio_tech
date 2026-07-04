@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('scratch-canvas');
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('scratch-container');
-    const instructionUi = document.getElementById('scratch-instruction-ui');
     
     // Load overlay image
     const overlayImg = new Image();
-    overlayImg.src = 'photos/overlay.png'; // Make sure this image exists in the same directory
+    overlayImg.src = 'photos/image.png'; // Make sure this image exists in the same directory
     
     let isDrawing = false;
     let scratchedPixels = 0;
     let totalPixels = 0;
+    let hasInteracted = false;
     
     // Setup canvas size
     function resizeCanvas() {
@@ -21,12 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Redraw overlay
         if (overlayImg.complete) {
-            drawOverlay();
+            drawOverlay(1.0); // Draw fully opaque
         }
     }
     
-    function drawOverlay() {
+    function drawOverlay(alpha = 1.0) {
         ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = alpha;
         
         // Mimic object-fit: cover to perfectly align with the CSS of the under-image
         const imgRatio = overlayImg.width / overlayImg.height;
@@ -49,13 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         ctx.drawImage(overlayImg, offsetX, offsetY, drawWidth, drawHeight);
-        
-        // Calculate total pixels for percentage
-        totalPixels = canvas.width * canvas.height;
+        ctx.globalAlpha = 1.0; // reset
+    }
+    
+    // Magnetic Healing Effect
+    function healLoop() {
+        if (!isDrawing && hasInteracted) {
+            // Gradually draw the overlay back on with low opacity
+            drawOverlay(0.04);
+        }
+        requestAnimationFrame(healLoop);
     }
     
     overlayImg.onload = () => {
         resizeCanvas();
+        healLoop(); // Start the healing loop
     };
     
     window.addEventListener('resize', resizeCanvas);
@@ -80,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function scratch(x, y) {
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(x, y, 40, 0, Math.PI * 2); // 40px radius brush
+        ctx.arc(x, y, 50, 0, Math.PI * 2); // 50px radius brush
         ctx.fill();
     }
     
     // Event Listeners for drawing
     const startScratch = (e) => {
         isDrawing = true;
-        instructionUi.style.opacity = '0'; // Hide instructions when scratching starts
+        hasInteracted = true;
         const pos = getPointerPos(e);
         scratch(pos.x, pos.y);
     };
@@ -128,4 +137,155 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 1. Typewriter Effect
+    const typeWriterElement = document.getElementById('typewriter');
+    const roles = [
+        "Full Stack Developer",
+        "AI Developer",
+        "UI Designer",
+        "Laravel Expert",
+        "React Developer"
+    ];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function type() {
+        const currentRole = roles[roleIndex];
+        
+        if (isDeleting) {
+            typeWriterElement.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50; // faster when deleting
+        } else {
+            typeWriterElement.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            typingSpeed = 1500; // pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typingSpeed = 500; // pause before typing new word
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+    
+    // Start typing after a short delay to match entry animations
+    setTimeout(type, 1500);
+
+    // 3. Background Particles Network
+    const partCanvas = document.getElementById('particles-canvas');
+    const pCtx = partCanvas.getContext('2d');
+    let particlesArray = [];
+    
+    partCanvas.width = window.innerWidth;
+    partCanvas.height = window.innerHeight;
+    
+    window.addEventListener('resize', () => {
+        partCanvas.width = window.innerWidth;
+        partCanvas.height = window.innerHeight;
+        initParticles();
+    });
+
+    let mouse = { x: null, y: null, radius: 150 };
+    
+    window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x;
+        mouse.y = event.y;
+    });
+    
+    window.addEventListener('mouseout', () => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    });
+
+    class Particle {
+        constructor(x, y, directionX, directionY, size, color) {
+            this.x = x;
+            this.y = y;
+            this.directionX = directionX;
+            this.directionY = directionY;
+            this.size = size;
+            this.color = color;
+        }
+        draw() {
+            pCtx.beginPath();
+            pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            pCtx.fillStyle = this.color;
+            pCtx.fill();
+        }
+        update() {
+            if (this.x > partCanvas.width || this.x < 0) this.directionX = -this.directionX;
+            if (this.y > partCanvas.height || this.y < 0) this.directionY = -this.directionY;
+
+            // Collision detection - mouse position / particle position
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius + this.size) {
+                if (mouse.x < this.x && this.x < partCanvas.width - this.size * 10) this.x += 2;
+                if (mouse.x > this.x && this.x > this.size * 10) this.x -= 2;
+                if (mouse.y < this.y && this.y < partCanvas.height - this.size * 10) this.y += 2;
+                if (mouse.y > this.y && this.y > this.size * 10) this.y -= 2;
+            }
+            this.x += this.directionX;
+            this.y += this.directionY;
+            this.draw();
+        }
+    }
+
+    function initParticles() {
+        particlesArray = [];
+        let numberOfParticles = (partCanvas.height * partCanvas.width) / 15000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            let size = (Math.random() * 2) + 1;
+            let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+            let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+            let directionX = (Math.random() * 0.4) - 0.2;
+            let directionY = (Math.random() * 0.4) - 0.2;
+            let color = 'rgba(255, 255, 255, 0.2)';
+            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+        }
+    }
+
+    function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        pCtx.clearRect(0, 0, innerWidth, innerHeight);
+        
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+        }
+        connectParticles();
+    }
+
+    function connectParticles() {
+        let opacityValue = 1;
+        for (let a = 0; a < particlesArray.length; a++) {
+            for (let b = a; b < particlesArray.length; b++) {
+                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
+                               ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                
+                if (distance < (partCanvas.width/7) * (partCanvas.height/7)) {
+                    opacityValue = 1 - (distance / 15000);
+                    pCtx.strokeStyle = 'rgba(59, 130, 246, ' + opacityValue * 0.2 + ')';
+                    pCtx.lineWidth = 1;
+                    pCtx.beginPath();
+                    pCtx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                    pCtx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                    pCtx.stroke();
+                }
+            }
+        }
+    }
+
+    initParticles();
+    animateParticles();
 });
