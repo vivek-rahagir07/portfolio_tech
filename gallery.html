@@ -27,74 +27,189 @@
             </ul>
         </nav>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="section">
-            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 3.5rem;">Visual <span class="gradient-text-blue-purple">Journey</span></h2>
-                <div class="header-line" style="margin: 15px auto 0;"></div>
-                <p style="color: #9ca3af; margin-top: 1.5rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Moments captured, memories framed. A glimpse into my life outside of code.</p>
-            </div>
-            
-            <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=80&w=800&auto=format&fit=crop" alt="Workspace">
-                    <div class="gallery-overlay">
-                        <h4>Workspace setup</h4>
-                        <p>Where the magic happens</p>
-                    </div>
+        <!-- Draggable Gallery Section -->
+        <div id="drag-container">
+            <div id="drag-canvas">
+                <!-- Center point / Instructions hidden via CSS -->
+                <div class="canvas-center">
+                    <h2 style="font-size: 4rem; font-weight: 800; color: #fff; font-family: 'Georgia', serif;">Visual <span style="font-style: italic; color: #a1a1aa;">Journey</span></h2>
+                    <p style="color: #9ca3af; font-size: 1.2rem; margin-top: 10px;"><i class="fa-solid fa-arrows-up-down-left-right" style="margin-right: 10px;"></i> Click & Drag to explore</p>
                 </div>
                 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item tall">
-                    <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=800&auto=format&fit=crop" alt="Coding Session">
-                    <div class="gallery-overlay">
-                        <h4>Late Night Coding</h4>
-                        <p>Fuelled by coffee</p>
-                    </div>
-                </div>
+                <!-- Gallery Cards Tightly Clustered -->
                 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item wide">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop" alt="Tech Setup">
-                    <div class="gallery-overlay">
-                        <h4>My Rig</h4>
-                        <p>Built for performance</p>
+                <!-- Row 1 -->
+                <div class="drag-card" style="top: calc(50% - 200px); left: calc(50% - 550px); transform: rotate(-2deg);">
+                    <div class="card-text">
+                        <h4>Liderar desde la cocina</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=V+Y&background=112c26&color=fff" alt="VY"></div>
+                        <div class="card-text">
+                            <p>Freelance</p>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=800&auto=format&fit=crop" alt="Coffee">
-                    <div class="gallery-overlay">
-                        <h4>Morning Routine</h4>
-                        <p>Essential fuel</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item tall">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Collaboration">
-                    <div class="gallery-overlay">
-                        <h4>Team Brainstorming</h4>
-                        <p>Collaborating on ideas</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=800&auto=format&fit=crop" alt="Code on Screen">
-                    <div class="gallery-overlay">
-                        <h4>Debugging</h4>
-                        <p>Finding the missing semicolon</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <footer>
-            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
-        </footer>
+                <div class="drag-card" style="top: calc(50% - 220px); left: calc(50% - 300px); transform: rotate(1deg);">
+                    <div class="card-text">
+                        <h4>Hacerlo bien aunque nadie lo vea</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=M+L&background=112c26&color=fff" alt="ML"></div>
+                        <div class="card-text">
+                            <p>Mandarina</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drag-card" style="top: calc(50% - 190px); left: calc(50% - 50px); transform: rotate(-1deg);">
+                    <div class="card-text">
+                        <h4>Inventando un nuevo lenguaje</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=W+H&background=112c26&color=fff" alt="WH"></div>
+                        <div class="card-text">
+                            <p>Monks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drag-card" style="top: calc(50% - 210px); left: calc(50% + 200px); transform: rotate(2deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/1.png" alt="Gallery Image 1">
+                    </div>
+                    <div class="card-text">
+                        <h4>La llamada que no esperaba</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=L+G&background=112c26&color=fff" alt="LG"></div>
+                        <div class="card-text">
+                            <p>Not on sale</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drag-card" style="top: calc(50% - 230px); left: calc(50% + 450px); transform: rotate(-3deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/2.png" alt="Gallery Image 2">
+                    </div>
+                    <div class="card-text">
+                        <h4>Tres historias sobre el impulso</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=F+V&background=112c26&color=fff" alt="FV"></div>
+                        <div class="card-text">
+                            <p>Anita & Vega</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drag-card" style="top: calc(50% - 180px); left: calc(50% + 700px); transform: rotate(2deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/3.png" alt="Gallery Image 3">
+                    </div>
+                    <div class="card-text">
+                        <h4>Momento de inspiración</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=M+I&background=112c26&color=fff" alt="MI"></div>
+                        <div class="card-text">
+                            <p>Intermedia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="drag-card" style="top: calc(50% + 20px); left: calc(50% - 580px); transform: rotate(3deg);">
+                    <div class="card-text">
+                        <h4>La belleza de lo invisible</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=P+P&background=112c26&color=fff" alt="PP"></div>
+                        <div class="card-text">
+                            <p>Globant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drag-card" style="top: calc(50% + 40px); left: calc(50% - 330px); transform: rotate(-2deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/4.png" alt="Gallery Image 4">
+                    </div>
+                    <div class="card-text">
+                        <h4>Cuando el criterio se volvió comunidad</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=D+P&background=112c26&color=fff" alt="DP"></div>
+                        <div class="card-text">
+                            <p>Awwwards</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drag-card" style="top: calc(50% + 60px); left: calc(50% - 80px); transform: rotate(1deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/5.png" alt="Gallery Image 5">
+                    </div>
+                    <div class="card-text">
+                        <h4>Hacer con lo que hay</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=B+G&background=112c26&color=fff" alt="BG"></div>
+                        <div class="card-text">
+                            <p>Paisanos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drag-card" style="top: calc(50% + 30px); left: calc(50% + 170px); transform: rotate(-1deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/6.png" alt="Gallery Image 6">
+                    </div>
+                    <div class="card-text">
+                        <h4>Animarse a jugar en otra liga</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=A+L&background=112c26&color=fff" alt="AL"></div>
+                        <div class="card-text">
+                            <p>Southmates Studio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drag-card" style="top: calc(50% + 50px); left: calc(50% + 420px); transform: rotate(4deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/7.png" alt="Gallery Image 7">
+                    </div>
+                    <div class="card-text">
+                        <h4>La calma también es una forma de liderar</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=H+P&background=112c26&color=fff" alt="HP"></div>
+                        <div class="card-text">
+                            <p>Indicius</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drag-card" style="top: calc(50% + 10px); left: calc(50% + 670px); transform: rotate(-2deg);">
+                    <div class="card-img-wrapper">
+                        <img src="collage/8.png" alt="Gallery Image 8">
+                    </div>
+                    <div class="card-text">
+                        <h4>Construir lo posible</h4>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-avatar"><img src="https://ui-avatars.com/api/?name=L+D&background=112c26&color=fff" alt="LD"></div>
+                        <div class="card-text">
+                            <p>Divinn</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Lightbox Modal -->
@@ -106,34 +221,91 @@
 
     <script src="script.js"></script>
     <script>
-        // Simple Lightbox Logic for Gallery
         document.addEventListener('DOMContentLoaded', () => {
-            const galleryItems = document.querySelectorAll('.gallery-item img');
+            // Drag to pan functionality
+            const container = document.getElementById('drag-container');
+            const canvas = document.getElementById('drag-canvas');
+            
+            let isDown = false;
+            let startX;
+            let startY;
+            let scrollLeft;
+            let scrollTop;
+
+            // Start in the center of the canvas
+            if (container && canvas) {
+                container.scrollLeft = (canvas.offsetWidth - container.clientWidth) / 2;
+                container.scrollTop = (canvas.offsetHeight - container.clientHeight) / 2;
+            }
+
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                container.classList.add('active');
+                startX = e.pageX - container.offsetLeft;
+                startY = e.pageY - container.offsetTop;
+                scrollLeft = container.scrollLeft;
+                scrollTop = container.scrollTop;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                isDown = false;
+                container.classList.remove('active');
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+                container.classList.remove('active');
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const y = e.pageY - container.offsetTop;
+                const walkX = (x - startX) * 1.5; // Scroll speed multiplier
+                const walkY = (y - startY) * 1.5;
+                container.scrollLeft = scrollLeft - walkX;
+                container.scrollTop = scrollTop - walkY;
+            });
+
+            // Lightbox functionality
+            const dragCards = document.querySelectorAll('.drag-card');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxCaption = document.getElementById('lightbox-caption');
             const closeBtn = document.querySelector('.close-lightbox');
 
-            if(galleryItems.length > 0) {
-                galleryItems.forEach(img => {
-                    img.addEventListener('click', () => {
+            // We need to distinguish between a drag and a click
+            let dragStartTime;
+            
+            dragCards.forEach(card => {
+                const img = card.querySelector('.card-img-wrapper img');
+                
+                card.addEventListener('mousedown', () => {
+                    dragStartTime = new Date().getTime();
+                });
+                
+                card.addEventListener('mouseup', (e) => {
+                    const dragEndTime = new Date().getTime();
+                    // If it was a quick click (< 200ms), open lightbox
+                    if(dragEndTime - dragStartTime < 200) {
                         lightbox.style.display = 'flex';
                         lightboxImg.src = img.src;
                         
-                        // Get caption from the overlay
-                        const overlay = img.nextElementSibling;
-                        if(overlay) {
-                            const title = overlay.querySelector('h4').textContent;
-                            const desc = overlay.querySelector('p').textContent;
-                            lightboxCaption.innerHTML = `<strong>${title}</strong> - ${desc}`;
-                        }
-                    });
+                        const title = card.querySelector('h4').textContent;
+                        const desc = card.querySelector('.card-text p').textContent;
+                        lightboxCaption.innerHTML = `<strong>${title}</strong> - ${desc}`;
+                    }
                 });
+            });
 
+            if (closeBtn) {
                 closeBtn.addEventListener('click', () => {
                     lightbox.style.display = 'none';
                 });
+            }
 
+            if (lightbox) {
                 lightbox.addEventListener('click', (e) => {
                     if (e.target !== lightboxImg) {
                         lightbox.style.display = 'none';
