@@ -118,6 +118,119 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Carousel View -->
+            <div class="projects-carousel" id="projects-carousel" style="display: none;">
+                <div class="carousel-container">
+                    <button class="carousel-nav prev" id="carousel-prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Project 1 -->
+                        <div class="carousel-item glass-card">
+                            <div class="project-video">
+                                <video src="vedios/linkdin.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <h3>CognitoAttend</h3>
+                                    <p class="project-tagline">Smart Attendance System</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Full-stack attendance management platform for tracking and managing attendance digitally.</p>
+                                <div class="project-tech">
+                                    <span>React</span> <span>Node.js</span> <span>MongoDB</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://cognitoattend.vivek-yadav.com/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="carousel-item glass-card">
+                            <div class="project-video">
+                                <video src="vedios/github.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <h3>NeoStream</h3>
+                                    <p class="project-tagline">Music Streaming Web App</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Modern music streaming interface with smooth UI and dynamic playback experience.</p>
+                                <div class="project-tech">
+                                    <span>React</span> <span>UI/UX</span> <span>Audio API</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://neostream-music.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div class="carousel-item glass-card">
+                            <div class="project-video">
+                                <video src="vedios/download.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <h3>Enterprise Projects</h3>
+                                    <p class="project-tagline">Multiple Big Company Projects</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Contributed to and developed multiple live projects for large-scale enterprise companies utilizing modern tech stacks.</p>
+                                <div class="project-tech">
+                                    <span>Laravel</span> <span>PHP</span> <span>Node.js</span>
+                                </div>
+                                <div class="project-links">
+                                    <span class="private-link"><i class="fa-solid fa-lock"></i> Enterprise/Private</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="carousel-item glass-card">
+                            <div class="project-video">
+                                <video src="vedios/linkdin.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <h3>Carrom Online</h3>
+                                    <p class="project-tagline">Multiplayer Web Game</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Browser-based carrom game recreating the classic board game experience using Mediapipe.</p>
+                                <div class="project-tech">
+                                    <span>JavaScript</span> <span>Mediapipe</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://carrom-online.vercel.app/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5 -->
+                        <div class="carousel-item glass-card">
+                            <div class="project-video">
+                                <video src="vedios/github.mp4" autoplay loop muted playsinline></video>
+                                <div class="video-overlay">
+                                    <h3>Library Cabin Booking</h3>
+                                    <p class="project-tagline">Management System</p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <p class="project-desc">Web application to book library cabins efficiently and manage usage schedules.</p>
+                                <div class="project-tech">
+                                    <span>Web Tech</span> <span>Scheduling</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://vivek-yadav07.github.io/library-cabin-booking-/" target="_blank" class="live-link">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav next" id="carousel-next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </section>
 
         <footer>
@@ -126,5 +239,68 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        // View Toggle Functionality
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const projectsGrid = document.getElementById('projects-grid');
+        const projectsCarousel = document.getElementById('projects-carousel');
+
+        viewBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.dataset.view;
+                
+                // Update active button
+                viewBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.style.background = 'transparent';
+                    b.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                });
+                btn.classList.add('active');
+                btn.style.background = 'rgba(59, 130, 246, 0.2)';
+                btn.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+
+                // Toggle views
+                if (view === 'grid') {
+                    projectsGrid.style.display = 'grid';
+                    projectsCarousel.style.display = 'none';
+                } else {
+                    projectsGrid.style.display = 'none';
+                    projectsCarousel.style.display = 'block';
+                }
+            });
+        });
+
+        // Carousel Functionality
+        const carouselTrack = document.getElementById('carousel-track');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel-item');
+        const totalItems = items.length;
+
+        function updateCarousel() {
+            const itemWidth = items[0].offsetWidth + 30; // width + gap
+            carouselTrack.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        });
+
+        // Auto-play carousel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }, 5000);
+
+        // Handle window resize
+        window.addEventListener('resize', updateCarousel);
+    </script>
 </body>
 </html>
