@@ -40,6 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // CV Download Button
+    const cvDownloadBtn = document.getElementById('cv-download-btn');
+    if (cvDownloadBtn) {
+        cvDownloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const cvPath = 'photos/cv.png';
+            
+            // Create a temporary link to force download
+            const link = document.createElement('a');
+            link.href = cvPath;
+            link.download = 'cv.png';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log('CV download initiated');
+        });
+    }
+    
     // Mobile Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
