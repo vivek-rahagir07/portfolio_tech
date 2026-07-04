@@ -79,19 +79,35 @@ ul {
 
 /* Glassmorphism */
 .glass-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-glass);
-    border-radius: 24px;
-    padding: 2.5rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .glass-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--border-glass-hover);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.03) inset;
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(59, 130, 246, 0.1) inset;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
 }
 
 /* Navigation */
@@ -369,28 +385,31 @@ nav {
     object-fit: cover;
 }
 
-/* General Sections */
 .section {
     padding: 120px 6%;
 }
 
 .section-header {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     position: relative;
 }
 
 .section-header h2 {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
     font-weight: 800;
     letter-spacing: -1px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.8);
+    display: inline-block;
 }
 
 .header-line {
-    width: 80px;
-    height: 5px;
-    background: var(--accent-gradient);
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
     margin-top: 15px;
-    border-radius: 5px;
+    box-shadow: 0 0 15px var(--accent);
 }
 
 /* About Section */
@@ -400,78 +419,120 @@ nav {
     gap: 3rem;
 }
 
+.about-grid h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.highlight {
+    color: #60a5fa; /* bright blue */
+    font-weight: 500;
+    text-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+}
+
 .about-text p {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     line-height: 1.8;
+    font-weight: 300;
 }
 
 .philosophy {
     margin-top: 3rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--border-glass);
+    padding: 1.5rem 2rem;
+    background: rgba(59, 130, 246, 0.03);
+    border-left: 2px solid var(--accent);
     position: relative;
+    border-radius: 0 12px 12px 0;
 }
 
 .philosophy i {
-    position: absolute;
-    top: -15px;
-    left: 20px;
-    background: var(--bg-main);
-    padding: 0 10px;
-    color: var(--accent);
-    font-size: 1.5rem;
+    display: none;
 }
 
 .philosophy blockquote {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-style: italic;
-    font-weight: 500;
+    font-weight: 300;
     margin-bottom: 1rem;
-    color: #fff;
+    color: #ffffff;
 }
 
 .philosophy-sub {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
 }
 
 .leadership-item {
-    margin-top: 2rem;
+    margin-top: 1rem;
+}
+
+.leadership-item h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .org {
     color: var(--accent);
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
 }
 
 .desc {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
 }
 
 .impact-list li, .achievement-list li {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.2rem;
+    border-radius: 8px;
     margin-bottom: 1rem;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    font-size: 1.05rem;
+    gap: 1.2rem;
+    font-size: 1rem;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+.impact-list li:hover, .achievement-list li:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+    transform: translateX(5px);
 }
 
 .impact-list i, .achievement-list i {
-    font-size: 1.2rem;
-    background: rgba(255,255,255,0.05);
+    font-size: 1rem;
+    background: rgba(59,130,246,0.1);
+    color: var(--accent);
     padding: 10px;
-    border-radius: 50%;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(59,130,246,0.2);
 }
 
-.text-green { color: #10b981; }
-.text-gold { color: #fbbf24; }
+.text-green { color: #10b981 !important; }
+.text-gold { color: #fbbf24 !important; }
 .mt-4 { margin-top: 3rem; }
 
 /* Skills Section */
