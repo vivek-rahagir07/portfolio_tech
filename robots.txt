@@ -1,0 +1,14 @@
+# robots.txt for vivekyadav.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vivekyadav.com/sitemap.xml
+
+# Disallow specific directories if needed
+# Disallow: /private/
+# Disallow: /admin/
+
+# Crawl-delay (optional)
+# Crawl-delay: 1

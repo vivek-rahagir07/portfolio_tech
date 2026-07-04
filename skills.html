@@ -29,6 +29,23 @@
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemPage",
+        "name": "Technical Skills - Vivek Yadav",
+        "description": "Explore the technical skills of Vivek Yadav. Expertise in React, Node.js, JavaScript, and modern web development technologies.",
+        "url": "https://vivekyadav.com/skills.html",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Vivek Yadav",
+            "jobTitle": "Full Stack Web Developer",
+            "knowsAbout": ["React", "Node.js", "JavaScript", "Web Development", "Full Stack Development", "CSS", "HTML", "API Development"]
+        }
+    }
+    </script>
+    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -78,7 +95,7 @@
         <section id="skills" class="section layout-half-circle page-transition">
             <div class="skills-intro-left">
                 <div class="section-header fade-in-up">
-                    <h2>My Skills</h2>
+                    <h1>My Skills</h1>
                     <div class="header-line"></div>
                 </div>
                 <p id="skills-long-desc" class="fade-in-up">Hover over or select a skill from the tech wheel to see detailed information about how it's utilized in professional projects.</p>
@@ -93,7 +110,7 @@
                     <div class="center-content">
                         <i class="fa-brands fa-js center-icon-half" id="center-icon" style="color: #f7df1e;"></i>
                         <div class="center-text">
-                            <h3 id="center-title">JavaScript</h3>
+                            <h2 id="center-title">JavaScript</h2>
                             <p id="center-desc">Advanced ES6+, Async/Await, DOM Manipulation, and modern frameworks ecosystem.</p>
                         </div>
                     </div>

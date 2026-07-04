@@ -28,26 +28,26 @@
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Structured Data -->
+    <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Vivek Yadav",
+        "jobTitle": "Full Stack Web Developer",
         "url": "https://vivekyadav.com",
-        "image": "https://vivekyadav.com/photos/logo.png",
         "sameAs": [
             "https://github.com/vivek-rahagir07",
-            "https://linkedin.com/in/vivek-yadav"
+            "https://linkedin.com/in/vivekyadav"
         ],
-        "jobTitle": "Full Stack Web Developer",
-        "description": "Full Stack Web Developer specializing in modern web technologies and creating exceptional user experiences."
+        "description": "Full Stack Web Developer specializing in modern web technologies, responsive design, and creating exceptional user experiences.",
+        "knowsAbout": ["React", "Node.js", "JavaScript", "Web Development", "Full Stack Development"]
     }
     </script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Service Worker Registration -->
     <script>
@@ -94,12 +94,12 @@
         <section id="hero" class="page-transition">
             <div class="hero-bg-glow"></div>
             <div class="hero-content">
-                <h2 class="greeting fade-in-up">Hello, I'm</h2>
+                <p class="greeting fade-in-up">Hello, I'm</p>
                 <h1 class="name fade-in-up delay-1">
                     <span class="first-name">Vivek</span> <span class="last-name hacker-text">Yadav</span><br>
                     <span class="aka-name" style="font-size: 1.2rem; font-weight: 400; letter-spacing: 12px; color: var(--text-secondary); display: block; margin-top: 15px; -webkit-text-stroke: 0; white-space: normal;">AKA RAHAGIR</span>
                 </h1>
-                <h3 class="title fade-in-up delay-2"><span id="typewriter"></span><span class="typing-cursor">|</span></h3>
+                <h2 class="title fade-in-up delay-2"><span id="typewriter"></span><span class="typing-cursor">|</span></h2>
                 <p class="tagline fade-in-up delay-3" style="margin-top: 1rem;">Passionate about building scalable digital products and creating social impact through education.</p>
                 
                 <div class="tech-stack-hero fade-in-up delay-4">
