@@ -42,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 centerIcon.className = item.dataset.icon + ' center-icon-half';
                 centerIcon.style.color = item.dataset.color;
                 
+                // Update long description on the left
+                const longDescEl = document.getElementById('skills-long-desc');
+                if(longDescEl && item.dataset.experience) {
+                    longDescEl.textContent = item.dataset.experience;
+                    // trigger simple fade animation
+                    longDescEl.style.animation = 'none';
+                    void longDescEl.offsetWidth;
+                    longDescEl.style.animation = 'fadeInUp 0.5s ease forwards';
+                }
+                
                 centerIcon.classList.remove('pop');
                 void centerIcon.offsetWidth; 
                 centerIcon.classList.add('pop');

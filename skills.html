@@ -18,6 +18,7 @@
         <nav>
             <div class="logo"><a href="index.html" style="color:white; text-decoration:none;">VY.</a></div>
             <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="skills.html">Skills</a></li>
                 <li><a href="projects.html">Projects</a></li>
@@ -28,10 +29,12 @@
         <!-- Skills Section -->
         <section id="skills" class="section layout-half-circle">
             <div class="skills-intro-left">
-                <h1>My Skills</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.</p>
+                <div class="section-header">
+                    <h2>My Skills</h2>
+                    <div class="header-line"></div>
+                </div>
+                <p id="skills-long-desc">Hover over or select a skill from the tech wheel to see my detailed experience and how I utilize it in my professional projects.</p>
                 <div class="skills-actions">
-                    <button class="btn-purple">contact me</button>
                     <a href="#" class="see-more" id="btn-next-skill">next skill <i class="fa-solid fa-arrow-right-long"></i></a>
                 </div>
             </div>
@@ -43,7 +46,7 @@
                         <i class="fa-brands fa-js center-icon-half" id="center-icon" style="color: #f7df1e;"></i>
                         <div class="center-text">
                             <h3 id="center-title">JavaScript</h3>
-                            <p id="center-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit se</p>
+                            <p id="center-desc">Advanced ES6+, Async/Await, DOM Manipulation, and modern frameworks ecosystem.</p>
                         </div>
                     </div>
                 </div>
@@ -51,61 +54,61 @@
                 <!-- Orbit Path and Items -->
                 <div class="orbit-ring-half" id="orbit-ring">
                     <!-- JavaScript -->
-                    <div class="orbit-item-half" data-id="js" data-title="JavaScript" data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus." data-color="#f7df1e" data-icon="fa-brands fa-js">
+                    <div class="orbit-item-half" data-id="js" data-title="JavaScript" data-desc="Advanced ES6+, Async/Await, DOM Manipulation, and modern frameworks ecosystem." data-experience="Over the years, JavaScript has been the backbone of my front-end development. I've utilized it extensively to build highly interactive user interfaces, craft custom animations, and handle complex state management. Whether it's Vanilla JS for lightweight scripts or powering heavy logic in massive web apps, it's my go-to language for bringing static pages to life." data-color="#f7df1e" data-icon="fa-brands fa-js">
                         <div class="hexagon-icon" style="background: rgba(247, 223, 30, 0.2); border-color: #f7df1e;">
                             <i class="fa-brands fa-js" style="color: #f7df1e;"></i>
                         </div>
                     </div>
                     <!-- React -->
-                    <div class="orbit-item-half" data-id="react" data-title="React.js" data-desc="Component architecture, Hooks, Context API, Redux, and Next.js integration." data-color="#61dafb" data-icon="fa-brands fa-react">
+                    <div class="orbit-item-half" data-id="react" data-title="React.js" data-desc="Component architecture, Hooks, Context API, Redux, and Next.js integration." data-experience="I have leveraged React to architect scalable, single-page applications (SPAs). From utilizing modern Hooks for state and side-effects to implementing complex routing and state management with Redux, React has been instrumental in delivering seamless, lightning-fast user experiences in my most demanding projects." data-color="#61dafb" data-icon="fa-brands fa-react">
                         <div class="hexagon-icon" style="background: rgba(97, 218, 251, 0.2); border-color: #61dafb;">
                             <i class="fa-brands fa-react" style="color: #61dafb;"></i>
                         </div>
                     </div>
                     <!-- Node -->
-                    <div class="orbit-item-half" data-id="node" data-title="Node.js" data-desc="Backend architecture, REST APIs, Express framework, and server-side logic." data-color="#339933" data-icon="fa-brands fa-node">
+                    <div class="orbit-item-half" data-id="node" data-title="Node.js" data-desc="Backend architecture, REST APIs, Express framework, and server-side logic." data-experience="Node.js powers the backend of my scalable web applications. I've used it to build robust RESTful APIs, handle real-time WebSocket connections, and execute server-side logic efficiently. Its event-driven architecture has allowed me to seamlessly integrate frontend and backend environments using a unified JavaScript stack." data-color="#339933" data-icon="fa-brands fa-node">
                         <div class="hexagon-icon" style="background: rgba(51, 153, 51, 0.2); border-color: #339933;">
                             <i class="fa-brands fa-node" style="color: #339933;"></i>
                         </div>
                     </div>
                     <!-- C# (from image) -->
-                    <div class="orbit-item-half" data-id="csharp" data-title="C#" data-desc="Object-oriented programming, .NET core, and enterprise backend services." data-color="#9b4dca" data-icon="fa-solid fa-c">
+                    <div class="orbit-item-half" data-id="csharp" data-title="C#" data-desc="Object-oriented programming, .NET core, and enterprise backend services." data-experience="C# has been crucial for my enterprise-level and object-oriented backend services. I've used it within the .NET ecosystem to develop highly secure, multithreaded applications and robust APIs. Its strict typing and powerful tooling have been invaluable for maintaining large, complex codebases." data-color="#9b4dca" data-icon="fa-solid fa-c">
                         <div class="hexagon-icon" style="background: rgba(155, 77, 202, 0.2); border-color: #9b4dca;">
                             <i class="fa-solid fa-c" style="color: #9b4dca;"></i><span style="color:#9b4dca; font-weight: bold;">#</span>
                         </div>
                     </div>
                     <!-- HTML5 -->
-                    <div class="orbit-item-half" data-id="html5" data-title="HTML5" data-desc="Semantic markup, accessibility, and modern web structures." data-color="#e34f26" data-icon="fa-brands fa-html5">
+                    <div class="orbit-item-half" data-id="html5" data-title="HTML5" data-desc="Semantic markup, accessibility, and modern web structures." data-experience="HTML5 provides the semantic structure for every web project I build. I focus heavily on writing clean, accessible, and SEO-friendly markup. By leveraging the latest HTML5 elements, I ensure that my applications are not only visually structurally sound but also perfectly readable by screen readers and search engines." data-color="#e34f26" data-icon="fa-brands fa-html5">
                         <div class="hexagon-icon" style="background: rgba(227, 79, 38, 0.2); border-color: #e34f26;">
                             <i class="fa-brands fa-html5" style="color: #e34f26;"></i>
                         </div>
                     </div>
                     <!-- CSS3 -->
-                    <div class="orbit-item-half" data-id="css3" data-title="CSS3" data-desc="Advanced styling, animations, grid/flexbox, and responsive design." data-color="#1572B6" data-icon="fa-brands fa-css3-alt">
+                    <div class="orbit-item-half" data-id="css3" data-title="CSS3" data-desc="Advanced styling, animations, grid/flexbox, and responsive design." data-experience="CSS3 is where I bring my designs to life. I specialize in modern CSS features like Flexbox, CSS Grid, and custom keyframe animations to create stunning, responsive layouts without relying on heavy JavaScript libraries. I love crafting premium, pixel-perfect UI experiences like glassmorphism and cyberpunk glows." data-color="#1572B6" data-icon="fa-brands fa-css3-alt">
                         <div class="hexagon-icon" style="background: rgba(21, 114, 182, 0.2); border-color: #1572B6;">
                             <i class="fa-brands fa-css3-alt" style="color: #1572B6;"></i>
                         </div>
                     </div>
                     <!-- Leaf/MongoDB -->
-                    <div class="orbit-item-half" data-id="mongo" data-title="MongoDB" data-desc="NoSQL database design, Mongoose schemas, and scalable document storage." data-color="#47a248" data-icon="fa-solid fa-leaf">
+                    <div class="orbit-item-half" data-id="mongo" data-title="MongoDB" data-desc="NoSQL database design, Mongoose schemas, and scalable document storage." data-experience="For dynamic, schema-less data requirements, MongoDB is my preferred NoSQL database. I've used it to rapidly prototype applications, store massive amounts of unstructured document data, and integrate seamlessly with Node.js backends via Mongoose for high-performance, scalable data handling." data-color="#47a248" data-icon="fa-solid fa-leaf">
                         <div class="hexagon-icon" style="background: rgba(71, 162, 72, 0.2); border-color: #47a248;">
                             <i class="fa-solid fa-leaf" style="color: #47a248;"></i>
                         </div>
                     </div>
                     <!-- PHP -->
-                    <div class="orbit-item-half" data-id="php" data-title="PHP" data-desc="Server-side scripting, OOP, MVC architecture, and legacy application maintenance." data-color="#777bb4" data-icon="fa-brands fa-php">
+                    <div class="orbit-item-half" data-id="php" data-title="PHP" data-desc="Server-side scripting, OOP, MVC architecture, and legacy application maintenance." data-experience="PHP has been foundational in my server-side development journey. I've used it to build custom dynamic websites, manage backend logic, and integrate tightly with relational databases. It has been especially critical when working with legacy systems or deploying rapid, cost-effective server solutions." data-color="#777bb4" data-icon="fa-brands fa-php">
                         <div class="hexagon-icon" style="background: rgba(119, 123, 180, 0.2); border-color: #777bb4;">
                             <i class="fa-brands fa-php" style="color: #777bb4;"></i>
                         </div>
                     </div>
                     <!-- Laravel -->
-                    <div class="orbit-item-half" data-id="laravel" data-title="Laravel" data-desc="Eloquent ORM, Blade templating, MVC architecture, routing, and enterprise backend logic." data-color="#ff2d20" data-icon="fa-brands fa-laravel">
+                    <div class="orbit-item-half" data-id="laravel" data-title="Laravel" data-desc="Eloquent ORM, Blade templating, MVC architecture, routing, and enterprise backend logic." data-experience="Laravel elevated my PHP development by providing an elegant, robust MVC framework. I've utilized its powerful Eloquent ORM, built-in authentication, and expressive routing to quickly deliver secure, enterprise-grade web applications. It's my framework of choice when building complex, feature-rich backends." data-color="#ff2d20" data-icon="fa-brands fa-laravel">
                         <div class="hexagon-icon" style="background: rgba(255, 45, 32, 0.2); border-color: #ff2d20;">
                             <i class="fa-brands fa-laravel" style="color: #ff2d20;"></i>
                         </div>
                     </div>
                     <!-- MySQL -->
-                    <div class="orbit-item-half" data-id="mysql" data-title="MySQL" data-desc="Relational database management, complex SQL queries, and data normalization." data-color="#4479A1" data-icon="fa-solid fa-database">
+                    <div class="orbit-item-half" data-id="mysql" data-title="MySQL" data-desc="Relational database management, complex SQL queries, and data normalization." data-experience="MySQL is my trusted engine for structured, relational data. I have designed complex database schemas, written highly optimized queries, and ensured data integrity through strict normalization rules. It has securely stored millions of records across several of my full-stack applications." data-color="#4479A1" data-icon="fa-solid fa-database">
                         <div class="hexagon-icon" style="background: rgba(68, 121, 161, 0.2); border-color: #4479A1;">
                             <i class="fa-solid fa-database" style="color: #4479A1;"></i>
                         </div>
