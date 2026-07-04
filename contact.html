@@ -22,38 +22,86 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="skills.html">Skills</a></li>
                 <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
 
         <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-                <div class="header-line"></div>
+        <section id="contact" class="section square-grid-bg">
+            <div class="section-header" style="text-align: center; margin-bottom: 2rem; position: relative;">
+                <h2 style="font-size: 3.5rem;">Get In Touch</h2>
+                <div class="header-line" style="margin: 15px auto 0;"></div>
             </div>
             
-            <div class="contact-container glass-card">
-                <div class="contact-info">
-                    <h3>Let's build something amazing together</h3>
-                    <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            <div class="contact-wrapper">
+                <div class="contact-left">
+                    <h1 class="collab-text">Let's Turn Your <br><span class="gradient-text-blue-purple">Ideas Into Reality.</span></h1>
+                    <p class="contact-desc">Whether you have a massive enterprise project, a disruptive startup idea, or just want to explore the future of web technologies together—my inbox is always open.</p>
                     
-                    <div class="contact-methods">
-                        <a href="mailto:vivekhr36.2007@gmail.com" class="contact-method">
-                            <i class="fa-solid fa-envelope"></i> vivekhr36.2007@gmail.com
+                    <div class="contact-methods-grid">
+                        <a href="mailto:vivekhr36.2007@gmail.com" class="contact-card glass-card">
+                            <div class="icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <h4>Email Me</h4>
+                                <span>vivekhr36.2007@gmail.com</span>
+                            </div>
                         </a>
-                        <a href="tel:+919996445592" class="contact-method">
-                            <i class="fa-solid fa-phone"></i> +91 9996445592
+                        <a href="tel:+919996445592" class="contact-card glass-card">
+                            <div class="icon-wrapper"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <h4>Call Me</h4>
+                                <span>+91 9996445592</span>
+                            </div>
                         </a>
-                        <div class="contact-method">
-                            <i class="fa-solid fa-location-dot"></i> Gurugram, Haryana, India
+                        <a href="https://t.me/rahagirrr" target="_blank" class="contact-card glass-card">
+                            <div class="icon-wrapper"><i class="fa-brands fa-telegram"></i></div>
+                            <div>
+                                <h4>Telegram</h4>
+                                <span>@rahagirrr</span>
+                            </div>
+                        </a>
+                        <div class="contact-card glass-card">
+                            <div class="icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h4>Location</h4>
+                                <span>Gurugram, Haryana, India</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="social-links">
+                    <div class="social-links contact-socials">
                         <a href="https://github.com/vivek-yadav07" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
                         <a href="https://linkedin.com/in/vivek-yadav-1142213a0/" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
+                </div>
+
+                <div class="contact-right glass-card">
+                    <form class="premium-form" onsubmit="event.preventDefault(); alert('Message feature coming soon!');">
+                        <div class="input-group">
+                            <input type="text" id="name" required>
+                            <label for="name">Your Name</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" required>
+                            <label for="email">Your Email</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="subject" required>
+                            <label for="subject">Subject</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="message" rows="3" required></textarea>
+                            <label for="message">Tell me about your project...</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>

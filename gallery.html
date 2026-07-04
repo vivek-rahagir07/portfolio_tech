@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivek Yadav - Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <canvas id="particles-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;"></canvas>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><a href="index.html" style="color:white; text-decoration:none;">VY.</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 3.5rem;">Visual <span class="gradient-text-blue-purple">Journey</span></h2>
+                <div class="header-line" style="margin: 15px auto 0;"></div>
+                <p style="color: #9ca3af; margin-top: 1.5rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Moments captured, memories framed. A glimpse into my life outside of code.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=80&w=800&auto=format&fit=crop" alt="Workspace">
+                    <div class="gallery-overlay">
+                        <h4>Workspace setup</h4>
+                        <p>Where the magic happens</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item tall">
+                    <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=800&auto=format&fit=crop" alt="Coding Session">
+                    <div class="gallery-overlay">
+                        <h4>Late Night Coding</h4>
+                        <p>Fuelled by coffee</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item wide">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop" alt="Tech Setup">
+                    <div class="gallery-overlay">
+                        <h4>My Rig</h4>
+                        <p>Built for performance</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=800&auto=format&fit=crop" alt="Coffee">
+                    <div class="gallery-overlay">
+                        <h4>Morning Routine</h4>
+                        <p>Essential fuel</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item tall">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Collaboration">
+                    <div class="gallery-overlay">
+                        <h4>Team Brainstorming</h4>
+                        <p>Collaborating on ideas</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=800&auto=format&fit=crop" alt="Code on Screen">
+                    <div class="gallery-overlay">
+                        <h4>Debugging</h4>
+                        <p>Finding the missing semicolon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
+        </footer>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple Lightbox Logic for Gallery
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const closeBtn = document.querySelector('.close-lightbox');
+
+            if(galleryItems.length > 0) {
+                galleryItems.forEach(img => {
+                    img.addEventListener('click', () => {
+                        lightbox.style.display = 'flex';
+                        lightboxImg.src = img.src;
+                        
+                        // Get caption from the overlay
+                        const overlay = img.nextElementSibling;
+                        if(overlay) {
+                            const title = overlay.querySelector('h4').textContent;
+                            const desc = overlay.querySelector('p').textContent;
+                            lightboxCaption.innerHTML = `<strong>${title}</strong> - ${desc}`;
+                        }
+                    });
+                });
+
+                closeBtn.addEventListener('click', () => {
+                    lightbox.style.display = 'none';
+                });
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target !== lightboxImg) {
+                        lightbox.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
