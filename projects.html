@@ -29,12 +29,20 @@
 
         <!-- Projects Section -->
         <section id="projects" class="section">
-            <div class="section-header">
+            <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Featured Projects</h2>
-                <div class="header-line"></div>
+                <div class="view-toggle" style="display: flex; gap: 10px;">
+                    <button class="view-btn active" data-view="grid" style="padding: 8px 16px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.5); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fa-solid fa-grid-2"></i> Grid
+                    </button>
+                    <button class="view-btn" data-view="carousel" style="padding: 8px 16px; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fa-solid fa-carousel"></i> Carousel
+                    </button>
+                </div>
+                <div class="header-line" style="margin-top: 15px;"></div>
             </div>
             
-            <div class="projects-grid">
+            <div class="projects-grid" id="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card glass-card">
                     <div class="project-content">
