@@ -258,6 +258,7 @@ nav {
     display: flex;
     gap: 1rem;
     margin-left: 2rem;
+    flex-shrink: 0;
 }
 
 .nav-btn {
@@ -271,6 +272,7 @@ nav {
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .nav-btn:hover {
