@@ -781,8 +781,8 @@ strong {
     right: -10%;
     left: auto;
     transform: none;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     pointer-events: none; /* Let clicks pass through empty space */
     max-width: 90vw;
     max-height: 90vw;
@@ -1837,25 +1837,25 @@ footer {
     .skills-intro-left p { font-size: 0.9rem; }
     .orbit-container { width: 100%; }
     .orbit-wrapper-half { 
-        width: 250px; 
-        height: 250px; 
+        width: 280px; 
+        height: 280px; 
         bottom: -5%; 
         right: 0;
     }
     .orbit-center-half {
-        width: 220px;
+        width: 240px;
         top: 12%;
     }
     .hexagon-icon {
-        width: 45px;
-        height: 55px;
-        font-size: 1.5rem;
+        width: 50px;
+        height: 60px;
+        font-size: 1.6rem;
     }
     .center-content h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     .center-content p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
     .see-more { font-size: 0.85rem; padding: 8px 16px; }
     

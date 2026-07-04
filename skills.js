@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adjust radius for mobile
     function adjustForMobile() {
         if (window.innerWidth < 768) {
-            return 125; // Smaller radius for mobile
+            return 140; // Smaller radius for mobile
         }
-        return 300; // Desktop radius
+        return 350; // Desktop radius
     }
 
     function nextSkill() {
