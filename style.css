@@ -254,6 +254,47 @@ nav {
     transition: all 0.3s ease;
 }
 
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
+.nav-btn {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: transparent;
+    color: #d4af37;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    transform: translateY(-2px);
+}
+
+.nav-btn.primary {
+    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    color: #000000;
+    border: none;
+}
+
+.nav-btn.primary:hover {
+    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+#install-btn {
+    display: none; /* Hidden by default, shown when PWA installable */
+}
+
 /* Hero Section */
 #hero {
     min-height: 100vh;

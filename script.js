@@ -1,4 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // PWA Installation
+    let deferredPrompt;
+    const installBtn = document.getElementById('install-btn');
+    
+    // Listen for the beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        // Update UI to notify the user they can add to home screen
+        if (installBtn) {
+            installBtn.style.display = 'inline-block';
+        }
+    });
+    
+    // Handle the install button click
+    if (installBtn) {
+        installBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Show the install prompt
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                        installBtn.style.display = 'none';
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback for browsers that don't support beforeinstallprompt
+                // or if the app is already installed
+                alert('PWA installation is not available on this device or the app is already installed.');
+            }
+        });
+    }
+    
     // Mobile Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
