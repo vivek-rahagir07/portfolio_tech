@@ -3,10 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivek Yadav - Full Stack Web Developer</title>
+    <title>Vivek Yadav - Full Stack Web Developer | Portfolio</title>
+    <meta name="description" content="Vivek Yadav - Full Stack Web Developer specializing in modern web technologies, responsive design, and creating exceptional user experiences.">
+    <meta name="keywords" content="Vivek Yadav, Full Stack Developer, Web Developer, Portfolio, Frontend, Backend, React, Node.js, JavaScript">
+    <meta name="author" content="Vivek Yadav">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vivekyadav.com/">
+    <meta property="og:title" content="Vivek Yadav - Full Stack Web Developer">
+    <meta property="og:description" content="Full Stack Web Developer specializing in modern web technologies and creating exceptional user experiences.">
+    <meta property="og:image" content="https://vivekyadav.com/photos/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vivekyadav.com/">
+    <meta property="twitter:title" content="Vivek Yadav - Full Stack Web Developer">
+    <meta property="twitter:description" content="Full Stack Web Developer specializing in modern web technologies and creating exceptional user experiences.">
+    <meta property="twitter:image" content="https://vivekyadav.com/photos/logo.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="photos/logo.png">
+    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vivek Yadav",
+        "url": "https://vivekyadav.com",
+        "image": "https://vivekyadav.com/photos/logo.png",
+        "sameAs": [
+            "https://github.com/vivek-rahagir07",
+            "https://linkedin.com/in/vivek-yadav"
+        ],
+        "jobTitle": "Full Stack Web Developer",
+        "description": "Full Stack Web Developer specializing in modern web technologies and creating exceptional user experiences."
+    }
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -23,6 +79,11 @@
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="hamburger" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
 
         <!-- Hero Section -->
