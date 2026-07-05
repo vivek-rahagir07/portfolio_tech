@@ -163,84 +163,91 @@
                         id: 'frontend',
                         label: 'Frontend',
                         icon: 'fa-palette',
+                        difficulty: 'intermediate',
                         children: [
                             {
                                 id: 'html',
                                 label: 'HTML',
                                 icon: 'fa-html5',
+                                difficulty: 'easy',
                                 children: [
-                                    { id: 'html1', label: 'Elements' },
-                                    { id: 'html2', label: 'Semantic HTML' },
-                                    { id: 'html3', label: 'Forms' },
-                                    { id: 'html4', label: 'Tables' },
-                                    { id: 'html5', label: 'Media' },
-                                    { id: 'html6', label: 'SEO' },
-                                    { id: 'html7', label: 'Accessibility' }
+                                    { id: 'html1', label: 'Elements', difficulty: 'easy' },
+                                    { id: 'html2', label: 'Semantic HTML', difficulty: 'easy' },
+                                    { id: 'html3', label: 'Forms', difficulty: 'easy' },
+                                    { id: 'html4', label: 'Tables', difficulty: 'easy' },
+                                    { id: 'html5', label: 'Media', difficulty: 'easy' },
+                                    { id: 'html6', label: 'SEO', difficulty: 'intermediate' },
+                                    { id: 'html7', label: 'Accessibility', difficulty: 'intermediate' }
                                 ]
                             },
                             {
                                 id: 'css',
                                 label: 'CSS',
                                 icon: 'fa-css3-alt',
+                                difficulty: 'easy',
                                 children: [
-                                    { id: 'css1', label: 'Selectors' },
-                                    { id: 'css2', label: 'Box Model' },
-                                    { id: 'css3', label: 'Flexbox' },
-                                    { id: 'css4', label: 'Grid' },
-                                    { id: 'css5', label: 'Positioning' },
-                                    { id: 'css6', label: 'Responsive Design' },
-                                    { id: 'css7', label: 'Media Queries' },
-                                    { id: 'css8', label: 'Animations' },
-                                    { id: 'css9', label: 'Transitions' }
+                                    { id: 'css1', label: 'Selectors', difficulty: 'easy' },
+                                    { id: 'css2', label: 'Box Model', difficulty: 'easy' },
+                                    { id: 'css3', label: 'Flexbox', difficulty: 'intermediate' },
+                                    { id: 'css4', label: 'Grid', difficulty: 'intermediate' },
+                                    { id: 'css5', label: 'Positioning', difficulty: 'intermediate' },
+                                    { id: 'css6', label: 'Responsive Design', difficulty: 'intermediate' },
+                                    { id: 'css7', label: 'Media Queries', difficulty: 'intermediate' },
+                                    { id: 'css8', label: 'Animations', difficulty: 'intermediate' },
+                                    { id: 'css9', label: 'Transitions', difficulty: 'intermediate' }
                                 ]
                             },
                             {
                                 id: 'js',
                                 label: 'JavaScript',
                                 icon: 'fa-js',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'js1', label: 'Variables' },
-                                    { id: 'js2', label: 'Functions' },
-                                    { id: 'js3', label: 'Objects' },
-                                    { id: 'js4', label: 'Arrays' },
-                                    { id: 'js5', label: 'ES6+' },
-                                    { id: 'js6', label: 'DOM' },
-                                    { id: 'js7', label: 'Events' },
-                                    { id: 'js8', label: 'Async/Await' },
-                                    { id: 'js9', label: 'Promises' },
-                                    { id: 'js10', label: 'Fetch API' }
+                                    { id: 'js1', label: 'Variables', difficulty: 'easy' },
+                                    { id: 'js2', label: 'Functions', difficulty: 'easy' },
+                                    { id: 'js3', label: 'Objects', difficulty: 'easy' },
+                                    { id: 'js4', label: 'Arrays', difficulty: 'easy' },
+                                    { id: 'js5', label: 'ES6+', difficulty: 'intermediate' },
+                                    { id: 'js6', label: 'DOM', difficulty: 'intermediate' },
+                                    { id: 'js7', label: 'Events', difficulty: 'intermediate' },
+                                    { id: 'js8', label: 'Async/Await', difficulty: 'advanced' },
+                                    { id: 'js9', label: 'Promises', difficulty: 'advanced' },
+                                    { id: 'js10', label: 'Fetch API', difficulty: 'intermediate' }
                                 ]
                             },
                             {
                                 id: 'ts',
                                 label: 'TypeScript',
                                 icon: 'fa-code',
+                                difficulty: 'advanced',
                                 children: [
-                                    { id: 'ts1', label: 'Types' },
-                                    { id: 'ts2', label: 'Interfaces' },
-                                    { id: 'ts3', label: 'Generics' }
+                                    { id: 'ts1', label: 'Types', difficulty: 'intermediate' },
+                                    { id: 'ts2', label: 'Interfaces', difficulty: 'intermediate' },
+                                    { id: 'ts3', label: 'Generics', difficulty: 'advanced' }
                                 ]
                             },
                             {
                                 id: 'frameworks',
                                 label: 'Frameworks',
                                 icon: 'fa-react',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'fw1', label: 'React' },
-                                    { id: 'fw2', label: 'Next.js' },
-                                    { id: 'fw3', label: 'Vue' },
-                                    { id: 'fw4', label: 'Angular' }
+                                    { id: 'fw1', label: 'React', difficulty: 'intermediate' },
+                                    { id: 'fw2', label: 'Next.js', difficulty: 'advanced' },
+                                    { id: 'fw3', label: 'Vue', difficulty: 'intermediate' },
+                                    { id: 'fw4', label: 'Angular', difficulty: 'advanced' }
                                 ]
                             },
                             {
                                 id: 'styling',
                                 label: 'Styling',
                                 icon: 'fa-css3',
+                                difficulty: 'easy',
                                 children: [
-                                    { id: 'st1', label: 'Tailwind CSS' },
-                                    { id: 'st2', label: 'Bootstrap' },
-                                    { id: 'st3', label: 'Sass' },
-                                    { id: 'st4', label: 'Material UI' }
+                                    { id: 'st1', label: 'Tailwind CSS', difficulty: 'intermediate' },
+                                    { id: 'st2', label: 'Bootstrap', difficulty: 'easy' },
+                                    { id: 'st3', label: 'Sass', difficulty: 'intermediate' },
+                                    { id: 'st4', label: 'Material UI', difficulty: 'intermediate' }
                                 ]
                             }
                         ]
@@ -249,71 +256,78 @@
                         id: 'backend',
                         label: 'Backend',
                         icon: 'fa-server',
+                        difficulty: 'intermediate',
                         children: [
                             {
                                 id: 'languages',
                                 label: 'Languages',
                                 icon: 'fa-code',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'lang1', label: 'Node.js' },
-                                    { id: 'lang2', label: 'PHP' },
-                                    { id: 'lang3', label: 'Python' },
-                                    { id: 'lang4', label: 'Java' }
+                                    { id: 'lang1', label: 'Node.js', difficulty: 'intermediate' },
+                                    { id: 'lang2', label: 'PHP', difficulty: 'intermediate' },
+                                    { id: 'lang3', label: 'Python', difficulty: 'intermediate' },
+                                    { id: 'lang4', label: 'Java', difficulty: 'advanced' }
                                 ]
                             },
                             {
                                 id: 'backend-frameworks',
                                 label: 'Frameworks',
                                 icon: 'fa-server',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'bf1', label: 'Express.js' },
-                                    { id: 'bf2', label: 'Laravel' },
-                                    { id: 'bf3', label: 'Django' },
-                                    { id: 'bf4', label: 'FastAPI' }
+                                    { id: 'bf1', label: 'Express.js', difficulty: 'intermediate' },
+                                    { id: 'bf2', label: 'Laravel', difficulty: 'intermediate' },
+                                    { id: 'bf3', label: 'Django', difficulty: 'intermediate' },
+                                    { id: 'bf4', label: 'FastAPI', difficulty: 'advanced' }
                                 ]
                             },
                             {
                                 id: 'api',
                                 label: 'APIs',
                                 icon: 'fa-plug',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'api1', label: 'REST' },
-                                    { id: 'api2', label: 'GraphQL' },
-                                    { id: 'api3', label: 'WebSockets' },
-                                    { id: 'api4', label: 'Socket.IO' }
+                                    { id: 'api1', label: 'REST', difficulty: 'intermediate' },
+                                    { id: 'api2', label: 'GraphQL', difficulty: 'advanced' },
+                                    { id: 'api3', label: 'WebSockets', difficulty: 'advanced' },
+                                    { id: 'api4', label: 'Socket.IO', difficulty: 'advanced' }
                                 ]
                             },
                             {
                                 id: 'auth',
                                 label: 'Authentication',
                                 icon: 'fa-shield-halved',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'auth1', label: 'JWT' },
-                                    { id: 'auth2', label: 'OAuth' },
-                                    { id: 'auth3', label: 'Sessions' },
-                                    { id: 'auth4', label: 'bcrypt' }
+                                    { id: 'auth1', label: 'JWT', difficulty: 'intermediate' },
+                                    { id: 'auth2', label: 'OAuth', difficulty: 'advanced' },
+                                    { id: 'auth3', label: 'Sessions', difficulty: 'intermediate' },
+                                    { id: 'auth4', label: 'bcrypt', difficulty: 'intermediate' }
                                 ]
                             },
                             {
                                 id: 'security',
                                 label: 'Security',
                                 icon: 'fa-shield-halved',
+                                difficulty: 'advanced',
                                 children: [
-                                    { id: 'sec1', label: 'CORS' },
-                                    { id: 'sec2', label: 'XSS' },
-                                    { id: 'sec3', label: 'CSRF' },
-                                    { id: 'sec4', label: 'SQL Injection' },
-                                    { id: 'sec5', label: 'Helmet' }
+                                    { id: 'sec1', label: 'CORS', difficulty: 'intermediate' },
+                                    { id: 'sec2', label: 'XSS', difficulty: 'advanced' },
+                                    { id: 'sec3', label: 'CSRF', difficulty: 'advanced' },
+                                    { id: 'sec4', label: 'SQL Injection', difficulty: 'advanced' },
+                                    { id: 'sec5', label: 'Helmet', difficulty: 'easy' }
                                 ]
                             },
                             {
                                 id: 'file-handling',
                                 label: 'File Handling',
                                 icon: 'fa-file',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'fh1', label: 'Multer' },
-                                    { id: 'fh2', label: 'Cloudinary' },
-                                    { id: 'fh3', label: 'AWS S3' }
+                                    { id: 'fh1', label: 'Multer', difficulty: 'intermediate' },
+                                    { id: 'fh2', label: 'Cloudinary', difficulty: 'intermediate' },
+                                    { id: 'fh3', label: 'AWS S3', difficulty: 'advanced' }
                                 ]
                             }
                         ]
@@ -322,57 +336,63 @@
                         id: 'database',
                         label: 'Database',
                         icon: 'fa-database',
+                        difficulty: 'intermediate',
                         children: [
                             {
                                 id: 'sql',
                                 label: 'SQL',
                                 icon: 'fa-database',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'sql1', label: 'MySQL' },
-                                    { id: 'sql2', label: 'PostgreSQL' },
-                                    { id: 'sql3', label: 'SQLite' }
+                                    { id: 'sql1', label: 'MySQL', difficulty: 'intermediate' },
+                                    { id: 'sql2', label: 'PostgreSQL', difficulty: 'intermediate' },
+                                    { id: 'sql3', label: 'SQLite', difficulty: 'easy' }
                                 ]
                             },
                             {
                                 id: 'nosql',
                                 label: 'NoSQL',
                                 icon: 'fa-database',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'nosql1', label: 'MongoDB' },
-                                    { id: 'nosql2', label: 'Firebase' },
-                                    { id: 'nosql3', label: 'Cassandra' }
+                                    { id: 'nosql1', label: 'MongoDB', difficulty: 'intermediate' },
+                                    { id: 'nosql2', label: 'Firebase', difficulty: 'intermediate' },
+                                    { id: 'nosql3', label: 'Cassandra', difficulty: 'advanced' }
                                 ]
                             },
                             {
                                 id: 'cache',
                                 label: 'Cache',
                                 icon: 'fa-database',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'cache1', label: 'Redis' },
-                                    { id: 'cache2', label: 'Memcached' }
+                                    { id: 'cache1', label: 'Redis', difficulty: 'intermediate' },
+                                    { id: 'cache2', label: 'Memcached', difficulty: 'intermediate' }
                                 ]
                             },
                             {
                                 id: 'orm',
                                 label: 'ORM',
                                 icon: 'fa-database',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'orm1', label: 'Prisma' },
-                                    { id: 'orm2', label: 'Sequelize' },
-                                    { id: 'orm3', label: 'Mongoose' },
-                                    { id: 'orm4', label: 'Eloquent' }
+                                    { id: 'orm1', label: 'Prisma', difficulty: 'intermediate' },
+                                    { id: 'orm2', label: 'Sequelize', difficulty: 'intermediate' },
+                                    { id: 'orm3', label: 'Mongoose', difficulty: 'intermediate' },
+                                    { id: 'orm4', label: 'Eloquent', difficulty: 'intermediate' }
                                 ]
                             },
                             {
                                 id: 'concepts',
                                 label: 'Concepts',
                                 icon: 'fa-database',
+                                difficulty: 'intermediate',
                                 children: [
-                                    { id: 'con1', label: 'CRUD' },
-                                    { id: 'con2', label: 'Relationships' },
-                                    { id: 'con3', label: 'Joins' },
-                                    { id: 'con4', label: 'Indexing' },
-                                    { id: 'con5', label: 'Transactions' }
+                                    { id: 'con1', label: 'CRUD', difficulty: 'easy' },
+                                    { id: 'con2', label: 'Relationships', difficulty: 'intermediate' },
+                                    { id: 'con3', label: 'Joins', difficulty: 'intermediate' },
+                                    { id: 'con4', label: 'Indexing', difficulty: 'intermediate' },
+                                    { id: 'con5', label: 'Transactions', difficulty: 'advanced' }
                                 ]
                             }
                         ]
@@ -381,43 +401,46 @@
                         id: 'devops',
                         label: 'DevOps',
                         icon: 'fa-cloud',
+                        difficulty: 'advanced',
                         children: [
-                            { id: 'dev1', label: 'Git' },
-                            { id: 'dev2', label: 'GitHub' },
-                            { id: 'dev3', label: 'Linux' },
-                            { id: 'dev4', label: 'Docker' },
-                            { id: 'dev5', label: 'Kubernetes' },
-                            { id: 'dev6', label: 'CI/CD' },
-                            { id: 'dev7', label: 'Nginx' },
-                            { id: 'dev8', label: 'Apache' },
-                            { id: 'dev9', label: 'Vercel' },
-                            { id: 'dev10', label: 'Netlify' },
-                            { id: 'dev11', label: 'AWS' }
+                            { id: 'dev1', label: 'Git', difficulty: 'easy' },
+                            { id: 'dev2', label: 'GitHub', difficulty: 'easy' },
+                            { id: 'dev3', label: 'Linux', difficulty: 'intermediate' },
+                            { id: 'dev4', label: 'Docker', difficulty: 'intermediate' },
+                            { id: 'dev5', label: 'Kubernetes', difficulty: 'advanced' },
+                            { id: 'dev6', label: 'CI/CD', difficulty: 'advanced' },
+                            { id: 'dev7', label: 'Nginx', difficulty: 'intermediate' },
+                            { id: 'dev8', label: 'Apache', difficulty: 'intermediate' },
+                            { id: 'dev9', label: 'Vercel', difficulty: 'easy' },
+                            { id: 'dev10', label: 'Netlify', difficulty: 'easy' },
+                            { id: 'dev11', label: 'AWS', difficulty: 'advanced' }
                         ]
                     },
                     {
                         id: 'tools',
                         label: 'Tools',
                         icon: 'fa-wrench',
+                        difficulty: 'easy',
                         children: [
-                            { id: 'tool1', label: 'VS Code' },
-                            { id: 'tool2', label: 'npm' },
-                            { id: 'tool3', label: 'Vite' },
-                            { id: 'tool4', label: 'Postman' },
-                            { id: 'tool5', label: 'Figma' }
+                            { id: 'tool1', label: 'VS Code', difficulty: 'easy' },
+                            { id: 'tool2', label: 'npm', difficulty: 'easy' },
+                            { id: 'tool3', label: 'Vite', difficulty: 'easy' },
+                            { id: 'tool4', label: 'Postman', difficulty: 'easy' },
+                            { id: 'tool5', label: 'Figma', difficulty: 'easy' }
                         ]
                     },
                     {
                         id: 'ai',
                         label: 'AI',
                         icon: 'fa-robot',
+                        difficulty: 'advanced',
                         children: [
-                            { id: 'ai1', label: 'OpenAI API' },
-                            { id: 'ai2', label: 'Gemini API' },
-                            { id: 'ai3', label: 'LangChain' },
-                            { id: 'ai4', label: 'RAG' },
-                            { id: 'ai5', label: 'AI Agents' },
-                            { id: 'ai6', label: 'MCP' }
+                            { id: 'ai1', label: 'OpenAI API', difficulty: 'intermediate' },
+                            { id: 'ai2', label: 'Gemini API', difficulty: 'intermediate' },
+                            { id: 'ai3', label: 'LangChain', difficulty: 'advanced' },
+                            { id: 'ai4', label: 'RAG', difficulty: 'advanced' },
+                            { id: 'ai5', label: 'AI Agents', difficulty: 'advanced' },
+                            { id: 'ai6', label: 'MCP', difficulty: 'advanced' }
                         ]
                     }
                 ]
@@ -624,7 +647,7 @@
                 if (hasChildren) {
                     const indicatorSize = 8 * scale;
                     ctx.beginPath();
-                    ctx.arc(drawX + drawWidth / 2 - 10 * scale, drawY - drawHeight / 2 + 10 * scale, indicatorSize, 0, Math.PI * 2);
+                    ctx.arc(drawX - drawWidth / 2 + 10 * scale, drawY - drawHeight / 2 + 10 * scale, indicatorSize, 0, Math.PI * 2);
                     ctx.fillStyle = node.level === 0 ? '#d4af37' : primaryColor;
                     ctx.fill();
                     ctx.strokeStyle = '#fff';
@@ -636,7 +659,7 @@
                     ctx.font = `bold ${12 * scale}px Arial`;
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
-                    ctx.fillText(isExpanded ? '-' : '+', drawX + drawWidth / 2 - 10 * scale, drawY - drawHeight / 2 + 10 * scale);
+                    ctx.fillText(isExpanded ? '-' : '+', drawX - drawWidth / 2 + 10 * scale, drawY - drawHeight / 2 + 10 * scale);
                 }
                 
                 // Draw label
@@ -652,6 +675,13 @@
                     ctx.fillText(words.slice(Math.ceil(words.length / 2)).join(' '), drawX, drawY + 8 * scale);
                 } else {
                     ctx.fillText(node.label, drawX, drawY);
+                }
+                
+                // Draw difficulty indicator (top-right corner)
+                if (node.difficulty && node.level > 0) {
+                    const diffInfo = difficultyColors[node.difficulty] || difficultyColors['intermediate'];
+                    ctx.font = `${14 * scale}px Arial`;
+                    ctx.fillText(diffInfo.emoji, drawX + drawWidth / 2 - 12 * scale, drawY - drawHeight / 2 + 12 * scale);
                 }
                 
                 ctx.restore();
@@ -722,6 +752,38 @@
                 }
             }
             
+            // Draw difficulty legend at top of canvas
+            function drawLegend() {
+                const legendX = 20;
+                const legendY = 30;
+                const itemSpacing = 130;
+                
+                ctx.save();
+                ctx.font = 'bold 16px Arial';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'middle';
+                
+                // Draw background for legend
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.roundRect(legendX - 10, legendY - 20, 400, 45, 10);
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                
+                // Draw Easy
+                ctx.fillStyle = '#fff';
+                ctx.fillText('🟢 Easy', legendX, legendY);
+                
+                // Draw Intermediate
+                ctx.fillText('🟡 Intermediate', legendX + itemSpacing, legendY);
+                
+                // Draw Advanced
+                ctx.fillText('🔴 Advanced', legendX + itemSpacing * 2, legendY);
+                
+                ctx.restore();
+            }
+            
             // Check if point is inside node (rectangular) - account for transform
             function isInsideNode(x, y, node) {
                 const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
@@ -775,6 +837,9 @@
                 
                 // Draw subtle particles
                 drawParticles();
+                
+                // Draw difficulty legend
+                drawLegend();
                 
                 // Calculate positions starting from center of canvas
                 const startX = canvas.width / 2;
