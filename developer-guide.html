@@ -65,10 +65,6 @@
             </div>
             
             <div class="guide-container fade-in-up">
-                <div class="guide-intro">
-                    <p class="guide-description">Complete mindmap journey to become a professional full stack developer (2026)</p>
-                </div>
-
                 <!-- Canvas Mindmap -->
                 <div class="mindmap-canvas-wrapper glass-card">
                     <canvas id="mindmapCanvas"></canvas>
@@ -109,15 +105,31 @@
                 'ai': { primary: '#06b6d4', secondary: '#22d3ee', name: 'AI' }
             };
             
+            // Difficulty level colors
+            const difficultyColors = {
+                'easy': { color: '#22c55e', emoji: '🟢', name: 'Easy' },
+                'intermediate': { color: '#eab308', emoji: '🟡', name: 'Intermediate' },
+                'advanced': { color: '#ef4444', emoji: '🔴', name: 'Advanced' }
+            };
+            
             // Get category color for a node
-            function getCategoryColor(node) {
+            function getCategoryColor(node, parent = null) {
                 // Check if node ID matches a category
                 for (const [catId, colors] of Object.entries(categoryColors)) {
                     if (node.id === catId || node.id.startsWith(catId)) {
                         return colors;
                     }
                 }
-                // Check parent's category
+                
+                // If node has a parent, check parent's color
+                if (parent) {
+                    const parentColors = getCategoryColor(parent, null);
+                    if (parentColors.name !== 'Default') {
+                        return parentColors;
+                    }
+                }
+                
+                // Check if node is a category by checking its children
                 if (node.children) {
                     for (const [catId, colors] of Object.entries(categoryColors)) {
                         if (node.children.some(child => child.id === catId || child.id.startsWith(catId))) {
@@ -125,6 +137,7 @@
                         }
                     }
                 }
+                
                 return { primary: '#d4af37', secondary: '#fbbf24', name: 'Default' };
             }
             
@@ -133,9 +146,8 @@
             
             // Set canvas size
             function resizeCanvas() {
-                const wrapper = canvas.parentElement;
-                canvas.width = wrapper.clientWidth - 64;
-                canvas.height = 1000;
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
                 drawMindmap();
             }
             
@@ -411,8 +423,8 @@
                 ]
             };
             
-            // Calculate node positions with top-down tree layout
-            function calculatePositions(node, x, y, level, parentExpanded) {
+            // Calculate node positions with custom layout (2 up, 2 sides, 2 down)
+            function calculatePositions(node, x, y, level, parentExpanded, direction = 'down') {
                 node.x = x;
                 node.y = y;
                 node.level = level;
@@ -421,33 +433,89 @@
                 
                 // Only calculate positions for children if parent is expanded
                 if (node.children && node.children.length > 0 && parentExpanded) {
-                    const horizontalSpacing = 150;
-                    const verticalSpacing = 150;
-                    
-                    // Calculate total width needed for children
-                    let totalWidth = 0;
-                    const childWidths = [];
-                    
-                    node.children.forEach(child => {
-                        let childWidth = horizontalSpacing;
-                        if (child.children && child.children.length > 0 && expandedNodes.has(child.id)) {
-                            childWidth = child.children.length * horizontalSpacing;
-                        }
-                        childWidths.push(childWidth);
-                        totalWidth += childWidth;
-                    });
-                    
-                    // Position children horizontally centered
-                    let currentX = x - totalWidth / 2;
-                    
-                    node.children.forEach((child, index) => {
-                        const childX = currentX + childWidths[index] / 2;
-                        const childY = y + verticalSpacing;
-                        const isExpanded = expandedNodes.has(child.id);
+                    if (node.level === 0) {
+                        // Root level: distribute children - 2 up, 2 sides, 2 down
+                        const horizontalSpacing = 250;
+                        const verticalSpacing = 200;
                         
-                        calculatePositions(child, childX, childY, level + 1, isExpanded);
-                        currentX += childWidths[index];
-                    });
+                        // Position 2 categories above
+                        const child0 = node.children[0]; // Frontend
+                        const child1 = node.children[1]; // Backend
+                        child0.direction = 'up';
+                        child1.direction = 'up';
+                        calculatePositions(child0, x - horizontalSpacing / 2, y - verticalSpacing, level + 1, true, 'up');
+                        calculatePositions(child1, x + horizontalSpacing / 2, y - verticalSpacing, level + 1, true, 'up');
+                        
+                        // Position 2 categories on sides
+                        const child2 = node.children[2]; // Database (left)
+                        const child3 = node.children[3]; // DevOps (right)
+                        child2.direction = 'left';
+                        child3.direction = 'right';
+                        calculatePositions(child2, x - horizontalSpacing, y, level + 1, true, 'left');
+                        calculatePositions(child3, x + horizontalSpacing, y, level + 1, true, 'right');
+                        
+                        // Position 2 categories below
+                        const child4 = node.children[4]; // Tools
+                        const child5 = node.children[5]; // AI
+                        child4.direction = 'down';
+                        child5.direction = 'down';
+                        calculatePositions(child4, x - horizontalSpacing / 2, y + verticalSpacing, level + 1, true, 'down');
+                        calculatePositions(child5, x + horizontalSpacing / 2, y + verticalSpacing, level + 1, true, 'down');
+                    } else {
+                        // Other levels: expand in the direction specified
+                        const horizontalSpacing = 120;
+                        const verticalSpacing = 120;
+                        
+                        if (direction === 'up') {
+                            // Expand upward
+                            const totalWidth = node.children.length * horizontalSpacing;
+                            let currentX = x - totalWidth / 2;
+                            
+                            node.children.forEach((child, index) => {
+                                const childX = currentX + horizontalSpacing / 2;
+                                const childY = y - verticalSpacing;
+                                const isExpanded = expandedNodes.has(child.id);
+                                calculatePositions(child, childX, childY, level + 1, isExpanded, 'up');
+                                currentX += horizontalSpacing;
+                            });
+                        } else if (direction === 'down') {
+                            // Expand downward (standard)
+                            const totalWidth = node.children.length * horizontalSpacing;
+                            let currentX = x - totalWidth / 2;
+                            
+                            node.children.forEach((child, index) => {
+                                const childX = currentX + horizontalSpacing / 2;
+                                const childY = y + verticalSpacing;
+                                const isExpanded = expandedNodes.has(child.id);
+                                calculatePositions(child, childX, childY, level + 1, isExpanded, 'down');
+                                currentX += horizontalSpacing;
+                            });
+                        } else if (direction === 'left') {
+                            // Expand to the left
+                            const totalHeight = node.children.length * verticalSpacing;
+                            let currentY = y - totalHeight / 2;
+                            
+                            node.children.forEach((child, index) => {
+                                const childX = x - horizontalSpacing;
+                                const childY = currentY + verticalSpacing / 2;
+                                const isExpanded = expandedNodes.has(child.id);
+                                calculatePositions(child, childX, childY, level + 1, isExpanded, 'left');
+                                currentY += verticalSpacing;
+                            });
+                        } else if (direction === 'right') {
+                            // Expand to the right
+                            const totalHeight = node.children.length * verticalSpacing;
+                            let currentY = y - totalHeight / 2;
+                            
+                            node.children.forEach((child, index) => {
+                                const childX = x + horizontalSpacing;
+                                const childY = currentY + verticalSpacing / 2;
+                                const isExpanded = expandedNodes.has(child.id);
+                                calculatePositions(child, childX, childY, level + 1, isExpanded, 'right');
+                                currentY += verticalSpacing;
+                            });
+                        }
+                    }
                 }
             }
             
@@ -490,7 +558,7 @@
             }
             
             // Draw node with enhanced effects
-            function drawNode(node) {
+            function drawNode(node, parent = null) {
                 const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
                 const height = node.level === 0 ? 60 : node.level === 1 ? 50 : node.level === 2 ? 45 : 40;
                 const isHovered = hoveredNode === node;
@@ -504,8 +572,8 @@
                 const opacity = anim ? anim.opacity : 1;
                 const animScale = anim ? anim.scale : 1;
                 
-                // Get category colors
-                const colors = getCategoryColor(node);
+                // Get category colors with parent inheritance
+                const colors = getCategoryColor(node, parent);
                 const primaryColor = node.level === 0 ? '#d4af37' : colors.primary;
                 const secondaryColor = node.level === 0 ? '#fbbf24' : colors.secondary;
                 
@@ -685,17 +753,17 @@
             }
             
             // Draw mindmap recursively
-            function drawMindmapRecursive(node, parentExpanded) {
+            function drawMindmapRecursive(node, parentExpanded, parent = null) {
                 // Draw connections to children first (only if parent is expanded)
                 if (node.children && node.children.length > 0 && parentExpanded) {
                     node.children.forEach(child => {
                         drawConnection(node, child);
-                        drawMindmapRecursive(child, expandedNodes.has(child.id));
+                        drawMindmapRecursive(child, expandedNodes.has(child.id), node);
                     });
                 }
                 
                 // Draw node on top
-                drawNode(node);
+                drawNode(node, parent);
             }
             
             // Main draw function
@@ -708,13 +776,13 @@
                 // Draw subtle particles
                 drawParticles();
                 
-                // Calculate positions starting from top center
+                // Calculate positions starting from center of canvas
                 const startX = canvas.width / 2;
-                const startY = 100;
-                calculatePositions(mindmapData, startX, startY, 0, true);
+                const startY = canvas.height / 2;
+                calculatePositions(mindmapData, startX, startY, 0, true, 'down');
                 
                 // Draw mindmap
-                drawMindmapRecursive(mindmapData, true);
+                drawMindmapRecursive(mindmapData, true, null);
                 
                 time += 16;
                 animationFrame = requestAnimationFrame(drawMindmap);
