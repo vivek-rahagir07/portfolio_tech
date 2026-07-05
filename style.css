@@ -1410,12 +1410,12 @@ strong {
 
 .tl-content {
     text-align: center;
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
     z-index: 10;
-    background: radial-gradient(circle, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0) 85%);
-    padding: 2rem;
+    background: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0) 85%);
+    padding: 3rem 2rem;
 }
 
 .tl-badge {
@@ -1427,15 +1427,15 @@ strong {
     border-radius: 30px;
     font-size: 0.95rem;
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .tl-title {
-    font-size: 4.5rem;
-    line-height: 1.05;
-    margin-bottom: 2rem;
+    font-size: 4.2rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
     font-weight: 700;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 
 .tl-title-dark {
@@ -1443,15 +1443,15 @@ strong {
 }
 
 .tl-title-light {
-    color: #888888;
+    color: #aaaaaa;
 }
 
 .tl-desc {
     color: #cccccc;
-    font-size: 1.35rem;
-    margin-bottom: 3.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
     line-height: 1.6;
-    max-width: 500px;
+    max-width: 600px;
     margin-inline: auto;
     font-weight: 400;
 }
@@ -1482,6 +1482,8 @@ strong {
     inset: -50px 0;
     pointer-events: none;
     z-index: 1;
+    opacity: 0.25;
+    filter: grayscale(50%) brightness(0.6);
 }
 
 .tl-img {
