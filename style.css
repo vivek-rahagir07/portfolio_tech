@@ -1789,6 +1789,21 @@ footer {
     }
     
     /* Hero Section */
+    #hero {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        padding: 120px 4% 40px 4%;
+    }
+    .hero-content {
+        width: 100%;
+        text-align: center;
+        order: 2;
+    }
+    .hero-image {
+        order: 1;
+        width: 100%;
+    }
     .name { font-size: 2.5rem; }
     .title { font-size: 1.2rem; }
     .aka-name { font-size: 0.9rem; letter-spacing: 8px; }
