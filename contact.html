@@ -272,14 +272,16 @@
                 role: "Data Manager, TechStart",
                 text: "Grateful to have had you on our team. Your passion, hard work, and positive energy made a real difference. Wishing you all the best for the journey ahead!",
                 rating: 4.9,
-                date: "Jan 2026"
+                date: "Jan 2026",
+                photo: "testimonals/Anmol.png"
             },
             {
                 name: "Preeti Kaur",
                 role: "Client",
                 text: "We met not just as a freelancer and a client, but became good friends along the way. Your technical knowledge and maturity at such a young age are truly impressive. Wishing you continued success and an amazing journey ahead!",
                 rating: 5.0,
-                date: "Dec 2025"
+                date: "Dec 2025",
+                photo: "testimonals/preeti.png"
             },
             {
                 name: "Pratisha Agrawal",
@@ -289,25 +291,11 @@
                 date: "Jul 2026"
             },
             {
-                name: "Rahul Sharma",
-                role: "CEO, TechStart India",
-                text: "Vivek is an exceptional developer who delivered our project ahead of schedule. His attention to detail and problem-solving skills are outstanding. The final product exceeded our expectations.",
-                rating: 4.8,
-                date: "Nov 2025"
-            },
-            {
                 name: "Priya Patel",
                 role: "Product Manager, Innovate Labs",
                 text: "Working with Vivek was a pleasure. He understood our requirements perfectly and implemented them flawlessly. His expertise in full-stack development is truly impressive.",
                 rating: 4.9,
                 date: "Oct 2025"
-            },
-            {
-                name: "Amit Kumar",
-                role: "Founder, Digital Solutions",
-                text: "Vivek's technical skills are matched only by his professionalism. He communicated effectively throughout the project and delivered a high-quality solution that our users love.",
-                rating: 5.0,
-                date: "Sep 2025"
             }
         ];
 
@@ -344,9 +332,10 @@
                     el.dataset.index = index;
                     
                     const initial = item.name.charAt(0);
+                    const avatarContent = item.photo ? `<img src="${item.photo}" alt="${item.name}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">` : initial;
                     
                     el.innerHTML = `
-                        <div class="cr-avatar">${initial}</div>
+                        <div class="cr-avatar">${avatarContent}</div>
                         <div class="cr-info">
                             <span class="cr-name">${item.name}</span>
                             <span class="cr-rating">
