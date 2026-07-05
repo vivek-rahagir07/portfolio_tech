@@ -2302,6 +2302,398 @@ footer {
         font-weight: 500;
     }
     
+    /* Developer Guide */
+    .guide-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 4%;
+    }
+    
+    .guide-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .guide-description {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    /* Mindmap Tree Styles */
+    .mindmap-tree {
+        padding: 3rem;
+        border-radius: 24px;
+        overflow-x: auto;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
+    }
+    
+    .tree-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: fit-content;
+    }
+    
+    .tree-node {
+        position: relative;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        transition: all 0.3s ease;
+        margin: 0.5rem 0;
+    }
+    
+    .tree-node:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent);
+        box-shadow: 
+            0 15px 50px rgba(212, 175, 55, 0.3),
+            0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+    }
+    
+    .root-node {
+        background: linear-gradient(145deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.15));
+        border-color: var(--accent);
+        box-shadow: 
+            0 0 60px rgba(212, 175, 55, 0.4),
+            0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+        padding: 1.5rem 2.5rem;
+    }
+    
+    .level-1 {
+        background: linear-gradient(145deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+        border-color: rgba(59, 130, 246, 0.4);
+    }
+    
+    .level-1:hover {
+        border-color: #60a5fa;
+        box-shadow: 
+            0 15px 50px rgba(59, 130, 246, 0.3),
+            0 0 0 1px rgba(59, 130, 246, 0.2) inset;
+    }
+    
+    .level-2 {
+        background: linear-gradient(145deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.1));
+        border-color: rgba(168, 85, 247, 0.4);
+    }
+    
+    .level-2:hover {
+        border-color: #a78bfa;
+        box-shadow: 
+            0 15px 50px rgba(168, 85, 247, 0.3),
+            0 0 0 1px rgba(168, 85, 247, 0.2) inset;
+    }
+    
+    .level-3 {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .node-content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+    }
+    
+    .node-content i {
+        font-size: 1.3rem;
+        color: var(--accent);
+        filter: drop-shadow(0 0 10px var(--accent));
+    }
+    
+    .level-1 .node-content i {
+        color: #60a5fa;
+        filter: drop-shadow(0 0 10px #60a5fa);
+    }
+    
+    .level-2 .node-content i {
+        color: #a78bfa;
+        filter: drop-shadow(0 0 10px #a78bfa);
+    }
+    
+    .tree-level {
+        display: flex;
+        gap: 1.5rem;
+        position: relative;
+        padding: 0.5rem 0;
+    }
+    
+    .tree-branch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    
+    .branch-line {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, var(--accent), rgba(212, 175, 55, 0.2));
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+    
+    /* Horizontal connector for siblings */
+    .tree-level::before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 3rem);
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--accent), transparent);
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+    
+    /* Mobile Tree */
+    @media (max-width: 768px) {
+        .mindmap-tree {
+            padding: 1.5rem;
+        }
+        
+        .tree-level {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .tree-level::before {
+            display: none;
+        }
+        
+        .tree-node {
+            padding: 0.8rem 1.2rem;
+        }
+        
+        .root-node {
+            padding: 1.2rem 2rem;
+        }
+        
+        .node-content {
+            font-size: 0.9rem;
+        }
+        
+        .node-content i {
+            font-size: 1.1rem;
+        }
+        
+        .branch-line {
+            height: 20px;
+        }
+    }
+    
+    /* Mindmap Canvas Styles */
+    .mindmap-canvas-wrapper {
+        padding: 3rem;
+        border-radius: 24px;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
+    }
+    
+    #mindmapCanvas {
+        width: 100%;
+        height: 1200px;
+        display: block;
+    }
+    
+    /* Mobile Canvas */
+    @media (max-width: 768px) {
+        .mindmap-canvas-wrapper {
+            padding: 1.5rem;
+        }
+        
+        #mindmapCanvas {
+            height: 900px;
+        }
+    }
+    
+    /* Tips Section */
+    .guide-tips {
+        margin-bottom: 2.5rem;
+        padding: 2rem;
+        border-radius: 20px;
+    }
+    
+    .guide-tips h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .guide-tips h3 i {
+        color: var(--accent);
+    }
+    
+    .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .tip-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.5rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .tip-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(212, 175, 55, 0.3);
+        transform: translateY(-5px);
+    }
+    
+    .tip-item i {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 1rem;
+    }
+    
+    .tip-item h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 0.5rem;
+    }
+    
+    .tip-item p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+    
+    /* Resources Section */
+    .guide-resources {
+        padding: 2rem;
+        border-radius: 20px;
+    }
+    
+    .guide-resources h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .guide-resources h3 i {
+        color: var(--accent);
+    }
+    
+    .resources-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    
+    .resource-category h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+    
+    .resource-category ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .resource-category li {
+        margin-bottom: 0.75rem;
+    }
+    
+    .resource-category a {
+        color: #60a5fa;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .resource-category a:hover {
+        color: var(--accent);
+    }
+    
+    /* Mobile Mindmap */
+    @media (max-width: 768px) {
+        .mindmap-wrapper {
+            padding: 1.5rem;
+        }
+        
+        .mindmap {
+            min-height: 500px;
+        }
+        
+        .center-node {
+            width: 150px;
+            padding: 1.5rem;
+        }
+        
+        .center-node i {
+            font-size: 2rem;
+        }
+        
+        .center-node h3 {
+            font-size: 1rem;
+        }
+        
+        .center-node p {
+            font-size: 0.7rem;
+        }
+        
+        .mindmap-branch {
+            width: 220px;
+            height: 220px;
+        }
+        
+        .branch-line {
+            width: 80px;
+        }
+        
+        .branch-node {
+            left: 80px;
+            min-width: 140px;
+            padding: 1rem;
+        }
+        
+        .node-icon {
+            font-size: 1.4rem;
+        }
+        
+        .branch-node h4 {
+            font-size: 0.9rem;
+        }
+        
+        .sub-node {
+            font-size: 0.7rem;
+        }
+        
+        .journey-path {
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .path-arrow {
+            transform: rotate(90deg);
+        }
+    }
+    
     /* Contact */
     .contact-wrapper { padding: 0 4%; gap: 2rem; }
     .collab-text { font-size: 2.5rem; }

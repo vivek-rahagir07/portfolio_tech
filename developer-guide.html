@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Guide - Full Stack Roadmap | Vivek Yadav</title>
+    <meta name="description" content="Comprehensive full stack development roadmap. Learn the path to becoming a full stack developer with resources and guidance.">
+    <meta name="keywords" content="Full Stack Developer, Roadmap, Developer Guide, Web Development, Programming">
+    <meta name="author" content="Vivek Yadav">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vivekyadav.com/developer-guide.html">
+    <meta property="og:title" content="Developer Guide - Full Stack Roadmap">
+    <meta property="og:description" content="Comprehensive full stack development roadmap. Learn the path to becoming a full stack developer.">
+    <meta property="og:image" content="https://vivekyadav.com/photos/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vivekyadav.com/developer-guide.html">
+    <meta property="twitter:title" content="Developer Guide - Full Stack Roadmap">
+    <meta property="twitter:description" content="Comprehensive full stack development roadmap. Learn the path to becoming a full stack developer.">
+    <meta property="twitter:image" content="https://vivekyadav.com/photos/logo.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="photos/logo.png">
+    <link rel="icon" type="image/png" href="photos/logo.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <main id="main-content">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="developer-guide.html" class="active">Dev Guide</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#" id="install-btn" class="nav-btn">Install App</a>
+                <a href="photos/cv.png" id="cv-download-btn" class="nav-btn primary" download="cv.png">Download CV</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <!-- Developer Guide Section -->
+        <section id="developer-guide" class="section page-transition">
+            <div class="section-header fade-in-up">
+                <h2>Full Stack Developer Roadmap</h2>
+                <div class="header-line"></div>
+            </div>
+            
+            <div class="guide-container fade-in-up">
+                <div class="guide-intro">
+                    <p class="guide-description">Complete mindmap journey to become a professional full stack developer (2026)</p>
+                </div>
+
+                <!-- Canvas Mindmap -->
+                <div class="mindmap-canvas-wrapper glass-card">
+                    <canvas id="mindmapCanvas"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Mindmap Canvas Implementation
+            const canvas = document.getElementById('mindmapCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            let animationFrame;
+            let time = 0;
+            let hoveredNode = null;
+            let mouseX = 0;
+            let mouseY = 0;
+            let expandedNodes = new Set();
+            let animatingNodes = new Map(); // Track animation state for each node
+            
+            // Canvas pan/zoom state
+            let offsetX = 0;
+            let offsetY = 0;
+            let scale = 1;
+            let isDragging = false;
+            let dragStartX = 0;
+            let dragStartY = 0;
+            let dragOffsetX = 0;
+            let dragOffsetY = 0;
+            
+            // Color scheme for each category
+            const categoryColors = {
+                'frontend': { primary: '#3b82f6', secondary: '#60a5fa', name: 'Frontend' },
+                'backend': { primary: '#22c55e', secondary: '#4ade80', name: 'Backend' },
+                'database': { primary: '#a855f7', secondary: '#c084fc', name: 'Database' },
+                'devops': { primary: '#f97316', secondary: '#fb923c', name: 'DevOps' },
+                'tools': { primary: '#ec4899', secondary: '#f472b6', name: 'Tools' },
+                'ai': { primary: '#06b6d4', secondary: '#22d3ee', name: 'AI' }
+            };
+            
+            // Get category color for a node
+            function getCategoryColor(node) {
+                // Check if node ID matches a category
+                for (const [catId, colors] of Object.entries(categoryColors)) {
+                    if (node.id === catId || node.id.startsWith(catId)) {
+                        return colors;
+                    }
+                }
+                // Check parent's category
+                if (node.children) {
+                    for (const [catId, colors] of Object.entries(categoryColors)) {
+                        if (node.children.some(child => child.id === catId || child.id.startsWith(catId))) {
+                            return colors;
+                        }
+                    }
+                }
+                return { primary: '#d4af37', secondary: '#fbbf24', name: 'Default' };
+            }
+            
+            // Initialize with only root expanded for cleaner initial view
+            expandedNodes.add('root');
+            
+            // Set canvas size
+            function resizeCanvas() {
+                const wrapper = canvas.parentElement;
+                canvas.width = wrapper.clientWidth - 64;
+                canvas.height = 1000;
+                drawMindmap();
+            }
+            
+            // Mindmap data structure
+            const mindmapData = {
+                id: 'root',
+                label: 'Full Stack Web Dev',
+                icon: 'fa-code',
+                x: 0,
+                y: 0,
+                children: [
+                    {
+                        id: 'frontend',
+                        label: 'Frontend',
+                        icon: 'fa-palette',
+                        children: [
+                            {
+                                id: 'html',
+                                label: 'HTML',
+                                icon: 'fa-html5',
+                                children: [
+                                    { id: 'html1', label: 'Elements' },
+                                    { id: 'html2', label: 'Semantic HTML' },
+                                    { id: 'html3', label: 'Forms' },
+                                    { id: 'html4', label: 'Tables' },
+                                    { id: 'html5', label: 'Media' },
+                                    { id: 'html6', label: 'SEO' },
+                                    { id: 'html7', label: 'Accessibility' }
+                                ]
+                            },
+                            {
+                                id: 'css',
+                                label: 'CSS',
+                                icon: 'fa-css3-alt',
+                                children: [
+                                    { id: 'css1', label: 'Selectors' },
+                                    { id: 'css2', label: 'Box Model' },
+                                    { id: 'css3', label: 'Flexbox' },
+                                    { id: 'css4', label: 'Grid' },
+                                    { id: 'css5', label: 'Positioning' },
+                                    { id: 'css6', label: 'Responsive Design' },
+                                    { id: 'css7', label: 'Media Queries' },
+                                    { id: 'css8', label: 'Animations' },
+                                    { id: 'css9', label: 'Transitions' }
+                                ]
+                            },
+                            {
+                                id: 'js',
+                                label: 'JavaScript',
+                                icon: 'fa-js',
+                                children: [
+                                    { id: 'js1', label: 'Variables' },
+                                    { id: 'js2', label: 'Functions' },
+                                    { id: 'js3', label: 'Objects' },
+                                    { id: 'js4', label: 'Arrays' },
+                                    { id: 'js5', label: 'ES6+' },
+                                    { id: 'js6', label: 'DOM' },
+                                    { id: 'js7', label: 'Events' },
+                                    { id: 'js8', label: 'Async/Await' },
+                                    { id: 'js9', label: 'Promises' },
+                                    { id: 'js10', label: 'Fetch API' }
+                                ]
+                            },
+                            {
+                                id: 'ts',
+                                label: 'TypeScript',
+                                icon: 'fa-code',
+                                children: [
+                                    { id: 'ts1', label: 'Types' },
+                                    { id: 'ts2', label: 'Interfaces' },
+                                    { id: 'ts3', label: 'Generics' }
+                                ]
+                            },
+                            {
+                                id: 'frameworks',
+                                label: 'Frameworks',
+                                icon: 'fa-react',
+                                children: [
+                                    { id: 'fw1', label: 'React' },
+                                    { id: 'fw2', label: 'Next.js' },
+                                    { id: 'fw3', label: 'Vue' },
+                                    { id: 'fw4', label: 'Angular' }
+                                ]
+                            },
+                            {
+                                id: 'styling',
+                                label: 'Styling',
+                                icon: 'fa-css3',
+                                children: [
+                                    { id: 'st1', label: 'Tailwind CSS' },
+                                    { id: 'st2', label: 'Bootstrap' },
+                                    { id: 'st3', label: 'Sass' },
+                                    { id: 'st4', label: 'Material UI' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 'backend',
+                        label: 'Backend',
+                        icon: 'fa-server',
+                        children: [
+                            {
+                                id: 'languages',
+                                label: 'Languages',
+                                icon: 'fa-code',
+                                children: [
+                                    { id: 'lang1', label: 'Node.js' },
+                                    { id: 'lang2', label: 'PHP' },
+                                    { id: 'lang3', label: 'Python' },
+                                    { id: 'lang4', label: 'Java' }
+                                ]
+                            },
+                            {
+                                id: 'backend-frameworks',
+                                label: 'Frameworks',
+                                icon: 'fa-server',
+                                children: [
+                                    { id: 'bf1', label: 'Express.js' },
+                                    { id: 'bf2', label: 'Laravel' },
+                                    { id: 'bf3', label: 'Django' },
+                                    { id: 'bf4', label: 'FastAPI' }
+                                ]
+                            },
+                            {
+                                id: 'api',
+                                label: 'APIs',
+                                icon: 'fa-plug',
+                                children: [
+                                    { id: 'api1', label: 'REST' },
+                                    { id: 'api2', label: 'GraphQL' },
+                                    { id: 'api3', label: 'WebSockets' },
+                                    { id: 'api4', label: 'Socket.IO' }
+                                ]
+                            },
+                            {
+                                id: 'auth',
+                                label: 'Authentication',
+                                icon: 'fa-shield-halved',
+                                children: [
+                                    { id: 'auth1', label: 'JWT' },
+                                    { id: 'auth2', label: 'OAuth' },
+                                    { id: 'auth3', label: 'Sessions' },
+                                    { id: 'auth4', label: 'bcrypt' }
+                                ]
+                            },
+                            {
+                                id: 'security',
+                                label: 'Security',
+                                icon: 'fa-shield-halved',
+                                children: [
+                                    { id: 'sec1', label: 'CORS' },
+                                    { id: 'sec2', label: 'XSS' },
+                                    { id: 'sec3', label: 'CSRF' },
+                                    { id: 'sec4', label: 'SQL Injection' },
+                                    { id: 'sec5', label: 'Helmet' }
+                                ]
+                            },
+                            {
+                                id: 'file-handling',
+                                label: 'File Handling',
+                                icon: 'fa-file',
+                                children: [
+                                    { id: 'fh1', label: 'Multer' },
+                                    { id: 'fh2', label: 'Cloudinary' },
+                                    { id: 'fh3', label: 'AWS S3' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 'database',
+                        label: 'Database',
+                        icon: 'fa-database',
+                        children: [
+                            {
+                                id: 'sql',
+                                label: 'SQL',
+                                icon: 'fa-database',
+                                children: [
+                                    { id: 'sql1', label: 'MySQL' },
+                                    { id: 'sql2', label: 'PostgreSQL' },
+                                    { id: 'sql3', label: 'SQLite' }
+                                ]
+                            },
+                            {
+                                id: 'nosql',
+                                label: 'NoSQL',
+                                icon: 'fa-database',
+                                children: [
+                                    { id: 'nosql1', label: 'MongoDB' },
+                                    { id: 'nosql2', label: 'Firebase' },
+                                    { id: 'nosql3', label: 'Cassandra' }
+                                ]
+                            },
+                            {
+                                id: 'cache',
+                                label: 'Cache',
+                                icon: 'fa-database',
+                                children: [
+                                    { id: 'cache1', label: 'Redis' },
+                                    { id: 'cache2', label: 'Memcached' }
+                                ]
+                            },
+                            {
+                                id: 'orm',
+                                label: 'ORM',
+                                icon: 'fa-database',
+                                children: [
+                                    { id: 'orm1', label: 'Prisma' },
+                                    { id: 'orm2', label: 'Sequelize' },
+                                    { id: 'orm3', label: 'Mongoose' },
+                                    { id: 'orm4', label: 'Eloquent' }
+                                ]
+                            },
+                            {
+                                id: 'concepts',
+                                label: 'Concepts',
+                                icon: 'fa-database',
+                                children: [
+                                    { id: 'con1', label: 'CRUD' },
+                                    { id: 'con2', label: 'Relationships' },
+                                    { id: 'con3', label: 'Joins' },
+                                    { id: 'con4', label: 'Indexing' },
+                                    { id: 'con5', label: 'Transactions' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 'devops',
+                        label: 'DevOps',
+                        icon: 'fa-cloud',
+                        children: [
+                            { id: 'dev1', label: 'Git' },
+                            { id: 'dev2', label: 'GitHub' },
+                            { id: 'dev3', label: 'Linux' },
+                            { id: 'dev4', label: 'Docker' },
+                            { id: 'dev5', label: 'Kubernetes' },
+                            { id: 'dev6', label: 'CI/CD' },
+                            { id: 'dev7', label: 'Nginx' },
+                            { id: 'dev8', label: 'Apache' },
+                            { id: 'dev9', label: 'Vercel' },
+                            { id: 'dev10', label: 'Netlify' },
+                            { id: 'dev11', label: 'AWS' }
+                        ]
+                    },
+                    {
+                        id: 'tools',
+                        label: 'Tools',
+                        icon: 'fa-wrench',
+                        children: [
+                            { id: 'tool1', label: 'VS Code' },
+                            { id: 'tool2', label: 'npm' },
+                            { id: 'tool3', label: 'Vite' },
+                            { id: 'tool4', label: 'Postman' },
+                            { id: 'tool5', label: 'Figma' }
+                        ]
+                    },
+                    {
+                        id: 'ai',
+                        label: 'AI',
+                        icon: 'fa-robot',
+                        children: [
+                            { id: 'ai1', label: 'OpenAI API' },
+                            { id: 'ai2', label: 'Gemini API' },
+                            { id: 'ai3', label: 'LangChain' },
+                            { id: 'ai4', label: 'RAG' },
+                            { id: 'ai5', label: 'AI Agents' },
+                            { id: 'ai6', label: 'MCP' }
+                        ]
+                    }
+                ]
+            };
+            
+            // Calculate node positions with top-down tree layout
+            function calculatePositions(node, x, y, level, parentExpanded) {
+                node.x = x;
+                node.y = y;
+                node.level = level;
+                node.baseX = x;
+                node.baseY = y;
+                
+                // Only calculate positions for children if parent is expanded
+                if (node.children && node.children.length > 0 && parentExpanded) {
+                    const horizontalSpacing = 150;
+                    const verticalSpacing = 150;
+                    
+                    // Calculate total width needed for children
+                    let totalWidth = 0;
+                    const childWidths = [];
+                    
+                    node.children.forEach(child => {
+                        let childWidth = horizontalSpacing;
+                        if (child.children && child.children.length > 0 && expandedNodes.has(child.id)) {
+                            childWidth = child.children.length * horizontalSpacing;
+                        }
+                        childWidths.push(childWidth);
+                        totalWidth += childWidth;
+                    });
+                    
+                    // Position children horizontally centered
+                    let currentX = x - totalWidth / 2;
+                    
+                    node.children.forEach((child, index) => {
+                        const childX = currentX + childWidths[index] / 2;
+                        const childY = y + verticalSpacing;
+                        const isExpanded = expandedNodes.has(child.id);
+                        
+                        calculatePositions(child, childX, childY, level + 1, isExpanded);
+                        currentX += childWidths[index];
+                    });
+                }
+            }
+            
+            // Animation system for smooth transitions
+            function updateAnimations() {
+                const now = Date.now();
+                const animationDuration = 400; // ms
+                
+                for (const [nodeId, anim] of animatingNodes) {
+                    const elapsed = now - anim.startTime;
+                    const progress = Math.min(elapsed / animationDuration, 1);
+                    
+                    // Easing function (ease-out cubic)
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    
+                    anim.opacity = anim.startOpacity + (anim.targetOpacity - anim.startOpacity) * eased;
+                    anim.scale = anim.startScale + (anim.targetScale - anim.startScale) * eased;
+                    
+                    if (progress >= 1) {
+                        animatingNodes.delete(nodeId);
+                    }
+                }
+            }
+            
+            // Start animation for a node
+            function animateNode(node, targetOpacity, targetScale) {
+                const currentAnim = animatingNodes.get(node.id);
+                animatingNodes.set(node.id, {
+                    startTime: Date.now(),
+                    startOpacity: currentAnim ? currentAnim.opacity : targetOpacity === 1 ? 0 : 1,
+                    targetOpacity: targetOpacity,
+                    startScale: currentAnim ? currentAnim.scale : targetScale === 1 ? 0.5 : 1,
+                    targetScale: targetScale
+                });
+                
+                // Also animate all descendants
+                if (node.children) {
+                    node.children.forEach(child => animateNode(child, targetOpacity, targetScale));
+                }
+            }
+            
+            // Draw node with enhanced effects
+            function drawNode(node) {
+                const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
+                const height = node.level === 0 ? 60 : node.level === 1 ? 50 : node.level === 2 ? 45 : 40;
+                const isHovered = hoveredNode === node;
+                const pulse = Math.sin(time * 0.003 + node.level * 0.5) * 0.05 + 1;
+                const floatY = Math.sin(time * 0.002 + node.level * 0.3) * 3;
+                const hasChildren = node.children && node.children.length > 0;
+                const isExpanded = expandedNodes.has(node.id);
+                
+                // Get animation values
+                const anim = animatingNodes.get(node.id);
+                const opacity = anim ? anim.opacity : 1;
+                const scale = anim ? anim.scale : 1;
+                
+                // Get category colors
+                const colors = getCategoryColor(node);
+                const primaryColor = node.level === 0 ? '#d4af37' : colors.primary;
+                const secondaryColor = node.level === 0 ? '#fbbf24' : colors.secondary;
+                
+                const drawX = node.x;
+                const drawY = node.y + floatY;
+                const drawWidth = width * (isHovered ? 1.15 : pulse) * scale;
+                const drawHeight = height * (isHovered ? 1.15 : pulse) * scale;
+                
+                ctx.save();
+                ctx.globalAlpha = opacity;
+                
+                // Draw node background with gradient
+                ctx.beginPath();
+                ctx.roundRect(drawX - drawWidth / 2, drawY - drawHeight / 2, drawWidth, drawHeight, 10);
+                
+                let gradient;
+                if (node.level === 0) {
+                    gradient = ctx.createLinearGradient(drawX - drawWidth / 2, drawY - drawHeight / 2, drawX + drawWidth / 2, drawY + drawHeight / 2);
+                    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+                    gradient.addColorStop(0.5, `rgba(212, 175, 55, 0.4)`);
+                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.2)');
+                } else {
+                    gradient = ctx.createLinearGradient(drawX - drawWidth / 2, drawY - drawHeight / 2, drawX + drawWidth / 2, drawY + drawHeight / 2);
+                    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+                    gradient.addColorStop(0.5, `${primaryColor}40`);
+                    gradient.addColorStop(1, `${primaryColor}15`);
+                }
+                
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Draw border
+                ctx.strokeStyle = node.level === 0 ? '#d4af37' : primaryColor;
+                ctx.lineWidth = isHovered ? 3 : 2;
+                ctx.stroke();
+                
+                // Draw inner border for main nodes
+                if (node.level <= 1) {
+                    ctx.beginPath();
+                    ctx.roundRect(drawX - drawWidth / 2 + 5, drawY - drawHeight / 2 + 5, drawWidth - 10, drawHeight - 10, 6);
+                    ctx.strokeStyle = `${primaryColor}66`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+                
+                // Draw expand/collapse indicator
+                if (hasChildren) {
+                    ctx.beginPath();
+                    ctx.arc(drawX + drawWidth / 2 - 10, drawY - drawHeight / 2 + 10, 8, 0, Math.PI * 2);
+                    ctx.fillStyle = node.level === 0 ? '#d4af37' : primaryColor;
+                    ctx.fill();
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    
+                    // Draw + or - symbol
+                    ctx.fillStyle = '#fff';
+                    ctx.font = 'bold 12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(isExpanded ? '-' : '+', drawX + drawWidth / 2 - 10, drawY - drawHeight / 2 + 10);
+                }
+                
+                // Draw label
+                ctx.fillStyle = '#fff';
+                ctx.font = `${node.level === 0 ? 'bold 14px' : node.level === 1 ? 'bold 13px' : '12px'} 'Segoe UI', Arial, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // Wrap text if needed
+                const words = node.label.split(' ');
+                if (words.length > 1 && node.label.length > 12) {
+                    ctx.fillText(words.slice(0, Math.ceil(words.length / 2)).join(' '), drawX, drawY - 6);
+                    ctx.fillText(words.slice(Math.ceil(words.length / 2)).join(' '), drawX, drawY + 8);
+                } else {
+                    ctx.fillText(node.label, drawX, drawY);
+                }
+                
+                ctx.restore();
+            }
+            
+            // Draw animated connection line (straight line for tree layout)
+            function drawConnection(parent, child) {
+                const parentFloatY = Math.sin(time * 0.002 + parent.level * 0.3) * 3;
+                const childFloatY = Math.sin(time * 0.002 + child.level * 0.3) * 3;
+                
+                const startX = parent.x;
+                const startY = parent.y + parentFloatY;
+                const endX = child.x;
+                const endY = child.y + childFloatY;
+                
+                // Get animation opacity for child
+                const childAnim = animatingNodes.get(child.id);
+                const opacity = childAnim ? childAnim.opacity : 1;
+                
+                // Get category color for child
+                const colors = getCategoryColor(child);
+                const primaryColor = child.level === 0 ? '#d4af37' : colors.primary;
+                
+                ctx.save();
+                ctx.globalAlpha = opacity;
+                
+                // Draw gradient line (straight horizontal/vertical)
+                const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
+                gradient.addColorStop(0, `${primaryColor}99`);
+                gradient.addColorStop(0.5, `${primaryColor}4d`);
+                gradient.addColorStop(1, `${primaryColor}99`);
+                
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                
+                // Draw moving particle along the line
+                const particleProgress = ((Math.sin(time * 0.003) + 1) / 2);
+                const particleX = startX + (endX - startX) * particleProgress;
+                const particleY = startY + (endY - startY) * particleProgress;
+                
+                ctx.beginPath();
+                ctx.arc(particleX, particleY, 3, 0, Math.PI * 2);
+                ctx.fillStyle = primaryColor;
+                ctx.fill();
+                
+                ctx.restore();
+            }
+            
+            // Draw background particles
+            function drawParticles() {
+                // Subtle golden particles
+                for (let i = 0; i < 20; i++) {
+                    const x = (Math.sin(time * 0.0002 + i * 0.1) * 0.5 + 0.5) * canvas.width;
+                    const y = (Math.cos(time * 0.00015 + i * 0.15) * 0.5 + 0.5) * canvas.height;
+                    const size = Math.sin(time * 0.0008 + i) * 0.5 + 1.5;
+                    const opacity = Math.sin(time * 0.0008 + i * 0.2) * 0.1 + 0.08;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 175, 55, ${opacity})`;
+                    ctx.fill();
+                }
+            }
+            
+            // Check if point is inside node (rectangular)
+            function isInsideNode(x, y, node) {
+                const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
+                const height = node.level === 0 ? 60 : node.level === 1 ? 50 : node.level === 2 ? 45 : 40;
+                const halfWidth = width / 2;
+                const halfHeight = height / 2;
+                
+                return x >= node.x - halfWidth && x <= node.x + halfWidth &&
+                       y >= node.y - halfHeight && y <= node.y + halfHeight;
+            }
+            
+            // Find node at position
+            function findNodeAtPosition(x, y, node) {
+                if (isInsideNode(x, y, node)) {
+                    return node;
+                }
+                if (node.children) {
+                    for (const child of node.children) {
+                        const found = findNodeAtPosition(x, y, child);
+                        if (found) return found;
+                    }
+                }
+                return null;
+            }
+            
+            // Draw mindmap recursively
+            function drawMindmapRecursive(node, parentExpanded) {
+                // Draw connections to children first (only if parent is expanded)
+                if (node.children && node.children.length > 0 && parentExpanded) {
+                    node.children.forEach(child => {
+                        drawConnection(node, child);
+                        drawMindmapRecursive(child, expandedNodes.has(child.id));
+                    });
+                }
+                
+                // Draw node on top
+                drawNode(node);
+            }
+            
+            // Main draw function
+            function drawMindmap() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update animations
+                updateAnimations();
+                
+                // Draw subtle particles
+                drawParticles();
+                
+                // Calculate positions starting from top center
+                const startX = canvas.width / 2;
+                const startY = 100;
+                calculatePositions(mindmapData, startX, startY, 0, true);
+                
+                // Draw mindmap
+                drawMindmapRecursive(mindmapData, true);
+                
+                time += 16;
+                animationFrame = requestAnimationFrame(drawMindmap);
+            }
+            
+            // Click handler for expand/collapse
+            canvas.addEventListener('click', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const clickY = e.clientY - rect.top;
+                
+                const clickedNode = findNodeAtPosition(clickX, clickY, mindmapData);
+                
+                if (clickedNode && clickedNode.children && clickedNode.children.length > 0) {
+                    if (expandedNodes.has(clickedNode.id)) {
+                        // Collapse: animate children to fade out and shrink
+                        clickedNode.children.forEach(child => {
+                            animateNode(child, 0, 0.5);
+                        });
+                        setTimeout(() => {
+                            expandedNodes.delete(clickedNode.id);
+                        }, 400);
+                    } else {
+                        // Expand: add to set and animate children to fade in and grow
+                        expandedNodes.add(clickedNode.id);
+                        clickedNode.children.forEach(child => {
+                            animateNode(child, 1, 1);
+                        });
+                    }
+                }
+            });
+            
+            // Mouse move handler
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+                
+                const found = findNodeAtPosition(mouseX, mouseY, mindmapData);
+                hoveredNode = found;
+                canvas.style.cursor = found ? 'pointer' : 'default';
+            });
+            
+            // Initialize
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+        </script>
+
+        <footer>
+            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
