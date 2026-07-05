@@ -99,6 +99,44 @@
             </div>
         </nav>
 
+        <!-- Trusted Leaders Section -->
+        <section id="trusted-leaders" class="section page-transition tl-section" aria-label="Trusted Leaders">
+            <div class="tl-bg-lines">
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+                <div class="tl-line"></div>
+            </div>
+            <div class="tl-container">
+                <!-- Floating Profile Pictures -->
+                <div class="tl-floating-images">
+                    <div class="tl-img tl-img-1"><img src="https://i.pravatar.cc/300?img=11" alt="Leader"></div>
+                    <div class="tl-img tl-img-2"><img src="https://i.pravatar.cc/300?img=12" alt="Leader"></div>
+                    <div class="tl-img tl-img-3"><img src="https://i.pravatar.cc/300?img=13" alt="Leader"></div>
+                    <div class="tl-img tl-img-4"><img src="https://i.pravatar.cc/300?img=14" alt="Leader"></div>
+                    <div class="tl-img tl-img-5"><img src="https://i.pravatar.cc/300?img=25" alt="Leader"></div>
+                    <div class="tl-img tl-img-6"><img src="https://i.pravatar.cc/300?img=26" alt="Leader"></div>
+                    <div class="tl-img tl-img-7"><img src="https://i.pravatar.cc/300?img=27" alt="Leader"></div>
+                    <div class="tl-img tl-img-8"><img src="https://i.pravatar.cc/300?img=28" alt="Leader"></div>
+                </div>
+
+                <div class="tl-content">
+                    <span class="tl-badge">Testimonials</span>
+                    <h2 class="tl-title">
+                        <span class="tl-title-dark">Trusted by leaders</span><br>
+                        <span class="tl-title-light">and clients to collaborate</span>
+                    </h2>
+                    <p class="tl-desc">Join the growing list of professionals who trust our work. The next success story could be yours!</p>
+                    <a href="#testimonials" class="tl-button">Read Success Stories <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
         <!-- Testimonials / Customer Reviews Section -->
         <section id="testimonials" class="section page-transition cr-section" aria-label="Customer Reviews">
             <div class="cr-container">
@@ -259,25 +297,106 @@
             }
         ];
 
-        // Timeline Scroll Animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const timelineItems = document.querySelectorAll('.timeline-item');
+        class CustomerReviewsCarousel {
+            constructor(data) {
+                this.data = data;
+                this.currentIndex = 0;
+                this.autoPlayTimer = null;
+                this.listContainer = document.getElementById('cr-reviewers-list');
+                this.quoteText = document.getElementById('cr-quote-text');
+                
+                this.init();
+            }
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+            init() {
+                if(!this.listContainer || !this.quoteText) return;
+                this.renderAvatars();
+                this.updateUI();
+                this.startAutoPlay();
+
+                // Pause on hover
+                const section = document.querySelector('.cr-section');
+                if(section) {
+                    section.addEventListener('mouseenter', () => this.stopAutoPlay());
+                    section.addEventListener('mouseleave', () => this.startAutoPlay());
+                }
+            }
+
+            renderAvatars() {
+                this.listContainer.innerHTML = '';
+                this.data.forEach((item, index) => {
+                    const el = document.createElement('div');
+                    el.className = 'cr-reviewer-item';
+                    el.dataset.index = index;
+                    
+                    const initial = item.name.charAt(0);
+                    
+                    el.innerHTML = `
+                        <div class="cr-avatar">${initial}</div>
+                        <div class="cr-info">
+                            <span class="cr-name">${item.name}</span>
+                            <span class="cr-rating">
+                                <span class="cr-star">★</span> ${item.rating.toFixed(1)} on ${item.date}
+                            </span>
+                        </div>
+                    `;
+
+                    el.addEventListener('click', () => {
+                        this.currentIndex = index;
+                        this.updateUI();
+                    });
+
+                    this.listContainer.appendChild(el);
+                });
+            }
+
+            updateUI() {
+                const items = this.listContainer.querySelectorAll('.cr-reviewer-item');
+                const total = this.data.length;
+                if(total === 0) return;
+
+                items.forEach((item, i) => {
+                    item.className = 'cr-reviewer-item';
+                    
+                    if (i === this.currentIndex) {
+                        item.classList.add('active');
+                    } else if (i === (this.currentIndex - 1 + total) % total) {
+                        item.classList.add('prev');
+                    } else if (i === (this.currentIndex + 1) % total) {
+                        item.classList.add('next');
                     }
                 });
-            }, { threshold: 0.2 });
 
-            timelineItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.transition = 'all 0.6s ease';
-                observer.observe(item);
-            });
+                const currentData = this.data[this.currentIndex];
+                const text = currentData.text;
+                const firstChar = text.charAt(0);
+                const rest = text.slice(1);
+                
+                this.quoteText.style.opacity = 0;
+                this.quoteText.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    this.quoteText.innerHTML = `<span class="drop-cap">${firstChar}</span>${rest}`;
+                    this.quoteText.style.opacity = 1;
+                    this.quoteText.style.transform = 'translateY(0)';
+                }, 300);
+            }
+
+            startAutoPlay() {
+                this.stopAutoPlay();
+                this.autoPlayTimer = setInterval(() => {
+                    this.currentIndex = (this.currentIndex + 1) % this.data.length;
+                    this.updateUI();
+                }, 3000);
+            }
+
+            stopAutoPlay() {
+                if (this.autoPlayTimer) clearInterval(this.autoPlayTimer);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CustomerReviewsCarousel(testimonialsData);
         });
     </script>
 </body>
