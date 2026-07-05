@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Vivek Yadav | Full Stack Web Developer</title>
-    <meta name="description" content="Get in touch with Vivek Yadav, Full Stack Web Developer. Available for freelance projects and collaborations.">
+    <meta name="description"
+        content="Get in touch with Vivek Yadav, Full Stack Web Developer. Available for freelance projects and collaborations.">
     <meta name="keywords" content="Vivek Yadav, Contact, Hire, Freelance, Web Developer, Collaboration, Full Stack">
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vivekyadav.com/contact.html">
     <meta property="og:title" content="Contact - Vivek Yadav">
-    <meta property="og:description" content="Get in touch with Vivek Yadav, Full Stack Web Developer. Available for freelance projects and collaborations.">
+    <meta property="og:description"
+        content="Get in touch with Vivek Yadav, Full Stack Web Developer. Available for freelance projects and collaborations.">
     <meta property="og:image" content="https://vivekyadav.com/photos/logo.png">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivekyadav.com/contact.html">
     <meta property="twitter:title" content="Contact - Vivek Yadav">
-    <meta property="twitter:description" content="Get in touch with Vivek Yadav, Full Stack Web Developer. Available for freelance projects and collaborations.">
+    <meta property="twitter:description"
+        content="Get in touch with Vivek Yadav, Full Stack Web Developer. Available for freelance projects and collaborations.">
     <meta property="twitter:image" content="https://vivekyadav.com/photos/logo.png">
-    
+
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
-    
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -45,11 +49,13 @@
         }
     }
     </script>
-    
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -65,6 +71,7 @@
         }
     </script>
 </head>
+
 <body>
 
     <!-- Main Content -->
@@ -92,18 +99,50 @@
             </div>
         </nav>
 
+        <!-- Testimonials / Customer Reviews Section -->
+        <section id="testimonials" class="section page-transition cr-section" aria-label="Customer Reviews">
+            <div class="cr-container">
+                <!-- Section Header -->
+                <div class="cr-header">
+                    <div class="cr-header-line"></div>
+                    <h2 class="cr-title">Customer Reviews</h2>
+                </div>
+
+                <!-- Main Layout -->
+                <div class="cr-layout">
+                    <!-- Left: Reviewers on an arc -->
+                    <div class="cr-left">
+                        <div class="cr-arc"></div>
+                        <div class="cr-reviewers-list" id="cr-reviewers-list">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Right: Testimonial Quote -->
+                    <div class="cr-right">
+                        <div class="cr-quote-wrapper">
+                            <div class="cr-quote-mark">“</div>
+                            <p class="cr-quote-text" id="cr-quote-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="section square-grid-bg page-transition">
             <div class="section-header fade-in-up" style="text-align: center; margin-bottom: 2rem; position: relative;">
                 <h2 style="font-size: 3.5rem;">Get In Touch</h2>
                 <div class="header-line" style="margin: 15px auto 0;"></div>
             </div>
-            
+
             <div class="contact-wrapper">
                 <div class="contact-left fade-in-up">
-                    <h1 class="collab-text">Let's Turn Your <br><span class="gradient-text-blue-purple">Ideas Into Reality.</span></h1>
-                    <p class="contact-desc">Whether you have a massive enterprise project, a disruptive startup idea, or just want to explore the future of web technologies together—my inbox is always open.</p>
-                    
+                    <h1 class="collab-text">Let's Turn Your <br><span class="gradient-text-blue-purple">Ideas Into
+                            Reality.</span></h1>
+                    <p class="contact-desc">Whether you have a massive enterprise project, a disruptive startup idea, or
+                        just want to explore the future of web technologies together—my inbox is always open.</p>
+
                     <div class="contact-methods-grid">
                         <a href="mailto:vivekhr36.2007@gmail.com" class="contact-card glass-card fade-in-up">
                             <div class="icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
@@ -134,15 +173,18 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="social-links contact-socials">
-                        <a href="https://github.com/vivek-yadav07" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://linkedin.com/in/vivek-yadav-1142213a0/" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/vivek-yadav07" target="_blank" class="social-icon"><i
+                                class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com/in/vivek-yadav-1142213a0/" target="_blank" class="social-icon"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
                 <div class="contact-right glass-card fade-in-up">
-                    <form class="premium-form" onsubmit="event.preventDefault(); alert('Message feature coming soon!');">
+                    <form class="premium-form"
+                        onsubmit="event.preventDefault(); alert('Message feature coming soon!');">
                         <div class="input-group">
                             <input type="text" id="name" required>
                             <label for="name">Your Name</label>
@@ -177,5 +219,67 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        // Testimonials Data
+        const testimonialsData = [
+            {
+                name: "Anmol Mittal",
+                role: "Data Manager, TechStart",
+                text: "Grateful to have had you on our team. Your passion, hard work, and positive energy made a real difference. Wishing you all the best for the journey ahead!",
+                rating: 4.9,
+                date: "Jan 2026"
+            },
+            {
+                name: "Preeti Kaur",
+                role: "Client",
+                text: "We met not just as a freelancer and a client, but became good friends along the way. Your technical knowledge and maturity at such a young age are truly impressive. Wishing you continued success and an amazing journey ahead!",
+                rating: 5.0,
+                date: "Dec 2025"
+            },
+            {
+                name: "Rahul Sharma",
+                role: "CEO, TechStart India",
+                text: "Vivek is an exceptional developer who delivered our project ahead of schedule. His attention to detail and problem-solving skills are outstanding. The final product exceeded our expectations.",
+                rating: 4.8,
+                date: "Nov 2025"
+            },
+            {
+                name: "Priya Patel",
+                role: "Product Manager, Innovate Labs",
+                text: "Working with Vivek was a pleasure. He understood our requirements perfectly and implemented them flawlessly. His expertise in full-stack development is truly impressive.",
+                rating: 4.9,
+                date: "Oct 2025"
+            },
+            {
+                name: "Amit Kumar",
+                role: "Founder, Digital Solutions",
+                text: "Vivek's technical skills are matched only by his professionalism. He communicated effectively throughout the project and delivered a high-quality solution that our users love.",
+                rating: 5.0,
+                date: "Sep 2025"
+            }
+        ];
+
+        // Timeline Scroll Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
 </body>
+
 </html>
