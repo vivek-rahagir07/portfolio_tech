@@ -502,17 +502,18 @@
                 // Get animation values
                 const anim = animatingNodes.get(node.id);
                 const opacity = anim ? anim.opacity : 1;
-                const scale = anim ? anim.scale : 1;
+                const animScale = anim ? anim.scale : 1;
                 
                 // Get category colors
                 const colors = getCategoryColor(node);
                 const primaryColor = node.level === 0 ? '#d4af37' : colors.primary;
                 const secondaryColor = node.level === 0 ? '#fbbf24' : colors.secondary;
                 
-                const drawX = node.x;
-                const drawY = node.y + floatY;
-                const drawWidth = width * (isHovered ? 1.15 : pulse) * scale;
-                const drawHeight = height * (isHovered ? 1.15 : pulse) * scale;
+                // Apply canvas transform
+                const drawX = (node.x + offsetX) * scale;
+                const drawY = (node.y + offsetY + floatY) * scale;
+                const drawWidth = width * (isHovered ? 1.15 : pulse) * animScale * scale;
+                const drawHeight = height * (isHovered ? 1.15 : pulse) * animScale * scale;
                 
                 ctx.save();
                 ctx.globalAlpha = opacity;
@@ -539,34 +540,35 @@
                 
                 // Draw border
                 ctx.strokeStyle = node.level === 0 ? '#d4af37' : primaryColor;
-                ctx.lineWidth = isHovered ? 3 : 2;
+                ctx.lineWidth = (isHovered ? 3 : 2) * scale;
                 ctx.stroke();
                 
                 // Draw inner border for main nodes
                 if (node.level <= 1) {
                     ctx.beginPath();
-                    ctx.roundRect(drawX - drawWidth / 2 + 5, drawY - drawHeight / 2 + 5, drawWidth - 10, drawHeight - 10, 6);
+                    ctx.roundRect(drawX - drawWidth / 2 + 5 * scale, drawY - drawHeight / 2 + 5 * scale, drawWidth - 10 * scale, drawHeight - 10 * scale, 6);
                     ctx.strokeStyle = `${primaryColor}66`;
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 1 * scale;
                     ctx.stroke();
                 }
                 
                 // Draw expand/collapse indicator
                 if (hasChildren) {
+                    const indicatorSize = 8 * scale;
                     ctx.beginPath();
-                    ctx.arc(drawX + drawWidth / 2 - 10, drawY - drawHeight / 2 + 10, 8, 0, Math.PI * 2);
+                    ctx.arc(drawX + drawWidth / 2 - 10 * scale, drawY - drawHeight / 2 + 10 * scale, indicatorSize, 0, Math.PI * 2);
                     ctx.fillStyle = node.level === 0 ? '#d4af37' : primaryColor;
                     ctx.fill();
                     ctx.strokeStyle = '#fff';
-                    ctx.lineWidth = 2;
+                    ctx.lineWidth = 2 * scale;
                     ctx.stroke();
                     
                     // Draw + or - symbol
                     ctx.fillStyle = '#fff';
-                    ctx.font = 'bold 12px Arial';
+                    ctx.font = `bold ${12 * scale}px Arial`;
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
-                    ctx.fillText(isExpanded ? '-' : '+', drawX + drawWidth / 2 - 10, drawY - drawHeight / 2 + 10);
+                    ctx.fillText(isExpanded ? '-' : '+', drawX + drawWidth / 2 - 10 * scale, drawY - drawHeight / 2 + 10 * scale);
                 }
                 
                 // Draw label
@@ -578,8 +580,8 @@
                 // Wrap text if needed
                 const words = node.label.split(' ');
                 if (words.length > 1 && node.label.length > 12) {
-                    ctx.fillText(words.slice(0, Math.ceil(words.length / 2)).join(' '), drawX, drawY - 6);
-                    ctx.fillText(words.slice(Math.ceil(words.length / 2)).join(' '), drawX, drawY + 8);
+                    ctx.fillText(words.slice(0, Math.ceil(words.length / 2)).join(' '), drawX, drawY - 6 * scale);
+                    ctx.fillText(words.slice(Math.ceil(words.length / 2)).join(' '), drawX, drawY + 8 * scale);
                 } else {
                     ctx.fillText(node.label, drawX, drawY);
                 }
@@ -592,10 +594,10 @@
                 const parentFloatY = Math.sin(time * 0.002 + parent.level * 0.3) * 3;
                 const childFloatY = Math.sin(time * 0.002 + child.level * 0.3) * 3;
                 
-                const startX = parent.x;
-                const startY = parent.y + parentFloatY;
-                const endX = child.x;
-                const endY = child.y + childFloatY;
+                const startX = (parent.x + offsetX) * scale;
+                const startY = (parent.y + offsetY + parentFloatY) * scale;
+                const endX = (child.x + offsetX) * scale;
+                const endY = (child.y + offsetY + childFloatY) * scale;
                 
                 // Get animation opacity for child
                 const childAnim = animatingNodes.get(child.id);
@@ -619,7 +621,7 @@
                 ctx.lineTo(endX, endY);
                 
                 ctx.strokeStyle = gradient;
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 2 * scale;
                 ctx.lineCap = 'round';
                 ctx.stroke();
                 
@@ -629,7 +631,7 @@
                 const particleY = startY + (endY - startY) * particleProgress;
                 
                 ctx.beginPath();
-                ctx.arc(particleX, particleY, 3, 0, Math.PI * 2);
+                ctx.arc(particleX, particleY, 3 * scale, 0, Math.PI * 2);
                 ctx.fillStyle = primaryColor;
                 ctx.fill();
                 
@@ -638,11 +640,11 @@
             
             // Draw background particles
             function drawParticles() {
-                // Subtle golden particles
+                // Subtle golden particles - transform with canvas
                 for (let i = 0; i < 20; i++) {
-                    const x = (Math.sin(time * 0.0002 + i * 0.1) * 0.5 + 0.5) * canvas.width;
-                    const y = (Math.cos(time * 0.00015 + i * 0.15) * 0.5 + 0.5) * canvas.height;
-                    const size = Math.sin(time * 0.0008 + i) * 0.5 + 1.5;
+                    const x = ((Math.sin(time * 0.0002 + i * 0.1) * 0.5 + 0.5) * canvas.width + offsetX) * scale;
+                    const y = ((Math.cos(time * 0.00015 + i * 0.15) * 0.5 + 0.5) * canvas.height + offsetY) * scale;
+                    const size = (Math.sin(time * 0.0008 + i) * 0.5 + 1.5) * scale;
                     const opacity = Math.sin(time * 0.0008 + i * 0.2) * 0.1 + 0.08;
                     
                     ctx.beginPath();
@@ -652,15 +654,20 @@
                 }
             }
             
-            // Check if point is inside node (rectangular)
+            // Check if point is inside node (rectangular) - account for transform
             function isInsideNode(x, y, node) {
                 const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
                 const height = node.level === 0 ? 60 : node.level === 1 ? 50 : node.level === 2 ? 45 : 40;
+                
+                // Transform screen coordinates to world coordinates
+                const worldX = (x / scale) - offsetX;
+                const worldY = (y / scale) - offsetY;
+                
                 const halfWidth = width / 2;
                 const halfHeight = height / 2;
                 
-                return x >= node.x - halfWidth && x <= node.x + halfWidth &&
-                       y >= node.y - halfHeight && y <= node.y + halfHeight;
+                return worldX >= node.x - halfWidth && worldX <= node.x + halfWidth &&
+                       worldY >= node.y - halfHeight && worldY <= node.y + halfHeight;
             }
             
             // Find node at position
@@ -740,15 +747,77 @@
                 }
             });
             
-            // Mouse move handler
+            // Mouse down handler for dragging
+            canvas.addEventListener('mousedown', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const clickY = e.clientY - rect.top;
+                
+                // Check if clicking on a node
+                const clickedNode = findNodeAtPosition(clickX, clickY, mindmapData);
+                
+                if (!clickedNode) {
+                    // Start dragging canvas
+                    isDragging = true;
+                    dragStartX = clickX;
+                    dragStartY = clickY;
+                    dragOffsetX = offsetX;
+                    dragOffsetY = offsetY;
+                    canvas.style.cursor = 'grabbing';
+                }
+            });
+            
+            // Mouse move handler for dragging and hover
             canvas.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
-                mouseX = e.clientX - rect.left;
-                mouseY = e.clientY - rect.top;
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
                 
-                const found = findNodeAtPosition(mouseX, mouseY, mindmapData);
-                hoveredNode = found;
-                canvas.style.cursor = found ? 'pointer' : 'default';
+                if (isDragging) {
+                    // Update canvas offset
+                    offsetX = dragOffsetX + (mouseX - dragStartX) / scale;
+                    offsetY = dragOffsetY + (mouseY - dragStartY) / scale;
+                } else {
+                    // Update hover state
+                    const found = findNodeAtPosition(mouseX, mouseY, mindmapData);
+                    hoveredNode = found;
+                    canvas.style.cursor = found ? 'pointer' : 'grab';
+                }
+            });
+            
+            // Mouse up handler to stop dragging
+            canvas.addEventListener('mouseup', () => {
+                isDragging = false;
+                canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
+            });
+            
+            // Mouse leave handler to stop dragging
+            canvas.addEventListener('mouseleave', () => {
+                isDragging = false;
+                hoveredNode = null;
+                canvas.style.cursor = 'grab';
+            });
+            
+            // Wheel handler for zooming
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                
+                // Get world coordinates before zoom
+                const worldX = (mouseX / scale) - offsetX;
+                const worldY = (mouseY / scale) - offsetY;
+                
+                // Update scale
+                const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.max(0.3, Math.min(3, scale * zoomFactor));
+                
+                // Adjust offset to zoom towards mouse position
+                offsetX = (mouseX / newScale) - worldX;
+                offsetY = (mouseY / newScale) - worldY;
+                scale = newScale;
             });
             
             // Initialize
