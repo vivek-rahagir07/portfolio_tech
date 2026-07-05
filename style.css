@@ -3245,9 +3245,9 @@ footer {
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.2);
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
     backdrop-filter: blur(10px);
     animation: floatWord 10s ease-in-out infinite alternate;
@@ -3357,21 +3357,24 @@ footer {
     text-transform: uppercase;
 }
 
+.tl-title {
+    margin: 0 0 25px 0;
+    line-height: 1.1;
+}
+
 .tl-title-white-text {
     background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 4rem;
+    font-size: 3.8rem;
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
 }
 .tl-title-grey-text {
-    color: rgba(255,255,255,0.4);
-    font-size: 4rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 3.5rem;
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
 }
 
 .tl-desc-dark {
