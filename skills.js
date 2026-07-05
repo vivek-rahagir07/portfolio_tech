@@ -82,12 +82,62 @@ document.addEventListener('DOMContentLoaded', () => {
             nextSkill();
         }, 4000); // Stop for 4 seconds on each tech stack
     }
+    
+    function startFastRotate() {
+        clearInterval(autoRotateInterval);
+        
+        // Add spinning animation to orbit wrapper
+        const orbitRing = document.getElementById('orbit-ring');
+        orbitRing.style.transition = 'transform 0.5s ease-out';
+        
+        // Random number of spins between 5 and 15
+        const totalSpins = Math.floor(Math.random() * 11) + 5;
+        // Random final skill (0-9)
+        const randomSkill = Math.floor(Math.random() * totalItems);
+        
+        let spinCount = 0;
+        
+        function spin() {
+            spinCount++;
+            const rotation = spinCount * 36; // 36 degrees per skill (360/10)
+            orbitRing.style.transform = `rotate(${rotation}deg)`;
+            
+            if (spinCount < totalSpins) {
+                setTimeout(spin, 100); // Fast spin
+            } else {
+                // Slow down and stop at random skill
+                orbitRing.style.transition = 'transform 1.5s ease-out';
+                const finalRotation = rotation + (randomSkill * 36);
+                setTimeout(() => {
+                    orbitRing.style.transform = `rotate(${finalRotation}deg)`;
+                    
+                    // Update to the random skill
+                    setTimeout(() => {
+                        currentIndex = randomSkill;
+                        positionItems(currentIndex);
+                        startAutoRotate();
+                    }, 1500);
+                }, 500);
+            }
+        }
+        
+        spin();
+    }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
             nextSkill();
             startAutoRotate(); // Reset timer on manual click
+        });
+    }
+    
+    // Fast rotate button
+    const fastRotateBtn = document.getElementById('btn-fast-rotate');
+    if (fastRotateBtn) {
+        fastRotateBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            startFastRotate();
         });
     }
 
