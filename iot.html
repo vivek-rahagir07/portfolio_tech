@@ -5,654 +5,769 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoT & Robotics - Vivek Yadav | Full Stack Web Developer</title>
     <meta name="description" content="Explore Vivek Yadav's passion for IoT and robotics. Discover projects using Raspberry Pi, ESP32, Arduino, and an AI-based traffic light system.">
-    <meta name="keywords" content="Vivek Yadav, IoT, Robotics, Raspberry Pi, ESP32, ESP8266, STM32, Arduino, AI Traffic Light">
-    <meta name="author" content="Vivek Yadav">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vivekyadav.com/iot.html">
-    <meta property="og:title" content="IoT & Robotics - Vivek Yadav">
-    <meta property="og:description" content="Explore my passion for IoT and robotics. Discover projects using Raspberry Pi, ESP32, Arduino, and an AI-based traffic light system.">
-    <meta property="og:image" content="https://vivekyadav.com/photos/logo.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vivekyadav.com/iot.html">
-    <meta property="twitter:title" content="IoT & Robotics - Vivek Yadav">
-    <meta property="twitter:description" content="Explore my passion for IoT and robotics. Discover projects using Raspberry Pi, ESP32, Arduino, and an AI-based traffic light system.">
-    <meta property="twitter:image" content="https://vivekyadav.com/photos/logo.png">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="photos/logo.png">
-    <link rel="icon" type="image/png" href="photos/logo.png">
     
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* ═══════════════════════════════════════════ */
-        /*  IoT PAGE — SCOPED STYLES                  */
+        /*  PREMIUM SLEEK IoT PAGE STYLES              */
         /* ═══════════════════════════════════════════ */
 
-        .iot-hero {
-            padding: 130px 5% 60px;
+        :root {
+            --glass-bg: rgba(20, 20, 20, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --gold-subtle: rgba(212, 175, 55, 0.15);
+            --text-muted: #888888;
+        }
+
+        .iot-wrapper {
             position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: #050505;
+        }
+
+        /* ── Elegant Floating Background Images ── */
+        .bg-floating-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
             overflow: hidden;
         }
-
-        /* Ambient background glows */
-        .iot-hero::before {
-            content: '';
+        
+        .floating-img {
             position: absolute;
-            top: -120px;
-            right: -80px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(97, 218, 251, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-        }
-        .iot-hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -60px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(155, 77, 202, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(50px);
-            pointer-events: none;
+            opacity: 0.03; /* Barely visible, highly elegant */
+            filter: grayscale(100%) contrast(1.2);
+            border-radius: 8px; /* Sleek corners */
+            animation: panAnim 30s infinite alternate linear;
+            transition: opacity 0.8s ease;
+            object-fit: cover;
+            mix-blend-mode: luminosity;
         }
 
-        /* ── Top Row: Title + Stats ── */
-        .iot-top {
+        @keyframes panAnim {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 30px) scale(1.05); }
+        }
+
+        /* ── Content Layer ── */
+        .iot-content-layer {
+            position: relative;
+            z-index: 10;
+            padding-bottom: 80px;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .iot-wrapper.gallery-open .iot-content-layer {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            pointer-events: none;
+        }
+
+        /* ── Hero Area ── */
+        .iot-hero {
+            padding: 160px 5% 0;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Refined Ambient Glows */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .glow-orb.top-right {
+            top: 0; right: 10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+        }
+
+        /* Title row */
+        .iot-title-row {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
             gap: 2rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 4rem;
             flex-wrap: wrap;
         }
-        .iot-top .section-header {
-            margin: 0;
+        .iot-title-row .section-header { margin: 0; }
+        .iot-title-row .section-header h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: -1px;
+            color: #fff;
         }
-        .iot-top .section-header p {
-            color: var(--text-secondary);
-            margin-top: 0.6rem;
+        .iot-title-row .section-header p {
+            color: var(--text-muted);
+            margin-top: 1rem;
             font-size: 1.05rem;
-            max-width: 480px;
+            font-weight: 300;
+            max-width: 500px;
+            line-height: 1.7;
         }
 
-        /* Floating stats pills */
+        /* Sleek Stat pills */
         .iot-stats {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
-        .iot-stat {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 14px 22px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        .iot-stat-card {
+            display: flex; 
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
         }
-        .iot-stat:hover {
-            transform: translateY(-3px);
-            border-color: rgba(97, 218, 251, 0.25);
+        .iot-stat-card::before {
+            content: '';
+            position: absolute;
+            left: -15px; top: 5px; bottom: 5px;
+            width: 1px;
+            background: var(--glass-border);
         }
-        .iot-stat .stat-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        .iot-stat .stat-num {
+        .iot-stat-card:first-child::before { display: none; }
+        
+        .stat-num {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
+            font-size: 2.2rem; 
+            font-weight: 300;
+            color: #fff; 
             line-height: 1;
+            letter-spacing: -1px;
         }
-        .iot-stat .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
         }
 
-        /* ── Middle Row: Project Card + MCU Badges ── */
-        .iot-middle {
+        /* ── Main Grid ── */
+        .iot-main-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 1.5rem;
         }
 
-        /* Featured project card */
-        .iot-project {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 24px;
-            padding: 2rem 2.2rem;
+        /* Sleek Premium Cards */
+        .premium-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 3rem;
+            transition: border-color 0.4s ease, transform 0.4s ease;
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
-        .iot-project::before {
-            content: '\f637'; /* fa-traffic-light */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 9rem;
-            opacity: 0.03;
-            color: #fff;
-            pointer-events: none;
-        }
-        .iot-project .badge {
-            display: inline-block;
-            background: rgba(97, 218, 251, 0.1);
-            border: 1px solid rgba(97, 218, 251, 0.25);
-            color: #61dafb;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 0.8rem;
-            width: fit-content;
-        }
-        .iot-project h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.7rem;
-        }
-        .iot-project > p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.4rem;
+        .premium-card:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
         }
 
-        /* Feature pills inside project card */
-        .feature-row {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            padding: 10px 0;
-        }
-        .feature-row + .feature-row {
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .feature-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1rem;
-        }
-        .feature-row h4 {
-            font-size: 0.95rem;
-            color: #fff;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        .feature-row p {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        /* MCU + passion card */
-        .iot-passion {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 24px;
-            padding: 2rem 2.2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .iot-passion h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .iot-passion > p {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.65;
-            margin-bottom: 1.4rem;
-        }
-
-        /* MCU badge grid */
-        .mcu-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .mcu-chip {
+        /* Project card */
+        .project-tag {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--accent);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .project-tag i { font-size: 0.5rem; }
+        .project-tag::after {
+            content: '';
+            height: 1px; width: 30px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+        
+        .iot-project-card h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .iot-project-card > p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+        }
+        
+        .feat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .feat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .feat-icon {
+            margin-top: 2px;
+            color: var(--accent);
             font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .feat-item h4 { 
+            font-size: 0.9rem; 
             font-weight: 500;
             color: #ddd;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            cursor: default;
+            margin-bottom: 2px;
         }
-        .mcu-chip:hover {
-            transform: translateY(-2px) scale(1.04);
-            border-color: rgba(97, 218, 251, 0.3);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        .mcu-chip i {
-            font-size: 1rem;
+        .feat-item p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--text-muted);
         }
 
-        /* ── Gallery Section ── */
-        .iot-gallery-section {
-            padding: 0 5% 40px;
+        /* Passion card overrides */
+        .iot-passion-card {
+            display: flex;
+            flex-direction: column;
         }
-        .iot-gallery-section h3 {
-            font-family: 'Outfit', sans-serif;
+        .iot-passion-card h3 {
             font-size: 1.3rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 10px;
         }
-        .iot-gallery-section h3 i {
-            color: #61dafb;
+        .iot-passion-card > p {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        
+        .chip-grid {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 3rem;
+        }
+        .hw-chip {
+            padding: 6px 14px;
+            border-radius: 6px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.75rem; 
+            font-weight: 400;
+            color: #999;
+            transition: all 0.3s ease;
+        }
+        .hw-chip:hover {
+            color: #fff;
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
         }
 
-        .iot-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: auto auto;
-            gap: 12px;
+        /* ── Minimalist Premium CTA ── */
+        .gallery-cta-wrapper {
+            margin-top: auto;
         }
-        .iot-gallery-item {
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-        .iot-gallery-item img {
+        .gallery-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
+            padding: 16px 24px;
+            border-radius: 8px;
+            background: #fff;
+            color: #000;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem; 
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .iot-gallery-item:hover img {
-            transform: scale(1.08);
+        .gallery-cta i {
+            transition: transform 0.3s ease;
         }
-        .iot-gallery-item .gallery-overlay {
-            position: absolute;
+        .gallery-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.15);
+        }
+        .gallery-cta:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ── Fullscreen Animated Gallery Modal ── */
+        .gallery-modal {
+            position: fixed;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%);
-            opacity: 0;
-            transition: opacity 0.35s ease;
+            z-index: 9999;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
-            align-items: flex-end;
-            padding: 16px;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 60px 8%;
         }
-        .iot-gallery-item:hover .gallery-overlay {
+        .iot-wrapper.gallery-open .gallery-modal {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.8s ease 0.1s;
+        }
+        .iot-wrapper.gallery-open .modal-header {
+            transform: translateY(0);
             opacity: 1;
         }
-        .gallery-overlay span {
-            font-size: 0.82rem;
-            font-weight: 500;
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
             color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            display: flex; align-items: center; gap: 12px;
         }
-        .gallery-overlay span i {
-            color: #61dafb;
-            font-size: 0.7rem;
+        .modal-title i { color: var(--accent); font-size: 1rem; }
+        
+        .modal-close {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .modal-close:hover {
+            border-color: #fff;
+            transform: rotate(90deg);
         }
 
-        /* Grid layout — first 2 items span 2 cols, last 4 fill remaining */
-        .iot-gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; min-height: 320px; }
-        .iot-gallery-item:nth-child(2) { grid-column: span 2; min-height: 150px; }
-        .iot-gallery-item:nth-child(3) { grid-column: span 2; min-height: 150px; }
-        .iot-gallery-item:nth-child(4) { grid-column: span 2; min-height: 150px; }
-        .iot-gallery-item:nth-child(5) { grid-column: span 2; min-height: 150px; }
-        .iot-gallery-item:nth-child(6) { grid-column: span 2; min-height: 150px; }
+        /* Dynamic Grid Layout */
+        .dynamic-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-auto-rows: 280px;
+            gap: 24px;
+            padding-bottom: 80px;
+        }
+        
+        .g-item {
+            position: relative;
+            border-radius: 8px; /* Sleek edges */
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.9) translateY(40px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        }
+        
+        /* Staggered Pop-in class */
+        .g-item.pop-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .g-item::after {
+            content: '';
+            position: absolute; inset: 0;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            pointer-events: none;
+            transition: border-color 0.4s ease;
+        }
+
+        .g-item:hover::after {
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .g-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+        }
+        .g-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Structural Spans */
+        .g-item.span-2-col { grid-column: span 2; }
+        .g-item.span-2-row { grid-row: span 2; }
+
+        .g-item-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 40px 24px 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        .g-item:hover .g-item-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .g-item-caption h4 {
+            font-family: 'Inter', sans-serif;
+            color: #fff; font-size: 0.95rem; font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .g-item-caption p {
+            color: #aaa;
+            font-size: 0.8rem; font-weight: 300;
+        }
 
         /* ── Lightbox ── */
         .iot-lightbox {
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 10000;
-            background: rgba(0,0,0,0.92);
-            backdrop-filter: blur(20px);
-            align-items: center;
-            justify-content: center;
-            padding: 3%;
+            z-index: 100000;
+            background: rgba(0,0,0,0.98);
+            align-items: center; justify-content: center;
             cursor: zoom-out;
         }
-        .iot-lightbox.active {
-            display: flex;
-        }
+        .iot-lightbox.active { display: flex; }
         .iot-lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 16px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-            animation: lightboxIn 0.3s ease;
+            max-width: 90%; max-height: 90vh;
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            animation: lbZoom 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .iot-lightbox .lb-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-        .iot-lightbox .lb-close:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        @keyframes lightboxIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        @keyframes lbZoom {
+            from { transform: scale(0.95); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
         }
 
         /* ── Responsive ── */
         @media (max-width: 1024px) {
-            .iot-middle {
-                grid-template-columns: 1fr;
-            }
+            .iot-main-grid { grid-template-columns: 1fr; }
+            .g-item.span-2-col { grid-column: span 1; }
         }
         @media (max-width: 768px) {
-            .iot-hero {
-                padding: 120px 4% 40px;
-            }
-            .iot-top {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .iot-stats {
-                width: 100%;
-            }
-            .iot-stat {
-                flex: 1;
-                min-width: 120px;
-            }
-            .iot-gallery-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .iot-gallery-item:nth-child(1) {
-                grid-column: span 2;
-                grid-row: span 1;
-                min-height: 200px;
-            }
-            .iot-gallery-item:nth-child(n) {
-                grid-column: span 1;
-                min-height: 150px;
-            }
-            .iot-gallery-item:nth-child(1) {
-                grid-column: span 2;
-            }
+            .iot-hero { padding: 120px 5% 0; }
+            .iot-title-row { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 2.5rem; }
+            .iot-title-row .section-header h2 { font-size: 2.2rem; }
+            .iot-stats { width: 100%; justify-content: flex-start; gap: 2rem; }
+            .premium-card { padding: 2rem; }
+            .gallery-modal { padding: 40px 5%; }
+            .dynamic-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; gap: 16px; }
+            .g-item.span-2-row { grid-row: span 1; }
         }
     </style>
-
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed');
-                    });
-            });
-        }
-    </script>
 </head>
 <body>
 
-    <!-- Main Content -->
     <main id="main-content">
-        <!-- Navigation -->
-        <nav>
-            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="developer-guide.html">Dev Guide</a></li>
-                <li><a href="iot.html" class="active">IOT</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <a href="#" id="install-btn" class="nav-btn">Install App</a>
-                <a href="photos/cv.png" id="cv-download-btn" class="nav-btn primary" download="cv.png">Download CV</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+        <div class="iot-wrapper" id="iot-wrapper">
 
-        <!-- ═══════════════ IoT HERO ═══════════════ -->
-        <section class="iot-hero page-transition">
-
-            <!-- Row 1: Title + Stats -->
-            <div class="iot-top fade-in-up">
-                <div class="section-header">
-                    <h2>IoT & Robotics</h2>
-                    <div class="header-line"></div>
-                    <p>Bridging software logic and physical reality through embedded systems, sensors, and AI.</p>
-                </div>
-                <div class="iot-stats">
-                    <div class="iot-stat">
-                        <div class="stat-icon" style="background: rgba(97,218,251,0.12); color: #61dafb;">
-                            <i class="fa-solid fa-microchip"></i>
-                        </div>
-                        <div>
-                            <div class="stat-num">10+</div>
-                            <div class="stat-label">Microcontrollers</div>
-                        </div>
-                    </div>
-                    <div class="iot-stat">
-                        <div class="stat-icon" style="background: rgba(155,77,202,0.12); color: #9b4dca;">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <div>
-                            <div class="stat-num">IoT</div>
-                            <div class="stat-label">Projects Built</div>
-                        </div>
-                    </div>
-                    <div class="iot-stat">
-                        <div class="stat-icon" style="background: rgba(247,223,30,0.12); color: #f7df1e;">
-                            <i class="fa-solid fa-brain"></i>
-                        </div>
-                        <div>
-                            <div class="stat-num">AI</div>
-                            <div class="stat-label">Powered</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- ── Subtle Cinematic Floating Background ── -->
+            <div class="bg-floating-container" id="bg-floating-container">
+                <!-- Injected via JS -->
             </div>
 
-            <!-- Row 2: Project Card + Passion Card -->
-            <div class="iot-middle">
-                <!-- Featured Project -->
-                <div class="iot-project fade-in-up delay-1">
-                    <div class="badge">Featured Project</div>
-                    <h3>AI Based Traffic Light System</h3>
-                    <p>An intelligent traffic management system using computer vision and Raspberry Pi to dynamically optimize signal timing based on real-time vehicle density.</p>
-                    
-                    <div class="feature-row">
-                        <div class="feature-icon" style="background: rgba(247,223,30,0.1); border: 1px solid rgba(247,223,30,0.2);">
-                            <i class="fa-solid fa-microchip" style="color: #f7df1e;"></i>
+            <!-- ── Content Layer ── -->
+            <div class="iot-content-layer">
+                
+                <div class="glow-orb top-right"></div>
+
+                <!-- Navigation -->
+                <nav>
+                    <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="skills.html">Skills</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="developer-guide.html">Dev Guide</a></li>
+                        <li><a href="iot.html" class="active">IOT</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="nav-buttons">
+                        <a href="#" id="install-btn" class="nav-btn">Install App</a>
+                        <a href="photos/cv.png" id="cv-download-btn" class="nav-btn primary" download="cv.png">Download CV</a>
+                    </div>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </nav>
+
+                <!-- Hero Section -->
+                <section class="iot-hero fade-in-up">
+
+                    <div class="iot-title-row">
+                        <div class="section-header">
+                            <h2>IoT & Robotics</h2>
+                            <p>Bridging software logic and physical reality through embedded systems, real-time sensors, and artificial intelligence.</p>
                         </div>
-                        <div>
-                            <h4>Hardware Integration</h4>
-                            <p>Raspberry Pi + Camera Module + Breadboard circuit for signal control</p>
+                        <div class="iot-stats">
+                            <div class="iot-stat-card">
+                                <div class="stat-num">10+</div>
+                                <div class="stat-label">MCUs Mastered</div>
+                            </div>
+                            <div class="iot-stat-card">
+                                <div class="stat-num">AI</div>
+                                <div class="stat-label">Integration</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="feature-row">
-                        <div class="feature-icon" style="background: rgba(97,218,251,0.1); border: 1px solid rgba(97,218,251,0.2);">
-                            <i class="fa-solid fa-eye" style="color: #61dafb;"></i>
+
+                    <div class="iot-main-grid">
+                        <!-- Featured Project -->
+                        <div class="premium-card iot-project-card fade-in-up delay-1">
+                            <div class="project-tag"><i class="fa-solid fa-circle"></i> Featured Work</div>
+                            <h3>AI Based Traffic Light System</h3>
+                            <p>An intelligent traffic management system leveraging YOLOv8 computer vision on a Raspberry Pi. It replaces static timers with dynamic, real-time vehicle counting to optimize lane flow and reduce congestion.</p>
+
+                            <div class="feat-list">
+                                <div class="feat-item">
+                                    <div class="feat-icon"><i class="fa-solid fa-microchip"></i></div>
+                                    <div>
+                                        <h4>Hardware Architecture</h4>
+                                        <p>Raspberry Pi + Camera Module + Custom Breadboard Logic</p>
+                                    </div>
+                                </div>
+                                <div class="feat-item">
+                                    <div class="feat-icon"><i class="fa-solid fa-eye"></i></div>
+                                    <div>
+                                        <h4>YOLOv8 Computer Vision</h4>
+                                        <p>Real-time classification tracking cars, buses, trucks, and bikes</p>
+                                    </div>
+                                </div>
+                                <div class="feat-item">
+                                    <div class="feat-icon"><i class="fa-solid fa-code-branch"></i></div>
+                                    <div>
+                                        <h4>Adaptive Signal Control</h4>
+                                        <p>Green-time algorithm dynamically adjusting to active lane density</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4>YOLOv8 Detection</h4>
-                            <p>Real-time vehicle counting with computer vision for adaptive signal timing</p>
+
+                        <!-- Passion Card & CTA -->
+                        <div class="premium-card iot-passion-card fade-in-up delay-2">
+                            <h3>The Hardware Realm</h3>
+                            <p>Beyond the screen, IoT and robotics are my ultimate playground. I thrive on bringing code into the physical world—wiring circuits, programming microcontrollers, and building systems that interact with their physical environment.</p>
+
+                            <div class="chip-grid">
+                                <div class="hw-chip">Raspberry Pi</div>
+                                <div class="hw-chip">ESP32</div>
+                                <div class="hw-chip">ESP8266</div>
+                                <div class="hw-chip">STM32</div>
+                                <div class="hw-chip">Arduino</div>
+                                <div class="hw-chip">Sensors</div>
+                                <div class="hw-chip">MQTT Protocol</div>
+                                <div class="hw-chip">Servos</div>
+                            </div>
+
+                            <div class="gallery-cta-wrapper">
+                                <button class="gallery-cta" id="open-gallery-btn">
+                                    <span>Explore Robotics Gallery</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="feature-row">
-                        <div class="feature-icon" style="background: rgba(155,77,202,0.1); border: 1px solid rgba(155,77,202,0.2);">
-                            <i class="fa-solid fa-traffic-light" style="color: #9b4dca;"></i>
-                        </div>
-                        <div>
-                            <h4>Smart Signaling</h4>
-                            <p>AI calculates green-time dynamically — fewer vehicles, shorter wait</p>
-                        </div>
+                </section>
+
+                <footer style="max-width: 1400px; margin: 50px auto 0; padding: 0 5%;">
+                    <p style="font-size: 0.8rem; color: #555;">Designed and Built by Vivek Yadav &copy; 2026</p>
+                </footer>
+            </div>
+
+            <!-- ── Fullscreen Animated Gallery Modal ── -->
+            <div class="gallery-modal" id="gallery-modal">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span>Project Snapshots</span>
                     </div>
+                    <button class="modal-close" id="close-gallery-btn"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
-                <!-- Passion + MCU Badges -->
-                <div class="iot-passion fade-in-up delay-2">
-                    <h3><i class="fa-solid fa-heart-pulse" style="color: #f43f5e;"></i> Beyond Software</h3>
-                    <p>IoT and robotics have always been my passion. I enjoy exploring new hardware, experimenting with emerging technologies, and continuously expanding my knowledge in embedded systems and real-world automation.</p>
-                    
-                    <div class="mcu-grid">
-                        <div class="mcu-chip"><i class="fa-brands fa-raspberry-pi" style="color: #c51a4a;"></i> Raspberry Pi</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-bolt" style="color: #f7df1e;"></i> ESP32</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-wifi" style="color: #61dafb;"></i> ESP8266</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-memory" style="color: #9b4dca;"></i> STM32</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-infinity" style="color: #00979d;"></i> Arduino</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-gauge-high" style="color: #f97316;"></i> Sensors</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-tower-broadcast" style="color: #22d3ee;"></i> MQTT / HTTP</div>
-                        <div class="mcu-chip"><i class="fa-solid fa-gears" style="color: #a3e635;"></i> Servo & Motors</div>
+                <div class="dynamic-gallery-grid" id="dynamic-grid">
+                    <!-- Gallery items -->
+                    <div class="g-item span-2-col span-2-row">
+                        <img src="IOT/image.png" alt="AI Traffic Architecture">
+                        <div class="g-item-caption">
+                            <h4>AI Traffic System Architecture</h4>
+                            <p>System flow from vision to hardware</p>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <img src="IOT/image%20copy.png" alt="Raspberry Pi Setup">
+                        <div class="g-item-caption">
+                            <h4>Raspberry Pi Setup</h4>
+                            <p>Core processing unit wired to breadboard</p>
+                        </div>
+                    </div>
+                    <div class="g-item span-2-row">
+                        <img src="IOT/esp32_board.png" alt="ESP32 Board">
+                        <div class="g-item-caption">
+                            <h4>ESP32 Integration</h4>
+                            <p>Wi-Fi enabled microcontroller setup</p>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <img src="IOT/traffic_light.png" alt="Traffic LEDs">
+                        <div class="g-item-caption">
+                            <h4>LED Prototype</h4>
+                            <p>Physical signal simulation</p>
+                        </div>
+                    </div>
+                    <div class="g-item span-2-col">
+                        <img src="IOT/arduino_setup.png" alt="Arduino Workbench">
+                        <div class="g-item-caption">
+                            <h4>Arduino Workbench</h4>
+                            <p>Testing servos and ultrasonic sensors</p>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <img src="IOT/iot_components.png" alt="Components">
+                        <div class="g-item-caption">
+                            <h4>Hardware Toolkit</h4>
+                            <p>Sensors, modules, and wiring components</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- ═══════════════ PHOTO GALLERY ═══════════════ -->
-        <section class="iot-gallery-section page-transition">
-            <h3 class="fade-in-up"><i class="fa-solid fa-images"></i> Project Gallery</h3>
-            <div class="iot-gallery-grid">
-                <div class="iot-gallery-item fade-in-up">
-                    <img src="IOT/image.png" alt="AI Traffic System — Complete Architecture" loading="lazy">
-                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> AI Traffic System — Full Architecture</span></div>
-                </div>
-                <div class="iot-gallery-item fade-in-up">
-                    <img src="IOT/image%20copy.png" alt="Raspberry Pi Hardware Setup" loading="lazy">
-                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> Raspberry Pi Hardware Prototype</span></div>
-                </div>
-                <div class="iot-gallery-item fade-in-up">
-                    <img src="IOT/traffic_light.png" alt="Traffic Light LED Prototype" loading="lazy">
-                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> Traffic Light LED Prototype</span></div>
-                </div>
-                <div class="iot-gallery-item fade-in-up">
-                    <img src="IOT/esp32_board.png" alt="ESP32 Sensor Setup" loading="lazy">
-                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> ESP32 Sensor Setup</span></div>
-                </div>
-                <div class="iot-gallery-item fade-in-up">
-                    <img src="IOT/arduino_setup.png" alt="Arduino Workbench" loading="lazy">
-                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> Arduino Workbench</span></div>
-                </div>
-                <div class="iot-gallery-item fade-in-up">
-                    <img src="IOT/iot_components.png" alt="IoT Components Flat Lay" loading="lazy">
-                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> IoT Components Collection</span></div>
-                </div>
+            <!-- Lightbox -->
+            <div class="iot-lightbox" id="iot-lightbox">
+                <img src="" alt="Fullscreen" id="lb-img">
             </div>
-        </section>
 
-        <!-- Lightbox -->
-        <div class="iot-lightbox" id="iot-lightbox">
-            <button class="lb-close" id="lb-close"><i class="fa-solid fa-xmark"></i></button>
-            <img src="" alt="Expanded view" id="lb-img">
         </div>
-
-        <footer>
-            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
-        </footer>
     </main>
 
     <script src="script.js"></script>
     <script>
-        // ── Lightbox ──
-        (function() {
-            const lightbox = document.getElementById('iot-lightbox');
-            const lbImg = document.getElementById('lb-img');
-            const lbClose = document.getElementById('lb-close');
+    (function() {
+        // --- 1. Elegant Background Generator ---
+        const bgContainer = document.getElementById('bg-floating-container');
+        const images = [
+            'IOT/image.png', 'IOT/image%20copy.png', 'IOT/esp32_board.png', 
+            'IOT/traffic_light.png', 'IOT/arduino_setup.png', 'IOT/iot_components.png'
+        ];
+        
+        // Generate 8 slow panning background elements
+        for(let i=0; i<8; i++) {
+            const img = document.createElement('img');
+            img.src = images[i % images.length];
+            img.className = 'floating-img';
             
-            document.querySelectorAll('.iot-gallery-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const src = item.querySelector('img').src;
-                    lbImg.src = src;
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+            const size = Math.random() * 250 + 150; 
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            const delay = Math.random() * -30;
+            const duration = Math.random() * 20 + 30; // Very slow: 30s to 50s
+            
+            img.style.width = `${size}px`;
+            img.style.height = `${size}px`;
+            img.style.top = `${top}%`;
+            img.style.left = `${left}%`;
+            img.style.animationDelay = `${delay}s`;
+            img.style.animationDuration = `${duration}s`;
+            
+            bgContainer.appendChild(img);
+        }
+
+        // --- 2. Gallery Modal Logic ---
+        const wrapper = document.getElementById('iot-wrapper');
+        const openBtn = document.getElementById('open-gallery-btn');
+        const closeBtn = document.getElementById('close-gallery-btn');
+        const galleryItems = document.querySelectorAll('.g-item');
+        
+        openBtn.addEventListener('click', () => {
+            wrapper.classList.add('gallery-open');
+            document.body.style.overflow = 'hidden';
+            
+            // Sleek Staggered pop-in animation
+            galleryItems.forEach((item, index) => {
+                item.classList.remove('pop-in');
+                item.style.transitionDelay = '0s';
+                
+                // Using random delays for organic pop-up feel
+                setTimeout(() => {
+                    item.style.transitionDelay = `${Math.random() * 0.2}s`;
+                    item.classList.add('pop-in');
+                }, 200 + (index * 60));
             });
+        });
 
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
+        closeBtn.addEventListener('click', () => {
+            wrapper.classList.remove('gallery-open');
+            document.body.style.overflow = '';
+            
+            setTimeout(() => {
+                galleryItems.forEach(item => {
+                    item.classList.remove('pop-in');
+                    item.style.transitionDelay = '0s';
+                });
+            }, 600);
+        });
+
+        // --- 3. Lightbox Logic ---
+        const lightbox = document.getElementById('iot-lightbox');
+        const lbImg = document.getElementById('lb-img');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                lbImg.src = imgSrc;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lbImg.src = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    lbImg.src = '';
+                } else if (wrapper.classList.contains('gallery-open')) {
+                    closeBtn.click();
+                }
             }
-
-            lbClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
-            lightbox.addEventListener('click', closeLightbox);
-            lbImg.addEventListener('click', e => e.stopPropagation());
-            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-        })();
+        });
+    })();
     </script>
 </body>
 </html>
