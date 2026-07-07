@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT & Robotics - Vivek Yadav | Full Stack Web Developer</title>
+    <meta name="description" content="Explore Vivek Yadav's passion for IoT and robotics. Discover projects using Raspberry Pi, ESP32, Arduino, and an AI-based traffic light system.">
+    <meta name="keywords" content="Vivek Yadav, IoT, Robotics, Raspberry Pi, ESP32, ESP8266, STM32, Arduino, AI Traffic Light">
+    <meta name="author" content="Vivek Yadav">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vivekyadav.com/iot.html">
+    <meta property="og:title" content="IoT & Robotics - Vivek Yadav">
+    <meta property="og:description" content="Explore my passion for IoT and robotics. Discover projects using Raspberry Pi, ESP32, Arduino, and an AI-based traffic light system.">
+    <meta property="og:image" content="https://vivekyadav.com/photos/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vivekyadav.com/iot.html">
+    <meta property="twitter:title" content="IoT & Robotics - Vivek Yadav">
+    <meta property="twitter:description" content="Explore my passion for IoT and robotics. Discover projects using Raspberry Pi, ESP32, Arduino, and an AI-based traffic light system.">
+    <meta property="twitter:image" content="https://vivekyadav.com/photos/logo.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="photos/logo.png">
+    <link rel="icon" type="image/png" href="photos/logo.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="developer-guide.html">Dev Guide</a></li>
+                <li><a href="iot.html" class="active">IOT</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#" id="install-btn" class="nav-btn">Install App</a>
+                <a href="photos/cv.png" id="cv-download-btn" class="nav-btn primary" download="cv.png">Download CV</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <section class="section page-transition" style="padding-top: 150px; min-height: 100vh;">
+            <div class="section-header fade-in-up" style="margin-left: 5%; margin-bottom: 2rem;">
+                <h2>IoT & Robotics</h2>
+                <div class="header-line"></div>
+            </div>
+            
+            <div class="about-grid" style="width: 100%; max-width: 1200px; padding: 0 5%; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem;">
+                
+                <div class="about-text glass-card fade-in-up">
+                    <h3>My Passion for Hardware</h3>
+                    <p>Although my primary career path is in software development, <strong>IoT and robotics</strong> have always been a passion of mine. Over the years, I've worked with more than <span class="highlight hacker-text">10 different microcontrollers and processors</span>, including <strong>Raspberry Pi, ESP32, ESP8266, STM32, Arduino</strong>, and others.</p>
+                    
+                    <p style="margin-top: 15px;">I've built a variety of IoT and robotics projects that have strengthened my understanding of <strong>embedded systems, sensors, communication protocols,</strong> and <strong>real-world automation</strong>. What fascinates me most about this field is its vast scope and the endless opportunities to innovate.</p>
+                    
+                    <p style="margin-top: 15px;">I enjoy exploring new hardware, experimenting with emerging technologies, and continuously expanding my knowledge. Regardless of where my career takes me, IoT and robotics will always remain a field I'll keep learning, building, and contributing to.</p>
+                </div>
+
+                <div class="leadership glass-card fade-in-up delay-1">
+                    <h2>Featured Project</h2>
+                    <div class="leadership-item" style="margin-top: 20px;">
+                        <h4>AI Based Traffic Light System</h4>
+                        <p class="desc" style="margin-top: 10px; margin-bottom: 15px;">My graceful project towards this field is an intelligent traffic management system powered by AI.</p>
+                        
+                        <ul class="impact-list">
+                            <li><i class="fa-solid fa-microchip text-gold"></i> Integrated with modern <strong>microcontrollers</strong> for hardware-level control</li>
+                            <li><i class="fa-solid fa-network-wired" style="color: #61dafb;"></i> Utilizes <strong>real-time sensors</strong> and advanced communication protocols</li>
+                            <li><i class="fa-solid fa-brain" style="color: #9b4dca;"></i> <strong>AI-driven decision making</strong> for optimized and adaptive traffic flow</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
