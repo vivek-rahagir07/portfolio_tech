@@ -33,6 +33,417 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <style>
+        /* ═══════════════════════════════════════════ */
+        /*  IoT PAGE — SCOPED STYLES                  */
+        /* ═══════════════════════════════════════════ */
+
+        .iot-hero {
+            padding: 130px 5% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ambient background glows */
+        .iot-hero::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(97, 218, 251, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        .iot-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -60px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(155, 77, 202, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(50px);
+            pointer-events: none;
+        }
+
+        /* ── Top Row: Title + Stats ── */
+        .iot-top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .iot-top .section-header {
+            margin: 0;
+        }
+        .iot-top .section-header p {
+            color: var(--text-secondary);
+            margin-top: 0.6rem;
+            font-size: 1.05rem;
+            max-width: 480px;
+        }
+
+        /* Floating stats pills */
+        .iot-stats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .iot-stat {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .iot-stat:hover {
+            transform: translateY(-3px);
+            border-color: rgba(97, 218, 251, 0.25);
+        }
+        .iot-stat .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .iot-stat .stat-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+        .iot-stat .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Middle Row: Project Card + MCU Badges ── */
+        .iot-middle {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Featured project card */
+        .iot-project {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .iot-project::before {
+            content: '\f637'; /* fa-traffic-light */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 9rem;
+            opacity: 0.03;
+            color: #fff;
+            pointer-events: none;
+        }
+        .iot-project .badge {
+            display: inline-block;
+            background: rgba(97, 218, 251, 0.1);
+            border: 1px solid rgba(97, 218, 251, 0.25);
+            color: #61dafb;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            width: fit-content;
+        }
+        .iot-project h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.7rem;
+        }
+        .iot-project > p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.4rem;
+        }
+
+        /* Feature pills inside project card */
+        .feature-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .feature-row + .feature-row {
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+        .feature-row h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .feature-row p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* MCU + passion card */
+        .iot-passion {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .iot-passion h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .iot-passion > p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.65;
+            margin-bottom: 1.4rem;
+        }
+
+        /* MCU badge grid */
+        .mcu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mcu-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #ddd;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            cursor: default;
+        }
+        .mcu-chip:hover {
+            transform: translateY(-2px) scale(1.04);
+            border-color: rgba(97, 218, 251, 0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .mcu-chip i {
+            font-size: 1rem;
+        }
+
+        /* ── Gallery Section ── */
+        .iot-gallery-section {
+            padding: 0 5% 40px;
+        }
+        .iot-gallery-section h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .iot-gallery-section h3 i {
+            color: #61dafb;
+        }
+
+        .iot-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto auto;
+            gap: 12px;
+        }
+        .iot-gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .iot-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .iot-gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .iot-gallery-item .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+        }
+        .iot-gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-overlay span {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .gallery-overlay span i {
+            color: #61dafb;
+            font-size: 0.7rem;
+        }
+
+        /* Grid layout — first 2 items span 2 cols, last 4 fill remaining */
+        .iot-gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; min-height: 320px; }
+        .iot-gallery-item:nth-child(2) { grid-column: span 2; min-height: 150px; }
+        .iot-gallery-item:nth-child(3) { grid-column: span 2; min-height: 150px; }
+        .iot-gallery-item:nth-child(4) { grid-column: span 2; min-height: 150px; }
+        .iot-gallery-item:nth-child(5) { grid-column: span 2; min-height: 150px; }
+        .iot-gallery-item:nth-child(6) { grid-column: span 2; min-height: 150px; }
+
+        /* ── Lightbox ── */
+        .iot-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(20px);
+            align-items: center;
+            justify-content: center;
+            padding: 3%;
+            cursor: zoom-out;
+        }
+        .iot-lightbox.active {
+            display: flex;
+        }
+        .iot-lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            animation: lightboxIn 0.3s ease;
+        }
+        .iot-lightbox .lb-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .iot-lightbox .lb-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        @keyframes lightboxIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .iot-middle {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .iot-hero {
+                padding: 120px 4% 40px;
+            }
+            .iot-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .iot-stats {
+                width: 100%;
+            }
+            .iot-stat {
+                flex: 1;
+                min-width: 120px;
+            }
+            .iot-gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .iot-gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+                min-height: 200px;
+            }
+            .iot-gallery-item:nth-child(n) {
+                grid-column: span 1;
+                min-height: 150px;
+            }
+            .iot-gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+        }
+    </style>
+
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -76,38 +487,139 @@
             </div>
         </nav>
 
-        <section class="section page-transition" style="padding-top: 150px; min-height: 100vh;">
-            <div class="section-header fade-in-up" style="margin-left: 5%; margin-bottom: 2rem;">
-                <h2>IoT & Robotics</h2>
-                <div class="header-line"></div>
+        <!-- ═══════════════ IoT HERO ═══════════════ -->
+        <section class="iot-hero page-transition">
+
+            <!-- Row 1: Title + Stats -->
+            <div class="iot-top fade-in-up">
+                <div class="section-header">
+                    <h2>IoT & Robotics</h2>
+                    <div class="header-line"></div>
+                    <p>Bridging software logic and physical reality through embedded systems, sensors, and AI.</p>
+                </div>
+                <div class="iot-stats">
+                    <div class="iot-stat">
+                        <div class="stat-icon" style="background: rgba(97,218,251,0.12); color: #61dafb;">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <div class="stat-num">10+</div>
+                            <div class="stat-label">Microcontrollers</div>
+                        </div>
+                    </div>
+                    <div class="iot-stat">
+                        <div class="stat-icon" style="background: rgba(155,77,202,0.12); color: #9b4dca;">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div>
+                            <div class="stat-num">IoT</div>
+                            <div class="stat-label">Projects Built</div>
+                        </div>
+                    </div>
+                    <div class="iot-stat">
+                        <div class="stat-icon" style="background: rgba(247,223,30,0.12); color: #f7df1e;">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div>
+                            <div class="stat-num">AI</div>
+                            <div class="stat-label">Powered</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="about-grid" style="width: 100%; max-width: 1200px; padding: 0 5%; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem;">
-                
-                <div class="about-text glass-card fade-in-up">
-                    <h3>My Passion for Hardware</h3>
-                    <p>Although my primary career path is in software development, <strong>IoT and robotics</strong> have always been a passion of mine. Over the years, I've worked with more than <span class="highlight hacker-text">10 different microcontrollers and processors</span>, including <strong>Raspberry Pi, ESP32, ESP8266, STM32, Arduino</strong>, and others.</p>
+
+            <!-- Row 2: Project Card + Passion Card -->
+            <div class="iot-middle">
+                <!-- Featured Project -->
+                <div class="iot-project fade-in-up delay-1">
+                    <div class="badge">Featured Project</div>
+                    <h3>AI Based Traffic Light System</h3>
+                    <p>An intelligent traffic management system using computer vision and Raspberry Pi to dynamically optimize signal timing based on real-time vehicle density.</p>
                     
-                    <p style="margin-top: 15px;">I've built a variety of IoT and robotics projects that have strengthened my understanding of <strong>embedded systems, sensors, communication protocols,</strong> and <strong>real-world automation</strong>. What fascinates me most about this field is its vast scope and the endless opportunities to innovate.</p>
-                    
-                    <p style="margin-top: 15px;">I enjoy exploring new hardware, experimenting with emerging technologies, and continuously expanding my knowledge. Regardless of where my career takes me, IoT and robotics will always remain a field I'll keep learning, building, and contributing to.</p>
+                    <div class="feature-row">
+                        <div class="feature-icon" style="background: rgba(247,223,30,0.1); border: 1px solid rgba(247,223,30,0.2);">
+                            <i class="fa-solid fa-microchip" style="color: #f7df1e;"></i>
+                        </div>
+                        <div>
+                            <h4>Hardware Integration</h4>
+                            <p>Raspberry Pi + Camera Module + Breadboard circuit for signal control</p>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon" style="background: rgba(97,218,251,0.1); border: 1px solid rgba(97,218,251,0.2);">
+                            <i class="fa-solid fa-eye" style="color: #61dafb;"></i>
+                        </div>
+                        <div>
+                            <h4>YOLOv8 Detection</h4>
+                            <p>Real-time vehicle counting with computer vision for adaptive signal timing</p>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon" style="background: rgba(155,77,202,0.1); border: 1px solid rgba(155,77,202,0.2);">
+                            <i class="fa-solid fa-traffic-light" style="color: #9b4dca;"></i>
+                        </div>
+                        <div>
+                            <h4>Smart Signaling</h4>
+                            <p>AI calculates green-time dynamically — fewer vehicles, shorter wait</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="leadership glass-card fade-in-up delay-1">
-                    <h2>Featured Project</h2>
-                    <div class="leadership-item" style="margin-top: 20px;">
-                        <h4>AI Based Traffic Light System</h4>
-                        <p class="desc" style="margin-top: 10px; margin-bottom: 15px;">My graceful project towards this field is an intelligent traffic management system powered by AI.</p>
-                        
-                        <ul class="impact-list">
-                            <li><i class="fa-solid fa-microchip text-gold"></i> Integrated with modern <strong>microcontrollers</strong> for hardware-level control</li>
-                            <li><i class="fa-solid fa-network-wired" style="color: #61dafb;"></i> Utilizes <strong>real-time sensors</strong> and advanced communication protocols</li>
-                            <li><i class="fa-solid fa-brain" style="color: #9b4dca;"></i> <strong>AI-driven decision making</strong> for optimized and adaptive traffic flow</li>
-                        </ul>
+                <!-- Passion + MCU Badges -->
+                <div class="iot-passion fade-in-up delay-2">
+                    <h3><i class="fa-solid fa-heart-pulse" style="color: #f43f5e;"></i> Beyond Software</h3>
+                    <p>IoT and robotics have always been my passion. I enjoy exploring new hardware, experimenting with emerging technologies, and continuously expanding my knowledge in embedded systems and real-world automation.</p>
+                    
+                    <div class="mcu-grid">
+                        <div class="mcu-chip"><i class="fa-brands fa-raspberry-pi" style="color: #c51a4a;"></i> Raspberry Pi</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-bolt" style="color: #f7df1e;"></i> ESP32</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-wifi" style="color: #61dafb;"></i> ESP8266</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-memory" style="color: #9b4dca;"></i> STM32</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-infinity" style="color: #00979d;"></i> Arduino</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-gauge-high" style="color: #f97316;"></i> Sensors</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-tower-broadcast" style="color: #22d3ee;"></i> MQTT / HTTP</div>
+                        <div class="mcu-chip"><i class="fa-solid fa-gears" style="color: #a3e635;"></i> Servo & Motors</div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ═══════════════ PHOTO GALLERY ═══════════════ -->
+        <section class="iot-gallery-section page-transition">
+            <h3 class="fade-in-up"><i class="fa-solid fa-images"></i> Project Gallery</h3>
+            <div class="iot-gallery-grid">
+                <div class="iot-gallery-item fade-in-up">
+                    <img src="IOT/image.png" alt="AI Traffic System — Complete Architecture" loading="lazy">
+                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> AI Traffic System — Full Architecture</span></div>
+                </div>
+                <div class="iot-gallery-item fade-in-up">
+                    <img src="IOT/image%20copy.png" alt="Raspberry Pi Hardware Setup" loading="lazy">
+                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> Raspberry Pi Hardware Prototype</span></div>
+                </div>
+                <div class="iot-gallery-item fade-in-up">
+                    <img src="IOT/traffic_light.png" alt="Traffic Light LED Prototype" loading="lazy">
+                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> Traffic Light LED Prototype</span></div>
+                </div>
+                <div class="iot-gallery-item fade-in-up">
+                    <img src="IOT/esp32_board.png" alt="ESP32 Sensor Setup" loading="lazy">
+                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> ESP32 Sensor Setup</span></div>
+                </div>
+                <div class="iot-gallery-item fade-in-up">
+                    <img src="IOT/arduino_setup.png" alt="Arduino Workbench" loading="lazy">
+                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> Arduino Workbench</span></div>
+                </div>
+                <div class="iot-gallery-item fade-in-up">
+                    <img src="IOT/iot_components.png" alt="IoT Components Flat Lay" loading="lazy">
+                    <div class="gallery-overlay"><span><i class="fa-solid fa-circle"></i> IoT Components Collection</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="iot-lightbox" id="iot-lightbox">
+            <button class="lb-close" id="lb-close"><i class="fa-solid fa-xmark"></i></button>
+            <img src="" alt="Expanded view" id="lb-img">
+        </div>
 
         <footer>
             <p>Designed and Built by Vivek Yadav &copy; 2026</p>
@@ -115,5 +627,32 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        // ── Lightbox ──
+        (function() {
+            const lightbox = document.getElementById('iot-lightbox');
+            const lbImg = document.getElementById('lb-img');
+            const lbClose = document.getElementById('lb-close');
+            
+            document.querySelectorAll('.iot-gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const src = item.querySelector('img').src;
+                    lbImg.src = src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            lbClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+            lightbox.addEventListener('click', closeLightbox);
+            lbImg.addEventListener('click', e => e.stopPropagation());
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        })();
+    </script>
 </body>
 </html>
