@@ -101,12 +101,6 @@
             flex-wrap: wrap;
         }
         .iot-title-row .section-header { margin: 0; }
-        .iot-title-row .section-header h2 {
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: -1px;
-            color: #fff;
-        }
         .iot-title-row .section-header p {
             color: var(--text-muted);
             margin-top: 1rem;
@@ -478,7 +472,6 @@
         @media (max-width: 768px) {
             .iot-hero { padding: 120px 5% 0; }
             .iot-title-row { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 2.5rem; }
-            .iot-title-row .section-header h2 { font-size: 2.2rem; }
             .iot-stats { width: 100%; justify-content: flex-start; gap: 2rem; }
             .premium-card { padding: 2rem; }
             .gallery-modal { padding: 40px 5%; }
@@ -532,7 +525,8 @@
                     <div class="iot-title-row">
                         <div class="section-header">
                             <h2>IoT & Robotics</h2>
-                            <p>Bridging software logic and physical reality through embedded systems, real-time sensors, and artificial intelligence.</p>
+                            <div class="header-line"></div>
+                            <p style="margin-top: 1rem; max-width: 500px; line-height: 1.7; color: #888; font-weight: 300;">Bridging software logic and physical reality through embedded systems, real-time sensors, and artificial intelligence.</p>
                         </div>
                         <div class="iot-stats">
                             <div class="iot-stat-card">
@@ -662,6 +656,34 @@
                             <p>Sensors, modules, and wiring components</p>
                         </div>
                     </div>
+                    <div class="g-item span-2-row">
+                        <img src="IOT/car.png" alt="Hand Following Car">
+                        <div class="g-item-caption">
+                            <h4>Hand Following Car</h4>
+                            <p>Gesture-controlled robotics prototype</p>
+                        </div>
+                    </div>
+                    <div class="g-item span-2-col">
+                        <img src="IOT/robotic%20arm.png" alt="Robotic Arm">
+                        <div class="g-item-caption">
+                            <h4>Robotic Arm</h4>
+                            <p>Multi-axis automated manipulator</p>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <img src="IOT/open%20cv.png" alt="OpenCV Projects">
+                        <div class="g-item-caption">
+                            <h4>OpenCV Projects</h4>
+                            <p>Computer vision and image processing</p>
+                        </div>
+                    </div>
+                    <div class="g-item">
+                        <img src="IOT/resberry%20pie%20.png" alt="Raspberry Pi">
+                        <div class="g-item-caption">
+                            <h4>Raspberry Pi Module</h4>
+                            <p>Advanced embedded Linux development</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -680,7 +702,8 @@
         const bgContainer = document.getElementById('bg-floating-container');
         const images = [
             'IOT/image.png', 'IOT/image%20copy.png', 'IOT/esp32_board.png', 
-            'IOT/traffic_light.png', 'IOT/arduino_setup.png', 'IOT/iot_components.png'
+            'IOT/traffic_light.png', 'IOT/arduino_setup.png', 'IOT/iot_components.png',
+            'IOT/car.png', 'IOT/robotic%20arm.png', 'IOT/open%20cv.png', 'IOT/resberry%20pie%20.png'
         ];
         
         // Generate 8 slow panning background elements
