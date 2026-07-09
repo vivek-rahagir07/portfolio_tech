@@ -105,9 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
     // Scratch Card Logic
-    const canvas = document.getElementById('scratch-canvas');
-    const ctx = canvas.getContext('2d');
-    const container = document.getElementById('scratch-container');
+    (function initScratchCard() {
+        const canvas = document.getElementById('scratch-canvas');
+        const container = document.getElementById('scratch-container');
+        if (!canvas || !container) return;
+        const ctx = canvas.getContext('2d');
     
     // Load overlay image
     const overlayImg = new Image();
@@ -225,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('touchstart', startScratch, { passive: false });
     canvas.addEventListener('touchmove', moveScratch, { passive: false });
     canvas.addEventListener('touchend', endScratch);
+    })();
     
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -244,7 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 1. Typewriter Effect
-    const typeWriterElement = document.getElementById('typewriter');
+    (function initTypewriter() {
+        const typeWriterElement = document.getElementById('typewriter');
+        if (!typeWriterElement) return;
     const roles = [
         "Full Stack Developer",
         "AI Developer",
@@ -284,10 +289,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Start typing after a short delay to match entry animations
     setTimeout(type, 1500);
+    })();
 
     // 3. Background Particles Network
-    const partCanvas = document.getElementById('particles-canvas');
-    const pCtx = partCanvas.getContext('2d');
+    (function initParticlesNetwork() {
+        const partCanvas = document.getElementById('particles-canvas');
+        if (!partCanvas) return;
+        const pCtx = partCanvas.getContext('2d');
     let particlesArray = [];
     
     partCanvas.width = window.innerWidth;
@@ -393,4 +401,131 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initParticles();
     animateParticles();
+    })();
+
+// --- Global Enhancements ---
+
+// Lazy load off-screen videos for performance
+const videos = document.querySelectorAll('.horizontal-panel video, .mobile-video-container video, .project-video video');
+if (videos.length > 0 && 'IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.play();
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    videos.forEach(v => {
+        v.removeAttribute('autoplay');
+        v.pause();
+        videoObserver.observe(v);
+    });
+}
+
+// 1. Noise Overlay (add to all pages)
+const noise = document.createElement('div');
+noise.className = 'noise-overlay';
+document.body.appendChild(noise);
+
+// 2. Custom Cursor (only on fine pointer devices)
+if (window.matchMedia("(pointer: fine)").matches) {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+    
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+    });
+    
+    function animateRing() {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+        requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    
+    // Scale cursor on interactive elements
+    const interactives = document.querySelectorAll('a, button, .interactive, input, textarea');
+    interactives.forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    });
+}
+
+// 3. Scroll Progress Indicator
+const progressBar = document.createElement('div');
+progressBar.className = 'scroll-progress';
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + "%";
+});
+
+// 4. View Transitions API (Crossfades)
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', e => {
+        // Only apply to internal links that are not anchor links
+        if (link.hostname === window.location.hostname && 
+            !link.href.includes('#') && 
+            link.target !== '_blank' &&
+            document.startViewTransition) {
+            
+            e.preventDefault();
+            const destination = link.href;
+            
+            document.startViewTransition(() => {
+                window.location.href = destination;
+            });
+        }
+    });
+});
+
+// 5. Active Page Indicator
+const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+const navigationAnchors = document.querySelectorAll('.nav-links a');
+navigationAnchors.forEach(link => {
+    const linkPath = link.getAttribute('href');
+    if (linkPath === currentPath) {
+        link.classList.add('active-nav');
+    }
+});
+
+// 6. Back to Top Button
+const backToTopBtn = document.createElement('button');
+backToTopBtn.className = 'back-to-top';
+backToTopBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+document.body.appendChild(backToTopBtn);
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+});
+
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 });
