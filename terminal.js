@@ -258,9 +258,9 @@ document.addEventListener("DOMContentLoaded", () => {
 <br>
 <div class="text-white">I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</div>
 <br>
-<div class="text-white"><span class="text-magenta">Email:</span>      vivekyadav@example.com (Responds within 24h)</div>
-<div class="text-white"><span class="text-magenta">GitHub:</span>     github.com/vivek-rahagir07</div>
-<div class="text-white"><span class="text-magenta">LinkedIn:</span>   linkedin.com/in/vivekyadav</div>
+<div class="text-white"><span class="text-magenta">Email:</span>      vivekhr36.2007@gmail.com</div>
+<div class="text-white"><span class="text-magenta">GitHub:</span>     <a href="https://github.com/vivek-rahagir07" target="_blank" style="color:#00ffff;text-decoration:none;">github.com/vivek-rahagir07</a></div>
+<div class="text-white"><span class="text-magenta">LinkedIn:</span>   <a href="https://linkedin.com/in/vivek-yadav-1142213a0/" target="_blank" style="color:#00ffff;text-decoration:none;">linkedin.com/in/vivek-yadav-1142213a0</a></div>
 <div class="text-white"><span class="text-magenta">Location:</span>   India (Available for Remote Worldwide)</div>
 <br>
 <div class="text-white">"Building real systems under real constraints."</div>
