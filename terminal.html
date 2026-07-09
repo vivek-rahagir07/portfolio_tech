@@ -8,13 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Matrix Rain Background -->
+    <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+    
+    <!-- Scanlines Overlay -->
+    <div class="scanlines"></div>
+    
     <div class="terminal-container">
-        <div class="terminal-window">
+        <div class="terminal-window" id="terminalWindow">
             <div class="terminal-header">
                 <div class="terminal-buttons">
-                    <span class="btn close"></span>
-                    <span class="btn minimize"></span>
-                    <span class="btn maximize"></span>
+                    <span class="btn close" id="closeBtn"></span>
+                    <span class="btn minimize" id="minimizeBtn"></span>
+                    <span class="btn maximize" id="maximizeBtn"></span>
                 </div>
                 <div class="terminal-title">vivek_yadav --info</div>
             </div>
@@ -25,8 +31,35 @@
                 <span class="prompt">guest@vivekyadav:~$</span>
                 <input type="text" id="terminal-input" autocomplete="off" autofocus>
             </div>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-dot online"></span>
+                    <span>SYSTEM ONLINE</span>
+                </div>
+                <div class="status-item">
+                    <span id="currentTime">00:00:00</span>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-modal">
+            <div class="popup-header">
+                <h3 class="popup-title" id="popupTitle">System Alert</h3>
+                <button class="popup-close" id="popupClose">×</button>
+            </div>
+            <div class="popup-content" id="popupContent">
+                <p>System message goes here...</p>
+            </div>
+            <div class="popup-actions" id="popupActions">
+                <button class="popup-btn" id="popupCancel">Cancel</button>
+                <button class="popup-btn primary" id="popupConfirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="terminal.js"></script>
 </body>
 </html>

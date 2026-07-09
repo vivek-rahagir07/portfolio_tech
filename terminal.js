@@ -1,14 +1,116 @@
 document.addEventListener("DOMContentLoaded", () => {
     const terminalBody = document.getElementById("terminal-body");
     const terminalInput = document.getElementById("terminal-input");
+    const terminalWindow = document.getElementById("terminalWindow");
+    const matrixCanvas = document.getElementById("matrixCanvas");
+    const popupOverlay = document.getElementById("popupOverlay");
+    const currentTimeElement = document.getElementById("currentTime");
+
+    // Matrix Rain Animation
+    function initMatrixRain() {
+        const ctx = matrixCanvas.getContext('2d');
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+        const fontSize = 14;
+        const columns = matrixCanvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+
+        window.addEventListener('resize', () => {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+        });
+    }
+
+    // Real-time Clock
+    function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString('en-US', { hour12: false });
+        currentTimeElement.textContent = time;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Popup Modal System
+    function showPopup(title, content, onConfirm = null, onCancel = null) {
+        document.getElementById('popupTitle').textContent = title;
+        document.getElementById('popupContent').innerHTML = content;
+        
+        const confirmBtn = document.getElementById('popupConfirm');
+        const cancelBtn = document.getElementById('popupCancel');
+        const closeBtn = document.getElementById('popupClose');
+
+        if (onConfirm) {
+            confirmBtn.style.display = 'inline-block';
+            confirmBtn.onclick = () => {
+                hidePopup();
+                onConfirm();
+            };
+        } else {
+            confirmBtn.style.display = 'none';
+        }
+
+        if (onCancel) {
+            cancelBtn.style.display = 'inline-block';
+            cancelBtn.onclick = () => {
+                hidePopup();
+                onCancel();
+            };
+        } else {
+            cancelBtn.style.display = 'none';
+        }
+
+        closeBtn.onclick = hidePopup;
+        popupOverlay.classList.add('active');
+    }
+
+    function hidePopup() {
+        popupOverlay.classList.remove('active');
+    }
+
+    // Sound simulation (visual feedback only)
+    function playTypingSound() {
+        // Visual feedback for typing sound
+        terminalWindow.style.boxShadow = '0 0 40px rgba(0, 255, 255, 0.3)';
+        setTimeout(() => {
+            terminalWindow.style.boxShadow = '';
+        }, 50);
+    }
 
     const bootSequence = `
-<div class="text-white">WELCOME TO VIVEK_YADAV TERMINAL v1.0.0</div>
-<div class="text-white">-----------------------------------------</div>
+<div class="text-white">WELCOME TO VIVEK_YADAV TERMINAL v2.0.0</div>
+<div class="text-white">========================================</div>
 <br>
-<div class="text-magenta">[ VIVEK YADAV SYSTEM -- v1.0.0 ]</div>
-<div class="text-cyan">-----------------------------------------</div>
-<div class="text-cyan">SYSTEM: <span class="text-magenta">VivekYadav v.1.0.0</span></div>
+<div class="text-magenta">[ SYSTEM INITIALIZATION ]</div>
+<div class="text-cyan">Loading kernel modules...</div>
+<div class="text-cyan">Initializing display driver...</div>
+<div class="text-cyan">Mounting filesystem...</div>
+<div class="text-green">✓ System ready</div>
+<br>
+<div class="text-magenta">[ VIVEK YADAV SYSTEM -- v2.0.0 ]</div>
+<div class="text-cyan">========================================</div>
+<div class="text-cyan">SYSTEM: <span class="text-magenta">VivekYadav v.2.0.0</span></div>
 <div class="text-cyan">STATUS: <span class="text-green">Operational</span></div>
 <div class="text-cyan">DESCRIPTION: <span class="text-magenta">Full-Stack Web Developer</span> & Products Thinker powered by modern web technologies.</div>
 <br>
@@ -63,9 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentNode.node.nodeValue += word;
                 wordIndex++;
                 scrollToBottom();
+                playTypingSound();
                 
                 if (word.trim() === '') {
-                    typeNextWord(); // skip delay for whitespace
+                    typeNextWord();
                 } else {
                     setTimeout(typeNextWord, speed);
                 }
@@ -87,8 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const div = document.createElement("div");
         terminalBody.appendChild(div);
         
-        // 50ms delay per word as requested
-        typeHTML(html, div, 50, () => {
+        typeHTML(html, div, 30, () => {
             isTyping = false;
             processQueue();
         });
@@ -125,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="text-white">  nav          <span class="text-cyan">- Navigate to different pages of the portfolio</span></div>
 <div class="text-white">  clear        <span class="text-cyan">- Clear the terminal output</span></div>
 <div class="text-white">  home         <span class="text-cyan">- Go back to the main homepage</span></div>
+<div class="text-white">  hack         <span class="text-cyan">- Initiate hack mode (just for fun!)</span></div>
                 `);
                 break;
             case "about":
@@ -288,15 +391,29 @@ document.addEventListener("DOMContentLoaded", () => {
             case "home":
                 window.location.href = "index.html";
                 break;
+            case "hack":
+                showPopup(
+                    '⚠️ HACK MODE ACTIVATED',
+                    '<p class="warning">WARNING: Unauthorized access detected!</p><p>Just kidding... this is a simulation for fun! 😄</p><p>The real hacking happens in the code, not the terminal.</p>',
+                    () => {
+                        appendOutput('<div class="text-green">Hack mode deactivated. Back to normal operations.</div>');
+                    }
+                );
+                break;
             default:
                 appendOutput(`<div class="text-white">bash: ${cmd}: command not found. Type 'help' for available commands.</div>`);
                 break;
         }
     }
 
+    // Initialize features
+    initMatrixRain();
+    
     // Initialize boot sequence
-    appendOutput(bootSequence);
-    appendOutput(`<div class="command-help">Type 'help' for commands...</div><br>`);
+    setTimeout(() => {
+        appendOutput(bootSequence);
+        appendOutput(`<div class="command-help">Type 'help' for commands...</div><br>`);
+    }, 500);
 
     terminalInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !isTyping) {
@@ -306,36 +423,58 @@ document.addEventListener("DOMContentLoaded", () => {
             terminalInput.value = "";
             scrollToBottom();
         } else if (e.key === "Enter" && isTyping) {
-            e.preventDefault(); // Prevent input while typing
+            e.preventDefault();
         }
     });
 
-    // Mac window buttons functionality
-    const terminalWindow = document.querySelector('.terminal-window');
-    
-    document.querySelector('.btn.close').addEventListener('click', () => {
-        // Shutdown animation
-        terminalWindow.style.animation = 'glitchText 0.3s infinite';
-        terminalWindow.style.transform = 'scaleY(0.01) scaleX(1)';
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 400);
+    // Window buttons functionality
+    document.getElementById('closeBtn').addEventListener('click', () => {
+        showPopup(
+            '⚠️ SYSTEM SHUTDOWN',
+            '<p>Are you sure you want to close the terminal?</p><p>This will redirect you to the homepage.</p>',
+            () => {
+                terminalWindow.style.animation = 'glitchText 0.3s infinite';
+                terminalWindow.style.transform = 'scaleY(0.01) scaleX(1)';
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 400);
+            }
+        );
     });
 
-    document.querySelector('.btn.minimize').addEventListener('click', () => {
+    document.getElementById('minimizeBtn').addEventListener('click', () => {
         terminalWindow.classList.toggle('minimized');
         terminalWindow.classList.remove('maximized');
     });
 
-    document.querySelector('.btn.maximize').addEventListener('click', () => {
+    document.getElementById('maximizeBtn').addEventListener('click', () => {
         terminalWindow.classList.toggle('maximized');
         terminalWindow.classList.remove('minimized');
     });
 
-    // Ensure input always has focus on click, except when clicking the header
+    // Ensure input always has focus on click
     document.querySelector('.terminal-container').addEventListener('click', (e) => {
-        if (!e.target.closest('.terminal-header')) {
+        if (!e.target.closest('.terminal-header') && !e.target.closest('.popup-modal')) {
             terminalInput.focus();
+        }
+    });
+
+    // Easter egg: Konami code
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    
+    document.addEventListener('keydown', (e) => {
+        konamiCode.push(e.key);
+        konamiCode = konamiCode.slice(-10);
+        
+        if (konamiCode.join(',') === konamiSequence.join(',')) {
+            showPopup(
+                '🎮 KONAMI CODE ACTIVATED!',
+                '<p class="success">CHEAT MODE ENABLED!</p><p>You found the secret easter egg!</p><p>+1000 points to your developer skills!</p>',
+                () => {
+                    appendOutput('<div class="text-magenta">🎮 Cheat mode enabled! You are now a legendary hacker!</div>');
+                }
+            );
         }
     });
 });

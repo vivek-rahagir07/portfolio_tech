@@ -1,14 +1,13 @@
 /**
  * ╔══════════════════════════════════════════╗
- * ║   SHATTER & HACK – Easter Egg Engine    ║
+ * ║   HACK – Easter Egg Engine              ║
  * ║   Type "HACK" anywhere to trigger       ║
  * ╚══════════════════════════════════════════╝
  * 
  * When triggered:
- * 1. A glitch effect shakes the page
- * 2. The UI shatters into glass pieces with physics
- * 3. A fully functional terminal is revealed underneath
- * 4. Press ESC or click "EXIT" to reassemble
+ * 1. Matrix digital rain fills the screen
+ * 2. A realistic ransomware warning appears
+ * 3. Click dismiss to restore the page
  */
 
 (function() {
@@ -17,36 +16,99 @@
     const TRIGGER_WORD = 'HACK';
     let typedBuffer = '';
     let bufferTimeout;
-    let isShattered = false;
-    let shards = [];
-    let shatterCanvas, shatterCtx;
-    let terminalOverlay, exitBtn, hackSequenceUI;
-    let animationFrame;
-    let pageScreenshot = null;
-    let staticCanvas, staticCtx;
+    let isHacked = false;
+    let glitchCanvas, glitchCtx;
+    let hackSequenceUI, ransomwareModal;
 
     // ─── Create DOM Elements ────────────────────────
     function init() {
-        // Terminal overlay (loads terminal.html in iframe)
-        terminalOverlay = document.createElement('div');
-        terminalOverlay.className = 'terminal-overlay';
-        terminalOverlay.innerHTML = '<iframe src="terminal.html" title="Hack Terminal"></iframe>';
-        document.body.appendChild(terminalOverlay);
+        // Glitch canvas
+        glitchCanvas = document.createElement('canvas');
+        glitchCanvas.className = 'shatter-canvas';
+        glitchCanvas.width = window.innerWidth;
+        glitchCanvas.height = window.innerHeight;
+        document.body.appendChild(glitchCanvas);
+        glitchCtx = glitchCanvas.getContext('2d');
 
-        // Exit button
-        exitBtn = document.createElement('button');
-        exitBtn.className = 'exit-terminal-btn';
-        exitBtn.innerHTML = '[ ESC ] EXIT TERMINAL';
-        exitBtn.addEventListener('click', reassemble);
-        document.body.appendChild(exitBtn);
+        // Ransomware Modal — realistic, dark, subtle
+        ransomwareModal = document.createElement('div');
+        ransomwareModal.id = 'ransomware-overlay';
+        ransomwareModal.innerHTML = `
+            <div id="ransomware-box">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                    <span style="font-size:2rem;">⚠</span>
+                    <h2 style="margin:0;font-size:1.1rem;font-weight:600;color:#e8e8e8;letter-spacing:0.5px;">YOUR FILES HAVE BEEN ENCRYPTED</h2>
+                </div>
+                <p style="color:#aaa;font-size:0.85rem;line-height:1.6;margin:0 0 18px 0;">
+                    All your documents, photos, databases and other important files have been encrypted with strongest encryption and unique key. The only method of recovering files is to purchase decrypt tool and unique key for you.
+                </p>
+                <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:14px 18px;margin-bottom:20px;">
+                    <p style="color:#888;font-size:0.75rem;margin:0 0 8px 0;text-transform:uppercase;letter-spacing:1px;">Payment required</p>
+                    <p style="color:#e74c3c;font-size:1.8rem;font-weight:700;margin:0;font-family:'JetBrains Mono',monospace;">$500.00 <span style="color:#555;font-size:0.8rem;font-weight:400;">in Bitcoin</span></p>
+                </div>
+                <p style="color:#555;font-size:0.7rem;margin:0 0 20px 0;font-style:italic;">(This is just an easter egg. Your files are safe 😄)</p>
+                <button id="ransomware-unlock">Dismiss</button>
+            </div>
+        `;
+        Object.assign(ransomwareModal.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100vw',
+            height: '100vh',
+            zIndex: '100020',
+            background: 'transparent',
+            alignItems: 'center',
+            justifyContent: 'center',
+            display: 'none'
+        });
+        document.body.appendChild(ransomwareModal);
 
-        // Shatter canvas
-        shatterCanvas = document.createElement('canvas');
-        shatterCanvas.className = 'shatter-canvas';
-        shatterCanvas.width = window.innerWidth;
-        shatterCanvas.height = window.innerHeight;
-        document.body.appendChild(shatterCanvas);
-        shatterCtx = shatterCanvas.getContext('2d');
+        // Style the inner box
+        const boxStyle = `
+            #ransomware-overlay { display: none !important; }
+            #ransomware-overlay.active { display: flex !important; }
+            #ransomware-box {
+                background: rgba(18, 18, 22, 0.97);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                border-radius: 12px;
+                padding: 32px 36px;
+                max-width: 460px;
+                width: 90%;
+                font-family: 'Inter', -apple-system, sans-serif;
+                box-shadow: 0 25px 80px rgba(0,0,0,0.7), 0 0 1px rgba(255,255,255,0.1);
+                animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            #ransomware-unlock {
+                background: transparent;
+                color: #888;
+                border: 1px solid rgba(255,255,255,0.1);
+                padding: 10px 24px;
+                font-size: 0.8rem;
+                font-family: 'Inter', -apple-system, sans-serif;
+                cursor: pointer;
+                border-radius: 6px;
+                transition: all 0.2s;
+                letter-spacing: 0.5px;
+            }
+            #ransomware-unlock:hover {
+                background: rgba(255,255,255,0.05);
+                color: #ccc;
+                border-color: rgba(255,255,255,0.2);
+            }
+            @keyframes modalSlideIn {
+                from { opacity: 0; transform: translateY(20px) scale(0.97); }
+                to { opacity: 1; transform: translateY(0) scale(1); }
+            }
+        `;
+        const modalStyle = document.createElement('style');
+        modalStyle.textContent = boxStyle;
+        document.head.appendChild(modalStyle);
+
+        // Ransomware unlock button
+        document.getElementById('ransomware-unlock').addEventListener('click', () => {
+            reassemble();
+        });
 
         // Hack sequence indicator (H-A-C-K boxes)
         hackSequenceUI = document.createElement('div');
@@ -78,7 +140,7 @@
 
     // ─── Keyboard Handler ───────────────────────────
     function handleKeydown(e) {
-        if (isShattered) {
+        if (isHacked) {
             if (e.key === 'Escape') {
                 reassemble();
             }
@@ -102,14 +164,6 @@
         }, 2000);
 
         // Update visual sequence indicator
-        let matchLen = 0;
-        for (let i = 0; i < typedBuffer.length; i++) {
-            if (typedBuffer[typedBuffer.length - TRIGGER_WORD.length + i] === TRIGGER_WORD[i]) {
-                matchLen = i + 1;
-            }
-        }
-
-        // Check if the last N chars match the trigger
         const recent = typedBuffer.slice(-TRIGGER_WORD.length);
         let consecutiveMatch = 0;
         for (let i = 0; i < recent.length; i++) {
@@ -127,11 +181,7 @@
 
         if (recent === TRIGGER_WORD) {
             typedBuffer = '';
-            // Only start animation after complete sequence
-            drawGlitchLines(1000); // Glitch for 1 second
-            setTimeout(() => {
-                triggerShatter();
-            }, 1000);
+            triggerHack();
         }
     }
 
@@ -146,486 +196,181 @@
         });
     }
 
-    let glitchAnimFrame = null;
-    let glitchEndTime = 0;
-    let lastGlitchDraw = 0;
-
-    function drawGlitchLines(duration) {
-        glitchEndTime = performance.now() + duration;
+    // ─── Matrix Rain ─────────────────────────────
+    let matrixAnimFrame = null;
+    let matrixDrops = [];
+    const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
+    
+    function startMatrixRain() {
+        const fontSize = 14;
+        const columns = Math.ceil(glitchCanvas.width / fontSize);
+        matrixDrops = [];
+        for (let x = 0; x < columns; x++) {
+            matrixDrops[x] = Math.random() * -80;
+        }
         
-        if (!glitchAnimFrame) {
-            const flicker = (time) => {
-                if (isShattered) {
-                    glitchAnimFrame = null;
-                    return;
-                }
+        let lastMatrixDraw = performance.now();
+        
+        const drawMatrix = (time) => {
+            if (!isHacked) {
+                matrixAnimFrame = null;
+                return;
+            }
+            
+            if (time - lastMatrixDraw > 45) { // ~22fps
+                lastMatrixDraw = time;
                 
-                if (time > glitchEndTime) {
-                    shatterCtx.clearRect(0, 0, shatterCanvas.width, shatterCanvas.height);
-                    glitchAnimFrame = null;
-                    return;
-                }
-
-                if (time - lastGlitchDraw > 40) { // ~25fps flicker rate
-                    lastGlitchDraw = time;
-                    
-                    shatterCtx.clearRect(0, 0, shatterCanvas.width, shatterCanvas.height);
-                    const w = shatterCanvas.width;
-                    const h = shatterCanvas.height;
-                    
-                    // Very thin vertical lines from top to bottom
-                    const numVLines = 200 + Math.random() * 200;
-                    const colors = [
-                        'rgba(0, 255, 255, 0.9)', // Cyan
-                        'rgba(255, 255, 255, 0.9)', // White
-                        'rgba(0, 0, 0, 0.9)', // Black
-                        'rgba(17, 17, 17, 0.9)', // Dark grey
-                        'rgba(0, 136, 255, 0.8)', // Blue
-                        'rgba(255, 0, 51, 0.6)' // Red
-                    ];
-                    
-                    for (let i = 0; i < numVLines; i++) {
-                        shatterCtx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-                        // Make them very very thin
-                        const lineWidth = Math.random() * 0.8 + 0.1;
-                        const x = Math.random() * w;
-                        // Complete line up to down
-                        shatterCtx.fillRect(x, 0, lineWidth, h);
+                // Slow fade trail
+                glitchCtx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+                glitchCtx.fillRect(0, 0, glitchCanvas.width, glitchCanvas.height);
+                
+                for (let i = 0; i < matrixDrops.length; i++) {
+                    if (matrixDrops[i] >= 0) {
+                        const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                        const yPos = matrixDrops[i] * fontSize;
+                        
+                        // Lead character: bright white-green
+                        glitchCtx.fillStyle = 'rgba(180, 255, 180, 0.95)';
+                        glitchCtx.font = `${fontSize}px monospace`;
+                        glitchCtx.fillText(text, i * fontSize, yPos);
+                        
+                        // Trailing char behind: dimmer green
+                        if (matrixDrops[i] > 1) {
+                            const trailText = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                            glitchCtx.fillStyle = `rgba(0, ${150 + Math.random() * 105}, 0, 0.7)`;
+                            glitchCtx.fillText(trailText, i * fontSize, yPos - fontSize);
+                        }
                     }
                     
-                    // Very thin horizontal lines from left to right
-                    const numHLines = 50 + Math.random() * 50;
-                    for (let i = 0; i < numHLines; i++) {
-                        shatterCtx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.95)';
-                        const barHeight = Math.random() * 0.8 + 0.1;
-                        const y = Math.random() * h;
-                        // Complete line left to right
-                        shatterCtx.fillRect(0, y, w, barHeight);
+                    if (matrixDrops[i] * fontSize > glitchCanvas.height && Math.random() > 0.975) {
+                        matrixDrops[i] = 0;
                     }
+                    matrixDrops[i]++;
                 }
-
-                glitchAnimFrame = requestAnimationFrame(flicker);
-            };
+            }
             
-            glitchAnimFrame = requestAnimationFrame(flicker);
-        }
+            matrixAnimFrame = requestAnimationFrame(drawMatrix);
+        };
+        
+        matrixAnimFrame = requestAnimationFrame(drawMatrix);
     }
 
-    // ─── Capture Screen ─────────────────────────────
-    function captureScreen() {
-        return new Promise((resolve) => {
-            const executeCapture = () => {
-                html2canvas(document.body, {
-                    backgroundColor: '#000000',
-                    scale: window.devicePixelRatio || 1,
-                    ignoreElements: (el) => 
-                        el.classList.contains('shatter-canvas') || 
-                        el.classList.contains('hack-sequence') || 
-                        el.classList.contains('hack-hint') ||
-                        el.classList.contains('terminal-overlay') ||
-                        el.classList.contains('exit-terminal-btn')
-                }).then(canvas => resolve(canvas));
-            };
-
-            if (window.html2canvas) {
-                executeCapture();
-            } else {
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-                script.onload = executeCapture;
-                document.head.appendChild(script);
-            }
-        });
-    }
-
-    // ─── Glass Shard Class ──────────────────────────
-    class Shard {
-        constructor(points, center, imageData) {
-            this.points = points; // Array of {x, y}
-            this.imageData = imageData;
-            
-            // Calculate bounding box and centroid
-            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-            let sumX = 0, sumY = 0;
-            this.points.forEach(p => {
-                minX = Math.min(minX, p.x);
-                maxX = Math.max(maxX, p.x);
-                minY = Math.min(minY, p.y);
-                maxY = Math.max(maxY, p.y);
-                sumX += p.x;
-                sumY += p.y;
-            });
-            
-            this.cx = sumX / this.points.length;
-            this.cy = sumY / this.points.length;
-            this.w = maxX - minX;
-            this.h = maxY - minY;
-            this.minX = minX;
-            this.minY = minY;
-            
-            this.x = 0;
-            this.y = 0;
-            
-            // Physics
-            const dx = this.cx - center.x;
-            const dy = this.cy - center.y;
-            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-            const angle = Math.atan2(dy, dx);
-            
-            const force = Math.max(2, 20 - dist / 50); 
-            this.vx = Math.cos(angle) * force + (Math.random() - 0.5) * 4;
-            this.vy = Math.sin(angle) * force + (Math.random() - 0.5) * 4 - 2;
-            
-            this.gravity = 0.4 + Math.random() * 0.2;
-            this.rotation = 0;
-            this.rotationSpeed = (Math.random() - 0.5) * (0.05 + 10/dist);
-            this.opacity = 1;
-            this.fadeSpeed = 0.003 + Math.random() * 0.005;
-            
-            this.delay = dist * 0.001;
-            this.started = false;
-        }
-
-        update() {
-            this.vy += this.gravity;
-            this.x += this.vx;
-            this.y += this.vy;
-            this.rotation += this.rotationSpeed;
-            this.opacity -= this.fadeSpeed;
-            
-            this.vx *= 0.99;
-            this.vy *= 0.99;
-        }
-
-        draw(ctx, drawStatic = false) {
-            if (this.opacity <= 0) return;
-
-            ctx.save();
-            
-            if (!drawStatic) {
-                ctx.translate(this.cx + this.x, this.cy + this.y);
-                ctx.rotate(this.rotation);
-                ctx.translate(-this.cx, -this.cy);
-                ctx.globalAlpha = this.opacity;
-            }
-            
-            ctx.beginPath();
-            ctx.moveTo(this.points[0].x, this.points[0].y);
-            for (let i = 1; i < this.points.length; i++) {
-                ctx.lineTo(this.points[i].x, this.points[i].y);
-            }
-            ctx.closePath();
-            
-            ctx.save();
-            ctx.clip();
-            try {
-                ctx.drawImage(this.imageData, 0, 0);
-            } catch(e) {
-                ctx.fillStyle = 'rgba(20, 20, 30, 0.8)';
-                ctx.fill();
-            }
-            
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.5 * this.opacity})`;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            ctx.restore();
-
-            ctx.beginPath();
-            ctx.moveTo(this.points[0].x, this.points[0].y);
-            for (let i = 1; i < this.points.length; i++) {
-                ctx.lineTo(this.points[i].x, this.points[i].y);
-            }
-            ctx.closePath();
-            
-            const reflGrad = ctx.createLinearGradient(this.minX, this.minY, this.minX + this.w, this.minY + this.h);
-            reflGrad.addColorStop(0, `rgba(255, 255, 255, ${0.15 * this.opacity})`);
-            reflGrad.addColorStop(0.5, 'transparent');
-            reflGrad.addColorStop(1, `rgba(255, 255, 255, ${0.05 * this.opacity})`);
-            ctx.fillStyle = reflGrad;
-            ctx.fill();
-
-            ctx.restore();
-        }
-
-        isDead() {
-            return this.opacity <= 0 || (this.cy + this.y - this.h) > window.innerHeight + 200;
-        }
-    }
-
-    // ─── Trigger the Shatter ────────────────────────
-    async function triggerShatter() {
-        if (isShattered) return;
-        isShattered = true;
+    // ─── Trigger the Hack ────────────────────────
+    async function triggerHack() {
+        if (isHacked) return;
+        isHacked = true;
 
         // Hide the sequence UI
         hackSequenceUI.classList.remove('visible');
         updateSequenceUI(0);
 
-        // 1. Glitch the page
+        // Brief body glitch
         document.body.classList.add('glitching');
 
-        // Play a subtle "crack" sound effect (generated programmatically)
-        playCrackSound();
+        // Play glitch sound
+        playGlitchSound();
 
-        // 2. Capture the screen
-        pageScreenshot = await captureScreen();
-
-        // 3. Wait for glitch to finish
-        await sleep(900);
+        await sleep(300);
         document.body.classList.remove('glitching');
 
-        // 4. Resize shatter canvas
-        shatterCanvas.width = window.innerWidth;
-        shatterCanvas.height = window.innerHeight;
+        // Bring custom cursor on top of the hack overlay
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        if (cursorDot) cursorDot.style.zIndex = '100030';
+        if (cursorRing) cursorRing.style.zIndex = '100029';
 
-        staticCanvas = document.createElement('canvas');
-        staticCanvas.width = shatterCanvas.width;
-        staticCanvas.height = shatterCanvas.height;
-        staticCtx = staticCanvas.getContext('2d', { willReadFrequently: true });
-        staticCtx.drawImage(pageScreenshot, 0, 0);
-
-        // 5. Create shards
-        createShards();
-        
-        staticCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-        staticCtx.lineWidth = 1.5;
-        shards.forEach(shard => {
-            staticCtx.beginPath();
-            staticCtx.moveTo(shard.points[0].x, shard.points[0].y);
-            for(let i = 1; i < shard.points.length; i++) {
-                staticCtx.lineTo(shard.points[i].x, shard.points[i].y);
-            }
-            staticCtx.closePath();
-            staticCtx.stroke();
-        });
-
-        // 6. Hide the actual page content
+        // Hide the actual page content
         const mainContent = document.getElementById('main-content') || document.querySelector('main');
         if (mainContent) {
             mainContent.style.visibility = 'hidden';
         }
-
-        // 7. Show terminal behind
+        
+        // Start Matrix Rain & Show Ransomware
+        startMatrixRain();
         setTimeout(() => {
-            terminalOverlay.classList.add('active');
-            exitBtn.classList.add('active');
-            
-            // Focus the terminal input after it loads
-            setTimeout(() => {
-                const iframe = terminalOverlay.querySelector('iframe');
-                if (iframe && iframe.contentDocument) {
-                    const input = iframe.contentDocument.getElementById('terminal-input');
-                    if (input) input.focus();
-                }
-            }, 500);
-        }, 300);
-
-        // 8. Animate shards
-        animateShatter();
+            if (isHacked) {
+                ransomwareModal.classList.add('active');
+            }
+        }, 2000);
     }
 
-    function createShards() {
-        shards = [];
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        
-        // Off-center impact
-        const cx = Math.random() > 0.5 ? w * (0.8 + Math.random() * 0.1) : w * (0.1 + Math.random() * 0.1);
-        const cy = Math.random() > 0.5 ? h * (0.8 + Math.random() * 0.1) : h * (0.1 + Math.random() * 0.1);
-        const center = {x: cx, y: cy};
-        
-        // Blocky large chunks
-        const numRays = 20 + Math.floor(Math.random() * 10);
-        let angles = [];
-        for (let i = 0; i < numRays; i++) {
-            angles.push((Math.PI * 2 * i) / numRays + (Math.random() - 0.5) * 0.2);
-        }
-        angles.sort((a, b) => a - b);
-        
-        const numRings = 10 + Math.floor(Math.random() * 5);
-        let rings = [0]; 
-        const maxRadius = Math.sqrt(w*w + h*h); 
-        let currentRadius = 0;
-        
-        for (let i = 1; i <= numRings; i++) {
-            const step = (maxRadius / numRings); 
-            currentRadius += step + (Math.random() - 0.5) * 40;
-            if (currentRadius < 0) currentRadius = 10;
-            rings.push(currentRadius);
-        }
-        rings.push(maxRadius * 1.5);  
-        
-        const getPoint = (aIdx, rIdx) => {
-            if (rIdx === 0) return {x: cx, y: cy};
-            
-            const r = rings[rIdx];
-            let a = angles[aIdx % numRays];
-            
-            const jitterR = r * (0.8 + Math.random() * 0.4);
-            const jitterA = a + (Math.random() - 0.5) * 0.1;
-            
-            return {
-                x: cx + Math.cos(jitterA) * jitterR,
-                y: cy + Math.sin(jitterA) * jitterR
-            };
-        };
-        
-        const points = [];
-        for (let r = 0; r < rings.length; r++) {
-            points[r] = [];
-            for (let a = 0; a < numRays; a++) {
-                points[r][a] = getPoint(a, r);
-            }
-        }
-        
-        for (let r = 0; r < rings.length - 1; r++) {
-            for (let a = 0; a < numRays; a++) {
-                const p1 = points[r][a];
-                const p2 = points[r][(a + 1) % numRays];
-                const p3 = points[r + 1][(a + 1) % numRays];
-                const p4 = points[r + 1][a];
-                
-                const shardPoints = (r === 0) ? [p1, p3, p4] : [p1, p2, p3, p4];
-                
-                let isOutside = true;
-                shardPoints.forEach(p => {
-                    if (p.x > -100 && p.x < w + 100 && p.y > -100 && p.y < h + 100) {
-                        isOutside = false;
-                    }
-                });
-                
-                if (!isOutside) {
-                    shards.push(new Shard(shardPoints, center, pageScreenshot));
-                }
-            }
-        }
-    }
-
-    function animateShatter() {
-        const startTime = performance.now();
-        
-        function frame() {
-            const elapsed = (performance.now() - startTime) / 1000;
-            
-            shatterCtx.clearRect(0, 0, shatterCanvas.width, shatterCanvas.height);
-            
-            if (staticCanvas) {
-                shatterCtx.drawImage(staticCanvas, 0, 0);
-            }
-
-            let aliveCount = 0;
-            shards.forEach(shard => {
-                if (elapsed < shard.delay) {
-                    aliveCount++;
-                    return;
-                }
-                
-                if (!shard.started) {
-                    shard.started = true;
-                    if (staticCtx) {
-                        staticCtx.save();
-                        staticCtx.globalCompositeOperation = 'destination-out';
-                        staticCtx.beginPath();
-                        staticCtx.moveTo(shard.points[0].x, shard.points[0].y);
-                        for (let i = 1; i < shard.points.length; i++) {
-                            staticCtx.lineTo(shard.points[i].x, shard.points[i].y);
-                        }
-                        staticCtx.closePath();
-                        staticCtx.fill();
-                        staticCtx.restore();
-                    }
-                }
-
-                shard.update();
-                shard.draw(shatterCtx, false); 
-                
-                if (!shard.isDead()) {
-                    aliveCount++;
-                }
-            });
-
-            if (aliveCount > 0) {
-                animationFrame = requestAnimationFrame(frame);
-            } else {
-                shatterCtx.clearRect(0, 0, shatterCanvas.width, shatterCanvas.height);
-                staticCanvas = null;
-                staticCtx = null;
-            }
-        }
-
-        animationFrame = requestAnimationFrame(frame);
-    }
-
-    // ─── Reassemble (Exit Terminal) ─────────────────
+    // ─── Reassemble (Exit Hack) ─────────────────
     function reassemble() {
-        if (!isShattered) return;
+        if (!isHacked) return;
         
-        // Cancel any ongoing animation
-        if (animationFrame) {
-            cancelAnimationFrame(animationFrame);
+        // Clear glitch canvas and hide modal
+        glitchCtx.clearRect(0, 0, glitchCanvas.width, glitchCanvas.height);
+        ransomwareModal.classList.remove('active');
+        
+        if (matrixAnimFrame) {
+            cancelAnimationFrame(matrixAnimFrame);
+            matrixAnimFrame = null;
         }
 
-        // Clear shatter canvas
-        shatterCtx.clearRect(0, 0, shatterCanvas.width, shatterCanvas.height);
-        shards = [];
-
-        // Hide terminal
-        terminalOverlay.classList.remove('active');
-        exitBtn.classList.remove('active');
+        // Restore cursor z-index
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        if (cursorDot) cursorDot.style.zIndex = '100000';
+        if (cursorRing) cursorRing.style.zIndex = '99999';
 
         // Show main content again
         const mainContent = document.getElementById('main-content') || document.querySelector('main');
         if (mainContent) {
             mainContent.style.visibility = 'visible';
             mainContent.style.animation = 'none';
-            // Trigger reflow
             void mainContent.offsetWidth;
             mainContent.style.animation = 'reassemble 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
         }
 
-        isShattered = false;
+        isHacked = false;
     }
 
     // ─── Sound Effect (Web Audio API) ───────────────
-    function playCrackSound() {
+    function playGlitchSound() {
         try {
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             
-            // Create a "crack/shatter" noise burst
-            const duration = 0.4;
+            const duration = 0.8;
             const sampleRate = audioCtx.sampleRate;
             const buffer = audioCtx.createBuffer(1, sampleRate * duration, sampleRate);
             const data = buffer.getChannelData(0);
             
             for (let i = 0; i < data.length; i++) {
                 const t = i / sampleRate;
-                // Sharp attack, fast decay noise
-                const envelope = Math.exp(-t * 15) * (1 - t / duration);
-                data[i] = (Math.random() * 2 - 1) * envelope * 0.3;
-                
-                // Add some "cracking" transients
-                if (Math.random() < 0.001) {
-                    data[i] += (Math.random() - 0.5) * envelope * 0.8;
+                let envelope = Math.exp(-t * 10);
+                if (t < 0.1) envelope += (0.1 - t) * 10;
+                data[i] = (Math.random() * 2 - 1) * envelope * 0.5;
+                if (Math.random() < 0.005 && t < 0.8) {
+                    data[i] += (Math.random() * 2 - 1) * Math.exp(-t * 3);
                 }
             }
 
             const source = audioCtx.createBufferSource();
             source.buffer = buffer;
             
-            // Add a lowpass filter for a more "glass" sound
             const filter = audioCtx.createBiquadFilter();
-            filter.type = 'highpass';
-            filter.frequency.value = 2000;
+            filter.type = 'bandpass';
+            filter.frequency.value = 4500;
+            filter.Q.value = 0.5;
+            
+            const boomFilter = audioCtx.createBiquadFilter();
+            boomFilter.type = 'lowpass';
+            boomFilter.frequency.value = 150;
+            
+            const boomSource = audioCtx.createBufferSource();
+            boomSource.buffer = buffer;
             
             source.connect(filter);
             filter.connect(audioCtx.destination);
-            source.start();
             
-            // Cleanup
+            boomSource.connect(boomFilter);
+            boomFilter.connect(audioCtx.destination);
+            
+            source.start();
+            boomSource.start();
+            
             source.onended = () => audioCtx.close();
-        } catch(e) {
-            // Audio not supported, silently continue
-        }
+        } catch(e) {}
     }
 
     // ─── Utilities ──────────────────────────────────
@@ -634,9 +379,9 @@
     }
 
     function handleResize() {
-        if (shatterCanvas) {
-            shatterCanvas.width = window.innerWidth;
-            shatterCanvas.height = window.innerHeight;
+        if (glitchCanvas) {
+            glitchCanvas.width = window.innerWidth;
+            glitchCanvas.height = window.innerHeight;
         }
     }
 
@@ -661,11 +406,10 @@
     `;
     document.head.appendChild(styleSheet);
 
-    // ─── Initialize on DOM ready ────────────────────
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-
 })();
