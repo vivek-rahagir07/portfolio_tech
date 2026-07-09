@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivek Yadav - Terminal</title>
+    <link rel="stylesheet" href="terminal.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="background-image-container">
+            <img src="photos/image copy.png" alt="Background" class="bg-photo">
+        </div>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn close"></span>
+                    <span class="btn minimize"></span>
+                    <span class="btn maximize"></span>
+                </div>
+                <div class="terminal-title">vivek_yadav --info</div>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <!-- Content will be injected here by JS -->
+            </div>
+            <div class="terminal-input-line">
+                <span class="prompt">guest@vivekyadav:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" autofocus>
+            </div>
+        </div>
+    </div>
+    <script src="terminal.js"></script>
+</body>
+</html>

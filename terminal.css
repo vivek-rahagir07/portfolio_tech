@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050a0e;
+    color: #00ffff; /* Cyan text */
+    font-family: 'JetBrains Mono', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.terminal-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+/* CRT Scanlines and Flicker */
+.terminal-container::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.terminal-container::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 50;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.02; }
+    50% { opacity: 0.05; }
+    100% { opacity: 0.02; }
+}
+
+.background-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.bg-photo {
+    width: 50vw;
+    max-width: 600px;
+    border-radius: 50%;
+    transform: rotate(30deg);
+    animation: pulseGlow 4s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 100px rgba(255, 0, 255, 0.4);
+    }
+}
+
+.terminal-window {
+    width: 85%;
+    max-width: 1000px;
+    height: 80vh;
+    background: rgba(10, 15, 20, 0.85);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(0, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    animation: bootup 1s ease-out forwards;
+    transform-origin: center;
+}
+
+@keyframes bootup {
+    0% { transform: scale(0.8) rotateX(10deg); opacity: 0; filter: blur(10px); }
+    100% { transform: scale(1) rotateX(0deg); opacity: 1; filter: blur(0px); }
+}
+
+/* Maximize State */
+.terminal-window.maximized {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+}
+
+/* Minimize State */
+.terminal-window.minimized {
+    height: 40px;
+    overflow: hidden;
+    transform: translateY(calc(50vh - 20px));
+}
+.terminal-window.minimized .terminal-body,
+.terminal-window.minimized .terminal-input-line {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.terminal-header {
+    background: #111a22;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    position: relative;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+}
+
+.terminal-buttons .btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.terminal-buttons .btn:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+.btn.close { background-color: #ff5f56; box-shadow: 0 0 10px #ff5f56; }
+.btn.minimize { background-color: #ffbd2e; box-shadow: 0 0 10px #ffbd2e; }
+.btn.maximize { background-color: #27c93f; box-shadow: 0 0 10px #27c93f; }
+
+.terminal-title {
+    width: 100%;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    position: relative;
+    animation: glitchText 3s infinite;
+}
+
+@keyframes glitchText {
+    0%, 100% { text-shadow: 0 0 0 transparent; }
+    5%, 15% { text-shadow: 2px 0 0 rgba(255,0,255,0.8), -2px 0 0 rgba(0,255,255,0.8); }
+    10% { text-shadow: -2px 0 0 rgba(255,0,255,0.8), 2px 0 0 rgba(0,255,255,0.8); }
+    20% { text-shadow: 0 0 0 transparent; }
+}
+
+.terminal-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.terminal-input-line {
+    display: flex;
+    padding: 0 20px 20px 20px;
+    align-items: center;
+}
+
+.prompt {
+    color: #00ff00; /* Green prompt */
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    flex: 1;
+    outline: none;
+}
+
+/* Custom scrollbar for terminal */
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+.terminal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Colors for terminal output */
+.text-magenta { color: #ff00ff; }
+.text-cyan { color: #00ffff; }
+.text-green { color: #00ff00; }
+.text-white { color: #ffffff; }
+
+/* Image block for developer */
+.dev-image-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.dev-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffbd2e;
+    box-shadow: 0 0 20px rgba(255, 189, 46, 0.5);
+}
+
+.dev-desc {
+    margin: 15px 0;
+    max-width: 800px;
+}
+
+.nav-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.nav-item {
+    padding: 10px;
+    border: 1px dashed rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.command-help {
+    margin-top: 10px;
+    color: #888;
+}
