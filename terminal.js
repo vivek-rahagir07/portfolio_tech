@@ -116,6 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="text-cyan">Available commands:</div>
 <div class="text-white">  about        <span class="text-cyan">- Display information about Vivek Yadav</span></div>
 <div class="text-white">  about developer <span class="text-cyan">- Deep dive into developer details</span></div>
+<div class="text-white">  skills       <span class="text-cyan">- View technical skills & expertise</span></div>
+<div class="text-white">  projects     <span class="text-cyan">- Explore recent works and projects</span></div>
+<div class="text-white">  gallery      <span class="text-cyan">- View photo gallery and memories</span></div>
+<div class="text-white">  iot          <span class="text-cyan">- Internet of Things projects</span></div>
+<div class="text-white">  devguide     <span class="text-cyan">- Developer Guide and documentation</span></div>
+<div class="text-white">  contact      <span class="text-cyan">- Get my contact information</span></div>
 <div class="text-white">  nav          <span class="text-cyan">- Navigate to different pages of the portfolio</span></div>
 <div class="text-white">  clear        <span class="text-cyan">- Clear the terminal output</span></div>
 <div class="text-white">  home         <span class="text-cyan">- Go back to the main homepage</span></div>
@@ -130,6 +136,65 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="text-cyan dev-desc">
     Vivek Yadav aka <span class="text-magenta">Rahagir</span>, is a self-driven <span class="text-green">full-stack developer</span> and products thinker who believes in building real systems under real constraints. His work sits at the intersection of web engineering, seamless UI/UX, and <span class="text-green">human-centric design</span>.
 </div>
+                `);
+                break;
+            case "skills":
+                appendOutput(`
+<div class="text-cyan">--- TECHNICAL SKILLS ---</div>
+<br>
+<div class="text-white"><span class="text-magenta">[Frontend]</span> React.js, HTML5, CSS3, JavaScript (ES6+), Three.js, TailwindCSS</div>
+<div class="text-white"><span class="text-magenta">[Backend]</span> Node.js, Express, PHP, Laravel, Python</div>
+<div class="text-white"><span class="text-magenta">[Database]</span> MongoDB, MySQL, Firebase, PostgreSQL</div>
+<div class="text-white"><span class="text-magenta">[Tools]</span> Git, Docker, AWS, Postman, Figma</div>
+<div class="text-white"><span class="text-magenta">[Soft Skills]</span> Product Thinking, Leadership, Problem Solving</div>
+<br>
+<div class="command-help">Type 'nav' and click '/skills' for the full visual experience.</div>
+                `);
+                break;
+            case "projects":
+                appendOutput(`
+<div class="text-cyan">--- FEATURED PROJECTS ---</div>
+<br>
+<div class="text-white"><span class="text-green">1. Cognito Attend</span> - Biometric Attendance System powered by AI and Face-API.</div>
+<div class="text-white"><span class="text-green">2. E-Commerce Platform</span> - Scalable MERN stack application with real-time inventory.</div>
+<div class="text-white"><span class="text-green">3. Smart Home IoT Hub</span> - Dashboard for controlling smart devices via WebSockets.</div>
+<div class="text-white"><span class="text-green">4. Social Impact Portal</span> - A platform connecting volunteers with NGOs.</div>
+<br>
+<div class="command-help">Type 'nav' and click '/projects' to see detailed case studies.</div>
+                `);
+                break;
+            case "gallery":
+                appendOutput(`
+<div class="text-cyan">--- PHOTO GALLERY ---</div>
+<div class="text-white">A collection of memories, tech meetups, hackathons, and moments that shaped my journey.</div>
+<div class="command-help">Type 'nav' and click '/gallery' to view the photos.</div>
+                `);
+                break;
+            case "iot":
+                appendOutput(`
+<div class="text-cyan">--- INTERNET OF THINGS (IoT) ---</div>
+<div class="text-white">Bridging the gap between software and hardware. Projects involve ESP32, Raspberry Pi, Arduino, and real-time MQTT protocols.</div>
+<div class="command-help">Type 'nav' and click '/iot' to explore hardware projects.</div>
+                `);
+                break;
+            case "devguide":
+            case "dev guide":
+                appendOutput(`
+<div class="text-cyan">--- DEVELOPER GUIDE ---</div>
+<div class="text-white">My personal playbook for coding standards, architectural patterns, and setting up development environments.</div>
+<div class="command-help">Type 'nav' and click '/devguide' to read the docs.</div>
+                `);
+                break;
+            case "contact":
+                appendOutput(`
+<div class="text-cyan">--- CONTACT INFORMATION ---</div>
+<br>
+<div class="text-white"><span class="text-magenta">Email:</span> vivekyadav@example.com</div>
+<div class="text-white"><span class="text-magenta">GitHub:</span> github.com/vivek-rahagir07</div>
+<div class="text-white"><span class="text-magenta">LinkedIn:</span> linkedin.com/in/vivekyadav</div>
+<div class="text-white"><span class="text-magenta">Location:</span> India</div>
+<br>
+<div class="command-help">Type 'nav' and click '/contact' to send a direct message.</div>
                 `);
                 break;
             case "nav":
