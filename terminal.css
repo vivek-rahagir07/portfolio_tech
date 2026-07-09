@@ -25,8 +25,8 @@ body {
     perspective: 1000px;
 }
 
-/* CRT Scanlines and Flicker */
-.terminal-container::before {
+/* CRT Scanlines - inside terminal only */
+.terminal-window::before {
     content: " ";
     display: block;
     position: absolute;
@@ -37,14 +37,15 @@ body {
     background: linear-gradient(
         to bottom,
         rgba(18, 16, 16, 0) 50%,
-        rgba(0, 0, 0, 0.25) 50%
+        rgba(0, 0, 0, 0.15) 50%
     );
     background-size: 100% 4px;
     z-index: 50;
     pointer-events: none;
+    border-radius: 10px;
 }
 
-.terminal-container::after {
+.terminal-window::after {
     content: " ";
     display: block;
     position: absolute;
@@ -56,12 +57,13 @@ body {
     opacity: 0;
     z-index: 50;
     pointer-events: none;
-    animation: flicker 0.15s infinite;
+    border-radius: 10px;
+    animation: flicker 4s infinite alternate ease-in-out;
 }
 
 @keyframes flicker {
     0% { opacity: 0.02; }
-    50% { opacity: 0.05; }
+    50% { opacity: 0.04; }
     100% { opacity: 0.02; }
 }
 
@@ -76,7 +78,7 @@ body {
     align-items: center;
     z-index: 0;
     overflow: hidden;
-    opacity: 0.15;
+    opacity: 0.55;
     pointer-events: none;
 }
 
@@ -84,7 +86,7 @@ body {
     width: 50vw;
     max-width: 600px;
     border-radius: 50%;
-    transform: rotate(30deg);
+    transform: rotate(0deg);
     animation: pulseGlow 4s infinite alternate;
 }
 
@@ -155,6 +157,7 @@ body {
     display: flex;
     gap: 8px;
     position: absolute;
+    z-index: 10;
 }
 
 .terminal-buttons .btn {

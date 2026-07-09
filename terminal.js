@@ -140,61 +140,132 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case "skills":
                 appendOutput(`
-<div class="text-cyan">--- TECHNICAL SKILLS ---</div>
+<div class="text-cyan">=========================================</div>
+<div class="text-cyan">          TECHNICAL EXPERTISE            </div>
+<div class="text-cyan">=========================================</div>
 <br>
-<div class="text-white"><span class="text-magenta">[Frontend]</span> React.js, HTML5, CSS3, JavaScript (ES6+), Three.js, TailwindCSS</div>
-<div class="text-white"><span class="text-magenta">[Backend]</span> Node.js, Express, PHP, Laravel, Python</div>
-<div class="text-white"><span class="text-magenta">[Database]</span> MongoDB, MySQL, Firebase, PostgreSQL</div>
-<div class="text-white"><span class="text-magenta">[Tools]</span> Git, Docker, AWS, Postman, Figma</div>
-<div class="text-white"><span class="text-magenta">[Soft Skills]</span> Product Thinking, Leadership, Problem Solving</div>
+<div class="text-white"><span class="text-magenta">[Frontend Architecture]</span></div>
+<div class="text-white">  - Frameworks: React.js, Next.js, HTML5, CSS3</div>
+<div class="text-white">  - Styling: TailwindCSS, SCSS, Framer Motion</div>
+<div class="text-white">  - Visuals: Three.js (3D graphics), WebGL, Canvas API</div>
 <br>
-<div class="command-help">Type 'nav' and click '/skills' for the full visual experience.</div>
+<div class="text-white"><span class="text-magenta">[Backend & Infrastructure]</span></div>
+<div class="text-white">  - Environments: Node.js, Express, Python</div>
+<div class="text-white">  - PHP Ecosystem: Laravel, Native PHP</div>
+<div class="text-white">  - Architecture: RESTful APIs, Microservices, Serverless</div>
+<br>
+<div class="text-white"><span class="text-magenta">[Database Systems]</span></div>
+<div class="text-white">  - NoSQL: MongoDB (Mongoose, Aggregation Pipelines), Firebase Firestore</div>
+<div class="text-white">  - Relational: PostgreSQL, MySQL</div>
+<br>
+<div class="text-white"><span class="text-magenta">[DevOps & Tooling]</span></div>
+<div class="text-white">  - Version Control: Git, GitHub Actions (CI/CD)</div>
+<div class="text-white">  - Deployment: AWS, Docker, Vercel, Firebase Hosting</div>
+<div class="text-white">  - UI/UX: Figma, Adobe XD</div>
+<br>
+<div class="command-help">Type 'nav' and click '/skills' for the interactive visual timeline.</div>
                 `);
                 break;
             case "projects":
                 appendOutput(`
-<div class="text-cyan">--- FEATURED PROJECTS ---</div>
+<div class="text-cyan">=========================================</div>
+<div class="text-cyan">         FEATURED CASE STUDIES           </div>
+<div class="text-cyan">=========================================</div>
 <br>
-<div class="text-white"><span class="text-green">1. Cognito Attend</span> - Biometric Attendance System powered by AI and Face-API.</div>
-<div class="text-white"><span class="text-green">2. E-Commerce Platform</span> - Scalable MERN stack application with real-time inventory.</div>
-<div class="text-white"><span class="text-green">3. Smart Home IoT Hub</span> - Dashboard for controlling smart devices via WebSockets.</div>
-<div class="text-white"><span class="text-green">4. Social Impact Portal</span> - A platform connecting volunteers with NGOs.</div>
+<div class="text-white"><span class="text-green">1. CognitoAttend [Smart Attendance]</span></div>
+<div class="text-white">   Full-stack attendance management platform with biometric integration, real-time tracking, and automated reporting.</div>
+<div class="text-white">   - Stack: React, Node.js, MongoDB.</div>
 <br>
-<div class="command-help">Type 'nav' and click '/projects' to see detailed case studies.</div>
+<div class="text-white"><span class="text-green">2. NeoStream [Music Platform]</span></div>
+<div class="text-white">   Modern music streaming service with personalized playlists and real-time audio processing.</div>
+<div class="text-white">   - Stack: React, Next.js, Web Audio API.</div>
+<br>
+<div class="text-white"><span class="text-green">3. NeoRide [Bike Rental]</span></div>
+<div class="text-white">   Modern bike rental and sharing platform with real-time availability tracking and fleet management.</div>
+<div class="text-white">   - Stack: React, Node.js, MongoDB.</div>
+<br>
+<div class="text-white"><span class="text-green">4. Star Cadet [Educational Game]</span></div>
+<div class="text-white">   Interactive educational game platform for cadets with gamified learning modules and progress tracking.</div>
+<div class="text-white">   - Stack: JavaScript, Canvas API, Node.js.</div>
+<br>
+<div class="text-white"><span class="text-green">5. JhatpatSewa & Media Converter</span></div>
+<div class="text-white">   Service marketplace (React/Laravel) and browser-based video converter (FFmpeg.wasm).</div>
+<br>
+<div class="command-help">Type 'nav' and click '/projects' to view live demos and source code.</div>
                 `);
                 break;
             case "gallery":
                 appendOutput(`
-<div class="text-cyan">--- PHOTO GALLERY ---</div>
-<div class="text-white">A collection of memories, tech meetups, hackathons, and moments that shaped my journey.</div>
-<div class="command-help">Type 'nav' and click '/gallery' to view the photos.</div>
+<div class="text-cyan">=========================================</div>
+<div class="text-cyan">         MEMORIES & MILESTONES           </div>
+<div class="text-cyan">=========================================</div>
+<br>
+<div class="text-white">Beyond the code, this gallery is a collection of my journey in tech.</div>
+<div class="text-white">It features photos from:</div>
+<div class="text-white">  - <span class="text-magenta">Hackathons:</span> 48-hour coding sprints and team victories.</div>
+<div class="text-white">  - <span class="text-magenta">Tech Meetups:</span> Networking, giving talks, and community building.</div>
+<div class="text-white">  - <span class="text-magenta">Workspace Setups:</span> The evolution of my battle station over the years.</div>
+<div class="text-white">  - <span class="text-magenta">Conferences:</span> Insights from global developer summits.</div>
+<br>
+<div class="command-help">Type 'nav' and click '/gallery' to visually explore my journey.</div>
                 `);
                 break;
             case "iot":
                 appendOutput(`
-<div class="text-cyan">--- INTERNET OF THINGS (IoT) ---</div>
-<div class="text-white">Bridging the gap between software and hardware. Projects involve ESP32, Raspberry Pi, Arduino, and real-time MQTT protocols.</div>
-<div class="command-help">Type 'nav' and click '/iot' to explore hardware projects.</div>
+<div class="text-cyan">=========================================</div>
+<div class="text-cyan">         INTERNET OF THINGS (IoT)        </div>
+<div class="text-cyan">=========================================</div>
+<br>
+<div class="text-white">Beyond the screen, IoT and robotics are my ultimate playground. I thrive on bringing code into the physical world.</div>
+<br>
+<div class="text-white"><span class="text-green">Key Project: AI Based Traffic Light System</span></div>
+<div class="text-white">  An intelligent traffic management system leveraging computer vision.</div>
+<div class="text-white">  It replaces static timers with dynamic, real-time vehicle counting to optimize lane flow.</div>
+<br>
+<div class="text-white"><span class="text-magenta">[Hardware Architecture]</span></div>
+<div class="text-white">  - Raspberry Pi + Camera Module + Custom Breadboard Logic</div>
+<div class="text-white"><span class="text-magenta">[YOLOv8 Computer Vision]</span></div>
+<div class="text-white">  - Real-time classification tracking cars, buses, trucks, and bikes</div>
+<div class="text-white"><span class="text-magenta">[Adaptive Signal Control]</span></div>
+<div class="text-white">  - Green-time algorithm dynamically adjusting to active lane density</div>
+<br>
+<div class="command-help">Type 'nav' and click '/iot' to dive into hardware specs.</div>
                 `);
                 break;
             case "devguide":
             case "dev guide":
                 appendOutput(`
-<div class="text-cyan">--- DEVELOPER GUIDE ---</div>
-<div class="text-white">My personal playbook for coding standards, architectural patterns, and setting up development environments.</div>
-<div class="command-help">Type 'nav' and click '/devguide' to read the docs.</div>
+<div class="text-cyan">=========================================</div>
+<div class="text-cyan">         DEVELOPER PLAYBOOK              </div>
+<div class="text-cyan">=========================================</div>
+<br>
+<div class="text-white">This is my personal documentation and philosophy on software engineering.</div>
+<br>
+<div class="text-white">Topics covered include:</div>
+<div class="text-white">  - <span class="text-magenta">Clean Code:</span> Naming conventions, SOLID principles, and refactoring techniques.</div>
+<div class="text-white">  - <span class="text-magenta">Architecture:</span> Decoupling logic, component design, state management strategies.</div>
+<div class="text-white">  - <span class="text-magenta">Performance:</span> Optimizing Core Web Vitals, memory leak debugging, caching.</div>
+<div class="text-white">  - <span class="text-magenta">Workflow:</span> My exact VSCode setup, extensions, terminal aliases, and git flows.</div>
+<br>
+<div class="command-help">Type 'nav' and click '/devguide' to read the full manifesto.</div>
                 `);
                 break;
             case "contact":
                 appendOutput(`
-<div class="text-cyan">--- CONTACT INFORMATION ---</div>
+<div class="text-cyan">=========================================</div>
+<div class="text-cyan">         COMMUNICATION CHANNELS          </div>
+<div class="text-cyan">=========================================</div>
 <br>
-<div class="text-white"><span class="text-magenta">Email:</span> vivekyadav@example.com</div>
-<div class="text-white"><span class="text-magenta">GitHub:</span> github.com/vivek-rahagir07</div>
-<div class="text-white"><span class="text-magenta">LinkedIn:</span> linkedin.com/in/vivekyadav</div>
-<div class="text-white"><span class="text-magenta">Location:</span> India</div>
+<div class="text-white">I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</div>
 <br>
-<div class="command-help">Type 'nav' and click '/contact' to send a direct message.</div>
+<div class="text-white"><span class="text-magenta">Email:</span>      vivekyadav@example.com (Responds within 24h)</div>
+<div class="text-white"><span class="text-magenta">GitHub:</span>     github.com/vivek-rahagir07</div>
+<div class="text-white"><span class="text-magenta">LinkedIn:</span>   linkedin.com/in/vivekyadav</div>
+<div class="text-white"><span class="text-magenta">Location:</span>   India (Available for Remote Worldwide)</div>
+<br>
+<div class="text-white">"Building real systems under real constraints."</div>
+<br>
+<div class="command-help">Type 'nav' and click '/contact' for the direct contact form.</div>
                 `);
                 break;
             case "nav":
