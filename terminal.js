@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
   |_|  |_|\___|_| |_|___/\___|_| |_|_(_)
 </pre>
 <div class="dev-image-container">
-    <img src="photos/Vivek.png" alt="Vivek Yadav" class="dev-image">
+    <img src="photos/vivek.png" alt="Vivek Yadav" class="dev-image">
 </div>
 <div class="text-cyan dev-desc">
     Vivek Yadav aka <span class="text-magenta">Rahagir</span>, is a self-driven <span class="text-green">full-stack developer</span> and products thinker who believes in building real systems under real constraints. His work sits at the intersection of web engineering, seamless UI/UX, and <span class="text-green">human-centric design</span>.
