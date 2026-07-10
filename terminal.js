@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const terminalInput = document.getElementById("terminal-input");
     const terminalWindow = document.getElementById("terminalWindow");
     const matrixCanvas = document.getElementById("matrixCanvas");
+    const terminalMatrixCanvas = document.getElementById("terminalMatrixCanvas");
     const popupOverlay = document.getElementById("popupOverlay");
     const currentTimeElement = document.getElementById("currentTime");
 
-    // Matrix Rain Animation
+    // Matrix Rain Animation (Background)
     function initMatrixRain() {
         const ctx = matrixCanvas.getContext('2d');
         matrixCanvas.width = window.innerWidth;
@@ -40,6 +41,52 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', () => {
             matrixCanvas.width = window.innerWidth;
             matrixCanvas.height = window.innerHeight;
+        });
+    }
+
+    // Matrix Rain Animation (Inside Terminal)
+    function initTerminalMatrixRain() {
+        const ctx = terminalMatrixCanvas.getContext('2d');
+        
+        function resizeTerminalCanvas() {
+            terminalMatrixCanvas.width = terminalWindow.offsetWidth;
+            terminalMatrixCanvas.height = terminalWindow.offsetHeight;
+        }
+        resizeTerminalCanvas();
+
+        const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+        const fontSize = 12;
+        let columns, drops;
+
+        function initDrops() {
+            columns = Math.floor(terminalMatrixCanvas.width / fontSize);
+            drops = Array(columns).fill(1);
+        }
+        initDrops();
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, terminalMatrixCanvas.width, terminalMatrixCanvas.height);
+
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > terminalMatrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 40);
+
+        window.addEventListener('resize', () => {
+            resizeTerminalCanvas();
+            initDrops();
         });
     }
 
@@ -234,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
             case "about developer":
                 appendOutput(`
 <div class="dev-image-container">
-    <img src="photos/image copy.png" alt="Vivek Yadav" class="dev-image">
+    <img src="photos/hacker.png" alt="Vivek Yadav" class="dev-image">
 </div>
 <div class="text-cyan dev-desc">
     Vivek Yadav aka <span class="text-magenta">Rahagir</span>, is a self-driven <span class="text-green">full-stack developer</span> and products thinker who believes in building real systems under real constraints. His work sits at the intersection of web engineering, seamless UI/UX, and <span class="text-green">human-centric design</span>.
@@ -408,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize features
     initMatrixRain();
+    initTerminalMatrixRain();
     
     // Initialize boot sequence
     setTimeout(() => {
