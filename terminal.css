@@ -426,11 +426,12 @@ body {
 }
 
 .dev-image {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #00ffff;
+    background: radial-gradient(circle, rgba(20, 40, 30, 1) 0%, rgba(5, 15, 10, 1) 70%, rgba(0, 0, 0, 1) 100%);
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.3);
     animation: pulseGlow 3s infinite alternate;
 }
