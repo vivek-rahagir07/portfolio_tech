@@ -1950,25 +1950,29 @@ strong {
 /* Contact Section - Premium Redesign */
 .contact-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    max-width: 1200px;
+    grid-template-columns: minmax(auto, 480px) minmax(auto, 480px);
+    justify-content: center;
+    gap: 5rem;
+    width: 100%;
     margin: 0 auto;
-    align-items: start;
+    align-items: stretch; /* Make both containers the same height */
 }
 
 .contact-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .collab-text {
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 0.8rem;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
 }
 
 .contact-desc {
@@ -1983,6 +1987,7 @@ strong {
     flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
+    width: 100%;
 }
 
 .contact-card {
@@ -1998,6 +2003,8 @@ strong {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.06);
     transition: transform 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-card:hover {
@@ -3542,6 +3549,10 @@ footer {
 @media (max-width: 480px) {
     .tl-dark-mode {
         padding: 80px 0 60px 0;
+    }
+    .collab-text {
+        white-space: normal;
+        font-size: 1.1rem;
     }
     .tl-title-white-text {
         font-size: 1.7rem;

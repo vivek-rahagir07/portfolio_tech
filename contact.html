@@ -191,8 +191,7 @@
 
             <div class="contact-wrapper">
                 <div class="contact-left fade-in-up">
-                    <h1 class="collab-text">Let's Turn Your <br><span class="gradient-text-blue-purple">Ideas Into
-                            Reality.</span></h1>
+                    <h1 class="collab-text">Let's Turn Your <span class="gradient-text-blue-purple">Ideas Into Reality.</span></h1>
                     <p class="contact-desc">Whether you have a massive enterprise project, a disruptive startup idea, or
                         just want to explore the future of web technologies together—my inbox is always open.</p>
 
@@ -236,25 +235,29 @@
                 </div>
 
                 <div class="contact-right glass-card fade-in-up">
-                    <form class="premium-form"
-                        onsubmit="event.preventDefault(); alert('Message feature coming soon!');">
+                    <form class="premium-form" action="https://formsubmit.co/vivek.yadav.25cse@bmu.edu.in" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="_honey" style="display:none">
+                        <input type="hidden" name="_template" value="box">
+                        
                         <div class="input-group">
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" name="name" required>
                             <label for="name">Your Name</label>
                             <div class="input-line"></div>
                         </div>
                         <div class="input-group">
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email" required>
                             <label for="email">Your Email</label>
                             <div class="input-line"></div>
                         </div>
                         <div class="input-group">
-                            <input type="text" id="subject" required>
+                            <input type="text" id="subject" name="_subject" required>
                             <label for="subject">Subject</label>
                             <div class="input-line"></div>
                         </div>
                         <div class="input-group">
-                            <textarea id="message" rows="3" required></textarea>
+                            <textarea id="message" name="message" rows="3" required></textarea>
                             <label for="message">Tell me about your project...</label>
                             <div class="input-line"></div>
                         </div>
