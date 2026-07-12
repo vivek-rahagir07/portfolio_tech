@@ -67,30 +67,34 @@ ul {
 .cursor-dot {
     position: fixed;
     top: 0; left: 0;
-    width: 8px; height: 8px;
+    width: 6px; height: 6px;
     background: var(--accent);
     border-radius: 50%;
     pointer-events: none;
     z-index: 100000;
-    transition: width 0.2s, height 0.2s, background 0.2s;
-    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease;
 }
 
-.cursor-ring {
+.cursor-aura {
     position: fixed;
     top: 0; left: 0;
-    width: 40px; height: 40px;
-    border: 2px solid rgba(212, 175, 55, 0.5);
+    width: 30px; height: 30px;
+    background: rgba(212, 175, 55, 0.15);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99999;
-    transition: width 0.3s, height 0.3s, border-color 0.3s;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
 }
 
-.cursor-ring.hover {
-    width: 60px; height: 60px;
-    border-color: var(--accent);
-    background: rgba(212, 175, 55, 0.08);
+.cursor-dot.hover {
+    width: 12px; height: 12px;
+}
+
+.cursor-aura.hover {
+    opacity: 0;
+    width: 50px; height: 50px;
 }
 
 /* Noise Overlay */
@@ -780,7 +784,7 @@ strong {
     padding: 8% 8%;
     position: relative;
     overflow: hidden;
-    background-color: #000000;
+    background-color: transparent;
 }
 
 .skills-intro-left {
@@ -1460,13 +1464,13 @@ strong {
 .square-grid-bg {
     max-width: 100%;
     width: 100%;
-    background-color: #000000;
+    background-color: transparent;
 }
 
 /* Trusted Leaders Section */
 .tl-section {
     position: relative;
-    background-color: #000000;
+    background-color: transparent;
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -1660,7 +1664,7 @@ strong {
 :root {
     --cr-gold: #d4af37;
     --cr-gold-glow: rgba(212, 175, 55, 0.4);
-    --cr-bg: #000000;
+    --cr-bg: transparent;
 }
 
 .cr-section {
@@ -2278,11 +2282,8 @@ footer {
     letter-spacing: 0.2px;
 }
 
-.card-text p {
-    color: #9ca3af;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.card-text p, .mobile-gallery-item .overlay p {
+    display: none !important;
 }
 
 /* Lightbox Modal */

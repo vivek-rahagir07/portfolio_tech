@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         partCanvas.height = window.innerHeight;
         initParticles();
     });
-
+    
     let mouse = { x: null, y: null, radius: 150 };
     
     window.addEventListener('mousemove', (event) => {
@@ -430,39 +430,33 @@ const noise = document.createElement('div');
 noise.className = 'noise-overlay';
 document.body.appendChild(noise);
 
-// 2. Custom Cursor (only on fine pointer devices)
+// 2. Custom Cursor (Simple Sober Aura)
 if (window.matchMedia("(pointer: fine)").matches) {
     const dot = document.createElement('div');
     dot.className = 'cursor-dot';
-    const ring = document.createElement('div');
-    ring.className = 'cursor-ring';
+    const aura = document.createElement('div');
+    aura.className = 'cursor-aura';
     document.body.appendChild(dot);
-    document.body.appendChild(ring);
-    
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
+    document.body.appendChild(aura);
     
     window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+        // Instant follow for both, no delay, maximum stability
+        const transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+        dot.style.transform = transform;
+        aura.style.transform = transform;
     });
-    
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
-        requestAnimationFrame(animateRing);
-    }
-    animateRing();
     
     // Scale cursor on interactive elements
     const interactives = document.querySelectorAll('a, button, .interactive, input, textarea');
     interactives.forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+        el.addEventListener('mouseenter', () => {
+            dot.classList.add('hover');
+            aura.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            dot.classList.remove('hover');
+            aura.classList.remove('hover');
+        });
     });
 }
 
@@ -529,3 +523,70 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 });
+
+// 7. Global Matrix Rain Background
+(function initMatrixRain() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'matrix-rain';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.zIndex = '-2';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.opacity = '0.15'; // Increased opacity for better hacker visibility
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Katakana + Latin characters for classic matrix look
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+    const fontSize = 16;
+    let columns = width / fontSize;
+    const drops = [];
+    
+    for (let x = 0; x < columns; x++) {
+        drops[x] = Math.random() * -100; // start offscreen
+    }
+    
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        columns = width / fontSize;
+        for (let x = 0; x < columns; x++) {
+            if (drops[x] === undefined) drops[x] = Math.random() * -100;
+        }
+    });
+
+    function draw() {
+        // Semi-transparent black background to create fading trail
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+        ctx.fillRect(0, 0, width, height);
+        
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            
+            // Classic Hacker Green
+            ctx.fillStyle = '#00FF41';
+            
+            // Draw the character
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            
+            // Reset drop to top randomly after it crosses the screen
+            if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            
+            // Move drop down
+            drops[i]++;
+        }
+    }
+    
+    setInterval(draw, 50); // 20fps for classic slow rain
+})();
