@@ -1955,7 +1955,7 @@ strong {
     gap: 5rem;
     width: 100%;
     margin: 0 auto;
-    align-items: stretch; /* Make both containers the same height */
+    align-items: center; /* Center vertically to avoid stretching the form container with empty space */
 }
 
 .contact-left {
@@ -1993,8 +1993,9 @@ strong {
 .contact-card {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.8rem 1.2rem;
+    justify-content: center; /* Perfectly center the text block */
+    position: relative;
+    padding: 1.2rem;
     text-decoration: none;
     color: white;
     border-radius: 14px;
@@ -2031,6 +2032,11 @@ strong {
     font-size: 1.1rem;
     color: #d4af37;
     border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.contact-card .icon-wrapper {
+    position: absolute;
+    left: 1.5rem;
 }
 
 .contact-card h4 {
