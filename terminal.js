@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="text-cyan">Mounting filesystem...</div>
 <div class="text-green">✓ System ready</div>
 <br>
-<div class="text-magenta">[ VIVEK YADAV SYSTEM -- v2.0.0 ]</div>
+<div class="text-magenta">[ VIVEK RAHAGIR SYSTEM -- v2.0.0 ]</div>
 <div class="text-cyan">========================================</div>
-<div class="text-cyan">SYSTEM: <span class="text-magenta">VivekYadav v.2.0.0</span></div>
+<div class="text-cyan">SYSTEM: <span class="text-magenta">VivekRahagir v.2.0.0</span></div>
 <div class="text-cyan">STATUS: <span class="text-green">Operational</span></div>
 <div class="text-cyan">DESCRIPTION: <span class="text-magenta">Full-Stack Web Developer</span> & Products Thinker powered by modern web technologies.</div>
 <br>
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function printPrompt(command = "") {
         const div = document.createElement("div");
-        div.innerHTML = `<span class="prompt">guest@vivekyadav:~$</span> <span class="text-white">${command}</span>`;
+        div.innerHTML = `<span class="prompt">guest@vivek-rahagir:~$</span> <span class="text-white">${command}</span>`;
         terminalBody.appendChild(div);
     }
 

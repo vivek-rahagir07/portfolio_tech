@@ -1,10 +1,10 @@
-# robots.txt for vivekyadav.com
+# robots.txt for vivek-rahagir.com
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://vivekyadav.com/sitemap.xml
+Sitemap: https://vivek-rahagir.com/sitemap.xml
 
 # Disallow specific directories if needed
 # Disallow: /private/
