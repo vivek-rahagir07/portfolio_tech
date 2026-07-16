@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JhatpatSewa | Case Study</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .case-study-hero { padding: 8rem 5% 4rem; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .case-study-hero h1 { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .case-study-hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 2rem; }
+        .case-study-video { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 3rem; border: 1px solid rgba(255,255,255,0.1); }
+        .case-study-video video { width: 100%; display: block; }
+        .content-section { max-width: 800px; margin: 0 auto 4rem; color: #ccc; line-height: 1.8; }
+        .content-section h2 { color: white; font-size: 2rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .content-section h3 { color: var(--primary-color); margin-top: 2rem; margin-bottom: 1rem; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .tech-tags span { background: rgba(0, 255, 0, 0.1); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; border: 1px solid rgba(0, 255, 0, 0.2); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <section class="case-study-hero page-transition fade-in-up">
+            <h1>JhatpatSewa</h1>
+            <p>On-Demand Local Service Marketplace</p>
+            <div class="case-study-video glass-card">
+                <video src="projects/jhatpatsewa.mp4" autoplay loop muted playsinline></video>
+            </div>
+        </section>
+
+        <section class="content-section page-transition fade-in-up delay-1">
+            <h2>Overview & Problem Statement</h2>
+            <p>Finding reliable local service providers (plumbers, electricians, cleaners) quickly is a common pain point. JhatpatSewa is a marketplace platform designed to instantly connect users with verified local professionals through a seamless booking experience.</p>
+        </section>
+
+        <section class="content-section page-transition fade-in-up delay-2">
+            <h2>Solution Architecture</h2>
+            <p>The application employs a decoupled architecture with a React frontend providing a snappy user experience, backed by a robust PHP/Laravel backend to handle complex relational data (users, bookings, payments, reviews).</p>
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Geolocation Matching:</strong> Connects users to the nearest available service providers.</li>
+                <li><strong>Secure Booking & Escrow:</strong> Integrated payment gateway ensuring funds are held until the job is verified complete.</li>
+                <li><strong>Real-time Chat:</strong> In-app messaging between customers and professionals.</li>
+                <li><strong>Review & Rating System:</strong> Trust-building mechanisms to ensure high service quality.</li>
+            </ul>
+        </section>
+
+        <section class="content-section page-transition fade-in-up delay-3">
+            <h2>Technology Stack</h2>
+            <div class="tech-tags">
+                <span>React.js</span>
+                <span>Laravel (PHP)</span>
+                <span>MySQL</span>
+                <span>Stripe API</span>
+                <span>Pusher (WebSockets)</span>
+            </div>
+        </section>
+
+        <section class="content-section page-transition fade-in-up delay-4">
+            <h2>Challenges Overcome</h2>
+            <p>Managing state consistency across the booking lifecycle (Pending -> Accepted -> In Progress -> Completed -> Paid) required strict database transaction handling. I utilized Laravel's database transactions to ensure that if a payment failed at the final step, the booking status rolled back cleanly without creating orphan records.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Designed and Built by Vivek Yadav &copy; 2026</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
