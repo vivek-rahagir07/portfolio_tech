@@ -210,15 +210,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     contents: {
                         'cognitoattend.txt': {
                             type: 'file',
-                            content: 'CognitoAttend - Smart Attendance System\n========================================\n\nDescription:\nFull-stack attendance management platform with biometric integration, real-time tracking, and automated reporting.\n\nTechnology Stack:\n- Frontend: React.js, Redux, Material-UI\n- Backend: Node.js, Express.js\n- Database: MongoDB with Mongoose\n- Authentication: JWT, OAuth 2.0\n- Real-time: Socket.io for live updates\n\nKey Features:\n- Biometric fingerprint integration\n- Real-time attendance tracking\n- Automated report generation\n- Multi-location support\n- Mobile-responsive dashboard\n- Email/SMS notifications\n- Export to PDF/Excel\n- Admin analytics dashboard\n\nAchievements:\n- Reduced manual attendance time by 90%\n- Implemented for 500+ students\n- 99.9% uptime reliability\n\nGitHub: github.com/vivek-rahagir07/cognitoattend'
+                            content: 'CognitoAttend - Cognitive Attendance System\n========================================\n\nDescription:\nA cognitive attendance system designed for smart, frictionless tracking.\n\nTechnology Stack:\n- Frontend: React.js, Redux, Material-UI\n- Backend: Node.js, Express.js\n- Database: MongoDB with Mongoose\n- Authentication: JWT, OAuth 2.0\n- Real-time: Socket.io for live updates\n\nKey Features:\n- Biometric fingerprint integration\n- Real-time attendance tracking\n- Automated report generation\n- Multi-location support\n- Mobile-responsive dashboard\n- Email/SMS notifications\n- Export to PDF/Excel\n- Admin analytics dashboard\n\nAchievements:\n- Reduced manual attendance time by 90%\n- Implemented for 500+ students\n- 99.9% uptime reliability\n\nGitHub: github.com/vivek-rahagir07/cognitoattend'
                         },
                         'neostream.txt': {
                             type: 'file',
-                            content: 'NeoStream - Music Platform\n===========================\n\nDescription:\nModern music streaming service with personalized playlists and real-time audio processing.\n\nTechnology Stack:\n- Frontend: React.js, Next.js 14\n- Audio: Web Audio API, Howler.js\n- Backend: Node.js, Express\n- Database: PostgreSQL, Redis\n- Streaming: HLS, DASH protocols\n- Cloud: AWS S3, CloudFront CDN\n\nKey Features:\n- AI-powered music recommendations\n- Real-time audio visualization\n- Offline mode support\n- Social sharing and playlists\n- High-quality audio streaming (320kbps)\n- Cross-platform support (Web, Mobile)\n- Artist profiles and analytics\n- Podcast integration\n\nPerformance Metrics:\n- <100ms audio latency\n- 99.95% uptime\n- Support for 10,000+ concurrent users\n- 500K+ songs in library\n\nGitHub: github.com/vivek-rahagir07/neostream'
+                            content: 'NeoMusic - Music Platform\n===========================\n\nDescription:\nA music website built specifically to deliver a great, immersive experience in music listening.\n\nTechnology Stack:\n- Frontend: React.js, Next.js 14\n- Audio: Web Audio API, Howler.js\n- Backend: Node.js, Express\n- Database: PostgreSQL, Redis\n- Streaming: HLS, DASH protocols\n- Cloud: AWS S3, CloudFront CDN\n\nKey Features:\n- AI-powered music recommendations\n- Real-time audio visualization\n- Offline mode support\n- Social sharing and playlists\n- High-quality audio streaming (320kbps)\n- Cross-platform support (Web, Mobile)\n- Artist profiles and analytics\n- Podcast integration\n\nPerformance Metrics:\n- <100ms audio latency\n- 99.95% uptime\n- Support for 10,000+ concurrent users\n- 500K+ songs in library\n\nGitHub: github.com/vivek-rahagir07/neostream'
                         },
                         'neoride.txt': {
                             type: 'file',
-                            content: 'NeoRide - Bike Rental Platform\n===============================\n\nDescription:\nModern bike rental and sharing platform with real-time availability tracking and fleet management.\n\nTechnology Stack:\n- Frontend: React Native, React.js\n- Backend: Node.js, GraphQL\n- Database: MongoDB, PostgreSQL\n- Maps: Google Maps API, Mapbox\n- Payments: Stripe, Razorpay\n- IoT: GPS tracking integration\n- Real-time: Socket.io, Firebase\n\nKey Features:\n- Real-time bike availability tracking\n- GPS-based fleet management\n- Smart lock integration\n- Mobile app for users\n- Admin dashboard for fleet operators\n- Dynamic pricing based on demand\n- Route optimization\n- Maintenance scheduling\n- User ratings and reviews\n\nBusiness Impact:\n- 50% reduction in operational costs\n- 95% fleet utilization rate\n- 10,000+ monthly active users\n- 200+ bikes in fleet\n- 24/7 customer support\n\nGitHub: github.com/vivek-rahagir07/neoride'
+                            content: 'NeoRide - UI Graphics Experiment Game\n===============================\n\nDescription:\nA game made purely for enjoyment to test the limits of what I could build with UI elements alone, without using any graphics.\n\nTechnology Stack:\n- Frontend: React Native, React.js\n- Backend: Node.js, GraphQL\n- Database: MongoDB, PostgreSQL\n- Maps: Google Maps API, Mapbox\n- Payments: Stripe, Razorpay\n- IoT: GPS tracking integration\n- Real-time: Socket.io, Firebase\n\nKey Features:\n- Real-time bike availability tracking\n- GPS-based fleet management\n- Smart lock integration\n- Mobile app for users\n- Admin dashboard for fleet operators\n- Dynamic pricing based on demand\n- Route optimization\n- Maintenance scheduling\n- User ratings and reviews\n\nBusiness Impact:\n- 50% reduction in operational costs\n- 95% fleet utilization rate\n- 10,000+ monthly active users\n- 200+ bikes in fleet\n- 24/7 customer support\n\nGitHub: github.com/vivek-rahagir07/neoride'
                         },
                         'starcadet.txt': {
                             type: 'file',
@@ -481,15 +481,15 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="text-cyan">=========================================</div>
 <br>
 <div class="text-white"><span class="text-green">1. CognitoAttend [Smart Attendance]</span></div>
-<div class="text-white">   Full-stack attendance management platform with biometric integration, real-time tracking, and automated reporting.</div>
+<div class="text-white">   A cognitive attendance system designed for smart, frictionless tracking.</div>
 <div class="text-white">   - Stack: React, Node.js, MongoDB.</div>
 <br>
-<div class="text-white"><span class="text-green">2. NeoStream [Music Platform]</span></div>
-<div class="text-white">   Modern music streaming service with personalized playlists and real-time audio processing.</div>
+<div class="text-white"><span class="text-green">2. NeoMusic [Music Platform]</span></div>
+<div class="text-white">   A music website built specifically to deliver a great, immersive experience in music listening.</div>
 <div class="text-white">   - Stack: React, Next.js, Web Audio API.</div>
 <br>
 <div class="text-white"><span class="text-green">3. NeoRide [Bike Rental]</span></div>
-<div class="text-white">   Modern bike rental and sharing platform with real-time availability tracking and fleet management.</div>
+<div class="text-white">   A game made purely for enjoyment to test the limits of what I could build with UI elements alone, without using any graphics.</div>
 <div class="text-white">   - Stack: React, Node.js, MongoDB.</div>
 <br>
 <div class="text-white"><span class="text-green">4. Star Cadet [Educational Game]</span></div>
