@@ -32,7 +32,7 @@
     <main id="main-content">
         <section class="case-study-hero page-transition fade-in-up">
             <h1>Media Converter</h1>
-            <p>Browser-Based Video Processing & Compression Tool</p>
+            <p>Browser-based MKV to MP4 Converter</p>
             <div class="case-study-video glass-card">
                 <video src="projects/Stuck in mkv files.mp4" autoplay loop muted playsinline></video>
             </div>
@@ -40,35 +40,32 @@
 
         <section class="content-section page-transition fade-in-up delay-1">
             <h2>Overview & Problem Statement</h2>
-            <p>Users frequently need to convert video formats or compress files, but relying on server-side processing poses privacy risks, consumes massive bandwidth, and requires expensive cloud infrastructure. The goal was to build a client-side video processor that performs heavy encoding tasks entirely within the user's browser.</p>
+            <p>This project was born purely out of frustration. I was trying to convert my MKV video lectures to MP4 so I could watch them on my MacBook, but all the online compilers I tried were incredibly slow and terrible. I got fed up and decided to build something crazy: a localized converter that runs entirely in the browser.</p>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-2">
             <h2>Solution Architecture</h2>
-            <p>The solution utilizes WebAssembly (Wasm) to run FFmpeg directly inside the browser. By compiling the industry-standard FFmpeg library into Wasm, the React application can execute complex media commands locally without uploading files to a server.</p>
+            <p>By leveraging FFmpeg.wasm, the conversion process happens completely client-side. No huge video files need to be uploaded to a server, completely eliminating network bottlenecks.</p>
             <h3>Key Features</h3>
             <ul>
-                <li><strong>Local Processing:</strong> Zero server uploads ensuring 100% data privacy.</li>
-                <li><strong>Multi-Format Support:</strong> Conversion between MP4, MKV, AVI, WEBM, and GIF.</li>
-                <li><strong>Compression Engine:</strong> Ability to drastically reduce file sizes while maintaining quality.</li>
-                <li><strong>Progress Tracking:</strong> Real-time progress bars parsing FFmpeg terminal output into UI state.</li>
+                <li><strong>Client-Side Processing:</strong> Converts files directly in the browser.</li>
+                <li><strong>Zero Uploads:</strong> Absolute privacy and speed.</li>
+                <li><strong>Format Support:</strong> Handles heavy MKV files effortlessly.</li>
             </ul>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-3">
             <h2>Technology Stack</h2>
             <div class="tech-tags">
-                <span>FFmpeg.wasm</span>
-                <span>WebAssembly</span>
-                <span>React.js</span>
-                <span>TailwindCSS</span>
                 <span>JavaScript</span>
+                <span>FFmpeg.wasm</span>
+                <span>Web Workers</span>
             </div>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-4">
             <h2>Challenges Overcome</h2>
-            <p>Running FFmpeg in the browser requires strict Cross-Origin Isolation (COOP/COEP headers) to enable SharedArrayBuffer. Configuring the hosting environment to serve these headers correctly while avoiding CORS issues with third-party assets was a major technical hurdle that required custom server-side routing logic.</p>
+            <p>Handling massive MKV files in the browser without crashing the tab required careful implementation of Web Workers to offload the heavy WebAssembly processing from the main UI thread.</p>
         </section>
     </main>
 

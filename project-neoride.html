@@ -32,7 +32,7 @@
     <main id="main-content">
         <section class="case-study-hero page-transition fade-in-up">
             <h1>NeoRide</h1>
-            <p>Smart Bike Rental & Fleet Management Ecosystem</p>
+            <p>UI Limits Experiment Game</p>
             <div class="case-study-video glass-card">
                 <video src="projects/Neoride.mp4" autoplay loop muted playsinline></video>
             </div>
@@ -40,35 +40,32 @@
 
         <section class="content-section page-transition fade-in-up delay-1">
             <h2>Overview & Problem Statement</h2>
-            <p>Urban mobility is shifting towards micro-transportation. NeoRide was conceptualized as a smart bike rental system to help commuters easily locate, unlock, and rent bikes using their smartphones, while providing fleet operators with a powerful tracking dashboard.</p>
+            <p>NeoRide was an interactive game made purely for enjoyment to see how far I could push myself with UI elements without using any external graphics. It was an experiment in pure CSS and DOM manipulation.</p>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-2">
             <h2>Solution Architecture</h2>
-            <p>The platform relies on a React Native mobile app for users to scan QR codes and unlock bikes via Bluetooth LE. The backend, built with Node.js and MongoDB, manages GPS telemetry data sent from the bikes and calculates dynamic pricing.</p>
+            <p>Instead of relying on Canvas or WebGL, the entire visual experience was built using standard DOM elements, heavily styled with CSS transitions and animations.</p>
             <h3>Key Features</h3>
             <ul>
-                <li><strong>Real-time GPS Tracking:</strong> Fleet operators can monitor the location and health of all bikes on a live map.</li>
-                <li><strong>Dynamic Pricing Engine:</strong> Costs adjust automatically based on demand, time of day, and availability in specific zones.</li>
-                <li><strong>Smart Lock Integration:</strong> Secure unlocking mechanism via QR code and Bluetooth protocols.</li>
-                <li><strong>Wallet System:</strong> Integrated digital wallet for seamless payments and deposits.</li>
+                <li><strong>Zero External Graphics:</strong> Every visual element is pure CSS.</li>
+                <li><strong>Interactive Gameplay:</strong> Fluid mechanics built without traditional game engines.</li>
+                <li><strong>DOM Optimization:</strong> Managing hundreds of DOM nodes smoothly.</li>
             </ul>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-3">
             <h2>Technology Stack</h2>
             <div class="tech-tags">
-                <span>React Native</span>
-                <span>React.js</span>
-                <span>Node.js</span>
-                <span>MongoDB</span>
-                <span>Mapbox API</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>Vanilla JavaScript</span>
             </div>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-4">
             <h2>Challenges Overcome</h2>
-            <p>Handling thousands of concurrent GPS pings from the bikes without overloading the database was a critical bottleneck. I solved this by implementing a Redis caching layer that batches telemetry updates and writes to MongoDB periodically, dramatically reducing I/O operations and server load.</p>
+            <p>The biggest challenge was creating engaging game visuals relying completely on native HTML/CSS elements without causing browser reflow lag, pushing the boundaries of raw CSS styling.</p>
         </section>
     </main>
 

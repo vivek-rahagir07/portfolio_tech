@@ -32,45 +32,41 @@
     <main id="main-content">
         <section class="case-study-hero page-transition fade-in-up">
             <h1>CognitoAttend</h1>
-            <p>Smart Attendance System integrating Biometrics and Real-time Tracking</p>
+            <p>Cognitive Attendance System</p>
             <div class="case-study-video glass-card">
                 <video src="projects/Cognito attend.mp4" autoplay loop muted playsinline></video>
             </div>
-            <a href="https://cognitoattend.vivek-yadav.com/" target="_blank" class="btn primary-btn">View Live Demo</a>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-1">
             <h2>Overview & Problem Statement</h2>
-            <p>Traditional attendance systems in large institutions suffer from inefficiencies, proxy attendance, and massive administrative overhead. Processing manual records or basic swipe cards is slow and prone to errors. The goal was to build a foolproof, automated system that eliminates proxy attendance while providing real-time data to administrators.</p>
+            <p>CognitoAttend was conceived as a cognitive attendance system built to track attendance seamlessly using advanced integrations, providing a frictionless experience for both users and administrators.</p>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-2">
             <h2>Solution Architecture</h2>
-            <p>CognitoAttend solves this by utilizing biometric fingerprint sensors integrated with a custom hardware interface (Raspberry Pi/ESP32). The hardware communicates with our cloud backend in real-time. The admin dashboard, built with React, visualizes this data instantly via WebSockets.</p>
+            <p>The system utilizes real-time WebSocket connections and a robust Node.js backend to process cognitive tracking data instantaneously.</p>
             <h3>Key Features</h3>
             <ul>
-                <li><strong>Biometric Validation:</strong> Hardware-level fingerprint verification preventing proxy attendance.</li>
-                <li><strong>Real-time Dashboard:</strong> Socket.io implementation to reflect attendance the second a finger is scanned.</li>
-                <li><strong>Dynamic Reporting:</strong> Automated generation of daily, weekly, and monthly PDF/Excel reports.</li>
-                <li><strong>Role-based Access:</strong> Distinct dashboards for students, teachers, and system administrators.</li>
+                <li><strong>Smart Tracking:</strong> Frictionless logging of user presence.</li>
+                <li><strong>Real-time Dashboard:</strong> Instant synchronization of data.</li>
+                <li><strong>Automated Reporting:</strong> Generates comprehensive attendance insights.</li>
             </ul>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-3">
             <h2>Technology Stack</h2>
             <div class="tech-tags">
-                <span>React.js</span>
+                <span>React</span>
                 <span>Node.js</span>
-                <span>Express</span>
+                <span>WebSockets</span>
                 <span>MongoDB</span>
-                <span>Socket.io</span>
-                <span>C++ (IoT)</span>
             </div>
         </section>
 
         <section class="content-section page-transition fade-in-up delay-4">
             <h2>Challenges Overcome</h2>
-            <p>The primary challenge was ensuring low-latency communication between the IoT hardware and the web dashboard over fluctuating network connections. We implemented a robust queuing mechanism on the hardware side so that if the network drops, offline scans are stored securely and synced instantly once the connection is restored, ensuring zero data loss.</p>
+            <p>Ensuring the cognitive data was processed and synchronized across all clients in real-time required a highly optimized WebSocket architecture.</p>
         </section>
     </main>
 
