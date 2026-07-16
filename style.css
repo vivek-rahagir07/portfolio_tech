@@ -551,15 +551,16 @@ nav {
 }
 
 .primary-btn {
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--accent);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(212, 175, 55, 0.05);
 }
 
 .primary-btn::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: #ffffff;
+    background: rgba(212, 175, 55, 0.15);
     z-index: -1;
     transform: scaleX(0);
     transform-origin: right;
@@ -567,8 +568,9 @@ nav {
 }
 
 .primary-btn:hover {
-    color: #000000;
-    border-color: #ffffff;
+    color: var(--accent);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
 }
 
 .primary-btn:hover::before {
