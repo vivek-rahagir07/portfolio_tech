@@ -18,7 +18,7 @@ body {
     position: relative;
 }
 
-/* Matrix Rain Background */
+
 .matrix-bg {
     position: fixed;
     top: 0;
@@ -40,7 +40,7 @@ body {
     z-index: 1;
 }
 
-/* Enhanced CRT Effects */
+
 .terminal-window::before {
     content: " ";
     display: block;
@@ -100,7 +100,7 @@ body {
     100% { opacity: 0.021; }
 }
 
-/* Screen curvature effect */
+
 .terminal-window {
     position: relative;
     width: 85%;
@@ -128,7 +128,7 @@ body {
     overflow: hidden;
 }
 
-/* Matrix rain inside terminal */
+
 .terminal-matrix-bg {
     position: absolute;
     top: 0;
@@ -140,7 +140,7 @@ body {
     pointer-events: none;
 }
 
-/* ASCII Art Styling */
+
 .ascii-art {
     color: #00ffff;
     font-family: 'JetBrains Mono', monospace;
@@ -152,7 +152,7 @@ body {
     overflow-x: auto;
 }
 
-/* Achievement Unlock Styling */
+
 .achievement-unlock {
     display: flex;
     align-items: center;
@@ -225,7 +225,6 @@ body {
     }
 }
 
-/* Maximize State */
 .terminal-window.maximized {
     width: 100%;
     max-width: none;
@@ -234,7 +233,7 @@ body {
     border: none;
 }
 
-/* Minimize State */
+
 .terminal-window.minimized {
     height: 50px;
     overflow: hidden;
