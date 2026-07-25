@@ -309,8 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             revealY += 10; 
-            fillRevealY += 5; // slightly faster so it matches signature duration nicely
             
+            let allEdgesDone = true;
             let allFillsDone = true;
             let hasFills = false;
         
@@ -319,18 +319,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.isEdge) {
                     p.updateEdge(revealY);
                     p.draw();
-                } else {
+                    if (!p.revealed) {
+                        allEdgesDone = false;
+                    }
+                } else if (fillStarted) {
                     hasFills = true;
                     p.updateFill(fillRevealY);
                     p.draw();
                     if (!p.revealed) {
                         allFillsDone = false;
                     }
+                } else {
+                    allFillsDone = false;
                 }
             }
             
+            if (allEdgesDone) {
+                fillStarted = true;
+                fillRevealY += 5; // Start revealing fill slightly faster to catch up beautifully
+            }
+            
             // If all fill particles are revealed, person is completely loaded
-            if (hasFills && allFillsDone) {
+            if (fillStarted && hasFills && allFillsDone) {
                 if (canvasId === 'particle-reveal-canvas-index' && !canvas.fadeOutTriggered) {
                     canvas.fadeOutTriggered = true;
                     // Transition to main page shortly after person fully loads
