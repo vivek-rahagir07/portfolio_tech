@@ -55,9 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
             image.addEventListener('load', () => {
                 if (canvas.width === 0 || canvas.height === 0) return;
                 
-                const targetWidth = Math.min(canvas.width * 0.95, 1200); // Increased max size and percentage
-                const scale = targetWidth / image.width;
-                const targetHeight = image.height * scale;
+                // Base size on width, but restrict by height to prevent vertical overflow
+                let targetWidth = Math.min(canvas.width * 0.9, 1000);
+                let scale = targetWidth / image.width;
+                let targetHeight = image.height * scale;
+                
+                // Constrain height to leave room for quote and navbar
+                const maxAllowedHeight = canvas.height * 0.75;
+                if (targetHeight > maxAllowedHeight) {
+                    targetHeight = maxAllowedHeight;
+                    scale = targetHeight / image.height;
+                    targetWidth = image.width * scale;
+                }
                 
                 const offsetX = (canvas.width - targetWidth) / 2;
                 const offsetY = (canvas.height - targetHeight) / 2;
