@@ -66,8 +66,26 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        if (!sessionStorage.getItem('hasSeenPreloader')) {
+            sessionStorage.setItem('hasSeenPreloader', 'true');
+        } else {
+            document.write('<style>#intro-overlay { display: none !important; }</style>');
+            window.skipPreloader = true;
+        }
+    </script>
 </head>
 <body>
+    
+    <!-- Intro Animation Overlay -->
+    <div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;">
+        <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
+            <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
+            <div class="particle-quote" style="position: absolute; bottom: 10%; text-align: center; color: rgba(255, 255, 255, 0); font-family: 'Outfit', sans-serif; font-size: 1.5rem; letter-spacing: 2px; font-weight: 300; transition: color 2s ease-in-out; z-index: 2; padding: 0 20px;">
+                "You control your actions, not the results."
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -311,5 +329,6 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="particle-reveal.js"></script>
 </body>
 </html>

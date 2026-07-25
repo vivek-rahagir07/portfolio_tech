@@ -658,12 +658,19 @@ nav {
 }
 
 .about-grid h3 {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: var(--accent);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-weight: 600;
+}
+
+.about-grid .glass-card {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 strong {
@@ -684,9 +691,9 @@ strong {
 
 .about-text p {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    font-size: 1.15rem;
+    line-height: 1.8;
     font-weight: 300;
 }
 
@@ -704,16 +711,18 @@ strong {
 }
 
 .philosophy blockquote {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-style: italic;
     font-weight: 300;
     margin-bottom: 1rem;
     color: #ffffff;
+    line-height: 1.6;
 }
 
 .philosophy-sub {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
+    line-height: 1.7;
 }
 
 .leadership-item {
@@ -721,10 +730,10 @@ strong {
 }
 
 .leadership-item h4 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #ffffff;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .org {
@@ -739,9 +748,9 @@ strong {
 .desc {
     color: var(--text-secondary);
     margin-bottom: 2rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .impact-list li, .achievement-list li {
@@ -2368,6 +2377,7 @@ footer {
     .tagline { margin: 0 auto 3rem auto; }
     .hero-bg-glow { top: 50%; left: 50%; transform: translate(-50%, -50%); }
     .about-grid { grid-template-columns: 1fr; }
+    .about-grid .glass-card { padding: 2rem; }
     .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
     .collab-text { font-size: 3.5rem; text-align: center; }
     .contact-desc { text-align: center; margin: 0 auto 3rem auto; }

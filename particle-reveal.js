@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     function setupParticleReveal(canvasId) {
+        if (window.skipPreloader) return;
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
 
@@ -297,6 +298,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         quote.style.color = 'rgba(255, 255, 255, 0.85)';
                     }
                 }
+
+                // If this is the index intro, fade it out after a delay
+                if (canvasId === 'particle-reveal-canvas-index' && !canvas.fadeOutTriggered) {
+                    canvas.fadeOutTriggered = true;
+                    setTimeout(() => {
+                        const overlay = document.getElementById('intro-overlay');
+                        if (overlay) {
+                            overlay.style.opacity = '0';
+                            overlay.style.visibility = 'hidden';
+                            setTimeout(() => overlay.remove(), 1500); // Remove from DOM after fade out
+                        }
+                    }, 4000); // Let the quote stay for a bit
+                }
                 
                 fillRevealY += 4; 
                 for (let i = 0; i < particlesArray.length; i++) {
@@ -314,6 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initAnimation('image.png');
     }
 
+    setupParticleReveal('particle-reveal-canvas-index');
     setupParticleReveal('particle-reveal-canvas-desktop');
     setupParticleReveal('particle-reveal-canvas-mobile');
 });
