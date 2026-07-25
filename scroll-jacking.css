@@ -1,7 +1,7 @@
 
 /* Scroll Jacking & Video Backgrounds */
 .scroll-jack-wrapper {
-    height: 500vh; /* 5 panels * 100vh to allow scrolling */
+    height: 400vh; /* 4 panels * 100vh to allow scrolling */
     position: relative;
     background-color: transparent; /* allow particles through */
 }
@@ -17,7 +17,7 @@
 .horizontal-track {
     display: flex;
     height: 100%;
-    width: 500vw; /* 5 panels = 500vw */
+    width: 400vw; /* 4 panels = 400vw */
     will-change: transform;
 }
 
