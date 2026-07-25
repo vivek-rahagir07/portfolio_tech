@@ -60,8 +60,35 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .collage-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .collage-img {
+            position: absolute;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            opacity: 0.35;
+            transition: transform 0.5s ease;
+            filter: grayscale(30%) sepia(10%);
+        }
+        .collage-img-1 { width: 22vw; top: 8%; left: 3%; transform: rotate(-10deg); }
+        .collage-img-2 { width: 26vw; bottom: 12%; left: 38%; transform: rotate(5deg); opacity: 0.25; }
+        .collage-img-3 { width: 20vw; top: 12%; right: 5%; transform: rotate(12deg); }
+        .collage-img-4 { width: 18vw; bottom: 8%; right: 8%; transform: rotate(-8deg); }
+        
+        @media (max-width: 1024px) {
+            .collage-bg { display: none; }
+        }
+    </style>
 </head>
 <body>
+    <canvas id="particles-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none;"></canvas>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -96,6 +123,12 @@
                     
                     <!-- Panel 1: Original About Grid (Both Cards side-by-side) -->
                     <div class="horizontal-panel" style="flex-direction: column; justify-content: flex-start; padding-top: 110px; padding-left: 2%; padding-right: 2%;">
+                        <div class="collage-bg fade-in-up">
+                            <img src="collage/1.png" alt="Collage Photo 1" class="collage-img collage-img-1">
+                            <img src="collage/4.png" alt="Collage Photo 2" class="collage-img collage-img-2">
+                            <img src="collage/8.png" alt="Collage Photo 3" class="collage-img collage-img-3">
+                            <img src="collage/12.png" alt="Collage Photo 4" class="collage-img collage-img-4">
+                        </div>
                         <div class="section-header fade-in-up" style="align-self: flex-start; margin-left: 2%; margin-bottom: 1.5rem;">
                             <h2>About Me</h2>
                             <div class="header-line"></div>

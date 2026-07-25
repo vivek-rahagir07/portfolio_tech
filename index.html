@@ -67,8 +67,8 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
-        if (!sessionStorage.getItem('hasSeenPreloader')) {
-            sessionStorage.setItem('hasSeenPreloader', 'true');
+        if (!localStorage.getItem('hasSeenPreloader')) {
+            localStorage.setItem('hasSeenPreloader', 'true');
         } else {
             document.write('<style>#intro-overlay { display: none !important; }</style>');
             window.skipPreloader = true;
