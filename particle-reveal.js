@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image.addEventListener('load', () => {
                 if (canvas.width === 0 || canvas.height === 0) return;
                 
-                const targetWidth = Math.min(canvas.width * 0.8, image.width, 800);
+                const targetWidth = Math.min(canvas.width * 0.95, 1200); // Increased max size and percentage
                 const scale = targetWidth / image.width;
                 const targetHeight = image.height * scale;
                 
@@ -280,6 +280,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             if (fillStarted) {
+                // Reveal the quote text
+                const parent = canvas.parentElement;
+                if (parent) {
+                    const quote = parent.querySelector('.particle-quote');
+                    if (quote) {
+                        quote.style.color = 'rgba(255, 255, 255, 0.85)';
+                    }
+                }
+                
                 fillRevealY += 4; 
                 for (let i = 0; i < particlesArray.length; i++) {
                     const p = particlesArray[i];
