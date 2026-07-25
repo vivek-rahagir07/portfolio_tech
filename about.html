@@ -94,18 +94,25 @@
             <div class="sticky-container">
                 <div class="horizontal-track" id="horizontal-track">
                     
-                    <!-- Panel 1: About text with Particle Reveal -->
+                    <!-- Panel 0: Particle Reveal -->
+                    <div class="horizontal-panel particle-panel" style="padding: 0; background-color: #000;">
+                        <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
+                            <canvas id="particle-reveal-canvas-desktop" style="display: block; cursor: crosshair; z-index: 1;"></canvas>
+                            <div class="particle-quote" style="position: absolute; bottom: 10%; text-align: center; color: rgba(255, 255, 255, 0); font-family: 'Outfit', sans-serif; font-size: 1.5rem; letter-spacing: 2px; font-weight: 300; transition: color 2s ease-in-out; z-index: 2; padding: 0 20px;">
+                                "You control your actions, not the results."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Panel 1: Original About Grid (Both Cards side-by-side) -->
                     <div class="horizontal-panel" style="flex-direction: column; justify-content: flex-start; padding-top: 120px;">
                         <div class="section-header fade-in-up" style="align-self: flex-start; margin-left: 5%; margin-bottom: 2rem;">
                             <h2>About Me</h2>
                             <div class="header-line"></div>
                         </div>
                         <div class="about-grid" style="width: 100%; max-width: 1700px; padding: 0 3%;">
-                            
-                            <!-- Left Column -->
-                            <div class="about-text-column" style="display: flex; flex-direction: column; gap: 2rem;">
-                                <!-- First Card -->
-                                <div class="about-text glass-card fade-in-up">
+                            <!-- First Card -->
+                            <div class="about-text glass-card fade-in-up">
                                 <h3>Professional Summary</h3>
                                 <p>Computer Science student at <strong>BML Munjal University</strong> and <span class="highlight hacker-text">Full-Stack Web Developer</span> specializing in <strong>React, JavaScript, Node.js, Laravel</strong>, and modern web technologies.</p>
                                 <p>Working as a <span class="highlight">freelance developer for over 3 years</span>, I have successfully delivered multiple <strong>live projects</strong> for various companies.</p>
@@ -139,17 +146,7 @@
                                         <li><i class="fa-brands fa-github"></i> <span class="highlight">800+</span> GitHub contributions in the last year</li>
                                     </ul>
                                 </div>
-                                </div>
                             </div>
-                            
-                            <!-- Right Column (Particle Reveal) -->
-                            <div class="particle-column fade-in-up" style="position: relative; height: 100%; min-height: 60vh; display: flex; justify-content: center; align-items: center;">
-                                <canvas id="particle-reveal-canvas-desktop" style="display: block; cursor: crosshair; z-index: 1;"></canvas>
-                                <div class="particle-quote" style="position: absolute; bottom: -10%; text-align: center; color: rgba(255, 255, 255, 0); font-family: 'Outfit', sans-serif; font-size: 1.5rem; letter-spacing: 2px; font-weight: 300; transition: color 2s ease-in-out; z-index: 2; padding: 0 20px;">
-                                    "You control your actions, not the results."
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
 
