@@ -94,6 +94,13 @@
             <div class="sticky-container">
                 <div class="horizontal-track" id="horizontal-track">
                     
+                    <!-- Panel 0: Particle Reveal -->
+                    <div class="horizontal-panel particle-panel" style="padding: 0; background-color: #000;">
+                        <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
+                            <canvas id="particle-reveal-canvas-desktop" style="display: block; cursor: crosshair; z-index: 1;"></canvas>
+                        </div>
+                    </div>
+                    
                     <!-- Panel 1: Original About Grid (Both Cards side-by-side) -->
                     <div class="horizontal-panel" style="flex-direction: column; justify-content: flex-start; padding-top: 120px;">
                         <div class="section-header fade-in-up" style="align-self: flex-start; margin-left: 5%; margin-bottom: 2rem;">
@@ -188,6 +195,11 @@
 
         <!-- Mobile About Section (Vertical Layout) -->
         <div class="mobile-about page-transition" style="display: none;">
+            <!-- Mobile Particle Reveal -->
+            <div class="mobile-particle-reveal" style="height: 100vh; width: 100%; background-color: #000; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                <canvas id="particle-reveal-canvas-mobile" style="display: block; z-index: 1;"></canvas>
+            </div>
+            
             <div class="mobile-about-header fade-in-up">
                 <h2>About Me</h2>
                 <div class="header-line"></div>
@@ -273,5 +285,6 @@
 
     <script src="scroll-jacking.js"></script>
     <script src="script.js"></script>
+    <script src="particle-reveal.js"></script>
 </body>
 </html>
