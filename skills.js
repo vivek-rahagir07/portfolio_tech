@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!ring || items.length === 0) return;
 
     // Radius of the circle path (should match half the width of orbit-wrapper)
-    const radius = 300; 
+    let radius = adjustForMobile(); 
     const totalItems = items.length;
     let currentIndex = 0;
     let autoRotateInterval;
@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     centerDesc.textContent = item.dataset.desc;
                     centerIcon.className = item.dataset.icon + ' center-icon-half';
                     centerIcon.style.color = item.dataset.color;
+                    
+                    // Add dynamic glow
+                    centerIcon.style.filter = `drop-shadow(0 0 20px ${item.dataset.color})`;
                     
                     centerTitle.classList.remove('fade-out');
                     centerTitle.classList.add('fade-in');
@@ -101,48 +104,32 @@ document.addEventListener('DOMContentLoaded', () => {
     function startFastRotate() {
         clearInterval(autoRotateInterval);
         
-        // Add spinning animation to orbit wrapper
         const orbitRing = document.getElementById('orbit-ring');
-        orbitRing.style.transition = 'transform 0.5s ease-out';
         
-        // Random number of spins between 5 and 15
-        const totalSpins = Math.floor(Math.random() * 11) + 5;
-        // Random final rotation (multiple of 36 degrees to align with skills)
-        const randomSkillAngle = Math.floor(Math.random() * 10) * 36;
+        // Reset rotation state
+        orbitRing.style.transition = 'none';
+        orbitRing.style.transform = 'rotate(0deg)';
+        void orbitRing.offsetWidth; // Force reflow
         
-        let spinCount = 0;
+        // Calculate smooth full rotation + random offset
+        const totalSpins = Math.floor(Math.random() * 5) + 5;
+        const randomSkillOffset = Math.floor(Math.random() * totalItems);
+        // We add negative degrees to simulate counter-clockwise movement which shifts top index
+        const targetRotation = (totalSpins * 360) + (randomSkillOffset * (360 / totalItems));
         
-        function spin() {
-            spinCount++;
-            const rotation = spinCount * 36; // 36 degrees per skill (360/10)
-            orbitRing.style.transform = `rotate(${rotation}deg)`;
+        orbitRing.style.transition = 'transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)'; 
+        orbitRing.style.transform = `rotate(${targetRotation}deg)`;
+        
+        setTimeout(() => {
+            orbitRing.style.transition = 'none';
+            orbitRing.style.transform = 'rotate(0deg)';
             
-            if (spinCount < totalSpins) {
-                setTimeout(spin, 100); // Fast spin
-            } else {
-                // Slow down and stop at random position
-                orbitRing.style.transition = 'transform 1.5s ease-out';
-                const finalRotation = rotation + randomSkillAngle;
-                
-                setTimeout(() => {
-                    orbitRing.style.transform = `rotate(${finalRotation}deg)`;
-                    
-                    // Calculate which skill is at the top (90 degrees position)
-                    // The wheel rotates clockwise, so we need to find which skill ends up at -90 degrees (top)
-                    const normalizedRotation = finalRotation % 360;
-                    const skillAtTop = Math.floor(((360 - normalizedRotation + 90) % 360) / 36) % totalItems;
-                    
-                    // Update to the skill that's actually at the top
-                    setTimeout(() => {
-                        currentIndex = skillAtTop;
-                        positionItems(currentIndex);
-                        startAutoRotate();
-                    }, 1500);
-                }, 500);
-            }
-        }
-        
-        spin();
+            // Adjust currentIndex based on the final rotation offset
+            currentIndex = (currentIndex - randomSkillOffset + (totalItems * 10)) % totalItems;
+            
+            positionItems(currentIndex);
+            startAutoRotate();
+        }, 3000);
     }
 
     if (nextBtn) {
@@ -168,6 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
             positionItems(currentIndex);
             startAutoRotate();
         });
+        item.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                currentIndex = index;
+                positionItems(currentIndex);
+                startAutoRotate();
+            }
+        });
     });
 
     // Initialize
@@ -176,16 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Handle resize
     window.addEventListener('resize', () => {
-        const newRadius = adjustForMobile();
-        // Update radius variable
-        const items = document.querySelectorAll('.orbit-item-half');
-        items.forEach((item, index) => {
-            const angleOffset = -Math.PI / 2 - (currentIndex / totalItems) * Math.PI * 2;
-            const angle = (index / totalItems) * Math.PI * 2 + angleOffset;
-            const x = Math.cos(angle) * newRadius;
-            const y = Math.sin(angle) * newRadius;
-            item.style.left = `calc(50% + ${x}px)`;
-            item.style.top = `calc(50% + ${y}px)`;
-        });
+        radius = adjustForMobile();
+        positionItems(currentIndex);
     });
 });
