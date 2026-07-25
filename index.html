@@ -83,46 +83,43 @@
             <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
             <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none;">
                 <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
-                    
-                    .signature-text-container {
-                        display: inline-block;
-                        position: relative;
-                        font-family: 'Alex Brush', cursive;
-                        font-size: 5rem;
-                        color: transparent;
+                    @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+                    .signature-svg {
+                        max-width: 90vw;
+                        height: auto;
+                        overflow: visible;
                     }
-
-                    .signature-text-overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        color: #fff;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        width: 0;
-                        filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
-                        border-right: 2px solid rgba(255,255,255,0.8);
+                    .signature-text {
+                        font-family: 'Sacramento', cursive;
+                        font-size: 6rem;
+                        fill: transparent;
+                        stroke: #fff;
+                        stroke-width: 1.2;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        stroke-dasharray: 1000;
+                        stroke-dashoffset: 1000;
+                        filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
                     }
-
-                    .signature-quote.reveal .signature-text-overlay {
-                        animation: flowSignature 2.5s ease-out forwards;
+                    .signature-quote.reveal .signature-text {
+                        animation: flowInk 3s cubic-bezier(0.4, 0, 0.2, 1) forwards, fillInk 1s 2.5s forwards;
                     }
-
-                    @keyframes flowSignature {
-                        0% { width: 0; }
-                        95% { width: 100%; border-right: 2px solid rgba(255,255,255,0.8); }
-                        100% { width: 100%; border-right: 2px solid transparent; filter: drop-shadow(0 0 12px rgba(255,255,255,0.8)); }
+                    @keyframes flowInk {
+                        0% { stroke-dashoffset: 1000; }
+                        100% { stroke-dashoffset: 0; }
                     }
-
+                    @keyframes fillInk {
+                        100% { fill: #fff; stroke: transparent; filter: drop-shadow(0 0 10px rgba(255,255,255,0.8)); }
+                    }
                     @media (max-width: 768px) {
-                        .signature-text-container { font-size: 3.5rem; }
+                        .signature-text { font-size: 4rem; }
                     }
                 </style>
-                <div class="signature-text-container">
-                    Vivek Rahagir
-                    <div class="signature-text-overlay">Vivek Rahagir</div>
-                </div>
+                <svg width="600" height="150" viewBox="0 0 600 150" class="signature-svg">
+                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="signature-text">
+                        Vivek Rahagir
+                    </text>
+                </svg>
             </div>
         </div>
     </div>
