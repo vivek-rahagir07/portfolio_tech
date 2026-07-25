@@ -83,43 +83,61 @@
             <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
             <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none;">
                 <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+                    @import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap');
                     .signature-svg {
                         max-width: 90vw;
                         height: auto;
                         overflow: visible;
                     }
                     .signature-text {
-                        font-family: 'Sacramento', cursive;
-                        font-size: 6rem;
+                        font-family: 'Mrs Saint Delafield', cursive;
+                        font-size: 8rem;
                         fill: transparent;
                         stroke: #fff;
-                        stroke-width: 1.2;
+                        stroke-width: 1.5;
                         stroke-linecap: round;
                         stroke-linejoin: round;
-                        stroke-dasharray: 1000;
-                        stroke-dashoffset: 1000;
-                        filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
+                        filter: drop-shadow(0 0 3px rgba(255,255,255,0.7));
                     }
-                    .signature-quote.reveal .signature-text {
-                        animation: flowInk 3s cubic-bezier(0.4, 0, 0.2, 1) forwards, fillInk 1s 2.5s forwards;
+                    .letter {
+                        stroke-dasharray: 500;
+                        stroke-dashoffset: 500;
                     }
-                    @keyframes flowInk {
-                        0% { stroke-dashoffset: 1000; }
-                        100% { stroke-dashoffset: 0; }
+                    .signature-quote.reveal .letter {
+                        animation: drawInk 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
                     }
-                    @keyframes fillInk {
-                        100% { fill: #fff; stroke: transparent; filter: drop-shadow(0 0 10px rgba(255,255,255,0.8)); }
+                    @keyframes drawInk {
+                        0% { stroke-dashoffset: 500; fill: transparent; }
+                        70% { fill: transparent; }
+                        100% { stroke-dashoffset: 0; fill: #fff; }
                     }
                     @media (max-width: 768px) {
-                        .signature-text { font-size: 4rem; }
+                        .signature-text { font-size: 5rem; }
                     }
                 </style>
                 <svg width="600" height="150" viewBox="0 0 600 150" class="signature-svg">
-                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="signature-text">
-                        Vivek Rahagir
-                    </text>
+                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="signature-text" id="ink-text"></text>
                 </svg>
+                <script>
+                    (function() {
+                        const str = "Vivek Rahagir";
+                        const textEl = document.getElementById('ink-text');
+                        let delay = 0;
+                        for (let i = 0; i < str.length; i++) {
+                            const char = str[i];
+                            const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+                            tspan.textContent = char;
+                            tspan.classList.add('letter');
+                            if (char !== ' ') {
+                                tspan.style.animationDelay = delay + 's';
+                                delay += 0.2; // time between each letter starting
+                            } else {
+                                delay += 0.1;
+                            }
+                            textEl.appendChild(tspan);
+                        }
+                    })();
+                </script>
             </div>
         </div>
     </div>
