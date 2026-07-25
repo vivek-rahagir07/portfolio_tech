@@ -270,27 +270,9 @@ document.addEventListener('DOMContentLoaded', () => {
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            revealY += 10; 
-            
-            let allEdgesDone = true;
-        
-            for (let i = 0; i < particlesArray.length; i++) {
-                const p = particlesArray[i];
-                if (p.isEdge) {
-                    p.updateEdge(revealY);
-                    p.draw();
-                    if (!p.revealed) {
-                        allEdgesDone = false;
-                    }
-                }
-            }
-            
-            if (allEdgesDone) {
-                fillStarted = true;
-            }
-            
-            if (fillStarted) {
-                // Reveal the quote text
+            // Start signature and quotes immediately
+            if (!canvas.signatureStarted) {
+                canvas.signatureStarted = true;
                 const parent = canvas.parentElement;
                 if (parent) {
                     const quote = parent.querySelector('.particle-quote');
@@ -303,10 +285,34 @@ document.addEventListener('DOMContentLoaded', () => {
                         sigQuote.classList.add('reveal');
                     }
                 }
-
-                // If this is the index intro, fade it out after a delay
+            }
+            
+            revealY += 10; 
+            fillRevealY += 5; // slightly faster so it matches signature duration nicely
+            
+            let allFillsDone = true;
+            let hasFills = false;
+        
+            for (let i = 0; i < particlesArray.length; i++) {
+                const p = particlesArray[i];
+                if (p.isEdge) {
+                    p.updateEdge(revealY);
+                    p.draw();
+                } else {
+                    hasFills = true;
+                    p.updateFill(fillRevealY);
+                    p.draw();
+                    if (!p.revealed) {
+                        allFillsDone = false;
+                    }
+                }
+            }
+            
+            // If all fill particles are revealed, person is completely loaded
+            if (hasFills && allFillsDone) {
                 if (canvasId === 'particle-reveal-canvas-index' && !canvas.fadeOutTriggered) {
                     canvas.fadeOutTriggered = true;
+                    // Transition to main page shortly after person fully loads
                     setTimeout(() => {
                         const overlay = document.getElementById('intro-overlay');
                         if (overlay) {
@@ -314,16 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             overlay.style.visibility = 'hidden';
                             setTimeout(() => overlay.remove(), 1500); // Remove from DOM after fade out
                         }
-                    }, 4500); // Let the signature stay for a bit longer to animate
-                }
-                
-                fillRevealY += 4; 
-                for (let i = 0; i < particlesArray.length; i++) {
-                    const p = particlesArray[i];
-                    if (!p.isEdge) {
-                        p.updateFill(fillRevealY);
-                        p.draw();
-                    }
+                    }, 800); // Wait 0.8s after person is fully revealed before fading out
                 }
             }
             
