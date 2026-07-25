@@ -83,39 +83,46 @@
             <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
             <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none;">
                 <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-                    .signature-svg {
-                        max-width: 90vw;
-                        height: auto;
-                    }
-                    .signature-text {
-                        font-family: 'Great Vibes', cursive;
+                    @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+                    
+                    .signature-text-container {
+                        display: inline-block;
+                        position: relative;
+                        font-family: 'Alex Brush', cursive;
                         font-size: 5rem;
-                        fill: transparent;
-                        stroke: #fff;
-                        stroke-width: 1.5;
-                        stroke-dasharray: 1200;
-                        stroke-dashoffset: 1200;
+                        color: transparent;
+                    }
+
+                    .signature-text-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        color: #fff;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        width: 0;
                         filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+                        border-right: 2px solid rgba(255,255,255,0.8);
                     }
-                    .signature-quote.reveal .signature-text {
-                        animation: drawSignature 2.5s ease-in-out forwards, fillSignature 1s 2s forwards;
+
+                    .signature-quote.reveal .signature-text-overlay {
+                        animation: flowSignature 2.5s ease-out forwards;
                     }
-                    @keyframes drawSignature {
-                        100% { stroke-dashoffset: 0; }
+
+                    @keyframes flowSignature {
+                        0% { width: 0; }
+                        95% { width: 100%; border-right: 2px solid rgba(255,255,255,0.8); }
+                        100% { width: 100%; border-right: 2px solid transparent; filter: drop-shadow(0 0 12px rgba(255,255,255,0.8)); }
                     }
-                    @keyframes fillSignature {
-                        100% { fill: #fff; stroke: transparent; filter: drop-shadow(0 0 12px rgba(255,255,255,0.8)); }
-                    }
+
                     @media (max-width: 768px) {
-                        .signature-text { font-size: 3.5rem; }
+                        .signature-text-container { font-size: 3.5rem; }
                     }
                 </style>
-                <svg width="600" height="120" viewBox="0 0 600 120" class="signature-svg">
-                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="signature-text">
-                        Vivek Rahagir
-                    </text>
-                </svg>
+                <div class="signature-text-container">
+                    Vivek Rahagir
+                    <div class="signature-text-overlay">Vivek Rahagir</div>
+                </div>
             </div>
         </div>
     </div>
