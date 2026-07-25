@@ -297,6 +297,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (quote) {
                         quote.style.color = 'rgba(255, 255, 255, 0.85)';
                     }
+                    const sigQuote = parent.querySelector('.signature-quote');
+                    if (sigQuote) {
+                        sigQuote.style.opacity = '1';
+                        sigQuote.classList.add('reveal');
+                    }
                 }
 
                 // If this is the index intro, fade it out after a delay
@@ -309,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             overlay.style.visibility = 'hidden';
                             setTimeout(() => overlay.remove(), 1500); // Remove from DOM after fade out
                         }
-                    }, 4000); // Let the quote stay for a bit
+                    }, 4500); // Let the signature stay for a bit longer to animate
                 }
                 
                 fillRevealY += 4; 

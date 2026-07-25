@@ -81,8 +81,41 @@
     <div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;">
         <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
             <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
-            <div class="particle-quote" style="position: absolute; bottom: 10%; text-align: center; color: rgba(255, 255, 255, 0); font-family: 'Outfit', sans-serif; font-size: 1.5rem; letter-spacing: 2px; font-weight: 300; transition: color 2s ease-in-out; z-index: 2; padding: 0 20px;">
-                "You control your actions, not the results."
+            <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none;">
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+                    .signature-svg {
+                        max-width: 90vw;
+                        height: auto;
+                    }
+                    .signature-text {
+                        font-family: 'Great Vibes', cursive;
+                        font-size: 5rem;
+                        fill: transparent;
+                        stroke: #fff;
+                        stroke-width: 1.5;
+                        stroke-dasharray: 1200;
+                        stroke-dashoffset: 1200;
+                        filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+                    }
+                    .signature-quote.reveal .signature-text {
+                        animation: drawSignature 2.5s ease-in-out forwards, fillSignature 1s 2s forwards;
+                    }
+                    @keyframes drawSignature {
+                        100% { stroke-dashoffset: 0; }
+                    }
+                    @keyframes fillSignature {
+                        100% { fill: #fff; stroke: transparent; filter: drop-shadow(0 0 12px rgba(255,255,255,0.8)); }
+                    }
+                    @media (max-width: 768px) {
+                        .signature-text { font-size: 3.5rem; }
+                    }
+                </style>
+                <svg width="600" height="120" viewBox="0 0 600 120" class="signature-svg">
+                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="signature-text">
+                        Vivek Rahagir
+                    </text>
+                </svg>
             </div>
         </div>
     </div>
