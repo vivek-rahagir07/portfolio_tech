@@ -32,14 +32,25 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function resizeCanvas() {
             const parent = canvas.parentElement;
+            let cssWidth, cssHeight;
             if (parent.clientWidth > 0 && parent.clientHeight > 0) {
-                canvas.width = parent.clientWidth;
-                canvas.height = parent.clientHeight;
+                cssWidth = parent.clientWidth;
+                cssHeight = parent.clientHeight;
             } else {
                 // Fallback to window size if hidden
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                cssWidth = window.innerWidth;
+                cssHeight = window.innerHeight;
             }
+            
+            const dpr = window.devicePixelRatio || 1;
+            canvas.style.width = cssWidth + 'px';
+            canvas.style.height = cssHeight + 'px';
+            canvas.width = Math.floor(cssWidth * dpr);
+            canvas.height = Math.floor(cssHeight * dpr);
+            
+            canvas.logicalWidth = cssWidth;
+            canvas.logicalHeight = cssHeight;
+            canvas.dpr = dpr;
         }
         
         window.addEventListener('resize', () => {
@@ -54,23 +65,25 @@ document.addEventListener('DOMContentLoaded', () => {
             image.src = imageSource;
             
             image.addEventListener('load', () => {
-                if (canvas.width === 0 || canvas.height === 0) return;
+                const logicalWidth = canvas.logicalWidth || canvas.width;
+                const logicalHeight = canvas.logicalHeight || canvas.height;
+                if (logicalWidth === 0 || logicalHeight === 0) return;
                 
                 // Base size on width, but restrict by height to prevent vertical overflow
-                let targetWidth = Math.min(canvas.width * 0.9, 1000);
+                let targetWidth = Math.min(logicalWidth * 0.9, 1000);
                 let scale = targetWidth / image.width;
                 let targetHeight = image.height * scale;
                 
                 // Constrain height to leave room for quote and navbar
-                const maxAllowedHeight = canvas.height * 0.75;
+                const maxAllowedHeight = logicalHeight * 0.75;
                 if (targetHeight > maxAllowedHeight) {
                     targetHeight = maxAllowedHeight;
                     scale = targetHeight / image.height;
                     targetWidth = image.width * scale;
                 }
                 
-                const offsetX = (canvas.width - targetWidth) / 2;
-                const offsetY = (canvas.height - targetHeight) / 2;
+                const offsetX = (logicalWidth - targetWidth) / 2;
+                const offsetY = (logicalHeight - targetHeight) / 2;
                 
                 const offscreen = document.createElement('canvas');
                 offscreen.width = targetWidth;
@@ -261,14 +274,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     ctx.save();
                     ctx.globalAlpha = this.opacity;
                     ctx.fillStyle = this.color;
-                    ctx.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
                     ctx.restore();
                 }
             }
         }
         
         function animate() {
+            // Reset transform for clean clear
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Reapply device pixel ratio scaling
+            const dpr = canvas.dpr || 1;
+            ctx.scale(dpr, dpr);
             
             // Start signature and quotes immediately
             if (!canvas.signatureStarted) {
