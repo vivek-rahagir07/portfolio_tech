@@ -10,27 +10,27 @@
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vivek-rahagir.com/developer-guide.html">
     <meta property="og:title" content="Developer Guide | Full Stack Developer">
     <meta property="og:description" content="Developer guide by Vivek Yadav covering modern web architecture, performance optimization, and full stack development practices.">
     <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- Twitter -->
+    
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivek-rahagir.com/developer-guide.html">
     <meta property="twitter:title" content="Developer Guide | Full Stack Developer">
     <meta property="twitter:description" content="Developer guide by Vivek Yadav covering modern web architecture, performance optimization, and full stack development practices.">
     <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- PWA -->
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
-    <!-- Structured Data (JSON-LD) -->
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -46,7 +46,7 @@
 </head>
 <body>
     <main id="main-content">
-        <!-- Navigation -->
+        
         <nav>
             <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
             <ul class="nav-links">
@@ -70,7 +70,7 @@
             </div>
         </nav>
 
-        <!-- Developer Guide Section -->
+        
         <section id="developer-guide" class="section page-transition">
             <div class="section-header fade-in-up">
                 <h2>Full Stack Developer Roadmap</h2>
@@ -78,7 +78,7 @@
             </div>
             
             <div class="guide-container fade-in-up">
-                <!-- Canvas Mindmap -->
+                
                 <div class="mindmap-canvas-wrapper glass-card">
                     <canvas id="mindmapCanvas"></canvas>
                 </div>
@@ -86,7 +86,7 @@
         </section>
 
         <script>
-            // Mindmap Canvas Implementation
+            
             const canvas = document.getElementById('mindmapCanvas');
             const ctx = canvas.getContext('2d');
             
@@ -96,9 +96,9 @@
             let mouseX = 0;
             let mouseY = 0;
             let expandedNodes = new Set();
-            let animatingNodes = new Map(); // Track animation state for each node
+            let animatingNodes = new Map(); 
             
-            // Canvas pan/zoom state
+            
             let offsetX = 0;
             let offsetY = 0;
             let scale = 1;
@@ -108,7 +108,7 @@
             let dragOffsetX = 0;
             let dragOffsetY = 0;
             
-            // Color scheme for each category
+            
             const categoryColors = {
                 'frontend': { primary: '#3b82f6', secondary: '#60a5fa', name: 'Frontend' },
                 'backend': { primary: '#22c55e', secondary: '#4ade80', name: 'Backend' },
@@ -118,23 +118,23 @@
                 'ai': { primary: '#06b6d4', secondary: '#22d3ee', name: 'AI' }
             };
             
-            // Difficulty level colors
+            
             const difficultyColors = {
                 'easy': { color: '#22c55e', emoji: '🟢', name: 'Easy' },
                 'intermediate': { color: '#eab308', emoji: '🟡', name: 'Intermediate' },
                 'advanced': { color: '#ef4444', emoji: '🔴', name: 'Advanced' }
             };
             
-            // Get category color for a node
+            
             function getCategoryColor(node, parent = null) {
-                // Check if node ID matches a category
+                
                 for (const [catId, colors] of Object.entries(categoryColors)) {
                     if (node.id === catId || node.id.startsWith(catId)) {
                         return colors;
                     }
                 }
                 
-                // If node has a parent, check parent's color
+                
                 if (parent) {
                     const parentColors = getCategoryColor(parent, null);
                     if (parentColors.name !== 'Default') {
@@ -142,7 +142,7 @@
                     }
                 }
                 
-                // Check if node is a category by checking its children
+                
                 if (node.children) {
                     for (const [catId, colors] of Object.entries(categoryColors)) {
                         if (node.children.some(child => child.id === catId || child.id.startsWith(catId))) {
@@ -154,17 +154,17 @@
                 return { primary: '#d4af37', secondary: '#fbbf24', name: 'Default' };
             }
             
-            // Initialize with only root expanded for cleaner initial view
+            
             expandedNodes.add('root');
             
-            // Set canvas size
+            
             function resizeCanvas() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 drawMindmap();
             }
             
-            // Mindmap data structure
+            
             const mindmapData = {
                 id: 'root',
                 label: 'Full Stack Web Dev',
@@ -459,7 +459,7 @@
                 ]
             };
             
-            // Calculate node positions with custom layout (2 up, 2 sides, 2 down)
+            
             function calculatePositions(node, x, y, level, parentExpanded, direction = 'down') {
                 node.x = x;
                 node.y = y;
@@ -467,43 +467,43 @@
                 node.baseX = x;
                 node.baseY = y;
                 
-                // Only calculate positions for children if parent is expanded
+                
                 if (node.children && node.children.length > 0 && parentExpanded) {
                     if (node.level === 0) {
-                        // Root level: distribute children - 2 up, 2 sides, 2 down
+                        
                         const horizontalSpacing = 250;
                         const verticalSpacing = 200;
                         
-                        // Position 2 categories above
-                        const child0 = node.children[0]; // Frontend
-                        const child1 = node.children[1]; // Backend
+                        
+                        const child0 = node.children[0]; 
+                        const child1 = node.children[1]; 
                         child0.direction = 'up';
                         child1.direction = 'up';
                         calculatePositions(child0, x - horizontalSpacing / 2, y - verticalSpacing, level + 1, true, 'up');
                         calculatePositions(child1, x + horizontalSpacing / 2, y - verticalSpacing, level + 1, true, 'up');
                         
-                        // Position 2 categories on sides
-                        const child2 = node.children[2]; // Database (left)
-                        const child3 = node.children[3]; // DevOps (right)
+                        
+                        const child2 = node.children[2]; 
+                        const child3 = node.children[3]; 
                         child2.direction = 'left';
                         child3.direction = 'right';
                         calculatePositions(child2, x - horizontalSpacing, y, level + 1, true, 'left');
                         calculatePositions(child3, x + horizontalSpacing, y, level + 1, true, 'right');
                         
-                        // Position 2 categories below
-                        const child4 = node.children[4]; // Tools
-                        const child5 = node.children[5]; // AI
+                        
+                        const child4 = node.children[4]; 
+                        const child5 = node.children[5]; 
                         child4.direction = 'down';
                         child5.direction = 'down';
                         calculatePositions(child4, x - horizontalSpacing / 2, y + verticalSpacing, level + 1, true, 'down');
                         calculatePositions(child5, x + horizontalSpacing / 2, y + verticalSpacing, level + 1, true, 'down');
                     } else {
-                        // Other levels: expand in the direction specified
+                        
                         const horizontalSpacing = 120;
                         const verticalSpacing = 120;
                         
                         if (direction === 'up') {
-                            // Expand upward
+                            
                             const totalWidth = node.children.length * horizontalSpacing;
                             let currentX = x - totalWidth / 2;
                             
@@ -515,7 +515,7 @@
                                 currentX += horizontalSpacing;
                             });
                         } else if (direction === 'down') {
-                            // Expand downward (standard)
+                            
                             const totalWidth = node.children.length * horizontalSpacing;
                             let currentX = x - totalWidth / 2;
                             
@@ -527,7 +527,7 @@
                                 currentX += horizontalSpacing;
                             });
                         } else if (direction === 'left') {
-                            // Expand to the left
+                            
                             const totalHeight = node.children.length * verticalSpacing;
                             let currentY = y - totalHeight / 2;
                             
@@ -539,7 +539,7 @@
                                 currentY += verticalSpacing;
                             });
                         } else if (direction === 'right') {
-                            // Expand to the right
+                            
                             const totalHeight = node.children.length * verticalSpacing;
                             let currentY = y - totalHeight / 2;
                             
@@ -555,16 +555,16 @@
                 }
             }
             
-            // Animation system for smooth transitions
+            
             function updateAnimations() {
                 const now = Date.now();
-                const animationDuration = 400; // ms
+                const animationDuration = 400; 
                 
                 for (const [nodeId, anim] of animatingNodes) {
                     const elapsed = now - anim.startTime;
                     const progress = Math.min(elapsed / animationDuration, 1);
                     
-                    // Easing function (ease-out cubic)
+                    
                     const eased = 1 - Math.pow(1 - progress, 3);
                     
                     anim.opacity = anim.startOpacity + (anim.targetOpacity - anim.startOpacity) * eased;
@@ -576,7 +576,7 @@
                 }
             }
             
-            // Start animation for a node
+            
             function animateNode(node, targetOpacity, targetScale) {
                 const currentAnim = animatingNodes.get(node.id);
                 animatingNodes.set(node.id, {
@@ -587,13 +587,13 @@
                     targetScale: targetScale
                 });
                 
-                // Also animate all descendants
+                
                 if (node.children) {
                     node.children.forEach(child => animateNode(child, targetOpacity, targetScale));
                 }
             }
             
-            // Draw node with enhanced effects
+            
             function drawNode(node, parent = null) {
                 const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
                 const height = node.level === 0 ? 60 : node.level === 1 ? 50 : node.level === 2 ? 45 : 40;
@@ -603,17 +603,17 @@
                 const hasChildren = node.children && node.children.length > 0;
                 const isExpanded = expandedNodes.has(node.id);
                 
-                // Get animation values
+                
                 const anim = animatingNodes.get(node.id);
                 const opacity = anim ? anim.opacity : 1;
                 const animScale = anim ? anim.scale : 1;
                 
-                // Get category colors with parent inheritance
+                
                 const colors = getCategoryColor(node, parent);
                 const primaryColor = node.level === 0 ? '#d4af37' : colors.primary;
                 const secondaryColor = node.level === 0 ? '#fbbf24' : colors.secondary;
                 
-                // Apply canvas transform
+                
                 const drawX = (node.x + offsetX) * scale;
                 const drawY = (node.y + offsetY + floatY) * scale;
                 const drawWidth = width * (isHovered ? 1.15 : pulse) * animScale * scale;
@@ -622,7 +622,7 @@
                 ctx.save();
                 ctx.globalAlpha = opacity;
                 
-                // Draw node background with gradient
+                
                 ctx.beginPath();
                 ctx.roundRect(drawX - drawWidth / 2, drawY - drawHeight / 2, drawWidth, drawHeight, 10);
                 
@@ -642,12 +642,12 @@
                 ctx.fillStyle = gradient;
                 ctx.fill();
                 
-                // Draw border
+                
                 ctx.strokeStyle = node.level === 0 ? '#d4af37' : primaryColor;
                 ctx.lineWidth = (isHovered ? 3 : 2) * scale;
                 ctx.stroke();
                 
-                // Draw inner border for main nodes
+                
                 if (node.level <= 1) {
                     ctx.beginPath();
                     ctx.roundRect(drawX - drawWidth / 2 + 5 * scale, drawY - drawHeight / 2 + 5 * scale, drawWidth - 10 * scale, drawHeight - 10 * scale, 6);
@@ -656,7 +656,7 @@
                     ctx.stroke();
                 }
                 
-                // Draw expand/collapse indicator
+                
                 if (hasChildren) {
                     const indicatorSize = 8 * scale;
                     ctx.beginPath();
@@ -667,7 +667,7 @@
                     ctx.lineWidth = 2 * scale;
                     ctx.stroke();
                     
-                    // Draw + or - symbol
+                    
                     ctx.fillStyle = '#fff';
                     ctx.font = `bold ${12 * scale}px Arial`;
                     ctx.textAlign = 'center';
@@ -675,13 +675,13 @@
                     ctx.fillText(isExpanded ? '-' : '+', drawX - drawWidth / 2 + 10 * scale, drawY - drawHeight / 2 + 10 * scale);
                 }
                 
-                // Draw label
+                
                 ctx.fillStyle = '#fff';
                 ctx.font = `${node.level === 0 ? 'bold 14px' : node.level === 1 ? 'bold 13px' : '12px'} 'Segoe UI', Arial, sans-serif`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 
-                // Wrap text if needed
+                
                 const words = node.label.split(' ');
                 if (words.length > 1 && node.label.length > 12) {
                     ctx.fillText(words.slice(0, Math.ceil(words.length / 2)).join(' '), drawX, drawY - 6 * scale);
@@ -690,7 +690,7 @@
                     ctx.fillText(node.label, drawX, drawY);
                 }
                 
-                // Draw difficulty indicator (top-right corner)
+                
                 if (node.difficulty && node.level > 0) {
                     const diffInfo = difficultyColors[node.difficulty] || difficultyColors['intermediate'];
                     ctx.font = `${14 * scale}px Arial`;
@@ -700,7 +700,7 @@
                 ctx.restore();
             }
             
-            // Draw animated connection line (straight line for tree layout)
+            
             function drawConnection(parent, child) {
                 const parentFloatY = Math.sin(time * 0.002 + parent.level * 0.3) * 3;
                 const childFloatY = Math.sin(time * 0.002 + child.level * 0.3) * 3;
@@ -710,18 +710,18 @@
                 const endX = (child.x + offsetX) * scale;
                 const endY = (child.y + offsetY + childFloatY) * scale;
                 
-                // Get animation opacity for child
+                
                 const childAnim = animatingNodes.get(child.id);
                 const opacity = childAnim ? childAnim.opacity : 1;
                 
-                // Get category color for child
+                
                 const colors = getCategoryColor(child);
                 const primaryColor = child.level === 0 ? '#d4af37' : colors.primary;
                 
                 ctx.save();
                 ctx.globalAlpha = opacity;
                 
-                // Draw gradient line (straight horizontal/vertical)
+                
                 const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
                 gradient.addColorStop(0, `${primaryColor}99`);
                 gradient.addColorStop(0.5, `${primaryColor}4d`);
@@ -736,7 +736,7 @@
                 ctx.lineCap = 'round';
                 ctx.stroke();
                 
-                // Draw moving particle along the line
+                
                 const particleProgress = ((Math.sin(time * 0.003) + 1) / 2);
                 const particleX = startX + (endX - startX) * particleProgress;
                 const particleY = startY + (endY - startY) * particleProgress;
@@ -749,9 +749,9 @@
                 ctx.restore();
             }
             
-            // Draw background particles
+            
             function drawParticles() {
-                // Subtle golden particles - transform with canvas
+                
                 for (let i = 0; i < 20; i++) {
                     const x = ((Math.sin(time * 0.0002 + i * 0.1) * 0.5 + 0.5) * canvas.width + offsetX) * scale;
                     const y = ((Math.cos(time * 0.00015 + i * 0.15) * 0.5 + 0.5) * canvas.height + offsetY) * scale;
@@ -765,7 +765,7 @@
                 }
             }
             
-            // Draw difficulty legend at top of canvas
+            
             function drawLegend() {
                 const legendX = 20;
                 const legendY = 30;
@@ -776,7 +776,7 @@
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'middle';
                 
-                // Draw background for legend
+                
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
                 ctx.roundRect(legendX - 10, legendY - 20, 400, 45, 10);
                 ctx.fill();
@@ -784,25 +784,25 @@
                 ctx.lineWidth = 1;
                 ctx.stroke();
                 
-                // Draw Easy
+                
                 ctx.fillStyle = '#fff';
                 ctx.fillText('🟢 Easy', legendX, legendY);
                 
-                // Draw Intermediate
+                
                 ctx.fillText('🟡 Intermediate', legendX + itemSpacing, legendY);
                 
-                // Draw Advanced
+                
                 ctx.fillText('🔴 Advanced', legendX + itemSpacing * 2, legendY);
                 
                 ctx.restore();
             }
             
-            // Check if point is inside node (rectangular) - account for transform
+            
             function isInsideNode(x, y, node) {
                 const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
                 const height = node.level === 0 ? 60 : node.level === 1 ? 50 : node.level === 2 ? 45 : 40;
                 
-                // Transform screen coordinates to world coordinates
+                
                 const worldX = (x / scale) - offsetX;
                 const worldY = (y / scale) - offsetY;
                 
@@ -813,7 +813,7 @@
                        worldY >= node.y - halfHeight && worldY <= node.y + halfHeight;
             }
             
-            // Find node at position
+            
             function findNodeAtPosition(x, y, node) {
                 if (isInsideNode(x, y, node)) {
                     return node;
@@ -827,9 +827,9 @@
                 return null;
             }
             
-            // Draw mindmap recursively
+            
             function drawMindmapRecursive(node, parentExpanded, parent = null) {
-                // Draw connections to children first (only if parent is expanded)
+                
                 if (node.children && node.children.length > 0 && parentExpanded) {
                     node.children.forEach(child => {
                         drawConnection(node, child);
@@ -837,36 +837,36 @@
                     });
                 }
                 
-                // Draw node on top
+                
                 drawNode(node, parent);
             }
             
-            // Main draw function
+            
             function drawMindmap() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                // Update animations
+                
                 updateAnimations();
                 
-                // Draw subtle particles
+                
                 drawParticles();
                 
-                // Draw difficulty legend
+                
                 drawLegend();
                 
-                // Calculate positions starting from center of canvas
+                
                 const startX = canvas.width / 2;
                 const startY = canvas.height / 2;
                 calculatePositions(mindmapData, startX, startY, 0, true, 'down');
                 
-                // Draw mindmap
+                
                 drawMindmapRecursive(mindmapData, true, null);
                 
                 time += 16;
                 animationFrame = requestAnimationFrame(drawMindmap);
             }
             
-            // Click handler for expand/collapse
+            
             canvas.addEventListener('click', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
@@ -876,7 +876,7 @@
                 
                 if (clickedNode && clickedNode.children && clickedNode.children.length > 0) {
                     if (expandedNodes.has(clickedNode.id)) {
-                        // Collapse: animate children to fade out and shrink
+                        
                         clickedNode.children.forEach(child => {
                             animateNode(child, 0, 0.5);
                         });
@@ -884,7 +884,7 @@
                             expandedNodes.delete(clickedNode.id);
                         }, 400);
                     } else {
-                        // Expand: add to set and animate children to fade in and grow
+                        
                         expandedNodes.add(clickedNode.id);
                         clickedNode.children.forEach(child => {
                             animateNode(child, 1, 1);
@@ -893,17 +893,17 @@
                 }
             });
             
-            // Mouse down handler for dragging
+            
             canvas.addEventListener('mousedown', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
                 const clickY = e.clientY - rect.top;
                 
-                // Check if clicking on a node
+                
                 const clickedNode = findNodeAtPosition(clickX, clickY, mindmapData);
                 
                 if (!clickedNode) {
-                    // Start dragging canvas
+                    
                     isDragging = true;
                     dragStartX = clickX;
                     dragStartY = clickY;
@@ -913,38 +913,38 @@
                 }
             });
             
-            // Mouse move handler for dragging and hover
+            
             canvas.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 const mouseX = e.clientX - rect.left;
                 const mouseY = e.clientY - rect.top;
                 
                 if (isDragging) {
-                    // Update canvas offset
+                    
                     offsetX = dragOffsetX + (mouseX - dragStartX) / scale;
                     offsetY = dragOffsetY + (mouseY - dragStartY) / scale;
                 } else {
-                    // Update hover state
+                    
                     const found = findNodeAtPosition(mouseX, mouseY, mindmapData);
                     hoveredNode = found;
                     canvas.style.cursor = found ? 'pointer' : 'grab';
                 }
             });
             
-            // Mouse up handler to stop dragging
+            
             canvas.addEventListener('mouseup', () => {
                 isDragging = false;
                 canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
             });
             
-            // Mouse leave handler to stop dragging
+            
             canvas.addEventListener('mouseleave', () => {
                 isDragging = false;
                 hoveredNode = null;
                 canvas.style.cursor = 'grab';
             });
             
-            // Wheel handler for zooming
+            
             canvas.addEventListener('wheel', (e) => {
                 e.preventDefault();
                 
@@ -952,21 +952,21 @@
                 const mouseX = e.clientX - rect.left;
                 const mouseY = e.clientY - rect.top;
                 
-                // Get world coordinates before zoom
+                
                 const worldX = (mouseX / scale) - offsetX;
                 const worldY = (mouseY / scale) - offsetY;
                 
-                // Update scale
+                
                 const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
                 const newScale = Math.max(0.3, Math.min(3, scale * zoomFactor));
                 
-                // Adjust offset to zoom towards mouse position
+                
                 offsetX = (mouseX / newScale) - worldX;
                 offsetY = (mouseY / newScale) - worldY;
                 scale = newScale;
             });
             
-            // Initialize
+            
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
         </script>

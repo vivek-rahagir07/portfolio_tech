@@ -1,28 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // PWA Installation
+    
     let deferredPrompt;
     const installBtn = document.getElementById('install-btn');
     
-    // Listen for the beforeinstallprompt event
+    
     window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        
         e.preventDefault();
-        // Stash the event so it can be triggered later
+        
         deferredPrompt = e;
-        // Update UI to notify the user they can add to home screen
+        
         if (installBtn) {
             installBtn.style.display = 'inline-block';
         }
     });
     
-    // Handle the install button click
+    
     if (installBtn) {
         installBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // Show the install prompt
+            
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
+                
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('User accepted the A2HS prompt');
@@ -33,21 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     deferredPrompt = null;
                 });
             } else {
-                // Fallback for browsers that don't support beforeinstallprompt
-                // or if the app is already installed
+                
+                
                 alert('PWA installation is not available on this device or the app is already installed.');
             }
         });
     }
     
-    // CV Download Button
+    
     const cvDownloadBtn = document.getElementById('cv-download-btn');
     if (cvDownloadBtn) {
         cvDownloadBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const cvPath = 'photos/cv.png';
             
-            // Create a temporary link to force download
+            
             const link = document.createElement('a');
             link.href = cvPath;
             link.download = 'cv.png';
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Mobile Hamburger Menu
+    
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
         });
         
-        // Close menu when clicking on a link
+        
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        // Close menu when clicking outside
+        
         document.addEventListener('click', (e) => {
             if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
                 hamburger.classList.remove('active');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Scroll-triggered animations
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -101,34 +101,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
     
-    // Observe all elements with animation classes
+    
     const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
-    // Scratch Card Logic
+    
     (function initScratchCard() {
         const canvas = document.getElementById('scratch-canvas');
         const container = document.getElementById('scratch-container');
         if (!canvas || !container) return;
         const ctx = canvas.getContext('2d');
     
-    // Load overlay image
+    
     const overlayImg = new Image();
-    overlayImg.src = 'photos/image.png'; // Make sure this image exists in the same directory
+    overlayImg.src = 'photos/image.png'; 
     
     let isDrawing = false;
     let scratchedPixels = 0;
     let totalPixels = 0;
     let hasInteracted = false;
     
-    // Setup canvas size
+    
     function resizeCanvas() {
         const rect = container.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
         
-        // Redraw overlay
+        
         if (overlayImg.complete) {
-            drawOverlay(1.0); // Draw fully opaque
+            drawOverlay(1.0); 
         }
     }
     
@@ -136,20 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.globalCompositeOperation = 'source-over';
         ctx.globalAlpha = alpha;
         
-        // Mimic object-fit: cover to perfectly align with the CSS of the under-image
+        
         const imgRatio = overlayImg.width / overlayImg.height;
         const canvasRatio = canvas.width / canvas.height;
         
         let drawWidth, drawHeight, offsetX, offsetY;
         
         if (imgRatio > canvasRatio) {
-            // Image is wider than canvas
+            
             drawHeight = canvas.height;
             drawWidth = overlayImg.width * (canvas.height / overlayImg.height);
             offsetX = (canvas.width - drawWidth) / 2;
             offsetY = 0;
         } else {
-            // Image is taller than canvas
+            
             drawWidth = canvas.width;
             drawHeight = overlayImg.height * (canvas.width / overlayImg.width);
             offsetX = 0;
@@ -157,13 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         ctx.drawImage(overlayImg, offsetX, offsetY, drawWidth, drawHeight);
-        ctx.globalAlpha = 1.0; // reset
+        ctx.globalAlpha = 1.0; 
     }
     
-    // Magnetic Healing Effect
+    
     function healLoop() {
         if (!isDrawing && hasInteracted) {
-            // Gradually draw the overlay back on with low opacity
+            
             drawOverlay(0.04);
         }
         requestAnimationFrame(healLoop);
@@ -171,12 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     overlayImg.onload = () => {
         resizeCanvas();
-        healLoop(); // Start the healing loop
+        healLoop(); 
     };
     
     window.addEventListener('resize', resizeCanvas);
     
-    // Get cursor position relative to canvas
+    
     function getPointerPos(e) {
         const rect = canvas.getBoundingClientRect();
         let clientX = e.clientX;
@@ -196,11 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function scratch(x, y) {
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(x, y, 50, 0, Math.PI * 2); // 50px radius brush
+        ctx.arc(x, y, 50, 0, Math.PI * 2); 
         ctx.fill();
     }
     
-    // Event Listeners for drawing
+    
     const startScratch = (e) => {
         isDrawing = true;
         hasInteracted = true;
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const moveScratch = (e) => {
         if (!isDrawing) return;
-        e.preventDefault(); // Prevent scrolling on touch
+        e.preventDefault(); 
         const pos = getPointerPos(e);
         scratch(pos.x, pos.y);
     };
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('touchend', endScratch);
     })();
     
-    // Smooth scrolling for navigation links
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 1. Typewriter Effect
+    
     (function initTypewriter() {
         const typeWriterElement = document.getElementById('typewriter');
         if (!typeWriterElement) return;
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDeleting) {
             typeWriterElement.textContent = currentRole.substring(0, charIndex - 1);
             charIndex--;
-            typingSpeed = 50; // faster when deleting
+            typingSpeed = 50; 
         } else {
             typeWriterElement.textContent = currentRole.substring(0, charIndex + 1);
             charIndex++;
@@ -277,21 +277,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!isDeleting && charIndex === currentRole.length) {
             isDeleting = true;
-            typingSpeed = 1500; // pause at end
+            typingSpeed = 1500; 
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
-            typingSpeed = 500; // pause before typing new word
+            typingSpeed = 500; 
         }
 
         setTimeout(type, typingSpeed);
     }
     
-    // Start typing after a short delay to match entry animations
+    
     setTimeout(type, 1500);
     })();
 
-    // 3. Background Particles Network
+    
     (function initParticlesNetwork() {
         const partCanvas = document.getElementById('particles-canvas');
         if (!partCanvas) return;
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.x > partCanvas.width || this.x < 0) this.directionX = -this.directionX;
             if (this.y > partCanvas.height || this.y < 0) this.directionY = -this.directionY;
 
-            // Collision detection - mouse position / particle position
+            
             let dx = mouse.x - this.x;
             let dy = mouse.y - this.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
@@ -403,9 +403,9 @@ document.addEventListener('DOMContentLoaded', () => {
     animateParticles();
     })();
 
-// --- Global Enhancements ---
 
-// Lazy load off-screen videos for performance
+
+
 const videos = document.querySelectorAll('.horizontal-panel video, .mobile-video-container video, .project-video video');
 if (videos.length > 0 && 'IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver((entries) => {
@@ -425,12 +425,12 @@ if (videos.length > 0 && 'IntersectionObserver' in window) {
     });
 }
 
-// 1. Noise Overlay (add to all pages)
+
 const noise = document.createElement('div');
 noise.className = 'noise-overlay';
 document.body.appendChild(noise);
 
-// 2. Custom Cursor (Simple Sober Aura)
+
 if (window.matchMedia("(pointer: fine)").matches) {
     const dot = document.createElement('div');
     dot.className = 'cursor-dot';
@@ -440,13 +440,13 @@ if (window.matchMedia("(pointer: fine)").matches) {
     document.body.appendChild(aura);
     
     window.addEventListener('mousemove', (e) => {
-        // Instant follow for both, no delay, maximum stability
+        
         const transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
         dot.style.transform = transform;
         aura.style.transform = transform;
     });
     
-    // Scale cursor on interactive elements
+    
     const interactives = document.querySelectorAll('a, button, .interactive, input, textarea');
     interactives.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -460,7 +460,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     });
 }
 
-// 3. Scroll Progress Indicator
+
 const progressBar = document.createElement('div');
 progressBar.className = 'scroll-progress';
 document.body.appendChild(progressBar);
@@ -472,10 +472,10 @@ window.addEventListener('scroll', () => {
     progressBar.style.width = scrolled + "%";
 });
 
-// 4. View Transitions API (Crossfades)
+
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', e => {
-        // Only apply to internal links that are not anchor links
+        
         if (link.hostname === window.location.hostname && 
             !link.href.includes('#') && 
             link.target !== '_blank' &&
@@ -491,7 +491,7 @@ document.querySelectorAll('a').forEach(link => {
     });
 });
 
-// 5. Active Page Indicator
+
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 const navigationAnchors = document.querySelectorAll('.nav-links a');
 navigationAnchors.forEach(link => {
@@ -501,7 +501,7 @@ navigationAnchors.forEach(link => {
     }
 });
 
-// 6. Back to Top Button
+
 const backToTopBtn = document.createElement('button');
 backToTopBtn.className = 'back-to-top';
 backToTopBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
@@ -524,7 +524,7 @@ backToTopBtn.addEventListener('click', () => {
 
 });
 
-// 7. Global Matrix Rain Background
+
 (function initMatrixRain() {
     const canvas = document.createElement('canvas');
     canvas.id = 'matrix-rain';
@@ -535,7 +535,7 @@ backToTopBtn.addEventListener('click', () => {
     canvas.style.height = '100vh';
     canvas.style.zIndex = '-2';
     canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.15'; // Increased opacity for better hacker visibility
+    canvas.style.opacity = '0.15'; 
     document.body.prepend(canvas);
 
     const ctx = canvas.getContext('2d');
@@ -543,14 +543,14 @@ backToTopBtn.addEventListener('click', () => {
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     
-    // Katakana + Latin characters for classic matrix look
+    
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
     const fontSize = 16;
     let columns = width / fontSize;
     const drops = [];
     
     for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * -100; // start offscreen
+        drops[x] = Math.random() * -100; 
     }
     
     window.addEventListener('resize', () => {
@@ -563,7 +563,7 @@ backToTopBtn.addEventListener('click', () => {
     });
 
     function draw() {
-        // Semi-transparent black background to create fading trail
+        
         ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
         ctx.fillRect(0, 0, width, height);
         
@@ -572,21 +572,21 @@ backToTopBtn.addEventListener('click', () => {
         for (let i = 0; i < drops.length; i++) {
             const text = characters.charAt(Math.floor(Math.random() * characters.length));
             
-            // Classic Hacker Green
+            
             ctx.fillStyle = '#00FF41';
             
-            // Draw the character
+            
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
             
-            // Reset drop to top randomly after it crosses the screen
+            
             if (drops[i] * fontSize > height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
             
-            // Move drop down
+            
             drops[i]++;
         }
     }
     
-    setInterval(draw, 50); // 20fps for classic slow rain
+    setInterval(draw, 50); 
 })();

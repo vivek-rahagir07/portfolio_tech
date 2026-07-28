@@ -392,7 +392,7 @@ body {
     color: rgba(0, 255, 255, 0.3);
 }
 
-/* Custom scrollbar for terminal */
+
 .terminal-body::-webkit-scrollbar {
     width: 10px;
 }
@@ -409,7 +409,7 @@ body {
     background: linear-gradient(180deg, rgba(0, 255, 255, 0.6) 0%, rgba(0, 255, 255, 0.4) 100%);
 }
 
-/* Colors for terminal output */
+
 .text-magenta { color: #ff00ff; text-shadow: 0 0 8px rgba(255, 0, 255, 0.5); }
 .text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
 .text-green { color: #00ff00; text-shadow: 0 0 8px rgba(0, 255, 0, 0.5); }
@@ -417,7 +417,7 @@ body {
 .text-red { color: #ff0000; text-shadow: 0 0 8px rgba(255, 0, 0, 0.5); }
 .text-yellow { color: #ffff00; text-shadow: 0 0 8px rgba(255, 255, 0, 0.5); }
 
-/* Image block for developer */
+
 .dev-image-container {
     display: flex;
     justify-content: center;
@@ -482,7 +482,7 @@ body {
     border-radius: 0 5px 5px 0;
 }
 
-/* Popup Modal Styles */
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -625,7 +625,7 @@ body {
     box-shadow: 0 0 15px rgba(255, 95, 86, 0.4);
 }
 
-/* Typing cursor animation */
+
 .typing-cursor {
     display: inline-block;
     width: 10px;
@@ -640,7 +640,7 @@ body {
     51%, 100% { opacity: 0; }
 }
 
-/* System status indicators */
+
 .status-bar {
     display: flex;
     justify-content: space-between;
@@ -679,7 +679,7 @@ body {
     50% { opacity: 0.5; }
 }
 
-/* Scan line effect overlay */
+
 .scanlines {
     position: fixed;
     top: 0;

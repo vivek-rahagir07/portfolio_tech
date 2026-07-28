@@ -10,27 +10,27 @@
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vivek-rahagir.com/iot.html">
     <meta property="og:title" content="IoT & Robotics | Full Stack Developer">
     <meta property="og:description" content="IoT projects by Vivek Yadav — hardware meets software with Arduino, ESP32, Firebase, and real-time web dashboards.">
     <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- Twitter -->
+    
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivek-rahagir.com/iot.html">
     <meta property="twitter:title" content="IoT & Robotics | Full Stack Developer">
     <meta property="twitter:description" content="IoT projects by Vivek Yadav — hardware meets software with Arduino, ESP32, Firebase, and real-time web dashboards.">
     <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- PWA -->
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
-    <!-- Structured Data (JSON-LD) -->
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -45,9 +45,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ═══════════════════════════════════════════ */
-        /*  PREMIUM SLEEK IoT PAGE STYLES              */
-        /* ═══════════════════════════════════════════ */
+        
+        
+        
 
         :root {
             --glass-bg: rgba(20, 20, 20, 0.4);
@@ -63,7 +63,7 @@
             background-color: #050505;
         }
 
-        /* ── Elegant Floating Background Images ── */
+        
         .bg-floating-container {
             position: fixed;
             inset: 0;
@@ -74,9 +74,9 @@
         
         .floating-img {
             position: absolute;
-            opacity: 0.03; /* Barely visible, highly elegant */
+            opacity: 0.03; 
             filter: grayscale(100%) contrast(1.2);
-            border-radius: 8px; /* Sleek corners */
+            border-radius: 8px; 
             animation: panAnim 30s infinite alternate linear;
             transition: opacity 0.8s ease;
             object-fit: cover;
@@ -88,7 +88,7 @@
             100% { transform: translate(30px, 30px) scale(1.05); }
         }
 
-        /* ── Content Layer ── */
+        
         .iot-content-layer {
             position: relative;
             z-index: 10;
@@ -102,7 +102,7 @@
             pointer-events: none;
         }
 
-        /* ── Hero Area ── */
+        
         .iot-hero {
             padding: 160px 5% 0;
             position: relative;
@@ -110,7 +110,7 @@
             margin: 0 auto;
         }
 
-        /* Refined Ambient Glows */
+        
         .glow-orb {
             position: absolute;
             border-radius: 50%;
@@ -125,7 +125,7 @@
             background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
         }
 
-        /* Title row */
+        
         .iot-title-row {
             display: flex;
             align-items: flex-end;
@@ -144,7 +144,7 @@
             line-height: 1.7;
         }
 
-        /* Sleek Stat pills */
+        
         .iot-stats {
             display: flex;
             gap: 1.5rem;
@@ -180,14 +180,14 @@
             font-weight: 500;
         }
 
-        /* ── Main Grid ── */
+        
         .iot-main-grid {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
             gap: 1.5rem;
         }
 
-        /* Sleek Premium Cards */
+        
         .premium-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -204,7 +204,7 @@
             transform: translateY(-2px);
         }
 
-        /* Project card */
+        
         .project-tag {
             display: flex;
             align-items: center;
@@ -267,7 +267,7 @@
             color: var(--text-muted);
         }
 
-        /* Passion card overrides */
+        
         .iot-passion-card {
             display: flex;
             flex-direction: column;
@@ -306,7 +306,7 @@
             background: rgba(212, 175, 55, 0.05);
         }
 
-        /* ── Minimalist Premium CTA ── */
+        
         .gallery-cta-wrapper {
             margin-top: auto;
         }
@@ -338,7 +338,7 @@
             transform: translateX(4px);
         }
 
-        /* ── Fullscreen Animated Gallery Modal ── */
+        
         .gallery-modal {
             position: fixed;
             inset: 0;
@@ -399,7 +399,7 @@
             transform: rotate(90deg);
         }
 
-        /* Dynamic Grid Layout */
+        
         .dynamic-gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -410,7 +410,7 @@
         
         .g-item {
             position: relative;
-            border-radius: 8px; /* Sleek edges */
+            border-radius: 8px; 
             overflow: hidden;
             background: #111;
             cursor: pointer;
@@ -419,7 +419,7 @@
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
         }
         
-        /* Staggered Pop-in class */
+        
         .g-item.pop-in {
             opacity: 1;
             transform: scale(1) translateY(0);
@@ -449,7 +449,7 @@
             filter: grayscale(0%);
         }
 
-        /* Structural Spans */
+        
         .g-item.span-2-col { grid-column: span 2; }
         .g-item.span-2-row { grid-row: span 2; }
 
@@ -476,7 +476,7 @@
             font-size: 0.8rem; font-weight: 300;
         }
 
-        /* ── Lightbox ── */
+        
         .iot-lightbox {
             display: none;
             position: fixed;
@@ -498,7 +498,7 @@
             to   { transform: scale(1); opacity: 1; }
         }
 
-        /* ── Responsive ── */
+        
         @media (max-width: 1024px) {
             .iot-main-grid { grid-template-columns: 1fr; }
             .g-item.span-2-col { grid-column: span 1; }
@@ -520,17 +520,17 @@
     <main id="main-content">
         <div class="iot-wrapper" id="iot-wrapper">
 
-            <!-- ── Subtle Cinematic Floating Background ── -->
+            
             <div class="bg-floating-container" id="bg-floating-container">
-                <!-- Injected via JS -->
+                
             </div>
 
-            <!-- ── Content Layer ── -->
+            
             <div class="iot-content-layer">
                 
                 <div class="glow-orb top-right"></div>
 
-                <!-- Navigation -->
+                
                 <nav>
                     <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
                     <ul class="nav-links">
@@ -554,7 +554,7 @@
                     </div>
                 </nav>
 
-                <!-- Hero Section -->
+                
                 <section class="iot-hero fade-in-up">
 
                     <div class="iot-title-row">
@@ -576,7 +576,7 @@
                     </div>
 
                     <div class="iot-main-grid">
-                        <!-- Featured Project -->
+                        
                         <div class="premium-card iot-project-card fade-in-up delay-1">
                             <div class="project-tag"><i class="fa-solid fa-circle"></i> Featured Work</div>
                             <h3>AI Based Traffic Light System</h3>
@@ -607,7 +607,7 @@
                             </div>
                         </div>
 
-                        <!-- Passion Card & CTA -->
+                        
                         <div class="premium-card iot-passion-card fade-in-up delay-2">
                             <h3>The Hardware Realm</h3>
                             <p>Beyond the screen, IoT and robotics are my ultimate playground. I thrive on bringing code into the physical world—wiring circuits, programming microcontrollers, and building systems that interact with their physical environment.</p>
@@ -638,7 +638,7 @@
                 </footer>
             </div>
 
-            <!-- ── Fullscreen Animated Gallery Modal ── -->
+            
             <div class="gallery-modal" id="gallery-modal">
                 <div class="modal-header">
                     <div class="modal-title">
@@ -648,7 +648,7 @@
                 </div>
 
                 <div class="dynamic-gallery-grid" id="dynamic-grid">
-                    <!-- Gallery items -->
+                    
                     <div class="g-item span-2-col span-2-row">
                         <img src="IOT/image.png" alt="AI Traffic Architecture">
                         <div class="g-item-caption">
@@ -722,7 +722,7 @@
                 </div>
             </div>
 
-            <!-- Lightbox -->
+            
             <div class="iot-lightbox" id="iot-lightbox">
                 <img src="" alt="Fullscreen" id="lb-img">
             </div>
@@ -733,7 +733,7 @@
     <script src="script.js"></script>
     <script>
     (function() {
-        // --- 1. Elegant Background Generator ---
+        
         const bgContainer = document.getElementById('bg-floating-container');
         const images = [
             'IOT/image.png', 'IOT/image%20copy.png', 'IOT/esp32_board.png', 
@@ -741,7 +741,7 @@
             'IOT/car.png', 'IOT/robotic%20arm.png', 'IOT/open%20cv.png', 'IOT/resberry%20pie%20.png'
         ];
         
-        // Generate 8 slow panning background elements
+        
         for(let i=0; i<8; i++) {
             const img = document.createElement('img');
             img.src = images[i % images.length];
@@ -751,7 +751,7 @@
             const top = Math.random() * 100;
             const left = Math.random() * 100;
             const delay = Math.random() * -30;
-            const duration = Math.random() * 20 + 30; // Very slow: 30s to 50s
+            const duration = Math.random() * 20 + 30; 
             
             img.style.width = `${size}px`;
             img.style.height = `${size}px`;
@@ -763,7 +763,7 @@
             bgContainer.appendChild(img);
         }
 
-        // --- 2. Gallery Modal Logic ---
+        
         const wrapper = document.getElementById('iot-wrapper');
         const openBtn = document.getElementById('open-gallery-btn');
         const closeBtn = document.getElementById('close-gallery-btn');
@@ -773,12 +773,12 @@
             wrapper.classList.add('gallery-open');
             document.body.style.overflow = 'hidden';
             
-            // Sleek Staggered pop-in animation
+            
             galleryItems.forEach((item, index) => {
                 item.classList.remove('pop-in');
                 item.style.transitionDelay = '0s';
                 
-                // Using random delays for organic pop-up feel
+                
                 setTimeout(() => {
                     item.style.transitionDelay = `${Math.random() * 0.2}s`;
                     item.classList.add('pop-in');
@@ -798,7 +798,7 @@
             }, 600);
         });
 
-        // --- 3. Lightbox Logic ---
+        
         const lightbox = document.getElementById('iot-lightbox');
         const lbImg = document.getElementById('lb-img');
         

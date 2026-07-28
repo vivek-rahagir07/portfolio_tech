@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let fillStarted = false;
         let fillRevealY = 0;
         
-        // Mouse interaction object
+        
         const mouse = {
             x: null,
             y: null,
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cssWidth = parent.clientWidth;
                 cssHeight = parent.clientHeight;
             } else {
-                // Fallback to window size if hidden
+                
                 cssWidth = window.innerWidth;
                 cssHeight = window.innerHeight;
             }
@@ -69,12 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const logicalHeight = canvas.logicalHeight || canvas.height;
                 if (logicalWidth === 0 || logicalHeight === 0) return;
                 
-                // Base size on width, but restrict by height to prevent vertical overflow
+                
                 let targetWidth = Math.min(logicalWidth * 0.9, 1000);
                 let scale = targetWidth / image.width;
                 let targetHeight = image.height * scale;
                 
-                // Constrain height to leave room for quote and navbar
+                
                 const maxAllowedHeight = logicalHeight * 0.75;
                 if (targetHeight > maxAllowedHeight) {
                     targetHeight = maxAllowedHeight;
@@ -172,10 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             
                             if (isBg) {
-                                bgMap[nIdx] = 1; // background
+                                bgMap[nIdx] = 1; 
                                 push(nx, ny);
                             } else {
-                                bgMap[nIdx] = 2; // edge of person
+                                bgMap[nIdx] = 2; 
                             }
                         }
                     }
@@ -283,15 +283,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         function animate() {
-            // Reset transform for clean clear
+            
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Reapply device pixel ratio scaling
+            
             const dpr = canvas.dpr || 1;
             ctx.scale(dpr, dpr);
             
-            // Start signature and quotes immediately
+            
             if (!canvas.signatureStarted) {
                 canvas.signatureStarted = true;
                 const parent = canvas.parentElement;
@@ -336,22 +336,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (allEdgesDone) {
                 fillStarted = true;
-                fillRevealY += 5; // Start revealing fill slightly faster to catch up beautifully
+                fillRevealY += 5; 
             }
             
-            // If all fill particles are revealed, person is completely loaded
+            
             if (fillStarted && hasFills && allFillsDone) {
                 if (canvasId === 'particle-reveal-canvas-index' && !canvas.fadeOutTriggered) {
                     canvas.fadeOutTriggered = true;
-                    // Transition to main page shortly after person fully loads
+                    
                     setTimeout(() => {
                         const overlay = document.getElementById('intro-overlay');
                         if (overlay) {
                             overlay.style.opacity = '0';
                             overlay.style.visibility = 'hidden';
-                            setTimeout(() => overlay.remove(), 1500); // Remove from DOM after fade out
+                            setTimeout(() => overlay.remove(), 1500); 
                         }
-                    }, 800); // Wait 0.8s after person is fully revealed before fading out
+                    }, 800); 
                 }
             }
             

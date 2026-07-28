@@ -43,7 +43,7 @@ ul {
     list-style: none;
 }
 
-/* Base Animations */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -55,11 +55,9 @@ ul {
     }
 }
 
-/* ═══════════════════════════════════════════
-   GLOBAL ENHANCEMENTS
-   ═══════════════════════════════════════════ */
 
-/* Custom Cursor */
+
+
 @media (pointer: fine) {
     * { cursor: none !important; }
 }
@@ -97,7 +95,7 @@ ul {
     width: 50px; height: 50px;
 }
 
-/* Noise Overlay */
+
 .noise-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -110,7 +108,7 @@ ul {
     background-size: 256px 256px;
 }
 
-/* Scroll Progress Bar */
+
 .scroll-progress {
     position: fixed;
     top: 0; left: 0;
@@ -128,7 +126,7 @@ ul {
     100% { background-position: -200% 0; }
 }
 
-/* Active Navigation Indicator */
+
 .active-nav {
     color: var(--accent) !important;
     position: relative;
@@ -142,7 +140,7 @@ ul {
     border-radius: 2px;
 }
 
-/* Back to Top Button */
+
 .back-to-top {
     position: fixed;
     bottom: 30px; right: 30px;
@@ -176,7 +174,7 @@ ul {
 
 
 
-/* Scroll Animation Classes */
+
 .fade-in-up {
     opacity: 0;
     transform: translateY(30px);
@@ -221,7 +219,7 @@ ul {
     transform: scale(1);
 }
 
-/* Page Transition */
+
 .page-transition {
     animation: pageFadeIn 0.5s ease-out;
 }
@@ -260,7 +258,7 @@ ul {
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
 
-/* Glassmorphism */
+
 .glass-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
     backdrop-filter: blur(40px);
@@ -296,7 +294,7 @@ ul {
     opacity: 1;
 }
 
-/* Navigation - Floating Top Navbar */
+
 nav {
     position: fixed;
     top: 20px;
@@ -397,10 +395,10 @@ nav {
 }
 
 #install-btn {
-    display: none; /* Hidden by default, shown when PWA installable */
+    display: none; 
 }
 
-/* Hero Section */
+
 #hero {
     min-height: 100vh;
     display: flex;
@@ -411,7 +409,7 @@ nav {
     position: relative;
 }
 
-/* Ambient glow behind text */
+
 .hero-bg-glow {
     position: absolute;
     top: 20%;
@@ -588,7 +586,7 @@ nav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Scratch Effect Hero Image */
+
 .hero-image {
     flex: 1;
     display: flex;
@@ -599,7 +597,7 @@ nav {
 
 #scratch-container {
     position: relative;
-    width: 450px; /* Slightly larger */
+    width: 450px; 
     height: 550px;
     overflow: hidden;
     cursor: crosshair;
@@ -615,8 +613,8 @@ nav {
 }
 
 .section {
-    padding: 120px 4% 80px; /* Reduced side padding slightly for more width */
-    max-width: 1450px; /* Increased max width */
+    padding: 120px 4% 80px; 
+    max-width: 1450px; 
     margin: 0 auto;
     min-height: 100vh;
     display: flex;
@@ -647,7 +645,7 @@ nav {
     box-shadow: 0 0 15px var(--accent);
 }
 
-/* About Section */
+
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -684,9 +682,9 @@ strong {
 }
 
 @keyframes hackerGlow {
-    0%, 100% { color: #d4af37; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); } /* Gold */
-    33% { color: #f4d03f; text-shadow: 0 0 15px rgba(244, 208, 63, 0.6); } /* Light Gold */
-    66% { color: #c9a227; text-shadow: 0 0 15px rgba(201, 162, 39, 0.6); } /* Dark Gold */
+    0%, 100% { color: #d4af37; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); } 
+    33% { color: #f4d03f; text-shadow: 0 0 15px rgba(244, 208, 63, 0.6); } 
+    66% { color: #c9a227; text-shadow: 0 0 15px rgba(201, 162, 39, 0.6); } 
 }
 
 .about-text p {
@@ -787,7 +785,7 @@ strong {
 .text-gold { color: #fbbf24 !important; }
 .mt-4 { margin-top: 3rem; }
 
-/* Half Circle Orbit Layout */
+
 .layout-half-circle {
     display: flex;
     justify-content: space-between;
@@ -825,7 +823,7 @@ strong {
 }
 
 .btn-purple {
-    background: #3b0764; /* deep purple */
+    background: #3b0764; 
     color: white;
     border: none;
     padding: 12px 30px;
@@ -898,7 +896,7 @@ strong {
     transform: none;
     width: 700px;
     height: 700px;
-    pointer-events: none; /* Let clicks pass through empty space */
+    pointer-events: none; 
     max-width: 90vw;
     max-height: 90vw;
     filter: drop-shadow(0 0 60px rgba(59, 130, 246, 0.15));
@@ -910,7 +908,7 @@ strong {
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.08);
     position: relative;
-    pointer-events: auto; /* Re-enable for the ring */
+    pointer-events: auto; 
     box-shadow: 
         0 0 100px rgba(59, 130, 246, 0.08) inset,
         0 0 40px rgba(212, 175, 55, 0.05) inset;
@@ -918,7 +916,7 @@ strong {
     background: radial-gradient(circle, rgba(59, 130, 246, 0.02) 0%, transparent 70%);
 }
 
-/* Second inner dashed line with radar spin */
+
 .orbit-ring-half::after {
     content: '';
     position: absolute;
@@ -946,7 +944,7 @@ strong {
 
 .orbit-center-half {
     position: absolute;
-    top: 20%; /* Positioned inside the top of the arc */
+    top: 20%; 
     left: 50%;
     transform: translateX(-50%);
     width: 280px;
@@ -1060,7 +1058,7 @@ strong {
     align-items: center;
     font-size: 2.5rem;
     transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    /* simulated border since clip-path cuts off borders */
+    
     position: relative;
     max-width: 12vw;
     max-height: 14vw;
@@ -1083,14 +1081,14 @@ strong {
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
-/* Projects Section */
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
 }
 
-/* Project Icon */
+
 .project-icon {
     width: 48px;
     height: 48px;
@@ -1112,7 +1110,7 @@ strong {
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
 }
 
-/* GitHub Link */
+
 .github-link {
     color: #fff;
     font-weight: 500;
@@ -1128,7 +1126,7 @@ strong {
     color: var(--accent);
 }
 
-/* View Toggle Buttons */
+
 .view-btn {
     font-size: 0.9rem;
     font-weight: 500;
@@ -1145,7 +1143,7 @@ strong {
     border-color: rgba(59, 130, 246, 0.5) !important;
 }
 
-/* Carousel Styles */
+
 .projects-carousel {
     width: 100%;
     margin-top: 2rem;
@@ -1314,16 +1312,16 @@ strong {
     -webkit-backdrop-filter: blur(10px);
 }
 
-/* Hacker Glow Text Animation */
+
 .hacker-text {
     animation: hackerColorCycle 4s infinite alternate;
     font-weight: 700;
 }
 
 @keyframes hackerColorCycle {
-    0%   { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.8); } /* Matrix Green */
-    50%  { color: #ff003c; text-shadow: 0 0 10px rgba(255, 0, 60, 0.8); } /* Cyberpunk Red */
-    100% { color: #00e5ff; text-shadow: 0 0 10px rgba(0, 229, 255, 0.8); } /* Neon Blue */
+    0%   { color: #00ff41; text-shadow: 0 0 10px rgba(0, 255, 65, 0.8); } 
+    50%  { color: #ff003c; text-shadow: 0 0 10px rgba(255, 0, 60, 0.8); } 
+    100% { color: #00e5ff; text-shadow: 0 0 10px rgba(0, 229, 255, 0.8); } 
 }
 
 .project-card {
@@ -1371,7 +1369,7 @@ strong {
 
 .project-card:hover {
     transform: translateY(-12px) scale(1.03);
-    border-color: rgba(0, 255, 65, 0.4); /* subtle hacker green edge */
+    border-color: rgba(0, 255, 65, 0.4); 
     box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(0,255,65,0.15), inset 0 0 20px rgba(0,255,65,0.05);
     z-index: 10;
 }
@@ -1478,7 +1476,7 @@ strong {
     background-color: transparent;
 }
 
-/* Trusted Leaders Section */
+
 .tl-section {
     position: relative;
     background-color: transparent;
@@ -1590,7 +1588,7 @@ strong {
     color: #000;
 }
 
-/* Floating Word Badges */
+
 .tl-word-grid {
     position: absolute;
     inset: 0;
@@ -1632,25 +1630,25 @@ strong {
     color: rgba(212, 175, 55, 0.5);
 }
 
-/* Top row — scattered */
+
 .tl-w-1  { top: 8%;  left: 5%;  animation-delay: 0s; }
 .tl-w-2  { top: 5%;  left: 28%; animation-delay: 0.8s; }
 .tl-w-3  { top: 12%; right: 25%; animation-delay: 1.6s; }
 .tl-w-4  { top: 6%;  right: 5%;  animation-delay: 0.4s; }
 
-/* Middle-top row */
+
 .tl-w-5  { top: 28%; left: 3%;  animation-delay: 1.2s; }
 .tl-w-6  { top: 32%; left: 18%; animation-delay: 2s; }
 .tl-w-7  { top: 26%; right: 15%; animation-delay: 0.6s; }
 .tl-w-8  { top: 30%; right: 2%;  animation-delay: 1.8s; }
 
-/* Middle-bottom row */
+
 .tl-w-9  { top: 60%; left: 6%;  animation-delay: 1s; }
 .tl-w-10 { top: 65%; left: 22%; animation-delay: 2.2s; }
 .tl-w-11 { top: 58%; right: 20%; animation-delay: 0.2s; }
 .tl-w-12 { top: 63%; right: 4%;  animation-delay: 1.4s; }
 
-/* Bottom row */
+
 .tl-w-13 { top: 85%; left: 12%; animation-delay: 2.5s; }
 .tl-w-14 { top: 88%; right: 15%; animation-delay: 0.9s; }
 
@@ -1671,7 +1669,7 @@ strong {
     .tl-section { padding: 5rem 1.5rem; }
 }
 
-/* Testimonials Section - Customer Reviews layout */
+
 :root {
     --cr-gold: #d4af37;
     --cr-gold-glow: rgba(212, 175, 55, 0.4);
@@ -1693,7 +1691,7 @@ strong {
     position: relative;
 }
 
-/* Header */
+
 .cr-header {
     margin-bottom: 4rem;
 }
@@ -1713,7 +1711,7 @@ strong {
     letter-spacing: -0.5px;
 }
 
-/* Layout */
+
 .cr-layout {
     display: flex;
     align-items: center;
@@ -1721,7 +1719,7 @@ strong {
     min-height: 450px;
 }
 
-/* Left Side: Avatars */
+
 .cr-left {
     position: relative;
     width: 350px;
@@ -1732,7 +1730,7 @@ strong {
     justify-content: center;
 }
 
-/* Arc Curve */
+
 .cr-arc {
     position: absolute;
     top: 0;
@@ -1843,7 +1841,7 @@ strong {
     font-size: 0.9rem;
 }
 
-/* Right Side: Quote */
+
 .cr-right {
     flex: 1;
     position: relative;
@@ -1881,7 +1879,7 @@ strong {
     margin-right: 2px;
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
     .cr-layout {
         flex-direction: column;
@@ -1938,7 +1936,7 @@ strong {
     }
 }
 
-/* Old Split Styles - Remove */
+
 .testimonials-split,
 .split-container,
 .split-left,
@@ -1958,7 +1956,7 @@ strong {
     display: none !important;
 }
 
-/* Contact Section - Premium Redesign */
+
 .contact-wrapper {
     display: grid;
     grid-template-columns: minmax(auto, 480px) minmax(auto, 480px);
@@ -1966,7 +1964,7 @@ strong {
     gap: 5rem;
     width: 100%;
     margin: 0 auto;
-    align-items: center; /* Center vertically to avoid stretching the form container with empty space */
+    align-items: center; 
 }
 
 .contact-left {
@@ -2004,7 +2002,7 @@ strong {
 .contact-card {
     display: flex;
     align-items: center;
-    justify-content: center; /* Perfectly center the text block */
+    justify-content: center; 
     position: relative;
     padding: 1.2rem;
     text-decoration: none;
@@ -2202,7 +2200,7 @@ footer {
     background: rgba(0,0,0,0.5);
 }
 
-/* Draggable Canvas Section */
+
 #drag-container {
     width: 100vw;
     height: 100vh;
@@ -2210,7 +2208,7 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1; /* Below nav which should be higher */
+    z-index: 1; 
     background-color: #000000;
 }
 
@@ -2240,7 +2238,7 @@ footer {
 }
 
 .drag-card:hover {
-    transform: scale(1.05) rotate(0deg) !important; /* overrides inline rotation */
+    transform: scale(1.05) rotate(0deg) !important; 
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     z-index: 10;
@@ -2264,7 +2262,7 @@ footer {
     width: 100%;
     height: auto;
     display: block;
-    pointer-events: none; /* prevent ghost dragging */
+    pointer-events: none; 
 }
 
 .card-info {
@@ -2310,7 +2308,7 @@ footer {
     display: none !important;
 }
 
-/* Lightbox Modal */
+
 .lightbox {
     position: fixed;
     top: 0;
@@ -2355,7 +2353,7 @@ footer {
     color: #d4af37;
 }
 
-/* Responsive */
+
 @media (max-width: 1024px) {
     .name { font-size: 5rem; }
     #scratch-container { width: 400px; height: 500px; }
@@ -2385,7 +2383,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    /* Navigation */
+    
     nav {
         width: 95%;
         padding: 0 15px;
@@ -2459,7 +2457,7 @@ footer {
         transform: rotate(-45deg) translate(4px, -4px);
     }
     
-    /* Hero Section */
+    
     #hero {
         flex-direction: column;
         justify-content: center;
@@ -2485,7 +2483,7 @@ footer {
     .section-header h2 { font-size: 2rem; }
     .contact-methods { flex-direction: column; align-items: center; gap: 1.5rem; }
     
-    /* About Section Mobile - Hide horizontal scroll, show vertical */
+    
     .scroll-jack-wrapper {
         display: none !important;
     }
@@ -2631,7 +2629,7 @@ footer {
         line-height: 1.4;
     }
     
-    /* Mobile Gallery - Hide draggable, show grid */
+    
     #drag-container {
         display: none !important;
     }
@@ -2714,7 +2712,7 @@ footer {
         margin: 0;
     }
     
-    /* Ensure content visibility */
+    
     main {
         padding-top: 100px;
         position: relative;
@@ -2726,7 +2724,7 @@ footer {
         border: 1px solid rgba(212, 175, 55, 0.3) !important;
     }
     
-    /* Projects */
+    
     .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .project-card .project-video { height: 160px; }
     .project-card h3 { font-size: 1.1rem; }
@@ -2735,18 +2733,18 @@ footer {
     .project-tech { font-size: 0.8rem; }
     .view-btn { padding: 6px 12px; font-size: 0.8rem; }
     
-    /* Carousel */
+    
     .carousel-3d-nav { width: 40px; height: 40px; font-size: 1rem; }
     .carousel-3d-nav.prev { left: 10px; }
     .carousel-3d-nav.next { right: 10px; }
     
-    /* Gallery */
+    
     .canvas-center h2 { font-size: 2.5rem; }
     .canvas-center p { font-size: 1rem; }
     .gallery-card { width: 120px; height: 160px; }
     .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
     
-    /* Skills */
+    
     .layout-half-circle { flex-direction: column; padding: 10% 4%; }
     .skills-intro-left { width: 100%; margin-top: 0; margin-bottom: 1.5rem; }
     .skills-intro-left p { font-size: 0.9rem; }
@@ -2776,7 +2774,7 @@ footer {
     }
     .see-more { font-size: 0.85rem; padding: 8px 16px; }
     
-    /* Projects Section Mobile - Hide grid/carousel, show simple cards */
+    
     .section-header .view-toggle {
         display: none !important;
     }
@@ -2907,7 +2905,7 @@ footer {
         font-weight: 500;
     }
     
-    /* Developer Guide */
+    
     .guide-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -2927,7 +2925,7 @@ footer {
         margin: 0 auto;
     }
     
-    /* Mindmap Tree Styles */
+    
     .mindmap-tree {
         padding: 3rem;
         border-radius: 24px;
@@ -3049,7 +3047,7 @@ footer {
         box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     }
     
-    /* Horizontal connector for siblings */
+    
     .tree-level::before {
         content: '';
         position: absolute;
@@ -3062,7 +3060,7 @@ footer {
         box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     }
     
-    /* Mobile Tree */
+    
     @media (max-width: 768px) {
         .mindmap-tree {
             padding: 1.5rem;
@@ -3098,7 +3096,7 @@ footer {
         }
     }
     
-    /* Mindmap Canvas Styles */
+    
     .mindmap-canvas-wrapper {
         position: fixed;
         top: 0;
@@ -3118,7 +3116,7 @@ footer {
         display: block;
     }
     
-    /* Tips Section */
+    
     .guide-tips {
         margin-bottom: 2.5rem;
         padding: 2rem;
@@ -3178,7 +3176,7 @@ footer {
         font-size: 0.95rem;
     }
     
-    /* Resources Section */
+    
     .guide-resources {
         padding: 2rem;
         border-radius: 20px;
@@ -3230,7 +3228,7 @@ footer {
         color: var(--accent);
     }
     
-    /* Mobile Mindmap */
+    
     @media (max-width: 768px) {
         .mindmap-wrapper {
             padding: 1.5rem;
@@ -3294,7 +3292,7 @@ footer {
         }
     }
     
-    /* Contact */
+    
     .contact-wrapper { padding: 0 4%; gap: 2rem; }
     .collab-text { font-size: 2.5rem; }
     .contact-desc { font-size: 0.9rem; }
@@ -3304,24 +3302,24 @@ footer {
     .contact-form input, .contact-form textarea { padding: 12px; font-size: 0.9rem; }
     .contact-form button { padding: 12px 24px; font-size: 0.9rem; }
     
-    /* General visibility fixes */
+    
     h1, h2, h3, h4, p, span, div {
         visibility: visible !important;
         opacity: 1 !important;
     }
     
-    /* Smooth transitions for mobile */
+    
     * {
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
     
-    /* Better touch targets */
+    
     a, button {
         min-height: 44px;
         min-width: 44px;
     }
     
-    /* Smooth page transitions */
+    
     .page-transition {
         animation: fadeIn 0.5s ease;
     }
@@ -3340,7 +3338,7 @@ footer {
     .projects-grid { grid-template-columns: 1fr; }
 }
 
-/* New Dark Mode styles for Trusted Leaders */
+
 .tl-dark-mode {
     background-color: #000;
     position: relative;
@@ -3445,7 +3443,7 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* Central Glowing Orb */
+
 .tl-dark-mode::before {
     content: '';
     position: absolute;
@@ -3531,7 +3529,7 @@ footer {
     box-shadow: 0 8px 25px rgba(255,255,255,0.3);
 }
 
-/* Mobile Responsiveness for Testimonials Hero */
+
 @media (max-width: 768px) {
     .tl-title-white-text {
         font-size: 2.2rem;
@@ -3558,7 +3556,7 @@ footer {
         font-size: 0.85rem;
         padding: 8px 16px;
     }
-    /* Hide some floating words on very small screens to avoid clutter */
+    
     .tl-w-1, .tl-w-2, .tl-w-7, .tl-w-9 {
         display: none;
     }
@@ -3597,7 +3595,7 @@ footer {
         padding: 12px 28px;
         font-size: 0.95rem;
     }
-    /* Hide all floating words on extra-small screens */
+    
     .tl-floating-words {
         display: none;
     }
@@ -3612,7 +3610,7 @@ footer {
     }
 }
 
-/* Homepage New Sections Styling */
+
 .glass-accordion {
     margin-bottom: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
@@ -3677,7 +3675,7 @@ footer {
     transform: translateX(10px);
 }
 
-/* Timeline Specific Styles */
+
 @media (max-width: 768px) {
     .timeline-item {
         flex-direction: column !important;
@@ -3691,9 +3689,7 @@ footer {
     }
 }
 
-/* ═══════════════════════════════════════════
-   PREMIUM JOURNEY TIMELINE
-   ═══════════════════════════════════════════ */
+
 
 @keyframes pulseGlow {
     0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3); }
@@ -3916,11 +3912,9 @@ footer {
     .journey-connector { width: 20px; }
 }
 
-/* ==========================================================================
-   Premium Case Study Components
-   ========================================================================== */
 
-/* Back Button */
+
+
 .cs-back-btn {
     position: fixed;
     top: 2rem;
@@ -3949,7 +3943,7 @@ footer {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 15px rgba(212, 175, 55, 0.2);
 }
 
-/* Hero Section */
+
 .cs-hero {
     padding: 10rem 5% 5rem;
     text-align: center;
@@ -3976,7 +3970,7 @@ footer {
     text-transform: uppercase;
 }
 
-/* Video Card Showcase */
+
 .cs-video-showcase {
     border-radius: 20px;
     overflow: hidden;
@@ -3999,7 +3993,7 @@ footer {
     pointer-events: none;
 }
 
-/* Content Container Grid */
+
 .cs-grid-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -4009,7 +4003,7 @@ footer {
     gap: 2.5rem;
 }
 
-/* Premium CS Card */
+
 .cs-card {
     background: rgba(20, 20, 20, 0.4);
     backdrop-filter: blur(20px);
@@ -4038,14 +4032,14 @@ footer {
 
 .cs-card-full { grid-column: 1 / -1; }
 
-/* Grid specific mapping */
+
 @media (min-width: 900px) {
     .cs-grid-container {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-/* Content Typography */
+
 .cs-section-header {
     display: flex;
     align-items: center;
@@ -4065,7 +4059,7 @@ footer {
     font-size: 1.05rem;
 }
 
-/* Features List */
+
 .cs-feature-list {
     list-style: none;
     padding: 0;
@@ -4093,7 +4087,7 @@ footer {
     margin-right: 0.3rem;
 }
 
-/* Tech Grid */
+
 .cs-tech-grid {
     display: flex;
     flex-wrap: wrap;

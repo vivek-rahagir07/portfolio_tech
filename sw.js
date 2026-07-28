@@ -17,7 +17,7 @@ const urlsToCache = [
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
-// Install event - cache assets
+
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -28,21 +28,21 @@ self.addEventListener('install', event => {
     self.skipWaiting();
 });
 
-// Fetch event - serve from cache, fall back to network, then offline page
+
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Cache hit - return response
+                
                 if (response) {
                     return response;
                 }
                 return fetch(event.request).then(response => {
-                    // Check if valid response
+                    
                     if (!response || response.status !== 200 || response.type !== 'basic') {
                         return response;
                     }
-                    // Clone response
+                    
                     const responseToCache = response.clone();
                     caches.open(CACHE_NAME)
                         .then(cache => {
@@ -50,14 +50,14 @@ self.addEventListener('fetch', event => {
                         });
                     return response;
                 }).catch(() => {
-                    // Network failed, try offline page
+                    
                     return caches.match('/offline.html');
                 });
             })
     );
 });
 
-// Activate event - clean up old caches
+
 self.addEventListener('activate', event => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(

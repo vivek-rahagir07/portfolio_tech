@@ -10,27 +10,27 @@
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vivek-rahagir.com/">
     <meta property="og:title" content="Vivek Yadav | Full Stack Developer">
     <meta property="og:description" content="Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL. Real projects, real code.">
     <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- Twitter -->
+    
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivek-rahagir.com/">
     <meta property="twitter:title" content="Vivek Yadav | Full Stack Developer">
     <meta property="twitter:description" content="Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL. Real projects, real code.">
     <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- PWA -->
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
-    <!-- Structured Data (JSON-LD) -->
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -51,7 +51,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Service Worker Registration -->
+    
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -77,7 +77,7 @@
 </head>
 <body>
     
-    <!-- Intro Animation Overlay -->
+    
     <div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;">
         <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
             <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
@@ -130,7 +130,7 @@
                             tspan.classList.add('letter');
                             if (char !== ' ') {
                                 tspan.style.animationDelay = delay + 's';
-                                delay += 0.2; // time between each letter starting
+                                delay += 0.2; 
                             } else {
                                 delay += 0.1;
                             }
@@ -142,9 +142,9 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    
     <main id="main-content">
-        <!-- Navigation -->
+        
         <nav>
             <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
             <ul class="nav-links">
@@ -168,7 +168,7 @@
             </div>
         </nav>
 
-        <!-- Hero Section -->
+        
         <section id="hero" class="page-transition">
             <div class="hero-bg-glow"></div>
             <div class="hero-content">
@@ -201,7 +201,7 @@
             </div>
         </section>
 
-        <!-- My Journey Timeline -->
+        
         <section id="my-journey" class="section page-transition" style="padding-top: 5rem; padding-bottom: 2rem;">
             <div class="section-header fade-in-up" style="padding: 0 5%; max-width: 1000px; margin: 0 auto;">
                 <h2>My Journey</h2>
@@ -213,7 +213,7 @@
                 <div class="journey-spine-wrap">
                     <div class="journey-spine"></div>
 
-                    <!-- Phase 1: Seeing, Failing & Adapting -->
+                    
                     <div class="journey-entry fade-in-up">
                         <div class="journey-node-wrap">
                             <div class="journey-node"></div>
@@ -239,7 +239,7 @@
                         </div>
                     </div>
 
-                    <!-- Phase 2: The Learning Phase -->
+                    
                     <div class="journey-entry fade-in-up delay-1">
                         <div class="journey-node-wrap">
                             <div class="journey-node"></div>
@@ -266,7 +266,7 @@
                         </div>
                     </div>
 
-                    <!-- Phase 3: Focusing on Efficiency -->
+                    
                     <div class="journey-entry fade-in-up delay-2">
                         <div class="journey-node-wrap">
                             <div class="journey-node"></div>
@@ -292,7 +292,7 @@
                         </div>
                     </div>
 
-                    <!-- Phase 4: Mobility & Gamification -->
+                    
                     <div class="journey-entry fade-in-up delay-3">
                         <div class="journey-node-wrap">
                             <div class="journey-node"></div>
@@ -319,7 +319,7 @@
                         </div>
                     </div>
 
-                    <!-- Phase 5: Architecting Enormous Systems -->
+                    
                     <div class="journey-entry fade-in-up delay-4">
                         <div class="journey-node-wrap">
                             <div class="journey-node"></div>
@@ -346,7 +346,7 @@
                         </div>
                     </div>
 
-                    <!-- Phase 6: Getting Roots Pvt Ltd -->
+                    
                     <div class="journey-entry fade-in-up delay-5">
                         <div class="journey-node-wrap">
                             <div class="journey-node" style="border-color: var(--accent); box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 0 40px rgba(212,175,55,0.4);"></div>

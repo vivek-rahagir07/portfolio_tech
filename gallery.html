@@ -10,27 +10,27 @@
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vivek-rahagir.com/gallery.html">
     <meta property="og:title" content="Gallery | Full Stack Developer">
     <meta property="og:description" content="A visual gallery of Vivek Yadav's workspace, setup, and developer life.">
     <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- Twitter -->
+    
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivek-rahagir.com/gallery.html">
     <meta property="twitter:title" content="Gallery | Full Stack Developer">
     <meta property="twitter:description" content="A visual gallery of Vivek Yadav's workspace, setup, and developer life.">
     <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- PWA -->
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
-    <!-- Structured Data (JSON-LD) -->
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -44,7 +44,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Service Worker Registration -->
+    
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -62,9 +62,9 @@
 </head>
 <body>
 
-    <!-- Main Content -->
+    
     <main id="main-content">
-        <!-- Navigation -->
+        
         <nav>
             <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
             <ul class="nav-links">
@@ -88,18 +88,18 @@
             </div>
         </nav>
 
-        <!-- Draggable Gallery Section (Desktop) -->
+        
         <div id="drag-container" class="page-transition">
             <div id="drag-canvas">
-                <!-- Center point / Instructions hidden via CSS -->
+                
                 <div class="canvas-center fade-in-up">
                     <h1 style="font-size: 4rem; font-weight: 800; color: #fff; font-family: 'Georgia', serif;">Visual <span style="font-style: italic; color: #a1a1aa;">Journey</span></h1>
                     <p style="color: #9ca3af; font-size: 1.2rem; margin-top: 10px;"><i class="fa-solid fa-arrows-up-down-left-right" style="margin-right: 10px;"></i> Click & Drag to explore</p>
                 </div>
                 
-                <!-- Gallery Cards Tightly Clustered (All 16 Images) -->
                 
-                <!-- Row 1 -->
+                
+                
                 <div class="drag-card" style="top: calc(50% - 380px); left: calc(50% - 600px); transform: rotate(-2deg);">
                     <div class="card-img-wrapper"><img src="collage/1.png" alt="Gallery Image 1" loading="lazy"></div>
                     <div class="card-text"><h3>Moments</h3><p style="text-transform: none; font-size: 0.75rem; letter-spacing: 0.5px; line-height: 1.4; margin-top: 8px;">Capturing the fleeting instances that define our journey.<br>A split second frozen in time, holding endless stories.<br>Every moment tells a unique tale of creation.</p></div>
@@ -125,7 +125,7 @@
                     <div class="card-text"><h3>Vision</h3><p style="text-transform: none; font-size: 0.75rem; letter-spacing: 0.5px; line-height: 1.4; margin-top: 8px;">Looking beyond the present to imagine the future.<br>Crafting digital experiences with purpose.<br>Where imagination meets technical execution.</p></div>
                 </div>
 
-                <!-- Row 2 -->
+                
                 <div class="drag-card" style="top: calc(50% - 80px); left: calc(50% - 700px); transform: rotate(-1deg);">
                     <div class="card-img-wrapper"><img src="collage/6.png" alt="Gallery Image 6" loading="lazy"></div>
                     <div class="card-text"><h3>Balance</h3><p style="text-transform: none; font-size: 0.75rem; letter-spacing: 0.5px; line-height: 1.4; margin-top: 8px;">Finding the perfect harmony between form and function.<br>A delicate equilibrium of aesthetics and usability.<br>Stability in the midst of creative chaos.</p></div>
@@ -156,7 +156,7 @@
                     <div class="card-text"><h3>Depth</h3><p style="text-transform: none; font-size: 0.75rem; letter-spacing: 0.5px; line-height: 1.4; margin-top: 8px;">Going beneath the surface to explore hidden layers.<br>Adding rich dimensions to flat digital spaces.<br>Profound details that invite closer inspection.</p></div>
                 </div>
 
-                <!-- Row 3 -->
+                
                 <div class="drag-card" style="top: calc(50% + 180px); left: calc(50% - 600px); transform: rotate(3deg);">
                     <div class="card-img-wrapper"><img src="collage/12.png" alt="Gallery Image 12" loading="lazy"></div>
                     <div class="card-text"><h3>Contrast</h3><p style="text-transform: none; font-size: 0.75rem; letter-spacing: 0.5px; line-height: 1.4; margin-top: 8px;">The striking difference that makes elements pop.<br>Light and shadow playing together to create focus.<br>Bold choices that leave a lasting impression.</p></div>
@@ -184,7 +184,7 @@
             </div>
         </div>
 
-        <!-- Mobile Gallery (Grid Layout) -->
+        
         <div class="mobile-gallery page-transition" style="display: none;">
             <div class="mobile-gallery-header fade-in-up">
                 <h1>Visual <span style="font-style: italic; color: #a1a1aa;">Journey</span></h1>
@@ -260,7 +260,7 @@
 
     </main>
 
-    <!-- Lightbox Modal -->
+    
     <div id="lightbox" class="lightbox">
         <span class="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
@@ -270,28 +270,28 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Parallax pan functionality
+            
             const container = document.getElementById('drag-container');
             const canvas = document.getElementById('drag-canvas');
 
-            // Start in the center of the canvas
+            
             if (container && canvas) {
                 container.scrollLeft = (canvas.offsetWidth - container.clientWidth) / 2;
                 container.scrollTop = (canvas.offsetHeight - container.clientHeight) / 2;
                 
-                // Add smooth transition for parallax
+                
                 canvas.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             }
 
             document.addEventListener('mousemove', (e) => {
                 if(canvas) {
-                    const x = (e.clientX - window.innerWidth / 2) * -0.12; // Parallax intensity
+                    const x = (e.clientX - window.innerWidth / 2) * -0.12; 
                     const y = (e.clientY - window.innerHeight / 2) * -0.12;
                     canvas.style.transform = `translate(${x}px, ${y}px)`;
                 }
             });
 
-            // Lightbox functionality
+            
             const dragCards = document.querySelectorAll('.drag-card');
             const mobileCards = document.querySelectorAll('.mobile-gallery-item');
             const lightbox = document.getElementById('lightbox');

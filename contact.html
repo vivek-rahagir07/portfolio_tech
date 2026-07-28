@@ -11,27 +11,27 @@
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vivek-rahagir.com/contact.html">
     <meta property="og:title" content="Contact | Full Stack Developer">
     <meta property="og:description" content="Get in touch with Vivek Yadav for freelance work, collaboration, or full-time opportunities. Full Stack Developer available for hire.">
     <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- Twitter -->
+    
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivek-rahagir.com/contact.html">
     <meta property="twitter:title" content="Contact | Full Stack Developer">
     <meta property="twitter:description" content="Get in touch with Vivek Yadav for freelance work, collaboration, or full-time opportunities. Full Stack Developer available for hire.">
     <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    <!-- PWA -->
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
-    <!-- Structured Data (JSON-LD) -->
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -47,7 +47,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Service Worker Registration -->
+    
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -66,9 +66,9 @@
 
 <body>
 
-    <!-- Main Content -->
+    
     <main id="main-content">
-        <!-- Navigation -->
+        
         <nav>
             <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
             <ul class="nav-links">
@@ -92,7 +92,7 @@
             </div>
         </nav>
 
-        <!-- Trusted Leaders Section -->
+        
         <section id="trusted-leaders" class="section page-transition tl-section tl-dark-mode" aria-label="Trusted Leaders">
             <div class="tl-bg-lines">
                 <div class="tl-line-dark"></div>
@@ -106,7 +106,7 @@
                 <div class="tl-line-dark"></div>
             </div>
 
-            <!-- Floating Words -->
+            
             <div class="tl-floating-words">
                 <div class="tl-word tl-w-1">Technology</div>
                 <div class="tl-word tl-w-2">Finance</div>
@@ -143,26 +143,26 @@
             </div>
         </section>
 
-        <!-- Testimonials / Customer Reviews Section -->
+        
         <section id="testimonials" class="section page-transition cr-section" aria-label="Customer Reviews">
             <div class="cr-container">
-                <!-- Section Header -->
+                
                 <div class="section-header fade-in-up" style="text-align: center; margin-bottom: 2rem; position: relative;">
                     <h2 style="font-size: 3.5rem;">Customer Reviews</h2>
                     <div class="header-line" style="margin: 15px auto 0;"></div>
                 </div>
 
-                <!-- Main Layout -->
+                
                 <div class="cr-layout">
-                    <!-- Left: Reviewers on an arc -->
+                    
                     <div class="cr-left">
                         <div class="cr-arc"></div>
                         <div class="cr-reviewers-list" id="cr-reviewers-list">
-                            <!-- Rendered via JS -->
+                            
                         </div>
                     </div>
 
-                    <!-- Right: Testimonial Quote -->
+                    
                     <div class="cr-right">
                         <div class="cr-quote-wrapper">
                             <div class="cr-quote-mark">“</div>
@@ -173,7 +173,7 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        
         <section id="contact" class="section square-grid-bg page-transition">
             <div class="section-header fade-in-up" style="text-align: center; margin-bottom: 2rem; position: relative;">
                 <h2 style="font-size: 3.5rem;">Get In Touch</h2>
@@ -227,7 +227,7 @@
 
                 <div class="contact-right glass-card fade-in-up">
                     <form class="premium-form" action="https://formsubmit.co/vivek.yadav.25cse@bmu.edu.in" method="POST">
-                        <!-- FormSubmit Configuration -->
+                        
                         <input type="hidden" name="_captcha" value="false">
                         <input type="text" name="_honey" style="display:none">
                         <input type="hidden" name="_template" value="box">
@@ -267,7 +267,7 @@
 
     <script src="script.js"></script>
     <script>
-        // Testimonials Data
+        
         const testimonialsData = [
             {
                 name: "Anmol Mittal",
@@ -336,7 +336,7 @@
                 this.updateUI();
                 this.startAutoPlay();
 
-                // Pause on hover
+                
                 const section = document.querySelector('.cr-section');
                 if(section) {
                     section.addEventListener('mouseenter', () => this.stopAutoPlay());

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const popupOverlay = document.getElementById("popupOverlay");
     const currentTimeElement = document.getElementById("currentTime");
 
-    // Matrix Rain Animation (Background)
+    
     function initMatrixRain() {
         const ctx = matrixCanvas.getContext('2d');
         matrixCanvas.width = window.innerWidth;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Matrix Rain Animation (Inside Terminal)
+    
     function initTerminalMatrixRain() {
         const ctx = terminalMatrixCanvas.getContext('2d');
         
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Real-time Clock
+    
     function updateClock() {
         const now = new Date();
         const time = now.toLocaleTimeString('en-US', { hour12: false });
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Popup Modal System
+    
     function showPopup(title, content, onConfirm = null, onCancel = null) {
         document.getElementById('popupTitle').textContent = title;
         document.getElementById('popupContent').innerHTML = content;
@@ -136,9 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
         popupOverlay.classList.remove('active');
     }
 
-    // Sound simulation (visual feedback only)
+    
     function playTypingSound() {
-        // Visual feedback for typing sound
+        
         terminalWindow.style.boxShadow = '0 0 40px rgba(0, 255, 255, 0.3)';
         setTimeout(() => {
             terminalWindow.style.boxShadow = '';
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let historyIndex = -1;
     let currentDirectory = '~';
     
-    // Achievement System
+    
     const achievements = {
         'first_command': { name: 'First Steps', description: 'Execute your first command', unlocked: false, icon: '🎯' },
         'explorer': { name: 'Explorer', description: 'Use 5 different commands', unlocked: false, icon: '🧭', progress: 0, required: 5 },
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let githubOpened = false;
     let linkedinOpened = false;
     
-    // Virtual File System
+    
     const fileSystem = {
         '~': {
             type: 'dir',
@@ -383,12 +383,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (normalizedCmd === "") return;
         
-        // Track first command achievement
+        
         if (usedCommands.size === 0) {
             unlockAchievement('first_command');
         }
         
-        // Track command usage for achievements
+        
         usedCommands.add(normalizedCmd);
         updateAchievementProgress('explorer');
         updateAchievementProgress('command_master');
@@ -723,11 +723,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Initialize features
+    
     initMatrixRain();
     initTerminalMatrixRain();
     
-    // Initialize boot sequence
+    
     setTimeout(() => {
         appendOutput(bootSequence);
         appendOutput(`<div class="command-help">Type 'help' for commands...</div><br>`);
@@ -764,7 +764,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Window buttons functionality
+    
     document.getElementById('closeBtn').addEventListener('click', () => {
         showPopup(
             '⚠️ SYSTEM SHUTDOWN',
@@ -789,14 +789,14 @@ document.addEventListener("DOMContentLoaded", () => {
         terminalWindow.classList.remove('minimized');
     });
 
-    // Ensure input always has focus on click
+    
     document.querySelector('.terminal-container').addEventListener('click', (e) => {
         if (!e.target.closest('.terminal-header') && !e.target.closest('.popup-modal')) {
             terminalInput.focus();
         }
     });
 
-    // Easter egg: Konami code
+    
     let konamiCode = [];
     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     
