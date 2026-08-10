@@ -517,6 +517,11 @@ nav {
     transition: all 0.3s ease;
 }
 
+.tech-badge:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
 .tech-badge i {
     font-size: 1rem;
     color: #ffffff;
@@ -2399,6 +2404,10 @@ footer {
         gap: 15px;
     }
     
+    .noise-overlay {
+        display: none;
+    }
+    
     .logo {
         margin-right: 0;
         flex-shrink: 0;
@@ -2426,6 +2435,11 @@ footer {
         align-items: center;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-links li {
+        flex-shrink: 0;
     }
     
     .nav-links::-webkit-scrollbar {
