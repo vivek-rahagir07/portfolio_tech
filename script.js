@@ -61,31 +61,355 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-        
-        
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
+    // Mobile Bottom Dock (Photo 2) and Profile Sheet (Photo 1) Initialization
+    function initMobileNavigation() {
+        // 1. Inject Top 3-Dots Button inside Top Nav if not present
+        const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
+        if (topNav && !document.getElementById('mobile-dots-trigger')) {
+            const dotsBtn = document.createElement('button');
+            dotsBtn.type = 'button';
+            dotsBtn.id = 'mobile-dots-trigger';
+            dotsBtn.className = 'mobile-dots-btn';
+            dotsBtn.setAttribute('aria-label', 'Open Profile Menu');
+            dotsBtn.innerHTML = '<i class="fa-solid fa-ellipsis"></i>';
+            topNav.appendChild(dotsBtn);
+        }
+
+        // 2. Inject Mobile Floating Bottom Dock (Photo 2) if not present
+        let bottomDock = document.getElementById('mobileBottomDock');
+        if (!bottomDock) {
+            bottomDock = document.createElement('nav');
+            bottomDock.id = 'mobileBottomDock';
+            bottomDock.className = 'mobile-bottom-dock';
+            bottomDock.setAttribute('aria-label', 'Mobile Navigation');
+            bottomDock.innerHTML = `
+                <a href="index.html" class="dock-item" data-tab="home" aria-label="Home">
+                    <div class="dock-icon-wrap"><i class="fa-solid fa-house"></i></div>
+                    <span class="dock-label">Home</span>
+                </a>
+                <a href="projects.html" class="dock-item" data-tab="projects" aria-label="Projects">
+                    <div class="dock-icon-wrap"><i class="fa-solid fa-layer-group"></i></div>
+                    <span class="dock-label">Projects</span>
+                </a>
+                <a href="gallery.html" class="dock-item" data-tab="gallery" aria-label="Gallery">
+                    <div class="dock-icon-wrap"><i class="fa-solid fa-images"></i></div>
+                    <span class="dock-label">Gallery</span>
+                </a>
+                <a href="skills.html" class="dock-item" data-tab="skills" aria-label="Skills">
+                    <div class="dock-icon-wrap"><i class="fa-solid fa-code"></i></div>
+                    <span class="dock-label">Skills</span>
+                </a>
+                <button type="button" class="dock-item" data-tab="profile" id="dock-profile-tab" aria-label="Profile & More">
+                    <div class="dock-icon-wrap"><i class="fa-solid fa-user"></i></div>
+                    <span class="dock-label">Profil</span>
+                </button>
+            `;
+            document.body.appendChild(bottomDock);
+        }
+
+        // 3. Inject Profile Modal Sheet (Premium Social-Media Style) if not present
+        let profileSheet = document.getElementById('profileSheet');
+        if (!profileSheet) {
+            profileSheet = document.createElement('div');
+            profileSheet.id = 'profileSheet';
+            profileSheet.className = 'profile-sheet-overlay';
+            profileSheet.setAttribute('role', 'dialog');
+            profileSheet.setAttribute('aria-modal', 'true');
+            profileSheet.setAttribute('aria-label', 'Vivek Yadav Profile');
+            profileSheet.innerHTML = `
+                <div class="profile-sheet-content">
+                    <div class="sheet-drag-handle"></div>
+
+                    <!-- Cover Banner -->
+                    <div class="profile-cover-section">
+                        <img src="collage/15.jpg" alt="Vivek Yadav – Cinematic Portrait" class="profile-cover-img">
+                        <div class="profile-cover-gradient"></div>
+                        <div class="profile-top-actions">
+                            <button type="button" class="profile-back-btn" id="closeProfileSheet" aria-label="Close Profile">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button type="button" class="profile-more-btn" aria-label="More Options">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </button>
+                        </div>
+                        <div class="profile-like-float" id="profileLikeBtn">
+                            <i class="fa-regular fa-heart"></i> Like
+                        </div>
+                    </div>
+
+                    <!-- Avatar + Quick Stats Row -->
+                    <div class="profile-avatar-stats-row">
+                        <div class="profile-avatar-ring">
+                            <img src="collage/1.png" alt="Vivek Yadav">
+                            <div class="profile-online-dot"></div>
+                        </div>
+                        <div class="profile-quick-stats">
+                            <div class="profile-quick-stat">
+                                <span class="pqs-val">15+</span>
+                                <span class="pqs-lbl">projects</span>
+                            </div>
+                            <div class="pqs-dot"></div>
+                            <div class="profile-quick-stat">
+                                <span class="pqs-val">1.2k</span>
+                                <span class="pqs-lbl">likes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Identity -->
+                    <div class="profile-identity-section">
+                        <div class="profile-name-row">
+                            <h3 class="profile-user-name">Vivek Yadav</h3>
+                            <div class="profile-verified-badge">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                        </div>
+                        <p class="profile-user-handle">@rahagir07</p>
+                        <p class="profile-bio-text">
+                            Full Stack Developer & Creative Technologist. Building digital experiences that inspire, from IoT hardware to beautiful web interfaces.
+                        </p>
+                        <div class="profile-rating-row">
+                            <div class="profile-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="profile-rating-count">26 reviews</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="profile-action-row">
+                        <a href="contact.html" class="profile-action-btn primary">
+                            <i class="fa-solid fa-paper-plane"></i> Hire Me
+                        </a>
+                        <a href="photos/cv.png" download="cv.png" class="profile-action-btn secondary" id="sheet-cv-download">
+                            <i class="fa-solid fa-file-arrow-down"></i> Download CV
+                        </a>
+                    </div>
+
+                    <!-- Highlight Cards -->
+                    <div class="profile-highlights-grid">
+                        <div class="profile-highlight-card">
+                            <div class="phc-icon gold"><i class="fa-solid fa-layer-group"></i></div>
+                            <span class="phc-val">15+</span>
+                            <span class="phc-lbl">Projects</span>
+                        </div>
+                        <div class="profile-highlight-card">
+                            <div class="phc-icon blue"><i class="fa-solid fa-clock"></i></div>
+                            <span class="phc-val">3+</span>
+                            <span class="phc-lbl">Yrs Exp</span>
+                        </div>
+                        <div class="profile-highlight-card">
+                            <div class="phc-icon green"><i class="fa-solid fa-bullseye"></i></div>
+                            <span class="phc-val">100%</span>
+                            <span class="phc-lbl">Dedication</span>
+                        </div>
+                    </div>
+
+                    <!-- Menu Card -->
+                    <div class="profile-menu-card">
+                        <a href="about.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box amber"><i class="fa-solid fa-user-tie"></i></div>
+                                <span>About & Story</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                        <a href="gallery.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box purple"><i class="fa-regular fa-images"></i></div>
+                                <span>Visual Gallery</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                        <a href="developer-guide.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box cyan"><i class="fa-solid fa-compass"></i></div>
+                                <span>Developer Roadmap</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                        <a href="iot.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box rose"><i class="fa-solid fa-microchip"></i></div>
+                                <span>IoT & Hardware Lab</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                        <a href="terminal.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box emerald"><i class="fa-solid fa-terminal"></i></div>
+                                <span>Interactive Terminal</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                        <a href="skills.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box sky"><i class="fa-solid fa-code"></i></div>
+                                <span>Skills & Technologies</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                        <a href="contact.html" class="profile-menu-item">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box orange"><i class="fa-solid fa-paper-plane"></i></div>
+                                <span>Contact & Inquiries</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Socials -->
+                    <div class="profile-socials-row">
+                        <a href="https://github.com/vivek-rahagir07" target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com/in/vivek-yadav-1142213a0/" target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="mailto:vivekhr36.2007@gmail.com" class="profile-social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="tel:+919996445592" class="profile-social-link" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(profileSheet);
+
+            // Like button toggle
+            const likeBtn = document.getElementById('profileLikeBtn');
+            if (likeBtn) {
+                likeBtn.addEventListener('click', () => {
+                    const icon = likeBtn.querySelector('i');
+                    if (icon.classList.contains('fa-regular')) {
+                        icon.classList.remove('fa-regular');
+                        icon.classList.add('fa-solid');
+                        icon.style.color = '#e74c3c';
+                        likeBtn.innerHTML = '<i class="fa-solid fa-heart" style="color:#e74c3c;font-size:1rem"></i> Liked';
+                    } else {
+                        likeBtn.innerHTML = '<i class="fa-regular fa-heart" style="font-size:1rem"></i> Like';
+                    }
+                });
+            }
+        }
+
+        // 4. Highlight Active Tab in Dock
+        const currentPath = window.location.pathname.toLowerCase();
+        const dockItems = bottomDock.querySelectorAll('.dock-item');
+        dockItems.forEach(item => item.classList.remove('active'));
+
+        if (currentPath.includes('projects') || currentPath.includes('project-')) {
+            const el = bottomDock.querySelector('[data-tab="projects"]');
+            if (el) el.classList.add('active');
+        } else if (currentPath.includes('gallery')) {
+            const el = bottomDock.querySelector('[data-tab="gallery"]');
+            if (el) el.classList.add('active');
+        } else if (currentPath.includes('skills')) {
+            const el = bottomDock.querySelector('[data-tab="skills"]');
+            if (el) el.classList.add('active');
+        } else if (currentPath.includes('about') || currentPath.includes('contact') || currentPath.includes('developer-guide') || currentPath.includes('iot')) {
+            const el = bottomDock.querySelector('[data-tab="profile"]');
+            if (el) el.classList.add('active');
+        } else {
+            // Default Home
+            const el = bottomDock.querySelector('[data-tab="home"]');
+            if (el) el.classList.add('active');
+        }
+
+        // 5. Open / Close Profile Sheet Handlers
+        function openProfile() {
+            if (profileSheet) {
+                profileSheet.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeProfile() {
+            if (profileSheet) {
+                profileSheet.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        const dotsTrigger = document.getElementById('mobile-dots-trigger');
+        if (dotsTrigger) {
+            dotsTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                openProfile();
             });
-        });
-        
-        
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
+        }
+
+        const dockProfileTab = document.getElementById('dock-profile-tab');
+        if (dockProfileTab) {
+            dockProfileTab.addEventListener('click', (e) => {
+                e.preventDefault();
+                openProfile();
+            });
+        }
+
+        const closeBtn = document.getElementById('closeProfileSheet');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeProfile();
+            });
+        }
+
+        const sheetCvBtn = document.getElementById('sheet-cv-download');
+        if (sheetCvBtn) {
+            sheetCvBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const link = document.createElement('a');
+                link.href = 'photos/cv.png';
+                link.download = 'cv.png';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
+
+        // Touch swipe down on handle or sheet top to close
+        let startY = 0;
+        const sheetContent = profileSheet ? profileSheet.querySelector('.profile-sheet-content') : null;
+        if (sheetContent) {
+            sheetContent.addEventListener('touchstart', (e) => {
+                if (sheetContent.scrollTop === 0) {
+                    startY = e.touches[0].clientY;
+                }
+            }, { passive: true });
+
+            sheetContent.addEventListener('touchmove', (e) => {
+                if (startY > 0 && sheetContent.scrollTop === 0) {
+                    const currentY = e.touches[0].clientY;
+                    const diffY = currentY - startY;
+                    if (diffY > 80) {
+                        closeProfile();
+                        startY = 0;
+                    }
+                }
+            }, { passive: true });
+
+            sheetContent.addEventListener('touchend', () => {
+                startY = 0;
+            });
+        }
+
+        // Click outside sheet content to close
+        if (profileSheet) {
+            profileSheet.addEventListener('click', (e) => {
+                if (e.target === profileSheet) {
+                    closeProfile();
+                }
+            });
+        }
+
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && profileSheet && profileSheet.classList.contains('active')) {
+                closeProfile();
             }
         });
     }
+
+    initMobileNavigation();
     
     
     const observerOptions = {
