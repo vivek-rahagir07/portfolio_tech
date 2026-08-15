@@ -138,7 +138,6 @@
             let dragOffsetX = 0;
             let dragOffsetY = 0;
             
-            
             const categoryColors = {
                 'frontend': { primary: '#3b82f6', secondary: '#60a5fa', name: 'Frontend' },
                 'backend': { primary: '#22c55e', secondary: '#4ade80', name: 'Backend' },
@@ -148,22 +147,18 @@
                 'ai': { primary: '#06b6d4', secondary: '#22d3ee', name: 'AI' }
             };
             
-            
             const difficultyColors = {
                 'easy': { color: '#22c55e', emoji: '🟢', name: 'Easy' },
                 'intermediate': { color: '#eab308', emoji: '🟡', name: 'Intermediate' },
                 'advanced': { color: '#ef4444', emoji: '🔴', name: 'Advanced' }
             };
             
-            
             function getCategoryColor(node, parent = null) {
-                
                 for (const [catId, colors] of Object.entries(categoryColors)) {
                     if (node.id === catId || node.id.startsWith(catId)) {
                         return colors;
                     }
                 }
-                
                 
                 if (parent) {
                     const parentColors = getCategoryColor(parent, null);
@@ -171,7 +166,6 @@
                         return parentColors;
                     }
                 }
-                
                 
                 if (node.children) {
                     for (const [catId, colors] of Object.entries(categoryColors)) {
@@ -184,26 +178,11 @@
                 return { primary: '#d4af37', secondary: '#fbbf24', name: 'Default' };
             }
             
-            
             expandedNodes.add('root');
             
-            
-            let isInitial = true;
             function resizeCanvas() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
-                if (isInitial) {
-                    if (window.innerWidth < 768) {
-                        scale = 0.65;
-                        offsetX = (window.innerWidth / 2) / scale;
-                        offsetY = (window.innerHeight / 2 - 30) / scale;
-                    } else {
-                        scale = 0.85;
-                        offsetX = (window.innerWidth / 2) / scale;
-                        offsetY = (window.innerHeight / 2) / scale;
-                    }
-                    isInitial = false;
-                }
                 drawMindmap();
             }
             
@@ -995,15 +974,17 @@
                 const mouseX = e.clientX - rect.left;
                 const mouseY = e.clientY - rect.top;
                 
-                
                 const worldX = (mouseX / scale) - offsetX;
                 const worldY = (mouseY / scale) - offsetY;
-                
                 
                 const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
                 const newScale = Math.max(0.3, Math.min(3, scale * zoomFactor));
                 
-                
+                offsetX = (mouseX / newScale) - worldX;
+                offsetY = (mouseY / newScale) - worldY;
+                scale = newScale;
+            });
+            
             // Mobile Touch Support: Drag, Pinch-Zoom, Tap
             let lastTouchDistance = null;
             let touchStartX = 0;
