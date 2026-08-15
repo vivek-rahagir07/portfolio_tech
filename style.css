@@ -439,9 +439,10 @@ nav:not(.mobile-bottom-dock) {
 .nav-hacker-clock {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 7px;
     padding: 6px 14px;
-    background: rgba(0, 15, 6, 0.75);
+    background: rgba(0, 15, 6, 0.85);
     border: 1px solid rgba(0, 255, 65, 0.35);
     border-radius: 20px;
     backdrop-filter: blur(14px);
@@ -501,20 +502,26 @@ nav:not(.mobile-bottom-dock) {
     50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 14px #00ff41; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .nav-hacker-clock {
-        padding: 5px 10px;
-        gap: 5px;
-        margin: 0 8px 0 auto;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        padding: 5px 12px !important;
+        gap: 6px !important;
+        z-index: 5 !important;
+        white-space: nowrap !important;
     }
     .hacker-clock-prompt {
         font-size: 0.75rem;
     }
     .hacker-clock-time {
-        font-size: 0.76rem;
+        font-size: 0.78rem;
     }
     .hacker-clock-ampm {
-        font-size: 0.58rem;
+        font-size: 0.6rem;
     }
 }
 
