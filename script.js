@@ -61,7 +61,117 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     
-    // Mobile Bottom Dock (Photo 2) and Profile Sheet (Photo 1) Initialization
+    // ==========================================================================
+    // 1. LIVE WEATHER / TIME-OF-DAY CYBER THEME (Top Nav Pill)
+    // ==========================================================================
+    function initTimeOfDayTheme() {
+        const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
+        if (!topNav) return;
+
+        let timePill = document.getElementById('navTimePill');
+        if (!timePill) {
+            timePill = document.createElement('div');
+            timePill.id = 'navTimePill';
+            timePill.className = 'nav-cyber-pill';
+            timePill.setAttribute('role', 'button');
+            timePill.setAttribute('tabindex', '0');
+            timePill.setAttribute('title', 'Live Local Atmosphere · Tap to cycle Cyber Theme');
+            timePill.innerHTML = `
+                <span class="cyber-pill-icon"><i class="fa-solid fa-sun"></i></span>
+                <div class="cyber-pill-info">
+                    <span class="cyber-pill-time">--:--</span>
+                    <span class="cyber-pill-status">Daylight Gold</span>
+                </div>
+                <span class="cyber-pill-pulse"></span>
+            `;
+
+            // Insert right after .logo
+            const logo = topNav.querySelector('.logo');
+            if (logo && logo.nextSibling) {
+                topNav.insertBefore(timePill, logo.nextSibling);
+            } else {
+                topNav.appendChild(timePill);
+            }
+        }
+
+        const themes = [
+            { id: 'auto', name: 'Live Auto' },
+            { id: 'daylight', name: 'Daylight Gold', icon: 'fa-sun' },
+            { id: 'sunset', name: 'Sunset Amber', icon: 'fa-cloud-sun' },
+            { id: 'neon', name: 'Cyber Neon Night', icon: 'fa-moon' }
+        ];
+
+        let savedTheme = localStorage.getItem('cyber_theme') || 'auto';
+
+        function getAutoTheme(hour) {
+            if (hour >= 6 && hour < 17) {
+                return { id: 'daylight', name: 'Daylight Gold', icon: 'fa-sun' };
+            } else if (hour >= 17 && hour < 20) {
+                return { id: 'sunset', name: 'Sunset Amber', icon: 'fa-cloud-sun' };
+            } else {
+                return { id: 'neon', name: 'Cyber Neon Night', icon: 'fa-moon' };
+            }
+        }
+
+        function updateClockAndTheme() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const timeStr = `${displayHours}:${minutes} ${ampm}`;
+
+            let activeThemeInfo;
+            if (savedTheme === 'auto') {
+                activeThemeInfo = getAutoTheme(hours);
+                document.documentElement.setAttribute('data-theme', activeThemeInfo.id);
+            } else {
+                activeThemeInfo = themes.find(t => t.id === savedTheme) || getAutoTheme(hours);
+                document.documentElement.setAttribute('data-theme', activeThemeInfo.id);
+            }
+
+            const timeEl = timePill.querySelector('.cyber-pill-time');
+            const statusEl = timePill.querySelector('.cyber-pill-status');
+            const iconEl = timePill.querySelector('.cyber-pill-icon i');
+
+            if (timeEl) timeEl.textContent = timeStr;
+            if (statusEl) statusEl.textContent = activeThemeInfo.name;
+            if (iconEl) {
+                iconEl.className = `fa-solid ${activeThemeInfo.icon}`;
+            }
+        }
+
+        timePill.addEventListener('click', (e) => {
+            e.preventDefault();
+            const order = ['auto', 'daylight', 'sunset', 'neon'];
+            const currentIndex = order.indexOf(savedTheme);
+            const nextTheme = order[(currentIndex + 1) % order.length];
+            savedTheme = nextTheme;
+            localStorage.setItem('cyber_theme', nextTheme);
+
+            if (document.startViewTransition) {
+                document.startViewTransition(() => {
+                    updateClockAndTheme();
+                });
+            } else {
+                updateClockAndTheme();
+            }
+
+            // Haptic vibration feedback on mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(12);
+            }
+        });
+
+        updateClockAndTheme();
+        setInterval(updateClockAndTheme, 10000);
+    }
+
+    initTimeOfDayTheme();
+
+    // ==========================================================================
+    // 2. MOBILE NAVIGATION & PROFILE SHEET
+    // ==========================================================================
     function initMobileNavigation() {
         // 1. Inject Top 3-Dots Button inside Top Nav if not present
         const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
@@ -914,3 +1024,134 @@ backToTopBtn.addEventListener('click', () => {
     
     setInterval(draw, 50); 
 })();
+
+// ==========================================================================
+// 3. NATIVE VIEW TRANSITIONS API (Client-Side App Navigation)
+// ==========================================================================
+(function initNativeViewTransitions() {
+    // Only intercept if View Transitions or fetch is supported
+    if (!window.fetch || !window.DOMParser) return;
+
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:') || link.hasAttribute('download') || link.target === '_blank') {
+            return;
+        }
+
+        const targetUrl = new URL(link.href, window.location.href);
+        // Only same-origin internal pages
+        if (targetUrl.origin !== window.location.origin) return;
+
+        // Skip if same page
+        if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) {
+            if (targetUrl.hash) return;
+        }
+
+        e.preventDefault();
+
+        // Close profile sheet if open
+        const profileSheet = document.getElementById('profileSheet');
+        if (profileSheet && profileSheet.classList.contains('active')) {
+            profileSheet.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Haptic feedback on tap
+        if (navigator.vibrate) {
+            navigator.vibrate(8);
+        }
+
+        const navigateTo = async (url) => {
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Network error');
+                const htmlText = await res.text();
+                const parser = new DOMParser();
+                const newDoc = parser.parseFromString(htmlText, 'text/html');
+
+                const updateDOM = () => {
+                    // Update Title
+                    document.title = newDoc.title;
+
+                    // Update main content
+                    const oldMain = document.getElementById('main-content');
+                    const newMain = newDoc.getElementById('main-content');
+                    if (oldMain && newMain) {
+                        oldMain.innerHTML = newMain.innerHTML;
+                    }
+
+                    // Update active link in top nav
+                    const currentNavLinks = document.querySelectorAll('.nav-links a');
+                    const newPath = new URL(url, window.location.href).pathname.toLowerCase();
+                    currentNavLinks.forEach(a => {
+                        const hrefVal = (a.getAttribute('href') || '').toLowerCase();
+                        if (newPath.endsWith(hrefVal) || (hrefVal === 'index.html' && (newPath.endsWith('/') || newPath.endsWith('index.html')))) {
+                            a.classList.add('active');
+                        } else {
+                            a.classList.remove('active');
+                        }
+                    });
+
+                    // Update active dock item
+                    const bottomDock = document.getElementById('mobileBottomDock');
+                    if (bottomDock) {
+                        const dockItems = bottomDock.querySelectorAll('.dock-item');
+                        dockItems.forEach(item => item.classList.remove('active'));
+
+                        if (newPath.includes('projects') || newPath.includes('project-')) {
+                            const el = bottomDock.querySelector('[data-tab="projects"]');
+                            if (el) el.classList.add('active');
+                        } else if (newPath.includes('gallery')) {
+                            const el = bottomDock.querySelector('[data-tab="gallery"]');
+                            if (el) el.classList.add('active');
+                        } else if (newPath.includes('skills')) {
+                            const el = bottomDock.querySelector('[data-tab="skills"]');
+                            if (el) el.classList.add('active');
+                        } else if (newPath.includes('about') || newPath.includes('contact') || newPath.includes('developer-guide') || newPath.includes('iot')) {
+                            const el = bottomDock.querySelector('[data-tab="profile"]');
+                            if (el) el.classList.add('active');
+                        } else {
+                            const el = bottomDock.querySelector('[data-tab="home"]');
+                            if (el) el.classList.add('active');
+                        }
+                    }
+
+                    // Push history state
+                    window.history.pushState({}, '', url);
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+
+                    // Re-observe animations
+                    const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+                    const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -20px 0px' };
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) entry.target.classList.add('visible');
+                        });
+                    }, observerOptions);
+                    animatedElements.forEach(el => observer.observe(el));
+                };
+
+                if (document.startViewTransition) {
+                    document.startViewTransition(() => {
+                        updateDOM();
+                    });
+                } else {
+                    updateDOM();
+                }
+            } catch (err) {
+                // Fallback to normal navigation
+                window.location.href = url;
+            }
+        };
+
+        navigateTo(targetUrl.href);
+    });
+
+    window.addEventListener('popstate', () => {
+        window.location.reload();
+    });
+})();
+

@@ -1,4 +1,59 @@
-:root {
+/* ==========================================================================
+   NATIVE VIEW TRANSITIONS API (App-Like Seamless Navigation)
+   ========================================================================== */
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: 0.28s cubic-bezier(0.4, 0, 1, 1) both vtFadeOut;
+}
+
+::view-transition-new(root) {
+    animation: 0.32s cubic-bezier(0, 0, 0.2, 1) both vtFadeIn;
+}
+
+@keyframes vtFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.985) translateY(-6px);
+    }
+}
+
+@keyframes vtFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.015) translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Stable Persistent Elements across View Transitions */
+nav:not(.mobile-bottom-dock) {
+    view-transition-name: top-navbar;
+}
+
+.mobile-bottom-dock {
+    view-transition-name: bottom-dock;
+}
+
+.nav-cyber-pill {
+    view-transition-name: cyber-pill;
+}
+
+/* ==========================================================================
+   LIVE TIME-OF-DAY CYBER THEMES & AMBIENT LIGHTING
+   ========================================================================== */
+
+:root, [data-theme="daylight"] {
     --bg-main: #000000;
     --bg-card: rgba(255, 255, 255, 0.05);
     --border-glass: rgba(212, 175, 55, 0.2);
@@ -6,9 +61,50 @@
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
     --accent: #d4af37;
-    --accent-glow: rgba(212, 175, 55, 0.5);
+    --accent-secondary: #f4d03f;
+    --accent-glow: rgba(212, 175, 55, 0.45);
     --accent-gradient: linear-gradient(135deg, #d4af37, #f4d03f);
     --nav-height: 90px;
+    --ambient-glow-1: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.16) 0%, transparent 60%);
+    --ambient-glow-2: radial-gradient(circle at 85% 85%, rgba(244, 208, 63, 0.12) 0%, transparent 60%);
+    --pill-accent: #d4af37;
+    --pill-dot: #f4d03f;
+}
+
+[data-theme="sunset"] {
+    --bg-main: #000000;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --border-glass: rgba(255, 123, 37, 0.22);
+    --border-glass-hover: rgba(255, 123, 37, 0.55);
+    --text-primary: #ffffff;
+    --text-secondary: #e2d9d0;
+    --accent: #ff7b25;
+    --accent-secondary: #ffae19;
+    --accent-glow: rgba(255, 123, 37, 0.45);
+    --accent-gradient: linear-gradient(135deg, #ff7b25, #ffae19);
+    --nav-height: 90px;
+    --ambient-glow-1: radial-gradient(circle at 18% 12%, rgba(255, 123, 37, 0.2) 0%, transparent 65%);
+    --ambient-glow-2: radial-gradient(circle at 82% 88%, rgba(220, 38, 38, 0.14) 0%, transparent 65%);
+    --pill-accent: #ff7b25;
+    --pill-dot: #ffae19;
+}
+
+[data-theme="neon"] {
+    --bg-main: #000000;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --border-glass: rgba(0, 255, 157, 0.2);
+    --border-glass-hover: rgba(0, 255, 157, 0.5);
+    --text-primary: #ffffff;
+    --text-secondary: #cdeae1;
+    --accent: #00ff9d;
+    --accent-secondary: #00e5ff;
+    --accent-glow: rgba(0, 255, 157, 0.45);
+    --accent-gradient: linear-gradient(135deg, #00ff9d, #00e5ff);
+    --nav-height: 90px;
+    --ambient-glow-1: radial-gradient(circle at 15% 10%, rgba(0, 255, 157, 0.18) 0%, transparent 60%);
+    --ambient-glow-2: radial-gradient(circle at 85% 80%, rgba(0, 229, 255, 0.14) 0%, transparent 60%);
+    --pill-accent: #00ff9d;
+    --pill-dot: #00e5ff;
 }
 
 * {
@@ -27,6 +123,20 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+    transition: color 0.5s ease;
+}
+
+/* Dynamic Ambient Glow Mesh */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: var(--ambient-glow-1), var(--ambient-glow-2);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+    transition: background-image 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+    opacity: 0.85;
 }
 
 h1, h2, h3, h4, .logo {
@@ -316,11 +426,107 @@ nav:not(.mobile-bottom-dock) {
 
 .logo {
     margin-right: auto;
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
     height: 90px;
     width: auto;
+}
+
+/* Live Time-of-Day & Cyber Theme Pill */
+.nav-cyber-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    margin: 0 14px 0 8px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-cyber-pill:hover,
+.nav-cyber-pill:active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+    transform: scale(1.03);
+}
+
+.cyber-pill-icon {
+    font-size: 0.85rem;
+    color: var(--pill-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-cyber-pill:hover .cyber-pill-icon {
+    transform: rotate(20deg) scale(1.15);
+}
+
+.cyber-pill-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    text-align: left;
+}
+
+.cyber-pill-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+}
+
+.cyber-pill-status {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    color: var(--pill-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.4s ease;
+}
+
+.cyber-pill-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pill-dot);
+    box-shadow: 0 0 8px var(--pill-dot);
+    animation: pillPulse 2s infinite ease-in-out;
+    margin-left: 2px;
+}
+
+@keyframes pillPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 12px var(--pill-dot); }
+}
+
+@media (max-width: 768px) {
+    .nav-cyber-pill {
+        padding: 5px 9px;
+        gap: 6px;
+        margin: 0 8px 0 auto;
+    }
+    .cyber-pill-status {
+        display: none;
+    }
+    .cyber-pill-time {
+        font-size: 0.68rem;
+    }
 }
 
 .nav-links {
