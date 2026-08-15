@@ -698,7 +698,7 @@ body {
     opacity: 0.3;
 }
 
-/* Mobile & Phone Responsive Styles */
+
 @media (max-width: 768px) {
     body {
         height: 100vh;

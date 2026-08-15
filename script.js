@@ -61,9 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     
-    // ==========================================================================
-    // 1. LIVE HACKER MODE GREEN CLOCK (Moving Seconds)
-    // ==========================================================================
     function initHackerLiveClock() {
         const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
         if (!topNav) return;
@@ -82,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="hacker-clock-pulse"></span>
             `;
 
-            // Insert right after .logo
             const logo = topNav.querySelector('.logo');
             if (logo && logo.nextSibling) {
                 topNav.insertBefore(timePill, logo.nextSibling);
@@ -112,11 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initHackerLiveClock();
 
-    // ==========================================================================
-    // 2. MOBILE NAVIGATION & PROFILE SHEET
-    // ==========================================================================
     function initMobileNavigation() {
-        // 1. Inject Top 3-Dots Button inside Top Nav if not present
         const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
         if (topNav && !document.getElementById('mobile-dots-trigger')) {
             const dotsBtn = document.createElement('button');
@@ -128,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
             topNav.appendChild(dotsBtn);
         }
 
-        // 2. Inject Mobile Floating Bottom Dock (Photo 2) if not present
         let bottomDock = document.getElementById('mobileBottomDock');
         if (!bottomDock) {
             bottomDock = document.createElement('nav');
@@ -160,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(bottomDock);
         }
 
-        // 3. Inject Profile Modal Sheet (Premium Social-Media Style) if not present
         let profileSheet = document.getElementById('profileSheet');
         if (!profileSheet) {
             profileSheet = document.createElement('div');
@@ -326,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             document.body.appendChild(profileSheet);
 
-            // Like button toggle
             const likeBtn = document.getElementById('profileLikeBtn');
             if (likeBtn) {
                 likeBtn.addEventListener('click', () => {
@@ -343,7 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 4. Highlight Active Tab in Dock
         const currentPath = window.location.pathname.toLowerCase();
         const dockItems = bottomDock.querySelectorAll('.dock-item');
         dockItems.forEach(item => item.classList.remove('active'));
@@ -361,12 +349,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const el = bottomDock.querySelector('[data-tab="profile"]');
             if (el) el.classList.add('active');
         } else {
-            // Default Home
             const el = bottomDock.querySelector('[data-tab="home"]');
             if (el) el.classList.add('active');
         }
 
-        // 5. Open / Close Profile Sheet Handlers
         function openProfile() {
             if (profileSheet) {
                 profileSheet.classList.add('active');
@@ -419,7 +405,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Touch swipe down on handle or sheet top to close
         let startY = 0;
         const sheetContent = profileSheet ? profileSheet.querySelector('.profile-sheet-content') : null;
         if (sheetContent) {
@@ -445,7 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Click outside sheet content to close
         if (profileSheet) {
             profileSheet.addEventListener('click', (e) => {
                 if (e.target === profileSheet) {
@@ -454,7 +438,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // ESC key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && profileSheet && profileSheet.classList.contains('active')) {
                 closeProfile();
@@ -902,13 +885,8 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 
-// Background is pure clean dark black
 
-// ==========================================================================
-// 3. NATIVE VIEW TRANSITIONS API (Client-Side App Navigation)
-// ==========================================================================
 (function initNativeViewTransitions() {
-    // Only intercept if View Transitions or fetch is supported
     if (!window.fetch || !window.DOMParser) return;
 
     document.addEventListener('click', (e) => {
@@ -921,24 +899,20 @@ backToTopBtn.addEventListener('click', () => {
         }
 
         const targetUrl = new URL(link.href, window.location.href);
-        // Only same-origin internal pages
         if (targetUrl.origin !== window.location.origin) return;
 
-        // Skip if same page
         if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) {
             if (targetUrl.hash) return;
         }
 
         e.preventDefault();
 
-        // Close profile sheet if open
         const profileSheet = document.getElementById('profileSheet');
         if (profileSheet && profileSheet.classList.contains('active')) {
             profileSheet.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // Haptic feedback on tap
         if (navigator.vibrate) {
             navigator.vibrate(8);
         }
@@ -952,17 +926,14 @@ backToTopBtn.addEventListener('click', () => {
                 const newDoc = parser.parseFromString(htmlText, 'text/html');
 
                 const updateDOM = () => {
-                    // Update Title
                     document.title = newDoc.title;
 
-                    // Update main content
                     const oldMain = document.getElementById('main-content');
                     const newMain = newDoc.getElementById('main-content');
                     if (oldMain && newMain) {
                         oldMain.innerHTML = newMain.innerHTML;
                     }
 
-                    // Update active link in top nav
                     const currentNavLinks = document.querySelectorAll('.nav-links a');
                     const newPath = new URL(url, window.location.href).pathname.toLowerCase();
                     currentNavLinks.forEach(a => {
@@ -974,7 +945,6 @@ backToTopBtn.addEventListener('click', () => {
                         }
                     });
 
-                    // Update active dock item
                     const bottomDock = document.getElementById('mobileBottomDock');
                     if (bottomDock) {
                         const dockItems = bottomDock.querySelectorAll('.dock-item');
@@ -998,11 +968,9 @@ backToTopBtn.addEventListener('click', () => {
                         }
                     }
 
-                    // Push history state
                     window.history.pushState({}, '', url);
                     window.scrollTo({ top: 0, behavior: 'instant' });
 
-                    // Re-observe animations
                     const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
                     const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -20px 0px' };
                     const observer = new IntersectionObserver((entries) => {
@@ -1021,7 +989,6 @@ backToTopBtn.addEventListener('click', () => {
                     updateDOM();
                 }
             } catch (err) {
-                // Fallback to normal navigation
                 window.location.href = url;
             }
         };
