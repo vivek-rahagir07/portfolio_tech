@@ -2642,7 +2642,7 @@ footer {
         display: none !important;
     }
     
-    /* 3-Dots Mobile Action Button in Top Nav */
+    /* 3-Dots Mobile Action Button in Top Nav (mobile only) */
     .mobile-dots-btn {
         display: flex !important;
         align-items: center;
@@ -3510,9 +3510,12 @@ footer {
         }
     }
 
-    /* Desktop: hide mobile preview, show canvas */
+    /* Desktop: hide mobile-only elements */
     @media (min-width: 1025px) {
         .roadmap-mobile-preview {
+            display: none !important;
+        }
+        .mobile-dots-btn {
             display: none !important;
         }
     }
