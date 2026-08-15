@@ -50,10 +50,10 @@ nav:not(.mobile-bottom-dock) {
 }
 
 /* ==========================================================================
-   LIVE TIME-OF-DAY CYBER THEMES & AMBIENT LIGHTING
+   ROOT VARIABLES & DESIGN TOKENS
    ========================================================================== */
 
-:root, [data-theme="daylight"] {
+:root {
     --bg-main: #000000;
     --bg-card: rgba(255, 255, 255, 0.05);
     --border-glass: rgba(212, 175, 55, 0.2);
@@ -65,46 +65,6 @@ nav:not(.mobile-bottom-dock) {
     --accent-glow: rgba(212, 175, 55, 0.45);
     --accent-gradient: linear-gradient(135deg, #d4af37, #f4d03f);
     --nav-height: 90px;
-    --ambient-glow-1: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.16) 0%, transparent 60%);
-    --ambient-glow-2: radial-gradient(circle at 85% 85%, rgba(244, 208, 63, 0.12) 0%, transparent 60%);
-    --pill-accent: #d4af37;
-    --pill-dot: #f4d03f;
-}
-
-[data-theme="sunset"] {
-    --bg-main: #000000;
-    --bg-card: rgba(255, 255, 255, 0.05);
-    --border-glass: rgba(255, 123, 37, 0.22);
-    --border-glass-hover: rgba(255, 123, 37, 0.55);
-    --text-primary: #ffffff;
-    --text-secondary: #e2d9d0;
-    --accent: #ff7b25;
-    --accent-secondary: #ffae19;
-    --accent-glow: rgba(255, 123, 37, 0.45);
-    --accent-gradient: linear-gradient(135deg, #ff7b25, #ffae19);
-    --nav-height: 90px;
-    --ambient-glow-1: radial-gradient(circle at 18% 12%, rgba(255, 123, 37, 0.2) 0%, transparent 65%);
-    --ambient-glow-2: radial-gradient(circle at 82% 88%, rgba(220, 38, 38, 0.14) 0%, transparent 65%);
-    --pill-accent: #ff7b25;
-    --pill-dot: #ffae19;
-}
-
-[data-theme="neon"] {
-    --bg-main: #000000;
-    --bg-card: rgba(255, 255, 255, 0.05);
-    --border-glass: rgba(0, 255, 157, 0.2);
-    --border-glass-hover: rgba(0, 255, 157, 0.5);
-    --text-primary: #ffffff;
-    --text-secondary: #cdeae1;
-    --accent: #00ff9d;
-    --accent-secondary: #00e5ff;
-    --accent-glow: rgba(0, 255, 157, 0.45);
-    --accent-gradient: linear-gradient(135deg, #00ff9d, #00e5ff);
-    --nav-height: 90px;
-    --ambient-glow-1: radial-gradient(circle at 15% 10%, rgba(0, 255, 157, 0.18) 0%, transparent 60%);
-    --ambient-glow-2: radial-gradient(circle at 85% 80%, rgba(0, 229, 255, 0.14) 0%, transparent 60%);
-    --pill-accent: #00ff9d;
-    --pill-dot: #00e5ff;
 }
 
 * {
@@ -123,20 +83,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
-    transition: color 0.5s ease;
-}
-
-/* Dynamic Ambient Glow Mesh */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: var(--ambient-glow-1), var(--ambient-glow-2);
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: 0;
-    transition: background-image 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
-    opacity: 0.85;
 }
 
 h1, h2, h3, h4, .logo {
@@ -435,9 +381,9 @@ nav:not(.mobile-bottom-dock) {
     width: auto;
 }
 
-/* Live Hacker Mode Green Clock */
+/* Live Hacker Mode Green Clock (Phone Only) */
 .nav-hacker-clock {
-    display: inline-flex;
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 7px;
@@ -448,7 +394,7 @@ nav:not(.mobile-bottom-dock) {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.08);
-    margin: 0 14px 0 8px;
+    margin: 0;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     transition: all 0.3s ease;
@@ -504,6 +450,7 @@ nav:not(.mobile-bottom-dock) {
 
 @media (max-width: 1024px) {
     .nav-hacker-clock {
+        display: inline-flex !important;
         position: absolute !important;
         left: 50% !important;
         top: 50% !important;
@@ -598,6 +545,12 @@ nav:not(.mobile-bottom-dock) {
 
 #install-btn {
     display: none; 
+}
+
+/* Mobile-only elements hidden on desktop */
+.mobile-dots-btn,
+.mobile-bottom-dock {
+    display: none !important;
 }
 
 
@@ -3648,106 +3601,58 @@ footer {
     }
 }
 
+
+
 /* ==========================================================================
-   ROADMAP DOWNLOAD BAR (Global — applies on all screen sizes)
+   DEVELOPER ROADMAP (Desktop vs Mobile Views)
    ========================================================================== */
-.roadmap-download-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 20px;
-    background: rgba(0, 15, 6, 0.85);
-    border: 1px solid rgba(0, 255, 65, 0.25);
-    border-radius: 14px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 15;
-    width: auto;
-    max-width: 520px;
-}
 
-.roadmap-download-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.roadmap-download-info > i {
-    font-size: 1.3rem;
-    color: #00ff41;
-    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
-}
-
-.roadmap-download-info > div {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-}
-
-.roadmap-download-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.roadmap-download-sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.5);
-    font-weight: 500;
-}
-
-.roadmap-download-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 20px;
-    background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
-    color: #000000;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    font-weight: 800;
-    border-radius: 10px;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(0, 255, 65, 0.3);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    white-space: nowrap;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.roadmap-download-btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 6px 28px rgba(0, 255, 65, 0.5);
-}
-
-.roadmap-download-btn:active {
-    transform: scale(0.97);
-}
-
-.roadmap-download-btn i {
-    font-size: 0.85rem;
-}
-
-/* Default: hide mobile preview */
-.roadmap-mobile-preview {
-    display: none;
-}
-
-/* Desktop: hide mobile-only elements, show canvas */
+/* --- Desktop Styles (> 1024px) --- */
 @media (min-width: 1025px) {
-    .roadmap-mobile-preview {
+    .roadmap-mobile-view {
         display: none !important;
     }
-    .mobile-dots-btn {
-        display: none !important;
+    
+    .roadmap-desktop-view {
+        display: block !important;
     }
+    
+    .desktop-roadmap-download-btn {
+        position: fixed;
+        top: 105px;
+        right: 32px;
+        z-index: 1001;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 22px;
+        background: rgba(0, 20, 10, 0.85);
+        border: 1px solid rgba(0, 255, 65, 0.4);
+        border-radius: 24px;
+        color: #00ff41;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 65, 0.2);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+    }
+    
+    .desktop-roadmap-download-btn:hover {
+        background: #00ff41;
+        color: #000000;
+        border-color: #00ff41;
+        box-shadow: 0 6px 30px rgba(0, 255, 65, 0.6);
+        transform: translateY(-2px);
+    }
+    
+    .desktop-roadmap-download-btn i {
+        font-size: 0.9rem;
+    }
+
     .mindmap-canvas-wrapper {
         position: fixed;
         top: 0;
@@ -3757,13 +3662,82 @@ footer {
         padding: 0;
         border-radius: 0;
         overflow: hidden;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
+        background: #000000;
         z-index: 10;
+        display: block !important;
     }
+    
     #mindmapCanvas {
         width: 100%;
         height: 100vh;
         display: block;
+    }
+}
+
+/* --- Mobile Styles (<= 1024px) --- */
+@media (max-width: 1024px) {
+    .roadmap-desktop-view {
+        display: none !important;
+    }
+    
+    .mindmap-canvas-wrapper {
+        display: none !important;
+    }
+    
+    .roadmap-mobile-view {
+        display: block !important;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 70px 16px 120px 16px;
+    }
+    
+    .roadmap-mobile-img-wrap {
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+        margin: 1.5rem 0;
+        background: #000000;
+    }
+    
+    .roadmap-mobile-img-wrap img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+    }
+    
+    .roadmap-mobile-dl-wrap {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .roadmap-download-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 14px 20px;
+        background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+        color: #000000;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        font-weight: 800;
+        border-radius: 14px;
+        text-decoration: none;
+        box-shadow: 0 6px 25px rgba(0, 255, 65, 0.35);
+        transition: all 0.3s ease;
+    }
+    
+    .roadmap-download-btn:active {
+        transform: scale(0.97);
+    }
+    
+    .roadmap-download-btn i {
+        font-size: 1rem;
     }
 }
 

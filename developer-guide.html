@@ -83,34 +83,32 @@
 
         
         <section id="developer-guide" class="section page-transition">
-            <div class="section-header fade-in-up">
-                <h2>Full Stack Developer Roadmap</h2>
-                <div class="header-line"></div>
-            </div>
-            
-            <div class="guide-container fade-in-up">
-
-                <!-- Download Roadmap Bar (visible on all, primary CTA on mobile) -->
-                <div class="roadmap-download-bar">
-                    <div class="roadmap-download-info">
-                        <i class="fa-solid fa-map"></i>
-                        <div>
-                            <span class="roadmap-download-title">Full Stack Web Dev Roadmap</span>
-                            <span class="roadmap-download-sub">High-res PNG · Comprehensive Guide</span>
-                        </div>
-                    </div>
-                    <a href="collage/image.png" download="Full_Stack_Web_Dev_Roadmap.png" class="roadmap-download-btn" id="roadmapDownloadBtn">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Download Roadmap</span>
-                    </a>
+            <!-- Mobile Phone View (Flowchart image + Download button) -->
+            <div class="roadmap-mobile-view">
+                <div class="section-header fade-in-up">
+                    <h2>Full Stack Developer Roadmap</h2>
+                    <div class="header-line"></div>
                 </div>
-
-                <!-- Mobile: Roadmap Image Preview -->
-                <div class="roadmap-mobile-preview">
+                
+                <div class="roadmap-mobile-img-wrap fade-in-up">
                     <img src="collage/image.png" alt="Full Stack Web Development Roadmap" loading="lazy">
                 </div>
                 
-                <!-- Desktop: Interactive Mindmap Canvas -->
+                <div class="roadmap-mobile-dl-wrap fade-in-up">
+                    <a href="collage/image.png" download="Full_Stack_Web_Dev_Roadmap.png" class="roadmap-download-btn">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download Complete Roadmap (PNG)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Desktop / Laptop View (Full Interactive Workspace + Top Download Button) -->
+            <div class="roadmap-desktop-view">
+                <a href="collage/image.png" download="Full_Stack_Web_Dev_Roadmap.png" class="desktop-roadmap-download-btn" title="Download High-Resolution Roadmap (PNG)">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download Roadmap</span>
+                </a>
+                
                 <div class="mindmap-canvas-wrapper glass-card">
                     <canvas id="mindmapCanvas"></canvas>
                 </div>

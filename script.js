@@ -902,71 +902,7 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 
-(function initMatrixRain() {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'matrix-rain';
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    canvas.style.zIndex = '-2';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.15'; 
-    document.body.prepend(canvas);
-
-    const ctx = canvas.getContext('2d');
-    
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    
-    
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
-    const fontSize = 16;
-    let columns = width / fontSize;
-    const drops = [];
-    
-    for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * -100; 
-    }
-    
-    window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        columns = width / fontSize;
-        for (let x = 0; x < columns; x++) {
-            if (drops[x] === undefined) drops[x] = Math.random() * -100;
-        }
-    });
-
-    function draw() {
-        
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-        ctx.fillRect(0, 0, width, height);
-        
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = characters.charAt(Math.floor(Math.random() * characters.length));
-            
-            
-            ctx.fillStyle = '#00FF41';
-            
-            
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            
-            if (drops[i] * fontSize > height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            
-            
-            drops[i]++;
-        }
-    }
-    
-    setInterval(draw, 50); 
-})();
+// Background is pure clean dark black
 
 // ==========================================================================
 // 3. NATIVE VIEW TRANSITIONS API (Client-Side App Navigation)
