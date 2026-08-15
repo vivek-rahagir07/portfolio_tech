@@ -3374,23 +3374,30 @@ footer {
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        padding: 14px 20px;
-        margin-bottom: 16px;
-        background: rgba(0, 255, 65, 0.04);
-        border: 1px solid rgba(0, 255, 65, 0.2);
-        border-radius: 16px;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        padding: 10px 20px;
+        background: rgba(0, 15, 6, 0.85);
+        border: 1px solid rgba(0, 255, 65, 0.25);
+        border-radius: 14px;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 15;
+        width: auto;
+        max-width: 520px;
     }
 
     .roadmap-download-info {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
     }
 
     .roadmap-download-info > i {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         color: #00ff41;
         text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
     }
@@ -3398,19 +3405,19 @@ footer {
     .roadmap-download-info > div {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 1px;
     }
 
     .roadmap-download-title {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: 700;
         color: #ffffff;
     }
 
     .roadmap-download-sub {
         font-family: 'Inter', sans-serif;
-        font-size: 0.72rem;
+        font-size: 0.65rem;
         color: rgba(255, 255, 255, 0.5);
         font-weight: 500;
     }
@@ -3419,13 +3426,13 @@ footer {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 22px;
+        padding: 9px 20px;
         background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
         color: #000000;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         font-weight: 800;
-        border-radius: 12px;
+        border-radius: 10px;
         text-decoration: none;
         box-shadow: 0 4px 20px rgba(0, 255, 65, 0.3);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -3443,7 +3450,7 @@ footer {
     }
 
     .roadmap-download-btn i {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     /* ---- Mobile: Roadmap Image Preview ---- */
@@ -3452,6 +3459,34 @@ footer {
     }
 
     @media (max-width: 1024px) {
+        .roadmap-download-bar {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            width: 100%;
+            max-width: 100%;
+            flex-direction: column;
+            text-align: center;
+            padding: 16px;
+            gap: 14px;
+            margin-bottom: 16px;
+            border-radius: 16px;
+        }
+
+        .roadmap-download-info {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .roadmap-download-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 20px;
+            font-size: 0.9rem;
+            border-radius: 14px;
+        }
+
         .roadmap-mobile-preview {
             display: block;
             width: 100%;
@@ -3467,26 +3502,6 @@ footer {
             height: auto;
             display: block;
             border-radius: 16px;
-        }
-
-        .roadmap-download-bar {
-            flex-direction: column;
-            text-align: center;
-            padding: 16px;
-            gap: 14px;
-        }
-
-        .roadmap-download-info {
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .roadmap-download-btn {
-            width: 100%;
-            justify-content: center;
-            padding: 14px 20px;
-            font-size: 0.9rem;
-            border-radius: 14px;
         }
 
         /* Hide the interactive canvas on mobile */
