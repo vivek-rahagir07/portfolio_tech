@@ -4667,7 +4667,7 @@ footer {
 .profile-cover-section {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 220px;
     overflow: hidden;
 }
 
@@ -4675,8 +4675,9 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 8%;
     display: block;
-    filter: brightness(0.85) contrast(1.1);
+    filter: brightness(0.92) contrast(1.05);
 }
 
 .profile-cover-gradient {
@@ -4684,9 +4685,10 @@ footer {
     inset: 0;
     background: linear-gradient(
         180deg,
-        transparent 0%,
-        transparent 40%,
-        rgba(13, 13, 17, 0.6) 70%,
+        rgba(0, 0, 0, 0.25) 0%,
+        transparent 20%,
+        transparent 55%,
+        rgba(13, 13, 17, 0.65) 80%,
         rgba(13, 13, 17, 1) 100%
     );
     pointer-events: none;
@@ -4788,6 +4790,7 @@ footer {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center 25%;
     display: block;
     border: 2.5px solid #0d0d11;
 }
