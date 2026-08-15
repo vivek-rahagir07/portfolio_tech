@@ -2363,6 +2363,7 @@ footer {
     .name { font-size: 5rem; }
     #scratch-container { width: 400px; height: 500px; }
     nav { width: 90% !important; min-width: auto !important; }
+    .noise-overlay { display: none; }
 }
 
 @media (max-width: 992px) {
@@ -2404,10 +2405,7 @@ footer {
         gap: 15px;
     }
     
-    .noise-overlay {
-        display: none;
-    }
-    
+
     .logo {
         margin-right: 0;
         flex-shrink: 0;
