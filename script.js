@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Cover Banner -->
                     <div class="profile-cover-section">
-                        <img src="collage/15.jpg" alt="Vivek Yadav – Cinematic Portrait" class="profile-cover-img">
+                        <img src="collage/1.png" alt="Vivek Yadav – Professional Portrait" class="profile-cover-img">
                         <div class="profile-cover-gradient"></div>
                         <div class="profile-top-actions">
                             <button type="button" class="profile-back-btn" id="closeProfileSheet" aria-label="Close Profile">
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Avatar + Quick Stats Row -->
                     <div class="profile-avatar-stats-row">
                         <div class="profile-avatar-ring">
-                            <img src="collage/1.png" alt="Vivek Yadav">
+                            <img src="collage/15.jpg" alt="Vivek Yadav">
                             <div class="profile-online-dot"></div>
                         </div>
                         <div class="profile-quick-stats">
