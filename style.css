@@ -3367,176 +3367,56 @@ footer {
         }
     }
     
-    
-    /* ---- Roadmap Download Bar ---- */
+
+    /* Mobile: hide canvas, show image preview & download */
+    .roadmap-mobile-preview {
+        display: block;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
+
+    .roadmap-mobile-preview img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+    }
+
     .roadmap-download-bar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 10px 20px;
-        background: rgba(0, 15, 6, 0.85);
-        border: 1px solid rgba(0, 255, 65, 0.25);
-        border-radius: 14px;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-        position: fixed;
-        top: 90px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 15;
-        width: auto;
-        max-width: 520px;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+        gap: 14px;
+        margin-bottom: 16px;
+        border-radius: 16px;
     }
 
     .roadmap-download-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .roadmap-download-info > i {
-        font-size: 1.3rem;
-        color: #00ff41;
-        text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
-    }
-
-    .roadmap-download-info > div {
-        display: flex;
         flex-direction: column;
-        gap: 1px;
-    }
-
-    .roadmap-download-title {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: #ffffff;
-    }
-
-    .roadmap-download-sub {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.65rem;
-        color: rgba(255, 255, 255, 0.5);
-        font-weight: 500;
+        gap: 8px;
     }
 
     .roadmap-download-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 20px;
-        background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
-        color: #000000;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.78rem;
-        font-weight: 800;
-        border-radius: 10px;
-        text-decoration: none;
-        box-shadow: 0 4px 20px rgba(0, 255, 65, 0.3);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        white-space: nowrap;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .roadmap-download-btn:hover {
-        transform: translateY(-2px) scale(1.03);
-        box-shadow: 0 6px 28px rgba(0, 255, 65, 0.5);
-    }
-
-    .roadmap-download-btn:active {
-        transform: scale(0.97);
-    }
-
-    .roadmap-download-btn i {
-        font-size: 0.85rem;
-    }
-
-    /* ---- Mobile: Roadmap Image Preview ---- */
-    .roadmap-mobile-preview {
-        display: none;
-    }
-
-    @media (max-width: 1024px) {
-        .roadmap-download-bar {
-            position: relative;
-            top: auto;
-            left: auto;
-            transform: none;
-            width: 100%;
-            max-width: 100%;
-            flex-direction: column;
-            text-align: center;
-            padding: 16px;
-            gap: 14px;
-            margin-bottom: 16px;
-            border-radius: 16px;
-        }
-
-        .roadmap-download-info {
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .roadmap-download-btn {
-            width: 100%;
-            justify-content: center;
-            padding: 14px 20px;
-            font-size: 0.9rem;
-            border-radius: 14px;
-        }
-
-        .roadmap-mobile-preview {
-            display: block;
-            width: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-        }
-
-        .roadmap-mobile-preview img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 16px;
-        }
-
-        /* Hide the interactive canvas on mobile */
-        .mindmap-canvas-wrapper {
-            display: none !important;
-        }
-    }
-
-    /* Desktop: hide mobile-only elements */
-    @media (min-width: 1025px) {
-        .roadmap-mobile-preview {
-            display: none !important;
-        }
-        .mobile-dots-btn {
-            display: none !important;
-        }
-    }
-
-    .mindmap-canvas-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0;
-        border-radius: 0;
-        overflow: hidden;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
-        z-index: 10;
-    }
-    
-    #mindmapCanvas {
         width: 100%;
-        height: 100vh;
-        display: block;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 0.9rem;
+        border-radius: 14px;
+    }
+
+    /* Hide the interactive canvas on mobile */
+    .mindmap-canvas-wrapper {
+        display: none !important;
     }
     
     
@@ -3765,6 +3645,125 @@ footer {
     
     .page-transition {
         animation: pageFadeIn 0.5s ease-out;
+    }
+}
+
+/* ==========================================================================
+   ROADMAP DOWNLOAD BAR (Global — applies on all screen sizes)
+   ========================================================================== */
+.roadmap-download-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 20px;
+    background: rgba(0, 15, 6, 0.85);
+    border: 1px solid rgba(0, 255, 65, 0.25);
+    border-radius: 14px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    width: auto;
+    max-width: 520px;
+}
+
+.roadmap-download-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.roadmap-download-info > i {
+    font-size: 1.3rem;
+    color: #00ff41;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+}
+
+.roadmap-download-info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.roadmap-download-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.roadmap-download-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+.roadmap-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+    color: #000000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 800;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 255, 65, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.roadmap-download-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 28px rgba(0, 255, 65, 0.5);
+}
+
+.roadmap-download-btn:active {
+    transform: scale(0.97);
+}
+
+.roadmap-download-btn i {
+    font-size: 0.85rem;
+}
+
+/* Default: hide mobile preview */
+.roadmap-mobile-preview {
+    display: none;
+}
+
+/* Desktop: hide mobile-only elements, show canvas */
+@media (min-width: 1025px) {
+    .roadmap-mobile-preview {
+        display: none !important;
+    }
+    .mobile-dots-btn {
+        display: none !important;
+    }
+    .mindmap-canvas-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0;
+        border-radius: 0;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
+        z-index: 10;
+    }
+    #mindmapCanvas {
+        width: 100%;
+        height: 100vh;
+        display: block;
     }
 }
 
