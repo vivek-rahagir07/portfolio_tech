@@ -89,7 +89,28 @@
             </div>
             
             <div class="guide-container fade-in-up">
+
+                <!-- Download Roadmap Bar (visible on all, primary CTA on mobile) -->
+                <div class="roadmap-download-bar">
+                    <div class="roadmap-download-info">
+                        <i class="fa-solid fa-map"></i>
+                        <div>
+                            <span class="roadmap-download-title">Full Stack Web Dev Roadmap</span>
+                            <span class="roadmap-download-sub">High-res PNG · Comprehensive Guide</span>
+                        </div>
+                    </div>
+                    <a href="collage/image.png" download="Full_Stack_Web_Dev_Roadmap.png" class="roadmap-download-btn" id="roadmapDownloadBtn">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download Roadmap</span>
+                    </a>
+                </div>
+
+                <!-- Mobile: Roadmap Image Preview -->
+                <div class="roadmap-mobile-preview">
+                    <img src="collage/image.png" alt="Full Stack Web Development Roadmap" loading="lazy">
+                </div>
                 
+                <!-- Desktop: Interactive Mindmap Canvas -->
                 <div class="mindmap-canvas-wrapper glass-card">
                     <canvas id="mindmapCanvas"></canvas>
                 </div>
