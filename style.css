@@ -2388,7 +2388,7 @@ footer {
     .projects-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     /* Mobile Top Header */
     nav:not(.mobile-bottom-dock) {
         width: 100%;
@@ -3112,7 +3112,7 @@ footer {
         border-radius: 0;
         overflow: hidden;
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
-        z-index: 1000;
+        z-index: 10;
     }
     
     #mindmapCanvas {
@@ -4202,28 +4202,28 @@ footer {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .mobile-bottom-dock {
         display: flex !important;
         position: fixed !important;
         top: auto !important;
-        bottom: max(16px, env(safe-area-inset-bottom)) !important;
+        bottom: max(10px, env(safe-area-inset-bottom)) !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: calc(100% - 32px);
-        max-width: 400px;
-        height: 68px;
-        background: rgba(14, 14, 20, 0.82);
-        backdrop-filter: blur(28px) saturate(200%);
-        -webkit-backdrop-filter: blur(28px) saturate(200%);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 34px;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-        z-index: 9999;
-        align-items: center;
-        justify-content: space-around;
-        padding: 0 6px;
-        box-sizing: border-box;
+        width: calc(100% - 24px) !important;
+        max-width: min(390px, 94vw) !important;
+        height: 64px !important;
+        background: rgba(14, 14, 20, 0.88) !important;
+        backdrop-filter: blur(28px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 32px !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+        z-index: 9999 !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        padding: 0 4px !important;
+        box-sizing: border-box !important;
     }
 
     .dock-item {
