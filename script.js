@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     // ==========================================================================
-    // 1. LIVE WEATHER / TIME-OF-DAY CYBER THEME (Top Nav Pill)
+    // 1. LIVE HACKER MODE GREEN CLOCK (Moving Seconds)
     // ==========================================================================
-    function initTimeOfDayTheme() {
+    function initHackerLiveClock() {
         const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
         if (!topNav) return;
 
@@ -72,17 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!timePill) {
             timePill = document.createElement('div');
             timePill.id = 'navTimePill';
-            timePill.className = 'nav-cyber-pill';
-            timePill.setAttribute('role', 'button');
-            timePill.setAttribute('tabindex', '0');
-            timePill.setAttribute('title', 'Live Local Atmosphere · Tap to cycle Cyber Theme');
+            timePill.className = 'nav-hacker-clock';
+            timePill.setAttribute('role', 'timer');
+            timePill.setAttribute('aria-label', 'System Live Time');
             timePill.innerHTML = `
-                <span class="cyber-pill-icon"><i class="fa-solid fa-sun"></i></span>
-                <div class="cyber-pill-info">
-                    <span class="cyber-pill-time">--:--</span>
-                    <span class="cyber-pill-status">Daylight Gold</span>
-                </div>
-                <span class="cyber-pill-pulse"></span>
+                <span class="hacker-clock-prompt">&gt;_</span>
+                <span class="hacker-clock-time">00:00:00</span>
+                <span class="hacker-clock-ampm">AM</span>
+                <span class="hacker-clock-pulse"></span>
             `;
 
             // Insert right after .logo
@@ -94,80 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const themes = [
-            { id: 'auto', name: 'Live Auto' },
-            { id: 'daylight', name: 'Daylight Gold', icon: 'fa-sun' },
-            { id: 'sunset', name: 'Sunset Amber', icon: 'fa-cloud-sun' },
-            { id: 'neon', name: 'Cyber Neon Night', icon: 'fa-moon' }
-        ];
-
-        let savedTheme = localStorage.getItem('cyber_theme') || 'auto';
-
-        function getAutoTheme(hour) {
-            if (hour >= 6 && hour < 17) {
-                return { id: 'daylight', name: 'Daylight Gold', icon: 'fa-sun' };
-            } else if (hour >= 17 && hour < 20) {
-                return { id: 'sunset', name: 'Sunset Amber', icon: 'fa-cloud-sun' };
-            } else {
-                return { id: 'neon', name: 'Cyber Neon Night', icon: 'fa-moon' };
-            }
-        }
-
-        function updateClockAndTheme() {
+        function updateClock() {
             const now = new Date();
             const hours = now.getHours();
             const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
             const ampm = hours >= 12 ? 'PM' : 'AM';
-            const displayHours = hours % 12 || 12;
-            const timeStr = `${displayHours}:${minutes} ${ampm}`;
+            const displayHours = String(hours % 12 || 12).padStart(2, '0');
 
-            let activeThemeInfo;
-            if (savedTheme === 'auto') {
-                activeThemeInfo = getAutoTheme(hours);
-                document.documentElement.setAttribute('data-theme', activeThemeInfo.id);
-            } else {
-                activeThemeInfo = themes.find(t => t.id === savedTheme) || getAutoTheme(hours);
-                document.documentElement.setAttribute('data-theme', activeThemeInfo.id);
-            }
+            const timeEl = timePill.querySelector('.hacker-clock-time');
+            const ampmEl = timePill.querySelector('.hacker-clock-ampm');
 
-            const timeEl = timePill.querySelector('.cyber-pill-time');
-            const statusEl = timePill.querySelector('.cyber-pill-status');
-            const iconEl = timePill.querySelector('.cyber-pill-icon i');
-
-            if (timeEl) timeEl.textContent = timeStr;
-            if (statusEl) statusEl.textContent = activeThemeInfo.name;
-            if (iconEl) {
-                iconEl.className = `fa-solid ${activeThemeInfo.icon}`;
-            }
+            if (timeEl) timeEl.textContent = `${displayHours}:${minutes}:${seconds}`;
+            if (ampmEl) ampmEl.textContent = ampm;
         }
 
-        timePill.addEventListener('click', (e) => {
-            e.preventDefault();
-            const order = ['auto', 'daylight', 'sunset', 'neon'];
-            const currentIndex = order.indexOf(savedTheme);
-            const nextTheme = order[(currentIndex + 1) % order.length];
-            savedTheme = nextTheme;
-            localStorage.setItem('cyber_theme', nextTheme);
-
-            if (document.startViewTransition) {
-                document.startViewTransition(() => {
-                    updateClockAndTheme();
-                });
-            } else {
-                updateClockAndTheme();
-            }
-
-            // Haptic vibration feedback on mobile
-            if (navigator.vibrate) {
-                navigator.vibrate(12);
-            }
-        });
-
-        updateClockAndTheme();
-        setInterval(updateClockAndTheme, 10000);
+        updateClock();
+        setInterval(updateClock, 1000);
     }
 
-    initTimeOfDayTheme();
+    initHackerLiveClock();
 
     // ==========================================================================
     // 2. MOBILE NAVIGATION & PROFILE SHEET

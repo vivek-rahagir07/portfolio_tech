@@ -45,8 +45,8 @@ nav:not(.mobile-bottom-dock) {
     view-transition-name: bottom-dock;
 }
 
-.nav-cyber-pill {
-    view-transition-name: cyber-pill;
+.nav-hacker-clock {
+    view-transition-name: hacker-clock;
 }
 
 /* ==========================================================================
@@ -435,97 +435,86 @@ nav:not(.mobile-bottom-dock) {
     width: auto;
 }
 
-/* Live Time-of-Day & Cyber Theme Pill */
-.nav-cyber-pill {
+/* Live Hacker Mode Green Clock */
+.nav-hacker-clock {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 6px 14px;
+    background: rgba(0, 15, 6, 0.75);
+    border: 1px solid rgba(0, 255, 65, 0.35);
     border-radius: 20px;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.08);
     margin: 0 14px 0 8px;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    transition: all 0.3s ease;
 }
 
-.nav-cyber-pill:hover,
-.nav-cyber-pill:active {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--accent);
-    box-shadow: 0 0 16px var(--accent-glow);
-    transform: scale(1.03);
+.nav-hacker-clock:hover {
+    border-color: rgba(0, 255, 65, 0.7);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.35), inset 0 0 12px rgba(0, 255, 65, 0.15);
 }
 
-.cyber-pill-icon {
+.hacker-clock-prompt {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #00ff66;
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+    letter-spacing: -1px;
+}
+
+.hacker-clock-time {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.85rem;
-    color: var(--pill-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.nav-cyber-pill:hover .cyber-pill-icon {
-    transform: rotate(20deg) scale(1.15);
-}
-
-.cyber-pill-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-    text-align: left;
-}
-
-.cyber-pill-time {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.02em;
-}
-
-.cyber-pill-status {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.58rem;
-    font-weight: 600;
-    color: var(--pill-accent);
-    text-transform: uppercase;
+    font-weight: 800;
+    color: #00ff41;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
     letter-spacing: 0.05em;
-    transition: color 0.4s ease;
 }
 
-.cyber-pill-pulse {
+.hacker-clock-ampm {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: rgba(0, 255, 65, 0.75);
+    text-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+    letter-spacing: 0.04em;
+    margin-left: -2px;
+}
+
+.hacker-clock-pulse {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--pill-dot);
-    box-shadow: 0 0 8px var(--pill-dot);
-    animation: pillPulse 2s infinite ease-in-out;
+    background: #00ff41;
+    box-shadow: 0 0 8px #00ff41;
+    animation: hackerPulse 1.5s infinite ease-in-out;
     margin-left: 2px;
 }
 
-@keyframes pillPulse {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 12px var(--pill-dot); }
+@keyframes hackerPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 14px #00ff41; }
 }
 
 @media (max-width: 768px) {
-    .nav-cyber-pill {
-        padding: 5px 9px;
-        gap: 6px;
+    .nav-hacker-clock {
+        padding: 5px 10px;
+        gap: 5px;
         margin: 0 8px 0 auto;
     }
-    .cyber-pill-status {
-        display: none;
+    .hacker-clock-prompt {
+        font-size: 0.75rem;
     }
-    .cyber-pill-time {
-        font-size: 0.68rem;
+    .hacker-clock-time {
+        font-size: 0.76rem;
+    }
+    .hacker-clock-ampm {
+        font-size: 0.58rem;
     }
 }
 
