@@ -11,40 +11,60 @@
     <meta name="robots" content="index, follow">
     
     
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vivek Yadav Portfolio">
+    <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://vivek-rahagir.com/">
-    <meta property="og:title" content="Vivek Yadav | Full Stack Developer">
-    <meta property="og:description" content="Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL. Real projects, real code.">
+    <meta property="og:title" content="Vivek Yadav | Full Stack Developer & Engineer">
+    <meta property="og:description" content="Portfolio of Vivek Yadav — a Full Stack Developer specializing in HTML, CSS, JavaScript, React, Node.js, PHP, Laravel, PostgreSQL, Firebase, Supabase, and MySQL.">
     <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    
+    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vivek-rahagir.com/">
-    <meta property="twitter:title" content="Vivek Yadav | Full Stack Developer">
-    <meta property="twitter:description" content="Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL. Real projects, real code.">
+    <meta property="twitter:title" content="Vivek Yadav | Full Stack Developer & Engineer">
+    <meta property="twitter:description" content="Portfolio of Vivek Yadav — a Full Stack Developer specializing in HTML, CSS, JavaScript, React, Node.js, PHP, Laravel, PostgreSQL, Firebase, Supabase, and MySQL.">
     <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
     
-    
+    <!-- PWA & Favicon -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="photos/logo.png">
     <link rel="icon" type="image/png" href="photos/logo.png">
     
-    
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Vivek Yadav",
-        "jobTitle": "Full Stack Developer",
-        "url": "https://vivek-rahagir.com",
-        "image": "https://vivek-rahagir.com/photos/logo.png",
-        "sameAs": [
-            "https://github.com/vivek-rahagir07",
-            "https://linkedin.com/in/vivekyadav"
-        ],
-        "description": "Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL. Real projects, real code.",
-        "knowsAbout": ["HTML", "CSS", "JavaScript", "PostgreSQL", "Firebase", "Supabase", "MySQL", "REST APIs", "IoT", "Full Stack Development", "Web Development"]
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://vivek-rahagir.com/#website",
+                "url": "https://vivek-rahagir.com/",
+                "name": "Vivek Yadav Portfolio",
+                "description": "Portfolio of Vivek Yadav — Full Stack Developer & Engineer",
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Vivek Yadav"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://vivek-rahagir.com/#person",
+                "name": "Vivek Yadav",
+                "alternateName": "Rahagir",
+                "jobTitle": "Full Stack Developer",
+                "url": "https://vivek-rahagir.com",
+                "image": "https://vivek-rahagir.com/photos/logo.png",
+                "sameAs": [
+                    "https://github.com/vivek-rahagir07",
+                    "https://linkedin.com/in/vivek-yadav-1142213a0/"
+                ],
+                "description": "Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL.",
+                "knowsAbout": ["HTML", "CSS", "JavaScript", "React", "Node.js", "PHP", "Laravel", "PostgreSQL", "Firebase", "Supabase", "MySQL", "REST APIs", "IoT", "Full Stack Development", "Web Development"]
+            }
+        ]
     }
     </script>
     <link rel="stylesheet" href="style.css">

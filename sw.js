@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vivek-portfolio-v1';
+const CACHE_NAME = 'vivek-portfolio-v2';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -6,10 +6,16 @@ const urlsToCache = [
     '/skills.html',
     '/projects.html',
     '/gallery.html',
+    '/developer-guide.html',
+    '/iot.html',
+    '/terminal.html',
     '/contact.html',
     '/offline.html',
     '/style.css',
+    '/terminal.css',
     '/script.js',
+    '/skills.js',
+    '/terminal.js',
     '/scroll-jacking.css',
     '/manifest.json',
     '/photos/logo.png',

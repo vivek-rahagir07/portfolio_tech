@@ -83,10 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function adjustForMobile() {
-        if (window.innerWidth < 768) {
-            return 140; 
+        if (window.innerWidth < 400) {
+            return 115;
+        } else if (window.innerWidth < 768) {
+            return 135;
         }
-        return 350; 
+        return 350;
     }
 
     function nextSkill() {

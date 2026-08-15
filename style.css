@@ -3320,48 +3320,112 @@ footer {
     
     
     .contact-wrapper { padding: 0 4%; gap: 2rem; }
-    .collab-text { font-size: 2.5rem; }
-    .contact-desc { font-size: 0.9rem; }
-    .contact-left { padding: 1.5rem; }
+    .collab-text { font-size: 2.2rem; }
+    .contact-desc { font-size: 0.95rem; }
+    .contact-left { padding: 1rem 0.5rem; }
     .contact-right { padding: 1.5rem; }
     .contact-methods a { padding: 12px 20px; font-size: 0.85rem; }
     .contact-form input, .contact-form textarea { padding: 12px; font-size: 0.9rem; }
     .contact-form button { padding: 12px 24px; font-size: 0.9rem; }
     
-    
-    h1, h2, h3, h4, p, span, div {
-        visibility: visible !important;
-        opacity: 1 !important;
+    /* Ensure containers are crisp, highly visible, and tactile on touch devices */
+    .glass-card,
+    .mobile-about-card,
+    .mobile-project-card,
+    .journey-card,
+    .contact-card,
+    .premium-card,
+    .cs-card,
+    .tip-item {
+        background: rgba(18, 18, 24, 0.88) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(212, 175, 55, 0.28) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.08) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .mobile-about-card:active,
+    .mobile-project-card:active,
+    .journey-card:active,
+    .contact-card:active,
+    .premium-card:active,
+    .cs-card:active {
+        transform: scale(0.985);
+        border-color: rgba(212, 175, 55, 0.6) !important;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.25) !important;
     }
     
-    
-    * {
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    
-    
-    a, button {
+    /* Touch friendly minimum click targets */
+    a, button, .nav-btn, .btn, .view-btn, .see-more, .hw-chip, .journey-tag {
         min-height: 44px;
         min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
-    
     
     .page-transition {
-        animation: fadeIn 0.5s ease;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        animation: pageFadeIn 0.5s ease-out;
     }
 }
 
 @media (max-width: 480px) {
-    .name { font-size: 2.5rem; }
-    .title { font-size: 1.4rem; }
-    .section { padding: 60px 4%; }
-    .glass-card { padding: 1.5rem; }
+    .name { font-size: 2.2rem; }
+    .first-name, .last-name { font-size: 2.2rem; }
+    .aka-name { font-size: 0.8rem; letter-spacing: 6px; }
+    .tagline { font-size: 0.95rem; }
+    .title { font-size: 1.2rem; }
+    .section { padding: 50px 4%; }
+    .section-header h2 { font-size: 1.8rem; }
+    .glass-card { padding: 1.25rem; }
     .projects-grid { grid-template-columns: 1fr; }
+    
+    #scratch-container {
+        width: 100%;
+        max-width: 290px;
+        height: 350px;
+        margin: 0 auto;
+        border-radius: 16px;
+    }
+    
+    .contact-card {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+    
+    .contact-card .icon-wrapper {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+    
+    .contact-card h4 {
+        font-size: 0.95rem;
+    }
+    
+    .contact-card span {
+        font-size: 0.78rem;
+        word-break: break-all;
+    }
+    
+    .mobile-gallery-grid {
+        gap: 0.75rem;
+    }
+    
+    .mobile-gallery-item {
+        border-radius: 12px;
+    }
+    
+    .mobile-gallery-item .overlay h3 {
+        font-size: 0.85rem;
+    }
+    
+    .mobile-gallery-item .overlay p {
+        font-size: 0.68rem;
+        line-height: 1.3;
+    }
 }
 
 
