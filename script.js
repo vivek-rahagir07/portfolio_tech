@@ -127,25 +127,41 @@ document.addEventListener('DOMContentLoaded', () => {
             bottomDock.className = 'mobile-bottom-dock';
             bottomDock.setAttribute('aria-label', 'Mobile Navigation');
             bottomDock.innerHTML = `
+                <div class="dock-glider" id="dockGlider"></div>
                 <a href="index.html" class="dock-item" data-tab="home" aria-label="Home">
-                    <div class="dock-icon-wrap"><i class="fa-solid fa-house"></i></div>
+                    <div class="dock-icon-wrap">
+                        <i class="fa-solid fa-house dock-icon"></i>
+                        <img src="photos/navbar.png" alt="Home Tab" class="dock-avatar-img">
+                    </div>
                     <span class="dock-label">Home</span>
                 </a>
                 <a href="projects.html" class="dock-item" data-tab="projects" aria-label="Projects">
-                    <div class="dock-icon-wrap"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="dock-icon-wrap">
+                        <i class="fa-solid fa-layer-group dock-icon"></i>
+                        <img src="photos/navbar.png" alt="Projects Tab" class="dock-avatar-img">
+                    </div>
                     <span class="dock-label">Projects</span>
                 </a>
                 <a href="gallery.html" class="dock-item" data-tab="gallery" aria-label="Gallery">
-                    <div class="dock-icon-wrap"><i class="fa-solid fa-images"></i></div>
+                    <div class="dock-icon-wrap">
+                        <i class="fa-solid fa-images dock-icon"></i>
+                        <img src="photos/navbar.png" alt="Gallery Tab" class="dock-avatar-img">
+                    </div>
                     <span class="dock-label">Gallery</span>
                 </a>
                 <a href="skills.html" class="dock-item" data-tab="skills" aria-label="Skills">
-                    <div class="dock-icon-wrap"><i class="fa-solid fa-code"></i></div>
+                    <div class="dock-icon-wrap">
+                        <i class="fa-solid fa-code dock-icon"></i>
+                        <img src="photos/navbar.png" alt="Skills Tab" class="dock-avatar-img">
+                    </div>
                     <span class="dock-label">Skills</span>
                 </a>
                 <button type="button" class="dock-item" data-tab="profile" id="dock-profile-tab" aria-label="Profile & More">
-                    <div class="dock-icon-wrap"><i class="fa-solid fa-user"></i></div>
-                    <span class="dock-label">Profil</span>
+                    <div class="dock-icon-wrap">
+                        <i class="fa-solid fa-user dock-icon"></i>
+                        <img src="photos/navbar.png" alt="Profile Tab" class="dock-avatar-img">
+                    </div>
+                    <span class="dock-label">Profile</span>
                 </button>
             `;
             document.body.appendChild(bottomDock);
@@ -332,26 +348,59 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const currentPath = window.location.pathname.toLowerCase();
-        const dockItems = bottomDock.querySelectorAll('.dock-item');
-        dockItems.forEach(item => item.classList.remove('active'));
+        function updateMobileDockActive(targetPathOrTab) {
+            const dock = document.getElementById('mobileBottomDock');
+            if (!dock) return;
+            const dockItems = dock.querySelectorAll('.dock-item');
+            dockItems.forEach(item => item.classList.remove('active'));
 
-        if (currentPath.includes('projects') || currentPath.includes('project-')) {
-            const el = bottomDock.querySelector('[data-tab="projects"]');
-            if (el) el.classList.add('active');
-        } else if (currentPath.includes('gallery')) {
-            const el = bottomDock.querySelector('[data-tab="gallery"]');
-            if (el) el.classList.add('active');
-        } else if (currentPath.includes('skills')) {
-            const el = bottomDock.querySelector('[data-tab="skills"]');
-            if (el) el.classList.add('active');
-        } else if (currentPath.includes('about') || currentPath.includes('contact') || currentPath.includes('developer-guide') || currentPath.includes('iot')) {
-            const el = bottomDock.querySelector('[data-tab="profile"]');
-            if (el) el.classList.add('active');
-        } else {
-            const el = bottomDock.querySelector('[data-tab="home"]');
-            if (el) el.classList.add('active');
+            let activeEl = null;
+            if (typeof targetPathOrTab === 'string') {
+                const lower = targetPathOrTab.toLowerCase();
+                if (lower === 'projects' || lower.includes('project')) {
+                    activeEl = dock.querySelector('[data-tab="projects"]');
+                } else if (lower === 'gallery' || lower.includes('gallery')) {
+                    activeEl = dock.querySelector('[data-tab="gallery"]');
+                } else if (lower === 'skills' || lower.includes('skills')) {
+                    activeEl = dock.querySelector('[data-tab="skills"]');
+                } else if (lower === 'profile' || lower.includes('about') || lower.includes('contact') || lower.includes('developer-guide') || lower.includes('iot') || lower.includes('terminal')) {
+                    activeEl = dock.querySelector('[data-tab="profile"]');
+                } else {
+                    activeEl = dock.querySelector('[data-tab="home"]');
+                }
+            } else if (targetPathOrTab instanceof HTMLElement) {
+                activeEl = targetPathOrTab.closest('.dock-item');
+            }
+
+            if (!activeEl) {
+                activeEl = dock.querySelector('[data-tab="home"]');
+            }
+
+            if (activeEl) {
+                activeEl.classList.add('active');
+
+                const glider = document.getElementById('dockGlider');
+                if (glider) {
+                    const dockRect = dock.getBoundingClientRect();
+                    const itemRect = activeEl.getBoundingClientRect();
+                    if (itemRect.width > 0) {
+                        const centerX = (itemRect.left - dockRect.left) + (itemRect.width / 2);
+                        glider.style.left = `${centerX}px`;
+                        glider.style.opacity = '1';
+                    }
+                }
+            }
         }
+        window.updateMobileDockActive = updateMobileDockActive;
+
+        setTimeout(() => updateMobileDockActive(window.location.pathname), 50);
+        window.addEventListener('resize', () => updateMobileDockActive(window.location.pathname));
+
+        bottomDock.querySelectorAll('.dock-item').forEach(item => {
+            item.addEventListener('click', function() {
+                updateMobileDockActive(this);
+            });
+        });
 
         function openProfile() {
             if (profileSheet) {
@@ -945,27 +994,8 @@ backToTopBtn.addEventListener('click', () => {
                         }
                     });
 
-                    const bottomDock = document.getElementById('mobileBottomDock');
-                    if (bottomDock) {
-                        const dockItems = bottomDock.querySelectorAll('.dock-item');
-                        dockItems.forEach(item => item.classList.remove('active'));
-
-                        if (newPath.includes('projects') || newPath.includes('project-')) {
-                            const el = bottomDock.querySelector('[data-tab="projects"]');
-                            if (el) el.classList.add('active');
-                        } else if (newPath.includes('gallery')) {
-                            const el = bottomDock.querySelector('[data-tab="gallery"]');
-                            if (el) el.classList.add('active');
-                        } else if (newPath.includes('skills')) {
-                            const el = bottomDock.querySelector('[data-tab="skills"]');
-                            if (el) el.classList.add('active');
-                        } else if (newPath.includes('about') || newPath.includes('contact') || newPath.includes('developer-guide') || newPath.includes('iot')) {
-                            const el = bottomDock.querySelector('[data-tab="profile"]');
-                            if (el) el.classList.add('active');
-                        } else {
-                            const el = bottomDock.querySelector('[data-tab="home"]');
-                            if (el) el.classList.add('active');
-                        }
+                    if (window.updateMobileDockActive) {
+                        window.updateMobileDockActive(newPath);
                     }
 
                     window.history.pushState({}, '', url);

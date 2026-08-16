@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const pageStartTime = Date.now();
     function setupParticleReveal(canvasId) {
         if (window.skipPreloader) return;
         const canvas = document.getElementById(canvasId);
@@ -344,6 +345,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (canvasId === 'particle-reveal-canvas-index' && !canvas.fadeOutTriggered) {
                     canvas.fadeOutTriggered = true;
                     
+                    const elapsed = Date.now() - pageStartTime;
+                    const fadeDelay = Math.max(0, 3000 - elapsed);
+                    
                     setTimeout(() => {
                         const overlay = document.getElementById('intro-overlay');
                         if (overlay) {
@@ -351,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             overlay.style.visibility = 'hidden';
                             setTimeout(() => overlay.remove(), 1500); 
                         }
-                    }, 800); 
+                    }, fadeDelay); 
                 }
             }
             
