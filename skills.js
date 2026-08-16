@@ -83,10 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function adjustForMobile() {
-        if (window.innerWidth < 400) {
-            return 115;
-        } else if (window.innerWidth < 768) {
-            return 135;
+        const ringEl = document.getElementById('orbit-ring');
+        if (window.innerWidth <= 1024) {
+            if (ringEl && ringEl.clientWidth > 0) {
+                return (ringEl.clientWidth / 2) - 22;
+            }
+            if (window.innerWidth < 400) {
+                return 118;
+            } else if (window.innerWidth < 768) {
+                return 125;
+            }
+            return 140;
         }
         return 350;
     }

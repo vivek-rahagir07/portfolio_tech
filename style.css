@@ -2964,36 +2964,140 @@ footer {
     .gallery-card { width: 120px; height: 160px; }
     .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
     
-    
-    .layout-half-circle { flex-direction: column; padding: 10% 4%; }
-    .skills-intro-left { width: 100%; margin-top: 0; margin-bottom: 1.5rem; }
-    .skills-intro-left p { font-size: 0.9rem; }
-    .orbit-container { width: 100%; height: 400px; position: relative; }
+    .layout-half-circle {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 85px 5% 120px 5% !important;
+        min-height: auto !important;
+        position: relative !important;
+        overflow: visible !important;
+        gap: 1.2rem !important;
+    }
+
+    .skills-intro-left {
+        width: 100% !important;
+        max-width: 520px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .skills-intro-left .section-header {
+        order: 1 !important;
+        margin-bottom: 1.2rem !important;
+        align-self: center !important;
+    }
+
+    .skills-actions {
+        order: 2 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+        margin-bottom: 0.5rem !important;
+        width: 100% !important;
+    }
+
+    .skills-intro-left p#skills-long-desc {
+        order: 4 !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-left: 3px solid var(--accent) !important;
+        border-radius: 14px !important;
+        padding: 16px 18px !important;
+        font-size: 0.88rem !important;
+        line-height: 1.65 !important;
+        color: #e2e8f0 !important;
+        text-align: left !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
     .orbit-wrapper-half {
-        width: 350px;
-        height: 350px;
-        bottom: 0;
-        right: 50%;
-        transform: translateX(50%);
-        position: absolute;
+        order: 3 !important;
+        position: relative !important;
+        width: 290px !important;
+        height: 290px !important;
+        max-width: 85vw !important;
+        max-height: 85vw !important;
+        margin: 0.8rem auto !important;
+        bottom: auto !important;
+        right: auto !important;
+        left: auto !important;
+        transform: none !important;
+        pointer-events: auto !important;
     }
+
+    .orbit-ring-half {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+        position: relative !important;
+    }
+
     .orbit-center-half {
-        width: 200px;
-        top: 15%;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 130px !important;
+        max-width: 60vw !important;
+        text-align: center !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
     }
-    .hexagon-icon {
-        width: 40px;
-        height: 48px;
-        font-size: 1.2rem;
+
+    .center-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
     }
+
+    .center-icon-half {
+        font-size: 2.2rem !important;
+    }
+
     .center-content h3 {
-        font-size: 1rem;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+        color: #ffffff !important;
     }
+
     .center-content p {
-        font-size: 0.8rem;
+        font-size: 0.72rem !important;
+        line-height: 1.35 !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        margin: 0 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
     }
-    .see-more { font-size: 0.85rem; padding: 8px 16px; }
+
+    .hexagon-icon {
+        width: 38px !important;
+        height: 44px !important;
+        font-size: 1.1rem !important;
+    }
+
+    .see-more {
+        font-size: 0.8rem !important;
+        padding: 8px 16px !important;
+        letter-spacing: 0.5px !important;
+    }
     
+    #projects {
+        display: none !important;
+    }
     
     .section-header .view-toggle {
         display: none !important;
