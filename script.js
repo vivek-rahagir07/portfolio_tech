@@ -179,63 +179,142 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="profile-sheet-content">
                     <div class="sheet-drag-handle"></div>
 
-                    <!-- Cover Banner -->
-                    <div class="profile-cover-section">
-                        <img src="collage/1.png" alt="Vivek Yadav – Professional Portrait" class="profile-cover-img">
-                        <div class="profile-cover-gradient"></div>
-                        <div class="profile-top-actions">
-                            <button type="button" class="profile-back-btn" id="closeProfileSheet" aria-label="Close Profile">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </button>
-                            <button type="button" class="profile-more-btn" aria-label="More Options">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </button>
-                        </div>
-                        <div class="profile-like-float" id="profileLikeBtn">
-                            <i class="fa-regular fa-heart"></i> Like
-                        </div>
-                    </div>
+                    <!-- 3D Card Flipper Container -->
+                    <div class="profile-flipper-container" id="profileFlipper">
+                        <div class="profile-flipper-inner">
 
-                    <!-- Avatar + Quick Stats Row -->
-                    <div class="profile-avatar-stats-row">
-                        <div class="profile-avatar-ring">
-                            <img src="collage/15.jpg" alt="Vivek Yadav">
-                            <div class="profile-online-dot"></div>
-                        </div>
-                        <div class="profile-quick-stats">
-                            <div class="profile-quick-stat">
-                                <span class="pqs-val">15+</span>
-                                <span class="pqs-lbl">projects</span>
-                            </div>
-                            <div class="pqs-dot"></div>
-                            <div class="profile-quick-stat">
-                                <span class="pqs-val">1.2k</span>
-                                <span class="pqs-lbl">likes</span>
-                            </div>
-                        </div>
-                    </div>
+                            <!-- FRONT FACE: Standard Profile View -->
+                            <div class="flipper-face flipper-front">
+                                <!-- Cover Banner -->
+                                <div class="profile-cover-section">
+                                    <img src="collage/1.png" alt="Vivek Yadav – Professional Portrait" class="profile-cover-img">
+                                    <div class="profile-cover-gradient"></div>
+                                    <div class="profile-top-actions">
+                                        <button type="button" class="profile-back-btn" id="closeProfileSheet" aria-label="Close Profile">
+                                            <i class="fa-solid fa-chevron-left"></i>
+                                        </button>
+                                        <button type="button" class="profile-nfc-toggle-btn" id="headerNfcToggleBtn" aria-label="View NFC Digital Card">
+                                            <i class="fa-solid fa-id-card"></i> <span>NFC / QR</span>
+                                        </button>
+                                    </div>
+                                    <div class="profile-like-float" id="profileLikeBtn">
+                                        <i class="fa-regular fa-heart"></i> Like
+                                    </div>
+                                </div>
 
-                    <!-- Identity -->
-                    <div class="profile-identity-section">
-                        <div class="profile-name-row">
-                            <h3 class="profile-user-name">Vivek Yadav</h3>
-                            <div class="profile-verified-badge">
-                                <i class="fa-solid fa-check"></i>
+                                <!-- Avatar + Quick Stats Row -->
+                                <div class="profile-avatar-stats-row">
+                                    <div class="profile-avatar-ring">
+                                        <img src="collage/15.jpg" alt="Vivek Yadav">
+                                        <div class="profile-online-dot"></div>
+                                    </div>
+                                    <div class="profile-quick-stats">
+                                        <div class="profile-quick-stat">
+                                            <span class="pqs-val">15+</span>
+                                            <span class="pqs-lbl">projects</span>
+                                        </div>
+                                        <div class="pqs-dot"></div>
+                                        <div class="profile-quick-stat">
+                                            <span class="pqs-val">1.2k</span>
+                                            <span class="pqs-lbl">likes</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Identity -->
+                                <div class="profile-identity-section">
+                                    <div class="profile-name-row">
+                                        <h3 class="profile-user-name">Vivek Yadav</h3>
+                                        <div class="profile-verified-badge">
+                                            <i class="fa-solid fa-check"></i>
+                                        </div>
+                                    </div>
+                                    <p class="profile-user-handle">@rahagir07</p>
+                                    <p class="profile-bio-text">
+                                        Full Stack Developer & Creative Technologist. Building digital experiences that inspire, from IoT hardware to beautiful web interfaces.
+                                    </p>
+
+                                    <!-- 🟢 Live Status Pill -->
+                                    <div class="profile-live-status-pill">
+                                        <span class="pls-dot-radar">
+                                            <span class="pls-dot-core"></span>
+                                            <span class="pls-dot-ring"></span>
+                                        </span>
+                                        <span class="pls-text">Available for freelance / full-time • New Delhi (IST)</span>
+                                    </div>
+
+                                    <!-- ⚡ 1-Tap Quick Action Row -->
+                                    <div class="profile-quick-actions-bar">
+                                        <button type="button" class="quick-action-pill copy-email-pill" id="quickCopyEmailBtn" aria-label="Copy Email">
+                                            <i class="fa-regular fa-copy"></i>
+                                            <span>Copy Email</span>
+                                        </button>
+                                        <a href="https://wa.me/919996445592?text=Hi%20Vivek%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="quick-action-pill whatsapp-pill" aria-label="WhatsApp Chat">
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                            <span>WhatsApp</span>
+                                        </a>
+                                        <button type="button" class="quick-action-pill nfc-pill" id="triggerCardFlipBtn" aria-label="View NFC Digital Card">
+                                            <i class="fa-solid fa-qrcode"></i>
+                                            <span>NFC / QR</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="profile-rating-row">
+                                        <div class="profile-stars">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="profile-rating-count">26 reviews</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <p class="profile-user-handle">@rahagir07</p>
-                        <p class="profile-bio-text">
-                            Full Stack Developer & Creative Technologist. Building digital experiences that inspire, from IoT hardware to beautiful web interfaces.
-                        </p>
-                        <div class="profile-rating-row">
-                            <div class="profile-stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
+
+                            <!-- BACK FACE: 3D Holographic Metal NFC Card -->
+                            <div class="flipper-face flipper-back">
+                                <div class="nfc-card-body">
+                                    <div class="nfc-card-shimmer"></div>
+                                    
+                                    <div class="nfc-card-top-bar">
+                                        <div class="nfc-chip-badge">
+                                            <i class="fa-solid fa-microchip"></i>
+                                            <span class="nfc-wave-icon"><i class="fa-solid fa-wifi"></i></span>
+                                        </div>
+                                        <span class="nfc-card-brand">VIVEK YADAV • RAHAGIR</span>
+                                        <button type="button" class="nfc-flip-back-btn" id="flipBackBtn" aria-label="Flip back to bio">
+                                            <i class="fa-solid fa-rotate-left"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="nfc-card-center">
+                                        <div class="nfc-qr-wrapper">
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fvivek-rahagir.com%2F&color=d4af37&bgcolor=0d0d11&margin=4" alt="Scan to connect" class="nfc-qr-code">
+                                            <div class="qr-glow-corner top-left"></div>
+                                            <div class="qr-glow-corner top-right"></div>
+                                            <div class="qr-glow-corner bottom-left"></div>
+                                            <div class="qr-glow-corner bottom-right"></div>
+                                        </div>
+                                        <p class="nfc-scan-hint"><i class="fa-solid fa-camera"></i> Scan with camera to open portfolio</p>
+                                        <div class="nfc-holder-info">
+                                            <h4 class="nfc-name">Vivek Yadav</h4>
+                                            <p class="nfc-role">Full Stack Developer & Creative Technologist</p>
+                                            <p class="nfc-contact-snippet">vivekhr36.2007@gmail.com • +91 9996445592</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="nfc-card-bottom-actions">
+                                        <button type="button" class="nfc-action-btn vcf-btn" id="nfcSaveContactBtn">
+                                            <i class="fa-solid fa-address-card"></i> Save Contact to Phone (.vcf)
+                                        </button>
+                                        <button type="button" class="nfc-action-btn flip-btn" id="nfcFlipBackSecondaryBtn">
+                                            <i class="fa-solid fa-user"></i> View Profile Bio
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="profile-rating-count">26 reviews</span>
+
                         </div>
                     </div>
 
@@ -332,6 +411,152 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             document.body.appendChild(profileSheet);
 
+            // Setup Profile Toast Helper
+            function showProfileToast(message) {
+                let toast = document.getElementById('profileToast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'profileToast';
+                    toast.className = 'profile-floating-toast';
+                    document.body.appendChild(toast);
+                }
+                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+                toast.classList.remove('show');
+                void toast.offsetWidth;
+                toast.classList.add('show');
+                if (navigator.vibrate) {
+                    try { navigator.vibrate([15, 30]); } catch (err) {}
+                }
+                clearTimeout(toast._timer);
+                toast._timer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2800);
+            }
+            window.showProfileToast = showProfileToast;
+
+            // Setup .vcf Download
+            function downloadVivekVCF() {
+                const vcard = [
+                    'BEGIN:VCARD',
+                    'VERSION:3.0',
+                    'N:Yadav;Vivek;;;',
+                    'FN:Vivek Yadav (Rahagir)',
+                    'ORG:Vivek Yadav Portfolio',
+                    'TITLE:Full Stack Developer & Creative Technologist',
+                    'TEL;TYPE=CELL,VOICE:+919996445592',
+                    'EMAIL;TYPE=INTERNET,HOME:vivekhr36.2007@gmail.com',
+                    'URL:https://vivek-rahagir.com/',
+                    'URL;TYPE=GitHub:https://github.com/vivek-rahagir07',
+                    'URL;TYPE=LinkedIn:https://linkedin.com/in/vivek-yadav-1142213a0/',
+                    'NOTE:Full Stack Developer specializing in Node.js, Laravel, React, PostgreSQL, and IoT Systems.',
+                    'END:VCARD'
+                ].join('\r\n');
+
+                const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'Vivek_Yadav.vcf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                showProfileToast('Contact file (Vivek_Yadav.vcf) downloaded! 📇');
+            }
+
+            // Setup Email Copy
+            function copyEmailToClipboard() {
+                const email = 'vivekhr36.2007@gmail.com';
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(email).then(() => {
+                        showProfileToast('vivekhr36.2007@gmail.com copied! ✨');
+                    }).catch(() => {
+                        fallbackCopy(email);
+                    });
+                } else {
+                    fallbackCopy(email);
+                }
+            }
+
+            function fallbackCopy(text) {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showProfileToast('vivekhr36.2007@gmail.com copied! ✨');
+                } catch (err) {
+                    showProfileToast('Email: vivekhr36.2007@gmail.com');
+                }
+                document.body.removeChild(textArea);
+            }
+
+            // 3D Card Flip Handler
+            const flipper = document.getElementById('profileFlipper');
+            function toggleCardFlip(forceState) {
+                if (!flipper) return;
+                if (typeof forceState === 'boolean') {
+                    flipper.classList.toggle('is-flipped', forceState);
+                } else {
+                    flipper.classList.toggle('is-flipped');
+                }
+                if (navigator.vibrate) {
+                    try { navigator.vibrate(20); } catch (err) {}
+                }
+            }
+
+            const headerNfcBtn = document.getElementById('headerNfcToggleBtn');
+            if (headerNfcBtn) {
+                headerNfcBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleCardFlip(true);
+                });
+            }
+
+            const triggerCardFlipBtn = document.getElementById('triggerCardFlipBtn');
+            if (triggerCardFlipBtn) {
+                triggerCardFlipBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleCardFlip(true);
+                });
+            }
+
+            const flipBackBtn = document.getElementById('flipBackBtn');
+            if (flipBackBtn) {
+                flipBackBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleCardFlip(false);
+                });
+            }
+
+            const nfcFlipBackSecondaryBtn = document.getElementById('nfcFlipBackSecondaryBtn');
+            if (nfcFlipBackSecondaryBtn) {
+                nfcFlipBackSecondaryBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleCardFlip(false);
+                });
+            }
+
+            const quickCopyBtn = document.getElementById('quickCopyEmailBtn');
+            if (quickCopyBtn) {
+                quickCopyBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    copyEmailToClipboard();
+                });
+            }
+
+            const nfcSaveContactBtn = document.getElementById('nfcSaveContactBtn');
+            if (nfcSaveContactBtn) {
+                nfcSaveContactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    downloadVivekVCF();
+                });
+            }
+
             const likeBtn = document.getElementById('profileLikeBtn');
             if (likeBtn) {
                 likeBtn.addEventListener('click', () => {
@@ -341,6 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         icon.classList.add('fa-solid');
                         icon.style.color = '#e74c3c';
                         likeBtn.innerHTML = '<i class="fa-solid fa-heart" style="color:#e74c3c;font-size:1rem"></i> Liked';
+                        showProfileToast('Thank you for the support! ❤️');
                     } else {
                         likeBtn.innerHTML = '<i class="fa-regular fa-heart" style="font-size:1rem"></i> Like';
                     }

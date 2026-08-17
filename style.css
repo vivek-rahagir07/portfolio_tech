@@ -5013,6 +5013,438 @@ footer {
     border-color: rgba(212, 175, 55, 0.5);
 }
 
+.profile-nfc-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ffd700;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.76rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.profile-nfc-toggle-btn:active {
+    transform: scale(0.92);
+    background: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* 3D Flipper Structure */
+.profile-flipper-container {
+    perspective: 1200px;
+    width: 100%;
+    position: relative;
+}
+
+.profile-flipper-inner {
+    position: relative;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.2, 0.85, 0.4, 1.15);
+}
+
+.profile-flipper-container.is-flipped .profile-flipper-inner {
+    transform: rotateY(180deg);
+}
+
+.flipper-face {
+    width: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.flipper-front {
+    position: relative;
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.flipper-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: rotateY(180deg);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-flipper-container.is-flipped .flipper-front {
+    pointer-events: none;
+}
+
+.profile-flipper-container:not(.is-flipped) .flipper-back {
+    pointer-events: none;
+}
+
+/* Live Status Pill */
+.profile-live-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(46, 204, 113, 0.08);
+    border: 1px solid rgba(46, 204, 113, 0.22);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.05);
+}
+
+.pls-dot-radar {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pls-dot-core {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2ecc71;
+    box-shadow: 0 0 8px #2ecc71;
+}
+
+.pls-dot-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid #2ecc71;
+    opacity: 0.8;
+    animation: livePulseRing 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes livePulseRing {
+    0% { transform: scale(0.8); opacity: 0.9; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+
+.pls-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.73rem;
+    font-weight: 500;
+    color: #a3e635;
+    letter-spacing: 0.1px;
+}
+
+/* 1-Tap Quick Action Row */
+.profile-quick-actions-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.15fr;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.quick-action-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.74rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.quick-action-pill.copy-email-pill {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #93c5fd;
+}
+
+.quick-action-pill.copy-email-pill:active {
+    transform: scale(0.94);
+    background: rgba(59, 130, 246, 0.25);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.quick-action-pill.whatsapp-pill {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: rgba(37, 211, 102, 0.25);
+    color: #86efac;
+}
+
+.quick-action-pill.whatsapp-pill:active {
+    transform: scale(0.94);
+    background: rgba(37, 211, 102, 0.25);
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.4);
+}
+
+.quick-action-pill.nfc-pill {
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.35);
+    color: #fde047;
+}
+
+.quick-action-pill.nfc-pill:active {
+    transform: scale(0.94);
+    background: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.5);
+}
+
+/* Holographic Metal NFC Card */
+.nfc-card-body {
+    position: relative;
+    margin: 12px 14px;
+    padding: 18px 16px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #181822 0%, #101016 50%, #1c1824 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 24px);
+    box-sizing: border-box;
+}
+
+.nfc-card-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.08) 45%, rgba(212, 175, 55, 0.15) 50%, rgba(255, 255, 255, 0.08) 55%, transparent 80%);
+    background-size: 250% 250%;
+    animation: nfcHoloShimmer 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes nfcHoloShimmer {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+.nfc-card-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.nfc-chip-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffd700;
+    font-size: 1.25rem;
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+}
+
+.nfc-wave-icon {
+    font-size: 1.05rem;
+    transform: rotate(90deg);
+}
+
+.nfc-card-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.nfc-flip-back-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.nfc-flip-back-btn:active {
+    transform: scale(0.9) rotate(-45deg);
+    background: rgba(212, 175, 55, 0.3);
+}
+
+.nfc-card-center {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 8px 0;
+}
+
+.nfc-qr-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    background: #0d0d11;
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.25);
+    margin-bottom: 6px;
+}
+
+.nfc-qr-code {
+    width: 130px;
+    height: 130px;
+    display: block;
+    border-radius: 8px;
+}
+
+.qr-glow-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: #ffd700;
+    border-style: solid;
+}
+.qr-glow-corner.top-left { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.qr-glow-corner.top-right { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.qr-glow-corner.bottom-left { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.qr-glow-corner.bottom-right { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+.nfc-scan-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 4px 0 8px 0;
+}
+
+.nfc-scan-hint i {
+    color: #ffd700;
+    margin-right: 4px;
+}
+
+.nfc-holder-info .nfc-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+}
+
+.nfc-holder-info .nfc-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(212, 175, 55, 0.9);
+    margin: 2px 0 0 0;
+    font-weight: 500;
+}
+
+.nfc-holder-info .nfc-contact-snippet {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 3px 0 0 0;
+}
+
+.nfc-card-bottom-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+    margin-top: 6px;
+}
+
+.nfc-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nfc-action-btn.vcf-btn {
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: #0d0d11;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+}
+
+.nfc-action-btn.vcf-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.6);
+}
+
+.nfc-action-btn.flip-btn {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.nfc-action-btn.flip-btn:active {
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* Floating Toast Notification */
+.profile-floating-toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px) scale(0.9);
+    background: rgba(18, 18, 24, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(46, 204, 113, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(46, 204, 113, 0.25);
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    z-index: 10005;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    max-width: 90vw;
+}
+
+.profile-floating-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.profile-floating-toast i {
+    color: #2ecc71;
+    font-size: 1rem;
+    filter: drop-shadow(0 0 6px rgba(46, 204, 113, 0.6));
+}
+
 
 .profile-like-float {
     position: absolute;
