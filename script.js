@@ -1257,3 +1257,562 @@ backToTopBtn.addEventListener('click', () => {
     });
 })();
 
+/* ============================================================
+   GLOBAL COMMAND PALETTE (CMD + K / SPOTLIGHT SEARCH)
+   ============================================================ */
+(function initCommandPalette() {
+    const COMMANDS = [
+        // Quick Actions
+        {
+            id: 'action-cv',
+            category: 'Quick Actions',
+            title: 'Download CV / Resume',
+            subtitle: "Get Vivek Yadav's latest resume (PNG/PDF)",
+            icon: 'fa-solid fa-file-arrow-down',
+            badge: 'Action',
+            keywords: 'resume cv download hiring hire profile experience biodata job',
+            action: () => {
+                const link = document.createElement('a');
+                link.href = 'photos/cv.png';
+                link.download = 'Vivek_Yadav_CV.png';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast("Downloading Vivek's CV... 📄");
+            }
+        },
+        {
+            id: 'action-email',
+            category: 'Quick Actions',
+            title: 'Copy Email Address',
+            subtitle: 'vivekhr36.2007@gmail.com',
+            icon: 'fa-solid fa-envelope',
+            badge: 'Copy',
+            keywords: 'email mail contact get in touch message hire write collaborate',
+            action: () => {
+                navigator.clipboard.writeText('vivekhr36.2007@gmail.com').then(() => {
+                    showToast('Email copied to clipboard! 📋');
+                }).catch(() => {
+                    showToast('vivekhr36.2007@gmail.com');
+                });
+            }
+        },
+        {
+            id: 'action-phone',
+            category: 'Quick Actions',
+            title: 'Copy Phone Number',
+            subtitle: '+91 9996445592',
+            icon: 'fa-solid fa-phone',
+            badge: 'Copy',
+            keywords: 'phone call mobile whatsapp contact number talk direct',
+            action: () => {
+                navigator.clipboard.writeText('+919996445592').then(() => {
+                    showToast('Phone number copied to clipboard! 📞');
+                }).catch(() => {
+                    showToast('+91 9996445592');
+                });
+            }
+        },
+        {
+            id: 'action-telegram',
+            category: 'Quick Actions',
+            title: 'Chat on Telegram',
+            subtitle: '@rahagirrr — Instant direct messaging',
+            icon: 'fa-brands fa-telegram',
+            badge: 'External',
+            keywords: 'telegram chat dm message rahul direct rahagir connect',
+            action: () => {
+                window.open('https://t.me/rahagirrr', '_blank');
+            }
+        },
+        {
+            id: 'action-github',
+            category: 'Quick Actions',
+            title: 'Visit GitHub Profile',
+            subtitle: 'github.com/vivek-rahagir07 — 800+ contributions',
+            icon: 'fa-brands fa-github',
+            badge: 'External',
+            keywords: 'github code repo repository open source git commits projects',
+            action: () => {
+                window.open('https://github.com/vivek-rahagir07', '_blank');
+            }
+        },
+        {
+            id: 'action-linkedin',
+            category: 'Quick Actions',
+            title: 'Visit LinkedIn Profile',
+            subtitle: 'linkedin.com/in/vivek-yadav-1142213a0',
+            icon: 'fa-brands fa-linkedin-in',
+            badge: 'External',
+            keywords: 'linkedin profile network connect professional career work recruiter',
+            action: () => {
+                window.open('https://linkedin.com/in/vivek-yadav-1142213a0/', '_blank');
+            }
+        },
+
+        // Featured Projects
+        {
+            id: 'proj-cognitoattend',
+            category: 'Projects & Case Studies',
+            title: 'CognitoAttend — AI Attendance System',
+            subtitle: 'Facial recognition, real-time analytics & automated attendance tracking',
+            icon: 'fa-solid fa-user-check',
+            badge: 'Project',
+            keywords: 'cognitoattend cognito attendance face recognition ai machine learning analytics python opencv',
+            url: 'project-cognitoattend.html'
+        },
+        {
+            id: 'proj-neoride',
+            category: 'Projects & Case Studies',
+            title: 'NeoRide — Smart Cab & Ride Booking',
+            subtitle: 'Fleet management, dynamic routing & real-time passenger fare engine',
+            icon: 'fa-solid fa-car',
+            badge: 'Project',
+            keywords: 'neoride uber ola cab taxi ride booking maps gps route fare transport booking',
+            url: 'project-neoride.html'
+        },
+        {
+            id: 'proj-neostream',
+            category: 'Projects & Case Studies',
+            title: 'NeoStream (NeoMusic) — Audio Web App',
+            subtitle: 'High-fidelity audio streaming, queue management & interactive visualizer',
+            icon: 'fa-solid fa-music',
+            badge: 'Project',
+            keywords: 'neostream neomusic music song audio player spotify sound stream playlist visualizer',
+            url: 'project-neostream.html'
+        },
+        {
+            id: 'proj-jhatpatsewa',
+            category: 'Projects & Case Studies',
+            title: 'JhatpatSewa — Hyperlocal Services',
+            subtitle: 'On-demand service booking, verified technician matching & dispatch',
+            icon: 'fa-solid fa-bolt',
+            badge: 'Project',
+            keywords: 'jhatpatsewa jhatpat sewa services electrician plumber repair urban company booking hyperlocal',
+            url: 'project-jhatpatsewa.html'
+        },
+        {
+            id: 'proj-mediaconverter',
+            category: 'Projects & Case Studies',
+            title: 'MediaConverter — High-Speed File Converter',
+            subtitle: 'Client-side media conversion, transcoding & compression utility',
+            icon: 'fa-solid fa-rotate',
+            badge: 'Project',
+            keywords: 'mediaconverter media convert converter video audio mp4 mp3 mkv transcode ffmpeg tool',
+            url: 'project-mediaconverter.html'
+        },
+        {
+            id: 'proj-starcadet',
+            category: 'Projects & Case Studies',
+            title: 'Star Cadet — Retro 2D Space Arcade Game',
+            subtitle: 'HTML5 Canvas, custom particle physics & retro space shooter gameplay',
+            icon: 'fa-solid fa-rocket',
+            badge: 'Game',
+            keywords: 'star cadet arcade game space shooter retro canvas 2d gaming asteroids physics play',
+            url: 'project-starcadet.html'
+        },
+        {
+            id: 'proj-portfolio',
+            category: 'Projects & Case Studies',
+            title: 'Portfolio Architecture & Case Study',
+            subtitle: 'Deep-dive into Vanilla JS performance, physics & scroll-jacking',
+            icon: 'fa-solid fa-code',
+            badge: 'Case Study',
+            keywords: 'portfolio website case study architecture design vanilla js css performance engineering',
+            url: 'project-portfolio.html'
+        },
+
+        // Navigation & Portals
+        {
+            id: 'nav-home',
+            category: 'Navigation',
+            title: 'Home Overview',
+            subtitle: 'Hero, interactive particle reveal, featured highlights',
+            icon: 'fa-solid fa-house',
+            badge: 'Page',
+            keywords: 'home index main landing hero intro start overview',
+            url: 'index.html'
+        },
+        {
+            id: 'nav-about',
+            category: 'Navigation',
+            title: 'About Vivek & Journey',
+            subtitle: 'Philosophy, background, video highlights & leadership',
+            icon: 'fa-solid fa-user-astronaut',
+            badge: 'Page',
+            keywords: 'about me bio profile story education bml munjal university savera club leadership journey',
+            url: 'about.html'
+        },
+        {
+            id: 'nav-skills',
+            category: 'Navigation',
+            title: 'Technical Skills & Stack',
+            subtitle: 'React, Node, Laravel, PostgreSQL, Firebase, Supabase, Cloud',
+            icon: 'fa-solid fa-layer-group',
+            badge: 'Page',
+            keywords: 'skills tech stack technologies javascript react node php laravel sql postgresql mongodb firebase architecture',
+            url: 'skills.html'
+        },
+        {
+            id: 'nav-projects',
+            category: 'Navigation',
+            title: 'All Projects Gallery',
+            subtitle: 'Explore full catalog of web applications & case studies',
+            icon: 'fa-solid fa-laptop-code',
+            badge: 'Page',
+            keywords: 'projects works builds apps applications portfolio live demo showcase catalog',
+            url: 'projects.html'
+        },
+        {
+            id: 'nav-terminal',
+            category: 'Navigation',
+            title: 'Interactive Hacker Terminal (CLI)',
+            subtitle: 'Matrix digital rain, live commands, system emulator',
+            icon: 'fa-solid fa-terminal',
+            badge: 'CLI',
+            keywords: 'terminal cli command line matrix bash shell hacker console prompt linux dev',
+            url: 'terminal.html'
+        },
+        {
+            id: 'nav-devguide',
+            category: 'Navigation',
+            title: 'Developer Guide & Mindmap',
+            subtitle: 'Full-stack learning roadmap, curated guides & interactive canvas',
+            icon: 'fa-solid fa-sitemap',
+            badge: 'Roadmap',
+            keywords: 'developer guide roadmap dev guide mindmap resources documentation learning full stack syllabus',
+            url: 'developer-guide.html'
+        },
+        {
+            id: 'nav-iot',
+            category: 'Navigation',
+            title: 'IoT & Robotics Systems',
+            subtitle: 'ESP32, Arduino, sensor telemetry & hardware cloud dashboards',
+            icon: 'fa-solid fa-microchip',
+            badge: 'Hardware',
+            keywords: 'iot internet of things robotics hardware esp32 arduino raspberry pi sensors telemetry automation',
+            url: 'iot.html'
+        },
+        {
+            id: 'nav-gallery',
+            category: 'Navigation',
+            title: 'Photo Gallery & Memories',
+            subtitle: 'Moments, hackathons, university life & tech snapshots',
+            icon: 'fa-solid fa-images',
+            badge: 'Media',
+            keywords: 'gallery photos images pictures collage moments memories life events awards',
+            url: 'gallery.html'
+        },
+        {
+            id: 'nav-contact',
+            category: 'Navigation',
+            title: 'Contact & Hire Vivek',
+            subtitle: 'Direct messaging, collaboration inquiry & social connections',
+            icon: 'fa-solid fa-paper-plane',
+            badge: 'Contact',
+            keywords: 'contact message form hire talk collaborate email inquiry reach out consultation',
+            url: 'contact.html'
+        }
+    ];
+
+    let backdrop = null;
+    let input = null;
+    let resultsContainer = null;
+    let clearBtn = null;
+    let toast = null;
+    let activeIndex = 0;
+    let filteredCommands = [];
+
+    function createPaletteDOM() {
+        if (document.getElementById('cmdPaletteBackdrop')) return;
+
+        backdrop = document.createElement('div');
+        backdrop.id = 'cmdPaletteBackdrop';
+        backdrop.className = 'cmd-palette-backdrop';
+        backdrop.setAttribute('role', 'dialog');
+        backdrop.setAttribute('aria-modal', 'true');
+        backdrop.setAttribute('aria-label', 'Global Command Palette');
+
+        backdrop.innerHTML = `
+            <div class="cmd-palette-modal" id="cmdPaletteModal">
+                <div class="cmd-search-header">
+                    <div class="cmd-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <input type="text" class="cmd-search-input" id="cmdSearchInput" placeholder="Type a command, project, or page (e.g., CV, Cognito, Dev Guide)..." autocomplete="off" spellcheck="false">
+                    <button type="button" class="cmd-clear-btn" id="cmdClearBtn" aria-label="Clear Search"><i class="fa-solid fa-xmark"></i></button>
+                    <span class="cmd-esc-badge" id="cmdCloseBadge">ESC</span>
+                </div>
+                <div class="cmd-palette-body" id="cmdPaletteBody">
+                    <!-- Results rendered dynamically -->
+                </div>
+                <div class="cmd-palette-footer">
+                    <div class="cmd-shortcuts">
+                        <span class="cmd-shortcut-item"><span class="cmd-key">↑</span><span class="cmd-key">↓</span> Navigate</span>
+                        <span class="cmd-shortcut-item"><span class="cmd-key">↵</span> Select</span>
+                        <span class="cmd-shortcut-item"><span class="cmd-key">ESC</span> Close</span>
+                    </div>
+                    <div class="cmd-branding">Vivek Yadav Command Palette</div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(backdrop);
+
+        // Toast container
+        toast = document.createElement('div');
+        toast.className = 'cmd-palette-toast';
+        toast.id = 'cmdPaletteToast';
+        document.body.appendChild(toast);
+
+        input = document.getElementById('cmdSearchInput');
+        resultsContainer = document.getElementById('cmdPaletteBody');
+        clearBtn = document.getElementById('cmdClearBtn');
+
+        // Event listeners
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop) {
+                closePalette();
+            }
+        });
+
+        const closeBadge = document.getElementById('cmdCloseBadge');
+        if (closeBadge) {
+            closeBadge.addEventListener('click', closePalette);
+        }
+
+        clearBtn.addEventListener('click', () => {
+            input.value = '';
+            clearBtn.style.display = 'none';
+            input.focus();
+            renderResults('');
+        });
+
+        input.addEventListener('input', (e) => {
+            const query = e.target.value;
+            clearBtn.style.display = query.trim().length > 0 ? 'flex' : 'none';
+            renderResults(query);
+        });
+
+        input.addEventListener('keydown', handleKeyNavigation);
+
+        // Add Quick Search button to Navbars
+        injectNavTriggerButtons();
+    }
+
+    function injectNavTriggerButtons() {
+        const navButtonsContainers = document.querySelectorAll('.nav-buttons');
+        navButtonsContainers.forEach(container => {
+            if (!container.querySelector('.nav-search-trigger')) {
+                const trigger = document.createElement('button');
+                trigger.type = 'button';
+                trigger.className = 'nav-search-trigger';
+                trigger.setAttribute('aria-label', 'Open Command Palette (Cmd + K)');
+                trigger.title = 'Quick Search & Actions (Cmd + K)';
+                const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                trigger.innerHTML = `<i class="fa-solid fa-magnifying-glass" style="font-size:0.85rem;color:var(--accent,#d4af37);"></i> <span class="search-text">Search</span> <span class="search-kbd">${isMac ? '⌘K' : 'Ctrl+K'}</span>`;
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openPalette();
+                });
+                container.insertBefore(trigger, container.firstChild);
+            }
+        });
+    }
+
+    function showToast(message) {
+        if (!toast) return;
+        toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#2ecc71;"></i> <span>${message}</span>`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2800);
+    }
+
+    function openPalette() {
+        createPaletteDOM();
+        backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        input.value = '';
+        if (clearBtn) clearBtn.style.display = 'none';
+        renderResults('');
+        setTimeout(() => {
+            input.focus();
+        }, 50);
+    }
+
+    function closePalette() {
+        if (!backdrop) return;
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+        if (input) input.blur();
+    }
+
+    function renderResults(query = '') {
+        const q = query.toLowerCase().trim();
+
+        if (!q) {
+            filteredCommands = [...COMMANDS];
+        } else {
+            filteredCommands = COMMANDS.filter(cmd => {
+                const titleMatch = cmd.title.toLowerCase().includes(q);
+                const subMatch = cmd.subtitle.toLowerCase().includes(q);
+                const catMatch = cmd.category.toLowerCase().includes(q);
+                const keyMatch = cmd.keywords && cmd.keywords.toLowerCase().includes(q);
+                return titleMatch || subMatch || catMatch || keyMatch;
+            });
+        }
+
+        activeIndex = 0;
+
+        if (filteredCommands.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="cmd-empty-state">
+                    <i class="fa-solid fa-ghost"></i>
+                    <p>No results found for "<strong>${escapeHTML(query)}</strong>"</p>
+                    <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:6px;">Try searching for "CV", "CognitoAttend", "Skills", or "Contact"</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Group by category
+        const groups = {};
+        filteredCommands.forEach(cmd => {
+            if (!groups[cmd.category]) groups[cmd.category] = [];
+            groups[cmd.category].push(cmd);
+        });
+
+        let html = '';
+        let globalIndex = 0;
+
+        Object.keys(groups).forEach(categoryName => {
+            html += `<div class="cmd-group-title">${categoryName}</div>`;
+            groups[categoryName].forEach(cmd => {
+                const isSelected = globalIndex === activeIndex;
+                html += `
+                    <div class="cmd-item ${isSelected ? 'active' : ''}" data-cmd-index="${globalIndex}" role="button" tabindex="0">
+                        <div class="cmd-item-left">
+                            <div class="cmd-item-icon"><i class="${cmd.icon}"></i></div>
+                            <div class="cmd-item-info">
+                                <div class="cmd-item-title">${highlightMatch(cmd.title, q)}</div>
+                                <div class="cmd-item-subtitle">${highlightMatch(cmd.subtitle, q)}</div>
+                            </div>
+                        </div>
+                        <span class="cmd-item-badge">${cmd.badge}</span>
+                    </div>
+                `;
+                globalIndex++;
+            });
+        });
+
+        resultsContainer.innerHTML = html;
+
+        // Attach click listeners to rendered items
+        const renderedItems = resultsContainer.querySelectorAll('.cmd-item');
+        renderedItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const idx = parseInt(item.getAttribute('data-cmd-index'), 10);
+                executeCommand(idx);
+            });
+            item.addEventListener('mouseenter', () => {
+                renderedItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                activeIndex = parseInt(item.getAttribute('data-cmd-index'), 10);
+            });
+        });
+    }
+
+    function highlightMatch(text, query) {
+        if (!query) return escapeHTML(text);
+        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(${escapedQuery})`, 'gi');
+        return escapeHTML(text).replace(regex, '<span style="color:var(--accent,#d4af37);text-decoration:underline;">$1</span>');
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag));
+    }
+
+    function handleKeyNavigation(e) {
+        const items = resultsContainer.querySelectorAll('.cmd-item');
+        if (items.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = (activeIndex + 1) % items.length;
+            updateActiveItem(items);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = (activeIndex - 1 + items.length) % items.length;
+            updateActiveItem(items);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            executeCommand(activeIndex);
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            closePalette();
+        }
+    }
+
+    function updateActiveItem(items) {
+        items.forEach((item, idx) => {
+            if (idx === activeIndex) {
+                item.classList.add('active');
+                item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    function executeCommand(index) {
+        if (index < 0 || index >= filteredCommands.length) return;
+        const cmd = filteredCommands[index];
+        closePalette();
+
+        if (cmd.action) {
+            cmd.action();
+        } else if (cmd.url) {
+            window.location.href = cmd.url;
+        }
+    }
+
+    // Global Key Listener for Cmd+K / Ctrl+K and '/'
+    window.addEventListener('keydown', (e) => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const isCmdK = (isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === 'k';
+        const isSlash = e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable;
+
+        if (isCmdK || isSlash) {
+            e.preventDefault();
+            if (backdrop && backdrop.classList.contains('active')) {
+                closePalette();
+            } else {
+                openPalette();
+            }
+        } else if (e.key === 'Escape') {
+            if (backdrop && backdrop.classList.contains('active')) {
+                closePalette();
+            }
+        }
+    });
+
+    // Expose global methods
+    window.openCommandPalette = openPalette;
+    window.closeCommandPalette = closePalette;
+
+    // Initialize once DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', createPaletteDOM);
+    } else {
+        createPaletteDOM();
+    }
+})();
+
+

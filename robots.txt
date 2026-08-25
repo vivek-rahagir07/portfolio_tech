@@ -1,14 +1,12 @@
-# robots.txt for vivek-rahagir.com
+# robots.txt for https://vivek-rahagir.com/
 
 User-agent: *
 Allow: /
+Disallow: /offline.html
+
+# Host
+Host: https://vivek-rahagir.com
 
 # Sitemap
 Sitemap: https://vivek-rahagir.com/sitemap.xml
 
-# Disallow specific directories if needed
-# Disallow: /private/
-# Disallow: /admin/
-
-# Crawl-delay (optional)
-# Crawl-delay: 1
