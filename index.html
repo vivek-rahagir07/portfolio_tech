@@ -218,24 +218,34 @@
         </section>
 
         
-        <section id="my-journey" class="section page-transition" style="padding-top: 5rem; padding-bottom: 2rem;">
-            <div class="section-header fade-in-up" style="padding: 0 5%; max-width: 1000px; margin: 0 auto;">
-                <h2>My Journey</h2>
-                <div class="header-line"></div>
-            </div>
-            <p class="section-subtitle fade-in-up" style="margin-bottom: 4rem; color: rgba(255,255,255,0.5); font-size: 1.05rem; text-align: center; max-width: 520px; margin-left: auto; margin-right: auto; margin-top: 1rem; line-height: 1.7;">From writing my first broken lines of code to architecting systems that scale.</p>
-
-            <div class="journey-section">
-                <div class="journey-spine-wrap">
-                    <div class="journey-spine"></div>
-
+        <!-- INTERACTIVE STACKING JOURNEY DECK -->
+        <section id="my-journey" class="journey-stack-section page-transition">
+            <div class="journey-sticky-viewport">
+                
+                <!-- HUD / Phase Progress Header -->
+                <div class="journey-header-hud fade-in-up">
+                    <div class="journey-hud-badge"><span class="pulse-dot"></span> CAREER TIMELINE</div>
+                    <h2 class="journey-main-heading">My Journey</h2>
+                    <div class="header-line"></div>
+                    <p class="journey-sub">From writing my first broken lines of code to architecting systems that scale.</p>
                     
-                    <div class="journey-entry fade-in-up">
-                        <div class="journey-node-wrap">
-                            <div class="journey-node"></div>
-                        </div>
-                        <div class="journey-connector"></div>
-                        <div class="journey-card">
+                    <div class="journey-phase-indicators" id="journeyPhaseIndicators" role="tablist" aria-label="Journey Phases">
+                        <button class="journey-indicator-pill active" data-index="0" role="tab" aria-selected="true"><span class="pill-dot"></span>01</button>
+                        <button class="journey-indicator-pill" data-index="1" role="tab" aria-selected="false"><span class="pill-dot"></span>02</button>
+                        <button class="journey-indicator-pill" data-index="2" role="tab" aria-selected="false"><span class="pill-dot"></span>03</button>
+                        <button class="journey-indicator-pill" data-index="3" role="tab" aria-selected="false"><span class="pill-dot"></span>04</button>
+                        <button class="journey-indicator-pill" data-index="4" role="tab" aria-selected="false"><span class="pill-dot"></span>05</button>
+                        <button class="journey-indicator-pill" data-index="5" role="tab" aria-selected="false"><span class="pill-dot"></span>06</button>
+                    </div>
+                </div>
+
+                <!-- 3D Overlapping Stacking Cards Deck -->
+                <div class="journey-deck-viewport" id="journeyDeckViewport">
+                    <div class="journey-cards-deck" id="journeyCardsDeck">
+                        
+                        <!-- Phase 01 -->
+                        <div class="journey-stack-card" data-card-index="0">
+                            <div class="journey-card-sheen"></div>
                             <div class="journey-card-top">
                                 <div>
                                     <div class="journey-phase-num">Phase 01</div>
@@ -253,15 +263,10 @@
                                 <span class="journey-tag">Resilience</span>
                             </div>
                         </div>
-                    </div>
 
-                    
-                    <div class="journey-entry fade-in-up delay-1">
-                        <div class="journey-node-wrap">
-                            <div class="journey-node"></div>
-                        </div>
-                        <div class="journey-connector"></div>
-                        <div class="journey-card">
+                        <!-- Phase 02 -->
+                        <div class="journey-stack-card" data-card-index="1">
+                            <div class="journey-card-sheen"></div>
                             <div class="journey-card-top">
                                 <div>
                                     <div class="journey-phase-num">Phase 02</div>
@@ -280,15 +285,10 @@
                                 <span class="journey-tag">Embedded Systems</span>
                             </div>
                         </div>
-                    </div>
 
-                    
-                    <div class="journey-entry fade-in-up delay-2">
-                        <div class="journey-node-wrap">
-                            <div class="journey-node"></div>
-                        </div>
-                        <div class="journey-connector"></div>
-                        <div class="journey-card">
+                        <!-- Phase 03 -->
+                        <div class="journey-stack-card" data-card-index="2">
+                            <div class="journey-card-sheen"></div>
                             <div class="journey-card-top">
                                 <div>
                                     <div class="journey-phase-num">Phase 03</div>
@@ -306,15 +306,10 @@
                                 <span class="journey-tag">Redis</span>
                             </div>
                         </div>
-                    </div>
 
-                    
-                    <div class="journey-entry fade-in-up delay-3">
-                        <div class="journey-node-wrap">
-                            <div class="journey-node"></div>
-                        </div>
-                        <div class="journey-connector"></div>
-                        <div class="journey-card">
+                        <!-- Phase 04 -->
+                        <div class="journey-stack-card" data-card-index="3">
+                            <div class="journey-card-sheen"></div>
                             <div class="journey-card-top">
                                 <div>
                                     <div class="journey-phase-num">Phase 04</div>
@@ -333,15 +328,10 @@
                                 <span class="journey-tag">60 FPS</span>
                             </div>
                         </div>
-                    </div>
 
-                    
-                    <div class="journey-entry fade-in-up delay-4">
-                        <div class="journey-node-wrap">
-                            <div class="journey-node"></div>
-                        </div>
-                        <div class="journey-connector"></div>
-                        <div class="journey-card">
+                        <!-- Phase 05 -->
+                        <div class="journey-stack-card" data-card-index="4">
+                            <div class="journey-card-sheen"></div>
                             <div class="journey-card-top">
                                 <div>
                                     <div class="journey-phase-num">Phase 05</div>
@@ -360,22 +350,17 @@
                                 <span class="journey-tag">System Design</span>
                             </div>
                         </div>
-                    </div>
 
-                    
-                    <div class="journey-entry fade-in-up delay-5">
-                        <div class="journey-node-wrap">
-                            <div class="journey-node" style="border-color: var(--accent); box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 0 40px rgba(212,175,55,0.4);"></div>
-                        </div>
-                        <div class="journey-connector"></div>
-                        <div class="journey-card" style="border-color: rgba(212,175,55,0.3);">
+                        <!-- Phase 06 -->
+                        <div class="journey-stack-card is-current-phase" data-card-index="5">
+                            <div class="journey-card-sheen"></div>
                             <div class="journey-card-top">
                                 <div>
                                     <div class="journey-phase-num">Phase 06 — Now</div>
                                     <div class="journey-title">Getting Roots Pvt Ltd</div>
                                     <div class="journey-subtitle">LMS & JhatpatSewa</div>
                                 </div>
-                                <span class="journey-date-badge" style="background: rgba(212,175,55,0.2); border-color: var(--accent);">Jul '26 – Present</span>
+                                <span class="journey-date-badge date-badge-now">Jul '26 – Present</span>
                             </div>
                             <p class="journey-text">Today, I'm working closely with <strong style="color:#fff;">Getting Roots Pvt Ltd</strong>, where I've architected their comprehensive Learning Management System (LMS) and the <strong style="color:#fff;">JhatpatSewa</strong> on-demand service marketplace from the ground up. Working on these highly relational, complex platforms has solidified my ability to deliver robust backend architectures, integrate secure payment gateways, and manage scalable multi-role user systems. It’s challenging, fast-paced, and exactly the kind of engineering at scale I love doing.</p>
                             <div class="journey-tags">
@@ -387,9 +372,16 @@
                                 <span class="journey-tag">MySQL</span>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+
+                <!-- Interactive Scroll Helper -->
+                <div class="journey-scroll-hint">
+                    <span class="journey-mouse-icon"><span class="mouse-wheel"></span></span>
+                    <span class="journey-hint-text">Scroll or Click Phases to Unfold Deck</span>
+                </div>
+
             </div>
         </section>
 

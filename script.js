@@ -1815,4 +1815,179 @@ backToTopBtn.addEventListener('click', () => {
     }
 })();
 
+/* ==========================================================================
+   INTERACTIVE OVERLAPPING STACKING CARDS DECK (MY JOURNEY)
+   ========================================================================== */
+(function initInteractiveStackingJourney() {
+    function setupStackingDeck() {
+        const section = document.getElementById('my-journey');
+        const cards = document.querySelectorAll('.journey-stack-card');
+        const indicators = document.querySelectorAll('.journey-indicator-pill');
+        const deckViewport = document.getElementById('journeyDeckViewport');
+
+        if (!section || cards.length === 0) return;
+
+        const totalCards = cards.length;
+        let currentActiveIndex = 0;
+        let mouseX = 0.5;
+        let mouseY = 0.5;
+        let isHovered = false;
+        let isTicking = false;
+
+        function updateCardStack() {
+            const sectionRect = section.getBoundingClientRect();
+            const sectionTop = sectionRect.top;
+            const sectionHeight = section.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            const scrollDistance = sectionHeight - viewportHeight;
+
+            if (scrollDistance <= 0) return;
+
+            // Calculate progress from 0.0 to (totalCards - 1)
+            const scrolledWithin = -sectionTop;
+            const rawProgress = (scrolledWithin / scrollDistance) * (totalCards - 1);
+            const progress = Math.max(0, Math.min(totalCards - 1, rawProgress));
+
+            const activeIdx = Math.round(progress);
+            if (activeIdx !== currentActiveIndex) {
+                currentActiveIndex = activeIdx;
+                updateIndicators(activeIdx);
+            }
+
+            cards.forEach((card, i) => {
+                const diff = progress - i;
+                card.style.zIndex = 10 + i;
+
+                if (diff < 0) {
+                    // Card is below / sliding up into view
+                    const offset = -diff; // > 0
+                    const translateYPercent = Math.min(130, offset * 115);
+                    const scale = Math.max(0.88, 1 - offset * 0.06);
+                    const opacity = Math.max(0, 1 - (offset - 0.2) * 1.8);
+
+                    card.style.transform = `translate3d(0, ${translateYPercent}%, 0) scale(${scale})`;
+                    card.style.opacity = offset > 1.2 ? '0' : opacity.toFixed(3);
+                    card.style.filter = 'brightness(1)';
+                    card.style.pointerEvents = 'none';
+                    card.classList.remove('is-current-phase');
+                } else {
+                    // Card is active or covered by subsequent cards (stacked history)
+                    const stackLevel = diff; // 0 for active, 1, 2... for covered
+                    const translateYPx = -(stackLevel * 16);
+                    const scale = Math.max(0.84, 1 - stackLevel * 0.045);
+                    const brightness = Math.max(0.35, 1 - stackLevel * 0.22);
+                    const opacity = Math.max(0.2, 1 - stackLevel * 0.25);
+
+                    // Add 3D mouse tilt if this is the active top card and user is hovering
+                    let tiltTransform = '';
+                    if (i === activeIdx && isHovered) {
+                        const tiltX = (mouseY - 0.5) * -10;
+                        const tiltY = (mouseX - 0.5) * 10;
+                        tiltTransform = ` rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+                    }
+
+                    card.style.transform = `translate3d(0, ${translateYPx.toFixed(1)}px, 0) scale(${scale.toFixed(3)})${tiltTransform}`;
+                    card.style.opacity = opacity.toFixed(3);
+                    card.style.filter = `brightness(${brightness.toFixed(2)})`;
+                    card.style.pointerEvents = (i === activeIdx) ? 'auto' : 'none';
+
+                    if (i === activeIdx) {
+                        card.classList.add('is-current-phase');
+                    } else {
+                        card.classList.remove('is-current-phase');
+                    }
+                }
+            });
+
+            isTicking = false;
+        }
+
+        function requestStackUpdate() {
+            if (!isTicking) {
+                requestAnimationFrame(updateCardStack);
+                isTicking = true;
+            }
+        }
+
+        function updateIndicators(index) {
+            indicators.forEach((pill, idx) => {
+                if (idx === index) {
+                    pill.classList.add('active');
+                    pill.setAttribute('aria-selected', 'true');
+                } else {
+                    pill.classList.remove('active');
+                    pill.setAttribute('aria-selected', 'false');
+                }
+            });
+        }
+
+        // Indicator pill click to scroll smoothly to that phase
+        indicators.forEach((pill) => {
+            pill.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetIdx = parseInt(pill.dataset.index, 10);
+                if (isNaN(targetIdx)) return;
+
+                const sectionRect = section.getBoundingClientRect();
+                const sectionAbsoluteTop = window.scrollY + sectionRect.top;
+                const sectionHeight = section.offsetHeight;
+                const viewportHeight = window.innerHeight;
+                const scrollDistance = sectionHeight - viewportHeight;
+
+                const targetScrollY = sectionAbsoluteTop + (targetIdx / (totalCards - 1)) * scrollDistance + 4;
+
+                window.scrollTo({
+                    top: targetScrollY,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 3D Perspective Tilt & Spotlight Sheen on Mouse Movement
+        if (deckViewport) {
+            deckViewport.addEventListener('mouseenter', () => {
+                isHovered = true;
+            });
+
+            deckViewport.addEventListener('mousemove', (e) => {
+                const rect = deckViewport.getBoundingClientRect();
+                mouseX = (e.clientX - rect.left) / rect.width;
+                mouseY = (e.clientY - rect.top) / rect.height;
+
+                const activeCard = cards[currentActiveIndex];
+                if (activeCard) {
+                    const cardRect = activeCard.getBoundingClientRect();
+                    const cardMouseX = e.clientX - cardRect.left;
+                    const cardMouseY = e.clientY - cardRect.top;
+                    activeCard.style.setProperty('--mouse-x', `${cardMouseX}px`);
+                    activeCard.style.setProperty('--mouse-y', `${cardMouseY}px`);
+                }
+
+                requestStackUpdate();
+            });
+
+            deckViewport.addEventListener('mouseleave', () => {
+                isHovered = false;
+                mouseX = 0.5;
+                mouseY = 0.5;
+                requestStackUpdate();
+            });
+        }
+
+        // Scroll listener for sticky deck
+        window.addEventListener('scroll', requestStackUpdate, { passive: true });
+        window.addEventListener('resize', requestStackUpdate, { passive: true });
+
+        // Initial trigger
+        updateCardStack();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupStackingDeck);
+    } else {
+        setupStackingDeck();
+    }
+})();
+
+
 
