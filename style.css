@@ -4630,102 +4630,134 @@ footer {
 
 @media (max-width: 768px) {
     .journey-stack-section {
-        height: 230vh; /* Fast, crisp touch transitions with ZERO empty black void */
+        height: auto !important;
+        min-height: auto !important;
+        padding: 2.5rem 16px 3rem !important;
+        margin: 0 !important;
+        background: transparent !important;
     }
     .journey-sticky-viewport {
-        height: 100vh;
-        height: 100dvh;
-        padding: max(0.6rem, env(safe-area-inset-top, 0.6rem)) 1rem max(0.8rem, env(safe-area-inset-bottom, 0.8rem));
-        justify-content: space-evenly;
-        gap: 0.3rem;
+        position: relative !important;
+        top: auto !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
     }
     .journey-header-hud {
-        margin-bottom: 0;
+        margin-bottom: 0.5rem !important;
+        max-width: 100% !important;
     }
     .journey-hud-badge {
-        font-size: 0.62rem;
-        padding: 0.2rem 0.6rem;
-        margin-bottom: 0.15rem;
+        font-size: 0.65rem;
+        padding: 0.25rem 0.75rem;
+        margin-bottom: 0.25rem;
     }
     .journey-main-heading {
-        font-size: 1.35rem;
+        font-size: 1.5rem;
     }
     .journey-quote-card {
         max-width: 100%;
-        padding: 0.35rem 0.75rem;
-        margin-top: 0.25rem;
-        border-radius: 10px;
+        padding: 0.5rem 0.9rem;
+        margin-top: 0.4rem;
+        border-radius: 12px;
     }
     .journey-quote-text {
-        font-size: 0.75rem;
-        line-height: 1.3;
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
     .quote-mark-icon {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     .journey-deck-viewport {
-        height: min(420px, 58vh);
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
+        height: auto !important;
+        min-height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        perspective: none !important;
+        display: block !important;
+        margin: 0 !important;
+    }
+    .journey-cards-deck {
+        position: relative !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.25rem !important;
+        transform-style: flat !important;
     }
     .journey-stack-card {
-        padding: 1.1rem 1.15rem;
-        border-radius: 16px;
-        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.85), 0 15px 35px rgba(0, 0, 0, 0.95);
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 1.3rem 1.2rem !important;
+        border-radius: 16px !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        filter: none !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.08) !important;
+    }
+    .journey-stack-card.is-current-phase {
+        border-color: rgba(212, 175, 55, 0.45) !important;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.15) !important;
     }
     .journey-card-top {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 0.35rem;
-        margin-bottom: 0.15rem;
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
     }
     .journey-phase-num {
-        font-size: 0.60rem;
-        margin-bottom: 0.05rem;
+        font-size: 0.65rem;
+        margin-bottom: 0.1rem;
     }
     .journey-title {
-        font-size: 1.05rem;
-        line-height: 1.15;
-        margin-bottom: 0.05rem;
+        font-size: 1.15rem;
+        line-height: 1.25;
+        margin-bottom: 0.15rem;
     }
     .journey-subtitle {
-        font-size: 0.75rem;
-        margin-bottom: 0.05rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.15rem;
     }
     .journey-date-badge {
-        font-size: 0.58rem;
-        padding: 0.16rem 0.5rem;
+        font-size: 0.62rem;
+        padding: 0.2rem 0.6rem;
     }
     .journey-text {
-        font-size: 0.78rem;
-        line-height: 1.45;
-        max-height: 175px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-    .journey-text::-webkit-scrollbar {
-        display: none;
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        color: rgba(255, 255, 255, 0.75) !important;
     }
     .journey-tags {
-        gap: 0.28rem;
-        margin-top: 0.4rem;
+        gap: 0.35rem;
+        margin-top: 0.75rem;
     }
     .journey-tag {
-        font-size: 0.56rem;
-        padding: 0.14rem 0.42rem;
-        border-radius: 6px;
+        font-size: 0.62rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 8px;
+        min-height: auto;
+        min-width: auto;
     }
     .journey-scroll-hint {
-        margin-top: 0;
-        font-size: 0.62rem;
-        gap: 5px;
+        display: none !important;
     }
-    .journey-mouse-icon {
-        width: 10px;
-        height: 16px;
+    footer {
+        padding-bottom: max(90px, calc(75px + env(safe-area-inset-bottom))) !important;
+        margin-top: 1rem !important;
     }
 }
 

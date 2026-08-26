@@ -1835,6 +1835,19 @@ backToTopBtn.addEventListener('click', () => {
         let isTicking = false;
 
         function updateCardStack() {
+            if (window.innerWidth <= 768) {
+                cards.forEach(card => {
+                    card.style.transform = '';
+                    card.style.opacity = '';
+                    card.style.visibility = '';
+                    card.style.filter = '';
+                    card.style.pointerEvents = '';
+                    card.style.zIndex = '';
+                });
+                isTicking = false;
+                return;
+            }
+
             const sectionRect = section.getBoundingClientRect();
             const sectionTop = sectionRect.top;
             const sectionHeight = section.offsetHeight;
