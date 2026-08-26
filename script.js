@@ -1896,9 +1896,10 @@ backToTopBtn.addEventListener('click', () => {
                         const brightness = Math.max(0.4, 1 - stackLevel * 0.25);
                         const opacity = Math.max(0.1, 1 - stackLevel * 0.45);
 
-                        // Subtle 3D mouse tilt for the active top card
+                        // Subtle 3D mouse tilt for desktop only (skip on touch devices)
                         let tiltTransform = '';
-                        if (stackLevel < 0.35 && isHovered) {
+                        const hasHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+                        if (hasHover && stackLevel < 0.35 && isHovered) {
                             const tiltX = (mouseY - 0.5) * -8;
                             const tiltY = (mouseX - 0.5) * 8;
                             tiltTransform = ` rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
@@ -1929,8 +1930,8 @@ backToTopBtn.addEventListener('click', () => {
             }
         }
 
-        // 3D Perspective Tilt & Spotlight Sheen on Mouse Movement
-        if (deckViewport) {
+        // 3D Perspective Tilt & Spotlight Sheen on Mouse Movement (Desktop Only)
+        if (deckViewport && window.matchMedia('(hover: hover)').matches) {
             deckViewport.addEventListener('mouseenter', () => {
                 isHovered = true;
             });
@@ -1960,9 +1961,11 @@ backToTopBtn.addEventListener('click', () => {
             });
         }
 
-        // Scroll listener for sticky deck
+        // Scroll & touch listeners for smooth 60fps tracking on both desktop and mobile
         window.addEventListener('scroll', requestStackUpdate, { passive: true });
         window.addEventListener('resize', requestStackUpdate, { passive: true });
+        window.addEventListener('touchmove', requestStackUpdate, { passive: true });
+        window.addEventListener('touchend', requestStackUpdate, { passive: true });
 
         // Initial trigger
         updateCardStack();

@@ -4607,63 +4607,116 @@ footer {
 
 @media (max-width: 900px) {
     .journey-deck-viewport {
-        height: 420px;
+        height: 380px;
         max-width: 95%;
     }
     .journey-stack-card {
-        padding: 1.5rem 1.6rem;
+        padding: 1.4rem 1.6rem;
     }
     .journey-title {
         font-size: 1.25rem;
     }
     .journey-text {
-        font-size: 0.88rem;
-        line-height: 1.65;
+        font-size: 0.86rem;
+        line-height: 1.6;
     }
 }
 
 @media (max-width: 768px) {
     .journey-stack-section {
-        height: 400vh;
+        height: 380vh;
     }
     .journey-sticky-viewport {
-        padding: 1rem 3% 1.5rem;
+        height: 100vh;
+        height: 100dvh;
+        padding: 0.75rem 1rem 1rem;
+        justify-content: center;
+    }
+    .journey-header-hud {
+        margin-bottom: 0.6rem;
+    }
+    .journey-hud-badge {
+        font-size: 0.62rem;
+        padding: 0.22rem 0.65rem;
+        margin-bottom: 0.2rem;
+    }
+    .journey-main-heading {
+        font-size: 1.45rem;
+    }
+    .journey-quote-card {
+        max-width: 96%;
+        padding: 0.4rem 0.85rem;
+        margin-top: 0.35rem;
+        border-radius: 10px;
+    }
+    .journey-quote-text {
+        font-size: 0.76rem;
+        line-height: 1.35;
+    }
+    .quote-mark-icon {
+        font-size: 1.2rem;
     }
     .journey-deck-viewport {
-        height: 460px;
+        height: min(390px, 54vh);
         max-width: 100%;
     }
     .journey-stack-card {
-        padding: 1.3rem 1.2rem;
+        padding: 1rem 1.15rem;
         border-radius: 16px;
-    }
-    .journey-title {
-        font-size: 1.15rem;
+        box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.85), 0 15px 35px rgba(0, 0, 0, 0.95);
     }
     .journey-card-top {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: flex-start;
-        gap: 0.35rem;
+        gap: 0.4rem;
+        margin-bottom: 0.2rem;
     }
-    .journey-hud-top {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
+    .journey-phase-num {
+        font-size: 0.62rem;
+        margin-bottom: 0.1rem;
     }
-    .journey-phase-indicators {
-        gap: 0.2rem;
-        padding: 0.2rem 0.3rem;
+    .journey-title {
+        font-size: 1.05rem;
+        line-height: 1.2;
+        margin-bottom: 0.1rem;
     }
-    .journey-indicator-pill {
-        font-size: 0.68rem;
-        padding: 0.25rem 0.55rem;
+    .journey-subtitle {
+        font-size: 0.76rem;
+        margin-bottom: 0.1rem;
     }
-    .journey-main-heading {
-        font-size: 1.7rem;
+    .journey-date-badge {
+        font-size: 0.60rem;
+        padding: 0.18rem 0.55rem;
     }
     .journey-text {
-        font-size: 0.82rem;
-        line-height: 1.55;
+        font-size: 0.76rem;
+        line-height: 1.45;
+        max-height: 165px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .journey-text::-webkit-scrollbar {
+        display: none;
+    }
+    .journey-tags {
+        gap: 0.3rem;
+        margin-top: 0.45rem;
+    }
+    .journey-tag {
+        font-size: 0.58rem;
+        padding: 0.16rem 0.45rem;
+        border-radius: 6px;
+    }
+    .journey-scroll-hint {
+        margin-top: 0.5rem;
+        font-size: 0.65rem;
+        gap: 6px;
+    }
+    .journey-mouse-icon {
+        width: 12px;
+        height: 18px;
     }
 }
 
