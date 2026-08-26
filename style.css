@@ -2592,31 +2592,46 @@ footer {
     }
     
     
+    .mobile-nav-actions {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .mobile-share-btn,
     .mobile-dots-btn {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         color: #ffffff;
-        font-size: 1.1rem;
+        font-size: 0.95rem;
         cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
+    .mobile-share-btn {
+        background: rgba(212, 175, 55, 0.12);
+        border-color: rgba(212, 175, 55, 0.35);
+        color: var(--accent, #d4af37);
+    }
+    
+    .mobile-share-btn:hover,
+    .mobile-share-btn:active,
     .mobile-dots-btn:hover,
     .mobile-dots-btn:active {
-        background: rgba(212, 175, 55, 0.2);
-        border-color: rgba(212, 175, 55, 0.5);
+        background: rgba(212, 175, 55, 0.25);
+        border-color: rgba(212, 175, 55, 0.6);
         color: var(--accent);
-        transform: scale(0.95);
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        transform: scale(0.92);
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
     }
 
     
@@ -5429,8 +5444,8 @@ footer {
 /* 1-Tap Quick Action Row */
 .profile-quick-actions-bar {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.15fr;
-    gap: 7px;
+    grid-template-columns: 1fr 1fr 1fr 1.05fr;
+    gap: 6px;
     margin-top: 12px;
 }
 
@@ -5438,12 +5453,12 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 8px 10px;
+    gap: 5px;
+    padding: 8px 6px;
     border-radius: 10px;
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     text-decoration: none;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -5463,6 +5478,18 @@ footer {
     transform: scale(0.94);
     background: rgba(59, 130, 246, 0.25);
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.quick-action-pill.share-pill {
+    background: rgba(168, 85, 247, 0.12);
+    border-color: rgba(168, 85, 247, 0.3);
+    color: #d8b4fe;
+}
+
+.quick-action-pill.share-pill:active {
+    transform: scale(0.94);
+    background: rgba(168, 85, 247, 0.28);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
 }
 
 .quick-action-pill.whatsapp-pill {
@@ -6539,4 +6566,184 @@ footer {
         display: none;
     }
 }
+
+/* ==========================================================================
+   PWA INSTALL & NATIVE SHARE MODAL GUIDE
+   ========================================================================== */
+
+.pwa-install-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    z-index: 100002;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+}
+
+.pwa-install-modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pwa-install-modal {
+    width: 100%;
+    max-width: 480px;
+    background: #111118;
+    background: linear-gradient(180deg, #181822 0%, #0d0d12 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: none;
+    border-radius: 28px 28px 0 0;
+    padding: 1.6rem 1.4rem max(1.8rem, env(safe-area-inset-bottom));
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.95), 0 0 35px rgba(212, 175, 55, 0.15);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+}
+
+.pwa-install-modal-overlay.show .pwa-install-modal {
+    transform: translateY(0);
+}
+
+.pwa-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.pwa-modal-icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+.pwa-modal-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.pwa-modal-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.pwa-modal-subtitle {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 2px 0 0;
+}
+
+.pwa-modal-close {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.pwa-modal-close:hover,
+.pwa-modal-close:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0.92);
+}
+
+.pwa-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1.4rem;
+}
+
+.pwa-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 10px 14px;
+}
+
+.pwa-step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent, #d4af37);
+    color: #000000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.pwa-step-item p {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+.pwa-icon-accent {
+    color: #60a5fa;
+    margin: 0 2px;
+}
+
+.pwa-highlight {
+    color: var(--accent, #d4af37);
+}
+
+.pwa-modal-action-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent, #d4af37) 0%, #b89324 100%);
+    border: none;
+    color: #000000;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pwa-modal-action-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+}
+
 

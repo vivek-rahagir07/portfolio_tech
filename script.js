@@ -1,43 +1,146 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    let deferredPrompt;
+    let deferredPrompt = null;
     const installBtn = document.getElementById('install-btn');
     
-    
     window.addEventListener('beforeinstallprompt', (e) => {
-        
         e.preventDefault();
-        
         deferredPrompt = e;
-        
         if (installBtn) {
             installBtn.style.display = 'inline-block';
         }
     });
-    
+
+    window.addEventListener('appinstalled', () => {
+        deferredPrompt = null;
+        if (installBtn) installBtn.style.display = 'none';
+        if (window.showProfileToast) {
+            window.showProfileToast('Vivek Yadav App installed successfully! 🎉');
+        }
+    });
+
+    function showInstallGuideModal() {
+        let modal = document.getElementById('pwaInstallModal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'pwaInstallModal';
+            modal.className = 'pwa-install-modal-overlay';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
+            modal.setAttribute('aria-label', 'Install App Guide');
+            modal.innerHTML = `
+                <div class="pwa-install-modal">
+                    <div class="pwa-modal-header">
+                        <div class="pwa-modal-icon-badge">
+                            <img src="photos/logo.png" alt="Vivek Yadav Logo" class="pwa-modal-logo">
+                        </div>
+                        <div>
+                            <h3 class="pwa-modal-title">Install Vivek's App</h3>
+                            <p class="pwa-modal-subtitle">Instant offline access • Fast & lightweight</p>
+                        </div>
+                        <button type="button" class="pwa-modal-close" id="closePwaModalBtn" aria-label="Close modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="pwa-steps-list">
+                        <div class="pwa-step-item">
+                            <span class="pwa-step-num">1</span>
+                            <p>Tap the <strong>Share</strong> button <i class="fa-solid fa-arrow-up-from-bracket pwa-icon-accent"></i> in your browser menu (bottom on iOS Safari, top on Android/Chrome).</p>
+                        </div>
+                        <div class="pwa-step-item">
+                            <span class="pwa-step-num">2</span>
+                            <p>Scroll down and select <strong class="pwa-highlight"><i class="fa-regular fa-square-plus"></i> 'Add to Home Screen'</strong>.</p>
+                        </div>
+                        <div class="pwa-step-item">
+                            <span class="pwa-step-num">3</span>
+                            <p>Tap <strong>'Add'</strong> to launch Vivek's portfolio directly from your home screen like a native app!</p>
+                        </div>
+                    </div>
+                    <button type="button" class="pwa-modal-action-btn" id="pwaGotItBtn">Got It!</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('show');
+            });
+            const closeBtn = document.getElementById('closePwaModalBtn');
+            if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+            const gotItBtn = document.getElementById('pwaGotItBtn');
+            if (gotItBtn) gotItBtn.addEventListener('click', () => modal.classList.remove('show'));
+        }
+
+        modal.classList.add('show');
+        if (navigator.vibrate) {
+            try { navigator.vibrate(15); } catch (err) {}
+        }
+    }
+    window.showInstallGuideModal = showInstallGuideModal;
+
+    function triggerAppInstall() {
+        if (navigator.vibrate) {
+            try { navigator.vibrate(15); } catch (err) {}
+        }
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    if (installBtn) installBtn.style.display = 'none';
+                    if (window.showProfileToast) window.showProfileToast('Installing App... 🎉');
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            showInstallGuideModal();
+        }
+    }
+    window.triggerAppInstall = triggerAppInstall;
     
     if (installBtn) {
         installBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                        installBtn.style.display = 'none';
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
-                    deferredPrompt = null;
-                });
-            } else {
-                
-                
-                alert('PWA installation is not available on this device or the app is already installed.');
-            }
+            triggerAppInstall();
         });
+    }
+
+    function triggerNativeShare() {
+        if (navigator.vibrate) {
+            try { navigator.vibrate(15); } catch (err) {}
+        }
+
+        const shareData = {
+            title: 'Vivek Yadav | Full Stack Developer & Engineer',
+            text: 'Explore Vivek Yadav’s portfolio — Full Stack Developer building scalable web architectures, modern interfaces, and IoT systems.',
+            url: window.location.origin ? (window.location.origin + window.location.pathname) : 'https://vivek-rahagir.com/'
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).catch((err) => {
+                if (err.name !== 'AbortError') {
+                    copyShareFallback();
+                }
+            });
+        } else {
+            copyShareFallback();
+        }
+    }
+    window.triggerNativeShare = triggerNativeShare;
+
+    function copyShareFallback() {
+        const url = window.location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => {
+                if (window.showProfileToast) {
+                    window.showProfileToast('Portfolio link copied to clipboard! 🔗');
+                }
+            }).catch(() => {
+                if (window.showProfileToast) {
+                    window.showProfileToast('Link: vivek-rahagir.com');
+                }
+            });
+        } else if (window.showProfileToast) {
+            window.showProfileToast('Link: vivek-rahagir.com');
+        }
     }
     
     
@@ -110,14 +213,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initMobileNavigation() {
         const topNav = document.querySelector('nav:not(.mobile-bottom-dock)');
-        if (topNav && !document.getElementById('mobile-dots-trigger')) {
-            const dotsBtn = document.createElement('button');
-            dotsBtn.type = 'button';
-            dotsBtn.id = 'mobile-dots-trigger';
-            dotsBtn.className = 'mobile-dots-btn';
-            dotsBtn.setAttribute('aria-label', 'Open Profile Menu');
-            dotsBtn.innerHTML = '<i class="fa-solid fa-ellipsis"></i>';
-            topNav.appendChild(dotsBtn);
+        if (topNav && !document.getElementById('mobileNavActions')) {
+            const navActions = document.createElement('div');
+            navActions.id = 'mobileNavActions';
+            navActions.className = 'mobile-nav-actions';
+            navActions.innerHTML = `
+                <button type="button" class="mobile-share-btn" id="mobileShareTrigger" aria-label="Share Portfolio" title="Share Portfolio">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </button>
+                <button type="button" class="mobile-dots-btn" id="mobile-dots-trigger" aria-label="Open Profile Menu">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+            `;
+            topNav.appendChild(navActions);
         }
 
         let bottomDock = document.getElementById('mobileBottomDock');
@@ -247,7 +355,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <div class="profile-quick-actions-bar">
                                         <button type="button" class="quick-action-pill copy-email-pill" id="quickCopyEmailBtn" aria-label="Copy Email">
                                             <i class="fa-regular fa-copy"></i>
-                                            <span>Copy Email</span>
+                                            <span>Copy</span>
+                                        </button>
+                                        <button type="button" class="quick-action-pill share-pill" id="quickSharePortfolioBtn" aria-label="Share Portfolio">
+                                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                            <span>Share</span>
                                         </button>
                                         <a href="https://wa.me/919996445592?text=Hi%20Vivek%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="quick-action-pill whatsapp-pill" aria-label="WhatsApp Chat">
                                             <i class="fa-brands fa-whatsapp"></i>
@@ -255,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </a>
                                         <button type="button" class="quick-action-pill nfc-pill" id="triggerCardFlipBtn" aria-label="View NFC Digital Card">
                                             <i class="fa-solid fa-qrcode"></i>
-                                            <span>NFC / QR</span>
+                                            <span>NFC</span>
                                         </button>
                                     </div>
 
@@ -349,6 +461,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Menu Card -->
                     <div class="profile-menu-card">
+                        <button type="button" class="profile-menu-item" id="sheetInstallAppBtn" style="background: none; border: none; width: 100%; text-align: left; cursor: pointer; font-family: inherit; color: inherit;">
+                            <div class="pmi-left">
+                                <div class="pmi-icon-box gold"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                <span>Install Web App (PWA)</span>
+                            </div>
+                            <span class="pmi-badge" style="font-size: 0.65rem; padding: 2px 7px; border-radius: 6px; background: rgba(212,175,55,0.15); color: var(--accent); font-weight: 700; border: 1px solid rgba(212,175,55,0.3);">1-TAP</span>
+                        </button>
                         <a href="about.html" class="profile-menu-item">
                             <div class="pmi-left">
                                 <div class="pmi-icon-box amber"><i class="fa-solid fa-user-tie"></i></div>
@@ -546,6 +665,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 quickCopyBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     copyEmailToClipboard();
+                });
+            }
+
+            const quickShareBtn = document.getElementById('quickSharePortfolioBtn');
+            if (quickShareBtn) {
+                quickShareBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (window.triggerNativeShare) window.triggerNativeShare();
+                });
+            }
+
+            const mobileShareTrigger = document.getElementById('mobileShareTrigger');
+            if (mobileShareTrigger) {
+                mobileShareTrigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (window.triggerNativeShare) window.triggerNativeShare();
+                });
+            }
+
+            const sheetInstallBtn = document.getElementById('sheetInstallAppBtn');
+            if (sheetInstallBtn) {
+                sheetInstallBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (window.triggerAppInstall) window.triggerAppInstall();
                 });
             }
 
