@@ -1851,7 +1851,6 @@ backToTopBtn.addEventListener('click', () => {
             const activeIdx = Math.round(progress);
             if (activeIdx !== currentActiveIndex) {
                 currentActiveIndex = activeIdx;
-                updateIndicators(activeIdx);
             }
 
             cards.forEach((card, i) => {
@@ -1859,42 +1858,63 @@ backToTopBtn.addEventListener('click', () => {
                 card.style.zIndex = 10 + i;
 
                 if (diff < 0) {
-                    // Card is below / sliding up into view
+                    // Card is below the active deck
                     const offset = -diff; // > 0
-                    const translateYPercent = Math.min(130, offset * 115);
-                    const scale = Math.max(0.88, 1 - offset * 0.06);
-                    const opacity = Math.max(0, 1 - (offset - 0.2) * 1.8);
 
-                    card.style.transform = `translate3d(0, ${translateYPercent}%, 0) scale(${scale})`;
-                    card.style.opacity = offset > 1.2 ? '0' : opacity.toFixed(3);
-                    card.style.filter = 'brightness(1)';
-                    card.style.pointerEvents = 'none';
-                    card.classList.remove('is-current-phase');
-                } else {
-                    // Card is active or covered by subsequent cards (stacked history)
-                    const stackLevel = diff; // 0 for active, 1, 2... for covered
-                    const translateYPx = -(stackLevel * 16);
-                    const scale = Math.max(0.84, 1 - stackLevel * 0.045);
-                    const brightness = Math.max(0.35, 1 - stackLevel * 0.22);
-                    const opacity = Math.max(0.2, 1 - stackLevel * 0.25);
-
-                    // Add 3D mouse tilt if this is the active top card and user is hovering
-                    let tiltTransform = '';
-                    if (i === activeIdx && isHovered) {
-                        const tiltX = (mouseY - 0.5) * -10;
-                        const tiltY = (mouseX - 0.5) * 10;
-                        tiltTransform = ` rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
-                    }
-
-                    card.style.transform = `translate3d(0, ${translateYPx.toFixed(1)}px, 0) scale(${scale.toFixed(3)})${tiltTransform}`;
-                    card.style.opacity = opacity.toFixed(3);
-                    card.style.filter = `brightness(${brightness.toFixed(2)})`;
-                    card.style.pointerEvents = (i === activeIdx) ? 'auto' : 'none';
-
-                    if (i === activeIdx) {
-                        card.classList.add('is-current-phase');
-                    } else {
+                    if (offset >= 1.05) {
+                        card.style.transform = 'translate3d(0, 120%, 0) scale(0.96)';
+                        card.style.opacity = '0';
+                        card.style.visibility = 'hidden';
+                        card.style.pointerEvents = 'none';
                         card.classList.remove('is-current-phase');
+                    } else {
+                        // Gliding smoothly from 105% to 0%
+                        const translateYPercent = offset * 105;
+                        const scale = 0.96 + (1 - offset) * 0.04;
+
+                        card.style.transform = `translate3d(0, ${translateYPercent.toFixed(2)}%, 0) scale(${scale.toFixed(3)})`;
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                        card.style.filter = 'brightness(1)';
+                        card.style.pointerEvents = 'none';
+                        card.classList.remove('is-current-phase');
+                    }
+                } else {
+                    // Card is currently active or covered by subsequent cards
+                    const stackLevel = diff;
+                    const isFullyCovered = stackLevel >= 1.8;
+
+                    if (isFullyCovered) {
+                        card.style.transform = `translate3d(0, -16px, 0) scale(0.92)`;
+                        card.style.opacity = '0';
+                        card.style.visibility = 'hidden';
+                        card.style.pointerEvents = 'none';
+                        card.classList.remove('is-current-phase');
+                    } else {
+                        const translateYPx = -(Math.min(1.5, stackLevel) * 8);
+                        const scale = Math.max(0.94, 1 - stackLevel * 0.03);
+                        const brightness = Math.max(0.4, 1 - stackLevel * 0.25);
+                        const opacity = Math.max(0.1, 1 - stackLevel * 0.45);
+
+                        // Subtle 3D mouse tilt for the active top card
+                        let tiltTransform = '';
+                        if (stackLevel < 0.35 && isHovered) {
+                            const tiltX = (mouseY - 0.5) * -8;
+                            const tiltY = (mouseX - 0.5) * 8;
+                            tiltTransform = ` rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+                        }
+
+                        card.style.transform = `translate3d(0, ${translateYPx.toFixed(1)}px, 0) scale(${scale.toFixed(3)})${tiltTransform}`;
+                        card.style.opacity = opacity.toFixed(3);
+                        card.style.filter = `brightness(${brightness.toFixed(2)})`;
+                        card.style.visibility = 'visible';
+                        card.style.pointerEvents = (stackLevel < 0.4) ? 'auto' : 'none';
+
+                        if (stackLevel < 0.5) {
+                            card.classList.add('is-current-phase');
+                        } else {
+                            card.classList.remove('is-current-phase');
+                        }
                     }
                 }
             });
@@ -1908,40 +1928,6 @@ backToTopBtn.addEventListener('click', () => {
                 isTicking = true;
             }
         }
-
-        function updateIndicators(index) {
-            indicators.forEach((pill, idx) => {
-                if (idx === index) {
-                    pill.classList.add('active');
-                    pill.setAttribute('aria-selected', 'true');
-                } else {
-                    pill.classList.remove('active');
-                    pill.setAttribute('aria-selected', 'false');
-                }
-            });
-        }
-
-        // Indicator pill click to scroll smoothly to that phase
-        indicators.forEach((pill) => {
-            pill.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetIdx = parseInt(pill.dataset.index, 10);
-                if (isNaN(targetIdx)) return;
-
-                const sectionRect = section.getBoundingClientRect();
-                const sectionAbsoluteTop = window.scrollY + sectionRect.top;
-                const sectionHeight = section.offsetHeight;
-                const viewportHeight = window.innerHeight;
-                const scrollDistance = sectionHeight - viewportHeight;
-
-                const targetScrollY = sectionAbsoluteTop + (targetIdx / (totalCards - 1)) * scrollDistance + 4;
-
-                window.scrollTo({
-                    top: targetScrollY,
-                    behavior: 'smooth'
-                });
-            });
-        });
 
         // 3D Perspective Tilt & Spotlight Sheen on Mouse Movement
         if (deckViewport) {
