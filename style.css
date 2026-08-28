@@ -468,6 +468,35 @@ nav:not(.mobile-bottom-dock) {
     }
 }
 
+@media (max-width: 480px) {
+    .nav-hacker-clock {
+        padding: 4px 8px !important;
+        gap: 4px !important;
+        border-radius: 16px !important;
+    }
+    .hacker-clock-prompt {
+        font-size: 0.68rem;
+    }
+    .hacker-clock-time {
+        font-size: 0.72rem;
+    }
+    .hacker-clock-ampm {
+        font-size: 0.55rem;
+    }
+    .logo img {
+        height: 36px !important;
+    }
+    .mobile-share-btn,
+    .mobile-dots-btn {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 0.85rem !important;
+    }
+    .mobile-nav-actions {
+        gap: 6px !important;
+    }
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;

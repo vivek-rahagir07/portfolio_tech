@@ -142,6 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
             window.showProfileToast('Link: vivek-rahagir.com');
         }
     }
+
+    document.addEventListener('click', (e) => {
+        const shareEl = e.target.closest('[data-action="share"], .share-btn, .share-trigger, #desktop-share-btn');
+        if (shareEl) {
+            e.preventDefault();
+            triggerNativeShare();
+        }
+    });
     
     
     const cvDownloadBtn = document.getElementById('cv-download-btn');
