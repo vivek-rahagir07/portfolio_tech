@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         this.revealed = true;
                     }
                     if (this.revealed) {
-                        this.opacity = Math.min(1, this.opacity + 0.02);
+                        this.opacity = Math.min(1, this.opacity + 0.08);
                         
                         const dx = this.originX - this.x;
                         const dy = this.originY - this.y;
@@ -263,8 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             this.x = this.originX;
                             this.y = this.originY;
                         } else {
-                            this.x += dx * 0.08;
-                            this.y += dy * 0.08;
+                            this.x += dx * 0.18;
+                            this.y += dy * 0.18;
                         }
                     }
                 }
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            revealY += 10; 
+            revealY += 28; 
             
             let allEdgesDone = true;
             let allFillsDone = true;
@@ -337,32 +337,48 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (allEdgesDone) {
                 fillStarted = true;
-                fillRevealY += 5; 
+                fillRevealY += 22; 
             }
             
-            
-            if (fillStarted && hasFills && allFillsDone) {
+            function triggerFadeOut() {
                 if (canvasId === 'particle-reveal-canvas-index' && !canvas.fadeOutTriggered) {
                     canvas.fadeOutTriggered = true;
                     
                     const elapsed = Date.now() - pageStartTime;
-                    const fadeDelay = Math.max(0, 3000 - elapsed);
+                    const fadeDelay = Math.max(0, Math.min(1500 - elapsed, 1500));
                     
                     setTimeout(() => {
                         const overlay = document.getElementById('intro-overlay');
                         if (overlay) {
                             overlay.style.opacity = '0';
                             overlay.style.visibility = 'hidden';
-                            setTimeout(() => overlay.remove(), 1500); 
+                            setTimeout(() => overlay.remove(), 500); 
                         }
                     }, fadeDelay); 
                 }
+            }
+            
+            if (fillStarted && hasFills && allFillsDone) {
+                triggerFadeOut();
             }
             
             animationFrameId = requestAnimationFrame(animate);
         }
         
         initAnimation('image.png');
+
+        // Safeguard: Ensure intro loading animation fades out in <= 2 seconds total (1.5s display + 0.5s smooth fade)
+        if (canvasId === 'particle-reveal-canvas-index') {
+            setTimeout(() => {
+                const overlay = document.getElementById('intro-overlay');
+                if (overlay && !canvas.fadeOutTriggered) {
+                    canvas.fadeOutTriggered = true;
+                    overlay.style.opacity = '0';
+                    overlay.style.visibility = 'hidden';
+                    setTimeout(() => overlay.remove(), 500);
+                }
+            }, 1500);
+        }
     }
 
     setupParticleReveal('particle-reveal-canvas-index');

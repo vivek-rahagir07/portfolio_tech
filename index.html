@@ -94,10 +94,10 @@
 <body>
     
     
-    <div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;">
+    <div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;">
         <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
             <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
-            <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 1s ease-in-out; pointer-events: none;">
+            <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none;">
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap');
                     .signature-svg {
@@ -120,7 +120,7 @@
                         stroke-dashoffset: 500;
                     }
                     .signature-quote.reveal .letter {
-                        animation: drawInk 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                        animation: drawInk 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
                     }
                     @keyframes drawInk {
                         0% { stroke-dashoffset: 500; fill: transparent; }
@@ -146,9 +146,9 @@
                             tspan.classList.add('letter');
                             if (char !== ' ') {
                                 tspan.style.animationDelay = delay + 's';
-                                delay += 0.2; 
+                                delay += 0.05; 
                             } else {
-                                delay += 0.1;
+                                delay += 0.03;
                             }
                             textEl.appendChild(tspan);
                         }
