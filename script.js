@@ -1192,12 +1192,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const videos = document.querySelectorAll('.horizontal-panel video, .mobile-video-container video, .project-video video');
+const videos = document.querySelectorAll('.horizontal-panel video, .mobile-video-container video, .project-video video, .case-study-video video, .cs-video-showcase video');
 if (videos.length > 0 && 'IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.play();
+                const playPromise = entry.target.play();
+                if (playPromise && typeof playPromise.catch === 'function') {
+                    playPromise.catch(() => {});
+                }
             } else {
                 entry.target.pause();
             }

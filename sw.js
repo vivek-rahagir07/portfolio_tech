@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vivek-portfolio-v2';
+const CACHE_NAME = 'vivek-portfolio-v3';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -23,7 +23,6 @@ const urlsToCache = [
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
-
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -34,17 +33,36 @@ self.addEventListener('install', event => {
     self.skipWaiting();
 });
 
-
 self.addEventListener('fetch', event => {
+    // Only handle GET requests
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    const url = new URL(event.request.url);
+
+    // CRITICAL: Do NOT intercept video or audio streaming requests!
+    // Video streaming requires HTTP 206 Partial Content and Range headers.
+    // Intercepting video requests breaks media playback and corrupts cache.
+    if (
+        event.request.headers.get('range') ||
+        event.request.destination === 'video' ||
+        event.request.destination === 'audio' ||
+        url.pathname.endsWith('.mp4') ||
+        url.pathname.endsWith('.webm') ||
+        url.pathname.endsWith('.wav') ||
+        url.pathname.endsWith('.ogg')
+    ) {
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request)
-            .then(response => {
-                
-                if (response) {
-                    return response;
+            .then(cachedResponse => {
+                if (cachedResponse) {
+                    return cachedResponse;
                 }
                 return fetch(event.request).then(response => {
-                    
                     if (!response || response.status !== 200 || response.type !== 'basic') {
                         return response;
                     }
@@ -56,13 +74,17 @@ self.addEventListener('fetch', event => {
                         });
                     return response;
                 }).catch(() => {
-                    
-                    return caches.match('/offline.html');
+                    // CRITICAL FIX: Only return offline.html for HTML page navigation!
+                    // Returning HTML for aborted/queued image requests causes the browser
+                    // to receive HTML text for <img> tags, rendering broken image placeholders.
+                    if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+                        return caches.match('/offline.html');
+                    }
+                    return new Response('', { status: 408, statusText: 'Request Timeout' });
                 });
             })
     );
 });
-
 
 self.addEventListener('activate', event => {
     const cacheWhitelist = [CACHE_NAME];
@@ -75,7 +97,6 @@ self.addEventListener('activate', event => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
-    self.clients.claim();
 });
