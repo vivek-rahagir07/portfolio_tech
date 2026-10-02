@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let revealY = 0;
         let fillStarted = false;
         let fillRevealY = 0;
+        let startY = 0;
+        let totalDistance = 0;
+        let animStartTime = null;
         
         
         const mouse = {
@@ -100,9 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function createParticles(pixels, width, height, offsetX, offsetY) {
             particlesArray = [];
-            revealY = offsetY - 50; 
-            fillStarted = false;
-            fillRevealY = offsetY - 50;
+            startY = offsetY - 50; 
+            totalDistance = height + 100;
+            revealY = startY; 
+            fillStarted = true;
+            fillRevealY = startY;
+            animStartTime = null;
             
             const gap = 2; 
             width = Math.floor(width);
@@ -254,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         this.revealed = true;
                     }
                     if (this.revealed) {
-                        this.opacity = Math.min(1, this.opacity + 0.08);
+                        this.opacity = Math.min(1, this.opacity + 0.05);
                         
                         const dx = this.originX - this.x;
                         const dy = this.originY - this.y;
@@ -263,8 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             this.x = this.originX;
                             this.y = this.originY;
                         } else {
-                            this.x += dx * 0.18;
-                            this.y += dy * 0.18;
+                            this.x += dx * 0.12;
+                            this.y += dy * 0.12;
                         }
                     }
                 }
@@ -283,15 +289,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        function animate() {
+        function animate(timestamp) {
+            if (!timestamp) timestamp = performance.now();
+            if (!animStartTime) animStartTime = timestamp;
+            const animElapsed = timestamp - animStartTime;
+            // Complete photo reveal over 3.4 seconds in sync with signature
+            const progress = Math.min(1, animElapsed / 3400);
             
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            
             const dpr = canvas.dpr || 1;
             ctx.scale(dpr, dpr);
-            
             
             if (!canvas.signatureStarted) {
                 canvas.signatureStarted = true;
@@ -309,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            revealY += 28; 
+            revealY = startY + progress * totalDistance;
             
             let allEdgesDone = true;
             let allFillsDone = true;
@@ -323,21 +332,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!p.revealed) {
                         allEdgesDone = false;
                     }
-                } else if (fillStarted) {
+                } else {
                     hasFills = true;
-                    p.updateFill(fillRevealY);
+                    // Edge and fill reveal together from top to bottom
+                    p.updateFill(revealY);
                     p.draw();
-                    if (!p.revealed) {
+                    if (!p.revealed || Math.abs(p.originX - p.x) > 1 || Math.abs(p.originY - p.y) > 1 || p.opacity < 0.95) {
                         allFillsDone = false;
                     }
-                } else {
-                    allFillsDone = false;
                 }
-            }
-            
-            if (allEdgesDone) {
-                fillStarted = true;
-                fillRevealY += 22; 
             }
             
             function triggerFadeOut() {
@@ -345,20 +348,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     canvas.fadeOutTriggered = true;
                     
                     const elapsed = Date.now() - pageStartTime;
-                    const fadeDelay = Math.max(0, Math.min(1500 - elapsed, 1500));
+                    // Hold completed photo and signature until 4.2s, then 0.8s smooth fade-out = 5.0 seconds total
+                    const fadeDelay = Math.max(0, 4200 - elapsed);
                     
                     setTimeout(() => {
                         const overlay = document.getElementById('intro-overlay');
                         if (overlay) {
                             overlay.style.opacity = '0';
                             overlay.style.visibility = 'hidden';
-                            setTimeout(() => overlay.remove(), 500); 
+                            setTimeout(() => overlay.remove(), 800); 
                         }
                     }, fadeDelay); 
                 }
             }
             
-            if (fillStarted && hasFills && allFillsDone) {
+            if (progress >= 1 && allEdgesDone && allFillsDone) {
                 triggerFadeOut();
             }
             
@@ -367,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         initAnimation('image.png');
 
-        // Safeguard: Ensure intro loading animation fades out in <= 2 seconds total (1.5s display + 0.5s smooth fade)
+        // Safeguard: Ensure intro loading animation fades out in ~5 seconds total (4.3s display + 0.8s smooth fade)
         if (canvasId === 'particle-reveal-canvas-index') {
             setTimeout(() => {
                 const overlay = document.getElementById('intro-overlay');
@@ -375,9 +379,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     canvas.fadeOutTriggered = true;
                     overlay.style.opacity = '0';
                     overlay.style.visibility = 'hidden';
-                    setTimeout(() => overlay.remove(), 500);
+                    setTimeout(() => overlay.remove(), 800);
                 }
-            }, 1500);
+            }, 4300);
         }
     }
 
