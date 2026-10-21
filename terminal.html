@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Terminal | Vivek Yadav</title>
     <meta name="description" content="Explore Vivek Yadav's interactive developer terminal — execute commands, view skills, explore achievements, and inspect projects in a retro CLI interface.">
-    <link rel="canonical" href="https://vivek-rahagir.com/terminal.html" />
+    <link rel="canonical" href="https://vivek-yadav.com/terminal.html" />
     <meta name="keywords" content="Vivek Yadav, Terminal, CLI, Developer Portfolio, Interactive Terminal, Linux Terminal, Web Terminal, Full Stack Developer">
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
@@ -13,57 +13,64 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vivek Yadav Portfolio">
     <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://vivek-rahagir.com/terminal.html">
+    <meta property="og:url" content="https://vivek-yadav.com/terminal.html">
     <meta property="og:title" content="Interactive Terminal | Vivek Yadav">
     <meta property="og:description" content="Explore Vivek Yadav's interactive developer terminal — execute commands, view skills, explore achievements, and inspect projects in a retro CLI interface.">
-    <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
+    <meta property="og:image" content="https://vivek-yadav.com/photos/logo.png">
+    <meta property="og:image:alt" content="Vivek Yadav Logo">
     
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vivek-rahagir.com/terminal.html">
+    <meta property="twitter:url" content="https://vivek-yadav.com/terminal.html">
     <meta property="twitter:title" content="Interactive Terminal | Vivek Yadav">
     <meta property="twitter:description" content="Explore Vivek Yadav's interactive developer terminal — execute commands, view skills, explore achievements, and inspect projects in a retro CLI interface.">
-    <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
+    <meta property="twitter:image" content="https://vivek-yadav.com/photos/logo.png">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="photos/logo.png">
-    <link rel="icon" type="image/png" href="photos/logo.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="photos/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="photos/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="photos/logo.png">
     
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Vivek Yadav Interactive Terminal",
-        "url": "https://vivek-rahagir.com/terminal.html",
+        "url": "https://vivek-yadav.com/terminal.html",
         "description": "An interactive command line portfolio experience showcasing technical skills, projects, and achievements of Vivek Yadav.",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "All",
         "author": {
             "@type": "Person",
             "name": "Vivek Yadav",
-            "url": "https://vivek-rahagir.com"
+            "url": "https://vivek-yadav.com"
         }
     }
     </script>
     
     <link rel="stylesheet" href="terminal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <canvas class="matrix-bg" id="matrixCanvas"></canvas>
     
-    
     <div class="scanlines"></div>
     
+    <a href="index.html" class="terminal-gui-return" style="position:fixed;top:18px;left:20px;z-index:999;background:rgba(0,0,0,0.7);border:1px solid rgba(0,255,65,0.4);color:#00ff41;padding:8px 14px;border-radius:20px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.85rem;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(8px);transition:all 0.3s ease;">
+        <i class="fa-solid fa-arrow-left"></i> Return to GUI
+    </a>
+
     <div class="terminal-container">
         <div class="terminal-window" id="terminalWindow">
             <canvas class="terminal-matrix-bg" id="terminalMatrixCanvas"></canvas>
             <div class="terminal-header">
                 <div class="terminal-buttons">
-                    <span class="btn close" id="closeBtn"></span>
-                    <span class="btn minimize" id="minimizeBtn"></span>
-                    <span class="btn maximize" id="maximizeBtn"></span>
+                    <span class="btn close" id="closeBtn" title="Close Terminal"></span>
+                    <span class="btn minimize" id="minimizeBtn" title="Minimize"></span>
+                    <span class="btn maximize" id="maximizeBtn" title="Maximize"></span>
                 </div>
                 <div class="terminal-title">vivek_yadav --info</div>
             </div>
@@ -71,7 +78,7 @@
                 
             </div>
             <div class="terminal-input-line">
-                <span class="prompt">guest@vivek-rahagir:~$</span>
+                <span class="prompt">guest@vivek-yadav:~$</span>
                 <input type="text" id="terminal-input" autocomplete="off" autofocus>
             </div>
             <div class="status-bar">
@@ -85,7 +92,6 @@
             </div>
         </div>
     </div>
-    
     
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-modal">

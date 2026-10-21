@@ -1,12 +1,11 @@
-# robots.txt for https://vivek-rahagir.com/
+# robots.txt for https://vivek-yadav.com/
 
 User-agent: *
 Allow: /
 Disallow: /offline.html
 
 # Host
-Host: https://vivek-rahagir.com
+Host: https://vivek-yadav.com
 
 # Sitemap
-Sitemap: https://vivek-rahagir.com/sitemap.xml
-
+Sitemap: https://vivek-yadav.com/sitemap.xml

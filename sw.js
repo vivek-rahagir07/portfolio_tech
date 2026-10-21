@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vivek-portfolio-v3';
+const CACHE_NAME = 'vivek-portfolio-v4';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -18,7 +18,9 @@ const urlsToCache = [
     '/terminal.js',
     '/scroll-jacking.css',
     '/manifest.json',
+    '/favicon.ico',
     '/photos/logo.png',
+    '/photos/apple-touch-icon.png',
     'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];

@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="text-cyan">Mounting filesystem...</div>
 <div class="text-green">✓ System ready</div>
 <br>
-<div class="text-magenta">[ VIVEK RAHAGIR SYSTEM -- v2.0.0 ]</div>
+<div class="text-magenta">[ VIVEK YADAV SYSTEM -- v2.0.0 ]</div>
 <div class="text-cyan">========================================</div>
-<div class="text-cyan">SYSTEM: <span class="text-magenta">VivekRahagir v.2.0.0</span></div>
+<div class="text-cyan">SYSTEM: <span class="text-magenta">VivekYadav v.2.0.0</span></div>
 <div class="text-cyan">STATUS: <span class="text-green">Operational</span></div>
 <div class="text-cyan">DESCRIPTION: <span class="text-magenta">Full-Stack Web Developer</span> & Products Thinker powered by modern web technologies.</div>
 <br>
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 'about.txt': {
                     type: 'file',
-                    content: 'About Vivek Yadav\n================\n\nIdentity:\nName: Vivek Yadav\nAlias: Rahagir\nRole: Full-Stack Developer & Products Thinker\nLocation: India\nAvailability: Remote Worldwide\n\nPhilosophy:\n"Building real systems under real constraints"\n\nI believe in creating practical solutions that solve real problems. My work sits at the intersection of:\n- Web Engineering\n- Seamless UI/UX\n- Human-Centric Design\n- Scalable Architecture\n\nExperience:\n- 3+ years in full-stack development\n- Built 15+ production applications\n- Worked with startups and enterprises\n- Led teams of 3-5 developers\n- Contributed to open-source projects\n\nCore Values:\n- Quality over speed\n- User-centric approach\n- Continuous learning\n- Clean code practices\n- Collaborative mindset\n\nInterests:\n- Internet of Things (IoT)\n- Computer Vision & AI\n- Real-time systems\n- Progressive Web Apps\n- Open-source contribution\n\nEducation:\n- Bachelor of Technology in Computer Science\n- Multiple certifications in cloud and web technologies\n- Continuous self-learning through online courses\n\nLanguages:\n- English (Professional)\n- Hindi (Native)\n- JavaScript (Fluent)\n- Python (Intermediate)\n\nContact:\nEmail: vivekhr36.2007@gmail.com\nGitHub: github.com/vivek-rahagir07\nLinkedIn: linkedin.com/in/vivek-yadav-1142213a0'
+                    content: 'About Vivek Yadav\n================\n\nIdentity:\nName: Vivek Yadav\nRole: Full-Stack Developer & Products Thinker\nLocation: India\nAvailability: Remote Worldwide\n\nPhilosophy:\n"Building real systems under real constraints"\n\nI believe in creating practical solutions that solve real problems. My work sits at the intersection of:\n- Web Engineering\n- Seamless UI/UX\n- Human-Centric Design\n- Scalable Architecture\n\nExperience:\n- 3+ years in full-stack development\n- Built 15+ production applications\n- Worked with startups and enterprises\n- Led teams of 3-5 developers\n- Contributed to open-source projects\n\nCore Values:\n- Quality over speed\n- User-centric approach\n- Continuous learning\n- Clean code practices\n- Collaborative mindset\n\nInterests:\n- Internet of Things (IoT)\n- Computer Vision & AI\n- Real-time systems\n- Progressive Web Apps\n- Open-source contribution\n\nEducation:\n- Bachelor of Technology in Computer Science\n- Multiple certifications in cloud and web technologies\n- Continuous self-learning through online courses\n\nLanguages:\n- English (Professional)\n- Hindi (Native)\n- JavaScript (Fluent)\n- Python (Intermediate)\n\nContact:\nEmail: vivekhr36.2007@gmail.com\nGitHub: github.com/vivek-rahagir07\nLinkedIn: linkedin.com/in/vivek-yadav-1142213a0'
                 },
                 'contact.txt': {
                     type: 'file',
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function printPrompt(command = "") {
         const div = document.createElement("div");
-        div.innerHTML = `<span class="prompt">guest@vivek-rahagir:~$</span> <span class="text-white">${command}</span>`;
+        div.innerHTML = `<span class="prompt">guest@vivek-yadav:~$</span> <span class="text-white">${command}</span>`;
         terminalBody.appendChild(div);
     }
 
@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <img src="photos/vivek.png" alt="Vivek Yadav" class="dev-image">
 </div>
 <div class="text-cyan dev-desc">
-    Vivek Yadav aka <span class="text-magenta">Rahagir</span>, is a self-driven <span class="text-green">full-stack developer</span> and products thinker who believes in building real systems under real constraints. His work sits at the intersection of web engineering, seamless UI/UX, and <span class="text-green">human-centric design</span>.
+    Vivek Yadav is a self-driven <span class="text-green">full-stack developer</span> and products thinker who believes in building real systems under real constraints. His work sits at the intersection of web engineering, seamless UI/UX, and <span class="text-green">human-centric design</span>.
 </div>
                 `);
                 break;
@@ -591,16 +591,24 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="nav-item" onclick="window.location.href='skills.html'"><span class="text-white">/skills</span> - My Skills</div>
     <div class="nav-item" onclick="window.location.href='projects.html'"><span class="text-white">/projects</span> - Works</div>
     <div class="nav-item" onclick="window.location.href='gallery.html'"><span class="text-white">/gallery</span> - Photo Gallery</div>
+    <div class="nav-item" onclick="window.location.href='developer-guide.html'"><span class="text-white">/devguide</span> - Dev Guide</div>
+    <div class="nav-item" onclick="window.location.href='iot.html'"><span class="text-white">/iot</span> - IoT Systems</div>
     <div class="nav-item" onclick="window.location.href='contact.html'"><span class="text-white">/contact</span> - Reach Out</div>
 </div>
-<div class="command-help">You can also type 'home' to quickly return to index.</div>
+<div class="command-help">You can also type 'home' or 'exit' to quickly return to GUI.</div>
                 `);
                 break;
             case "clear":
                 terminalBody.innerHTML = "";
                 break;
             case "home":
-                window.location.href = "index.html";
+            case "exit":
+            case "quit":
+            case "gui":
+                appendOutput('<div class="text-green">Returning to homepage...</div>');
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 400);
                 break;
             case "github":
                 appendOutput(`

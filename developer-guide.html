@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full Stack Developer Roadmap & Guide | Vivek Yadav</title>
     <meta name="description" content="Comprehensive full stack developer roadmap and guide by Vivek Yadav covering frontend, backend, databases, DevOps, system architecture, and AI engineering.">
-    <link rel="canonical" href="https://vivek-rahagir.com/developer-guide.html" />
+    <link rel="canonical" href="https://vivek-yadav.com/developer-guide.html" />
     <meta name="keywords" content="Vivek Yadav, Full Stack Developer, Developer Roadmap, Web Development Guide, Frontend Roadmap, Backend Roadmap, System Design, DevOps, AI Development">
     <meta name="author" content="Vivek Yadav">
     <meta name="robots" content="index, follow">
@@ -13,21 +13,24 @@
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Vivek Yadav Portfolio">
     <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://vivek-rahagir.com/developer-guide.html">
+    <meta property="og:url" content="https://vivek-yadav.com/developer-guide.html">
     <meta property="og:title" content="Full Stack Developer Roadmap & Guide | Vivek Yadav">
     <meta property="og:description" content="Comprehensive full stack developer roadmap and guide by Vivek Yadav covering frontend, backend, databases, DevOps, system architecture, and AI engineering.">
-    <meta property="og:image" content="https://vivek-rahagir.com/photos/logo.png">
+    <meta property="og:image" content="https://vivek-yadav.com/photos/logo.png">
+    <meta property="og:image:alt" content="Vivek Yadav Logo">
     
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vivek-rahagir.com/developer-guide.html">
+    <meta property="twitter:url" content="https://vivek-yadav.com/developer-guide.html">
     <meta property="twitter:title" content="Full Stack Developer Roadmap & Guide | Vivek Yadav">
     <meta property="twitter:description" content="Comprehensive full stack developer roadmap and guide by Vivek Yadav covering frontend, backend, databases, DevOps, system architecture, and AI engineering.">
-    <meta property="twitter:image" content="https://vivek-rahagir.com/photos/logo.png">
+    <meta property="twitter:image" content="https://vivek-yadav.com/photos/logo.png">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="photos/logo.png">
-    <link rel="icon" type="image/png" href="photos/logo.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="photos/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="photos/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="photos/logo.png">
     
     <script type="application/ld+json">
     {
@@ -35,11 +38,11 @@
         "@type": "TechArticle",
         "headline": "Full Stack Developer Roadmap & Architecture Guide",
         "description": "Comprehensive full stack developer roadmap and guide covering modern frontend, backend, database management, DevOps, and cloud systems.",
-        "url": "https://vivek-rahagir.com/developer-guide.html",
+        "url": "https://vivek-yadav.com/developer-guide.html",
         "author": {
             "@type": "Person",
             "name": "Vivek Yadav",
-            "url": "https://vivek-rahagir.com"
+            "url": "https://vivek-yadav.com"
         },
         "publisher": {
             "@type": "Person",
@@ -55,7 +58,7 @@
     <main id="main-content">
         
         <nav>
-            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="VY Logo"></a></div>
+            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="Vivek Yadav Logo"></a></div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -98,10 +101,44 @@
             </div>
 
             <div class="roadmap-desktop-view">
-                <a href="collage/image.png" download="Full_Stack_Web_Dev_Roadmap.png" class="desktop-roadmap-download-btn" title="Download High-Resolution Roadmap (PNG)">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Download Roadmap</span>
-                </a>
+                <div class="mindmap-hud-overlay">
+                    <div class="mindmap-hud-top">
+                        <div class="mindmap-legend-card glass-card">
+                            <span class="hud-label">Difficulty:</span>
+                            <div class="legend-badges">
+                                <span class="legend-badge easy"><span class="badge-dot"></span> Easy</span>
+                                <span class="legend-badge intermediate"><span class="badge-dot"></span> Intermediate</span>
+                                <span class="legend-badge advanced"><span class="badge-dot"></span> Advanced</span>
+                            </div>
+                        </div>
+
+                        <div class="mindmap-controls-group">
+                            <div class="mindmap-zoom-pill glass-card">
+                                <button type="button" id="zoomOutBtn" class="hud-icon-btn" title="Zoom Out" aria-label="Zoom Out">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <span id="zoomLevelDisplay" class="hud-zoom-val">100%</span>
+                                <button type="button" id="zoomInBtn" class="hud-icon-btn" title="Zoom In" aria-label="Zoom In">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="hud-divider"></div>
+                                <button type="button" id="resetViewBtn" class="hud-icon-btn reset-btn" title="Reset View & Center" aria-label="Reset View">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                </button>
+                            </div>
+
+                            <a href="collage/image.png" download="Full_Stack_Web_Dev_Roadmap.png" class="desktop-roadmap-download-btn" title="Download High-Resolution Roadmap (PNG)">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Download Roadmap</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mindmap-bottom-hint glass-card">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span><strong>Interactive Mindmap:</strong> Click nodes to expand &bull; Drag to pan &bull; Scroll or use buttons to zoom</span>
+                    </div>
+                </div>
                 
                 <div class="mindmap-canvas-wrapper glass-card">
                     <canvas id="mindmapCanvas"></canvas>
@@ -782,37 +819,6 @@
             }
             
             
-            function drawLegend() {
-                const legendX = 20;
-                const legendY = 30;
-                const itemSpacing = 130;
-                
-                ctx.save();
-                ctx.font = 'bold 16px Arial';
-                ctx.textAlign = 'left';
-                ctx.textBaseline = 'middle';
-                
-                
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-                ctx.roundRect(legendX - 10, legendY - 20, 400, 45, 10);
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-                ctx.lineWidth = 1;
-                ctx.stroke();
-                
-                
-                ctx.fillStyle = '#fff';
-                ctx.fillText('🟢 Easy', legendX, legendY);
-                
-                
-                ctx.fillText('🟡 Intermediate', legendX + itemSpacing, legendY);
-                
-                
-                ctx.fillText('🔴 Advanced', legendX + itemSpacing * 2, legendY);
-                
-                ctx.restore();
-            }
-            
             
             function isInsideNode(x, y, node) {
                 const width = node.level === 0 ? 160 : node.level === 1 ? 140 : node.level === 2 ? 120 : 100;
@@ -834,7 +840,7 @@
                 if (isInsideNode(x, y, node)) {
                     return node;
                 }
-                if (node.children) {
+                if (node.children && expandedNodes.has(node.id)) {
                     for (const child of node.children) {
                         const found = findNodeAtPosition(x, y, child);
                         if (found) return found;
@@ -867,12 +873,8 @@
                 
                 drawParticles();
                 
-                
-                drawLegend();
-                
-                
                 const startX = canvas.width / 2;
-                const startY = canvas.height / 2;
+                const startY = canvas.height / 2 + 30;
                 calculatePositions(mindmapData, startX, startY, 0, true, 'down');
                 
                 
@@ -977,6 +979,7 @@
                 offsetX = (mouseX / newScale) - worldX;
                 offsetY = (mouseY / newScale) - worldY;
                 scale = newScale;
+                updateZoomDisplay();
             });
             
             // Mobile Touch Support: Drag, Pinch-Zoom, Tap
@@ -1056,6 +1059,40 @@
             });
             
             
+            function updateZoomDisplay() {
+                const el = document.getElementById('zoomLevelDisplay');
+                if (el) {
+                    el.textContent = Math.round(scale * 100) + '%';
+                }
+            }
+
+            function applyZoomAtCenter(factor) {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const worldX = (centerX / scale) - offsetX;
+                const worldY = (centerY / scale) - offsetY;
+                const newScale = Math.max(0.3, Math.min(3, scale * factor));
+                offsetX = (centerX / newScale) - worldX;
+                offsetY = (centerY / newScale) - worldY;
+                scale = newScale;
+                updateZoomDisplay();
+            }
+
+            function resetMindmapView() {
+                scale = 1;
+                offsetX = 0;
+                offsetY = 0;
+                updateZoomDisplay();
+            }
+
+            const zoomInBtn = document.getElementById('zoomInBtn');
+            const zoomOutBtn = document.getElementById('zoomOutBtn');
+            const resetViewBtn = document.getElementById('resetViewBtn');
+
+            if (zoomInBtn) zoomInBtn.addEventListener('click', () => applyZoomAtCenter(1.2));
+            if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoomAtCenter(0.833));
+            if (resetViewBtn) resetViewBtn.addEventListener('click', resetMindmapView);
+
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
         </script>

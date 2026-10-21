@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const shareData = {
             title: 'Vivek Yadav | Full Stack Developer & Engineer',
             text: 'Explore Vivek Yadav’s portfolio — Full Stack Developer building scalable web architectures, modern interfaces, and IoT systems.',
-            url: window.location.origin ? (window.location.origin + window.location.pathname) : 'https://vivek-rahagir.com/'
+            url: window.location.origin ? (window.location.origin + window.location.pathname) : 'https://vivek-yadav.com/'
         };
 
         if (navigator.share) {
@@ -135,11 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }).catch(() => {
                 if (window.showProfileToast) {
-                    window.showProfileToast('Link: vivek-rahagir.com');
+                    window.showProfileToast('Link: vivek-yadav.com');
                 }
             });
         } else if (window.showProfileToast) {
-            window.showProfileToast('Link: vivek-rahagir.com');
+            window.showProfileToast('Link: vivek-yadav.com');
         }
     }
 
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <i class="fa-solid fa-check"></i>
                                         </div>
                                     </div>
-                                    <p class="profile-user-handle">@rahagir07</p>
+                                    <p class="profile-user-handle">@vivekyadav</p>
                                     <p class="profile-bio-text">
                                         Full Stack Developer & Creative Technologist. Building digital experiences that inspire, from IoT hardware to beautiful web interfaces.
                                     </p>
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <i class="fa-solid fa-microchip"></i>
                                             <span class="nfc-wave-icon"><i class="fa-solid fa-wifi"></i></span>
                                         </div>
-                                        <span class="nfc-card-brand">VIVEK YADAV • RAHAGIR</span>
+                                        <span class="nfc-card-brand">VIVEK YADAV • PORTFOLIO</span>
                                         <button type="button" class="nfc-flip-back-btn" id="flipBackBtn" aria-label="Flip back to bio">
                                             <i class="fa-solid fa-rotate-left"></i>
                                         </button>
@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                     <div class="nfc-card-center">
                                         <div class="nfc-qr-wrapper">
-                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fvivek-rahagir.com%2F&color=d4af37&bgcolor=0d0d11&margin=4" alt="Scan to connect" class="nfc-qr-code">
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fvivek-yadav.com%2F&color=d4af37&bgcolor=0d0d11&margin=4" alt="Scan to connect" class="nfc-qr-code">
                                             <div class="qr-glow-corner top-left"></div>
                                             <div class="qr-glow-corner top-right"></div>
                                             <div class="qr-glow-corner bottom-left"></div>
@@ -567,12 +567,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     'BEGIN:VCARD',
                     'VERSION:3.0',
                     'N:Yadav;Vivek;;;',
-                    'FN:Vivek Yadav (Rahagir)',
+                    'FN:Vivek Yadav',
                     'ORG:Vivek Yadav Portfolio',
                     'TITLE:Full Stack Developer & Creative Technologist',
                     'TEL;TYPE=CELL,VOICE:+919996445592',
                     'EMAIL;TYPE=INTERNET,HOME:vivekhr36.2007@gmail.com',
-                    'URL:https://vivek-rahagir.com/',
+                    'URL:https://vivek-yadav.com/',
                     'URL;TYPE=GitHub:https://github.com/vivek-rahagir07',
                     'URL;TYPE=LinkedIn:https://linkedin.com/in/vivek-yadav-1142213a0/',
                     'NOTE:Full Stack Developer specializing in Node.js, Laravel, React, PostgreSQL, and IoT Systems.',
