@@ -616,7 +616,9 @@ nav:not(.mobile-bottom-dock) {
 }
 
 
+#mobileNavActions,
 .mobile-nav-actions,
+#mobileShareTrigger,
 .mobile-share-btn,
 .mobile-dots-btn,
 .mobile-bottom-dock {
