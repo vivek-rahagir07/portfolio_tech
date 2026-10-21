@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vivek-portfolio-v5';
+const CACHE_NAME = 'vivek-portfolio-v6';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -20,17 +20,27 @@ const urlsToCache = [
     '/manifest.json',
     '/favicon.ico',
     '/photos/logo.png',
+    '/photos/image.png',
+    '/photos/image copy.png',
+    '/photos/image%20copy.png',
     '/photos/apple-touch-icon.png',
+    '/photos/favicon-32x32.png',
+    '/photos/favicon-64x64.png',
     'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(urlsToCache);
-            })
+        caches.open(CACHE_NAME).then(cache => {
+            return Promise.allSettled(
+                urlsToCache.map(url =>
+                    cache.add(url).catch(err => {
+                        console.warn('SW cache pre-fetch skipped for:', url);
+                    })
+                )
+            );
+        })
     );
     self.skipWaiting();
 });
@@ -44,8 +54,6 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
 
     // CRITICAL: Do NOT intercept video or audio streaming requests!
-    // Video streaming requires HTTP 206 Partial Content and Range headers.
-    // Intercepting video requests breaks media playback and corrupts cache.
     if (
         event.request.headers.get('range') ||
         event.request.destination === 'video' ||
@@ -65,24 +73,27 @@ self.addEventListener('fetch', event => {
                     return cachedResponse;
                 }
                 return fetch(event.request).then(response => {
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                    }
-                    
-                    const responseToCache = response.clone();
-                    caches.open(CACHE_NAME)
-                        .then(cache => {
+                    if (response && response.status === 200) {
+                        const responseToCache = response.clone();
+                        caches.open(CACHE_NAME).then(cache => {
                             cache.put(event.request, responseToCache);
                         });
+                    }
                     return response;
                 }).catch(() => {
-                    // CRITICAL FIX: Only return offline.html for HTML page navigation!
-                    // Returning HTML for aborted/queued image requests causes the browser
-                    // to receive HTML text for <img> tags, rendering broken image placeholders.
+                    // For document navigation, return offline page
                     if (event.request.mode === 'navigate' || event.request.destination === 'document') {
                         return caches.match('/offline.html');
                     }
-                    return new Response('', { status: 408, statusText: 'Request Timeout' });
+                    // For image requests, try matching without query params or return cached image
+                    if (event.request.destination === 'image' || url.pathname.match(/\.(png|jpg|jpeg|svg|webp|ico)$/i)) {
+                        return caches.match(event.request).then(imgMatch => {
+                            if (imgMatch) return imgMatch;
+                            // Fallback to logo or empty transparent image
+                            return caches.match('/photos/logo.png');
+                        });
+                    }
+                    return caches.match(event.request);
                 });
             })
     );

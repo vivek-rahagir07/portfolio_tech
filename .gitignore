@@ -25,3 +25,4 @@ dist-ssr
 
 # Large media files for deployment
 vedios/
+*.zip
