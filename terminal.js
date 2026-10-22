@@ -607,7 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
             case "gui":
                 appendOutput('<div class="text-green">Returning to homepage...</div>');
                 setTimeout(() => {
-                    window.location.href = "index.html";
+                    window.location.href = "/";
                 }, 400);
                 break;
             case "github":
@@ -781,7 +781,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 terminalWindow.style.animation = 'glitchText 0.3s infinite';
                 terminalWindow.style.transform = 'scaleY(0.01) scaleX(1)';
                 setTimeout(() => {
-                    window.location.href = "index.html";
+                    window.location.href = "/";
                 }, 400);
             }
         );

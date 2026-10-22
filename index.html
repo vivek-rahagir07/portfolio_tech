@@ -8,7 +8,8 @@
     <link rel="canonical" href="https://vivek-yadav.com/" />
     <meta name="keywords" content="Vivek Yadav, Full Stack Developer, HTML, CSS, JavaScript, React, Node.js, Laravel, PostgreSQL, Firebase, Supabase, MySQL, REST APIs, Web Development, Portfolio, Frontend, Backend">
     <meta name="author" content="Vivek Yadav">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="google-site-verification" content="googleae36ff728ced96c4">
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vivek Yadav Portfolio">
@@ -87,7 +88,12 @@
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
         const urlParams = new URLSearchParams(window.location.search);
         const forcePreloader = urlParams.has('preloader') || window.location.hash === '#preloader';
-        if (isLocal || forcePreloader || !localStorage.getItem('hasSeenPreloader_v2')) {
+        const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless|inspection/i.test(navigator.userAgent);
+        
+        if (isBot) {
+            document.write('<style>#intro-overlay { display: none !important; }</style>');
+            window.skipPreloader = true;
+        } else if (isLocal || forcePreloader || !localStorage.getItem('hasSeenPreloader_v2')) {
             if (!isLocal && !forcePreloader) {
                 localStorage.setItem('hasSeenPreloader_v2', 'true');
             }
@@ -96,6 +102,7 @@
             window.skipPreloader = true;
         }
     </script>
+    <noscript><style>#intro-overlay { display: none !important; }</style></noscript>
 </head>
 <body>
     
@@ -168,9 +175,9 @@
     <main id="main-content">
         
         <nav>
-            <div class="logo"><a href="index.html"><img src="photos/logo.png" alt="Vivek Yadav Logo"></a></div>
+            <div class="logo"><a href="/"><img src="photos/logo.png" alt="Vivek Yadav Logo"></a></div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="skills.html">Skills</a></li>
                 <li><a href="projects.html">Projects</a></li>

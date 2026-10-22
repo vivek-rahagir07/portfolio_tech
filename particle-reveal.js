@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pageStartTime = Date.now();
     function setupParticleReveal(canvasId) {
-        if (window.skipPreloader) return;
+        if (window.skipPreloader || /bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(navigator.userAgent)) {
+            const overlay = document.getElementById('intro-overlay');
+            if (overlay) overlay.remove();
+            return;
+        }
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
 

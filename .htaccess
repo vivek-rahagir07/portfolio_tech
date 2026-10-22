@@ -5,13 +5,23 @@
     RewriteEngine On
     RewriteBase /
 
+    # Redirect www to non-www (SEO canonicalization)
+    RewriteCond %{HTTP_HOST} ^www\.vivek-yadav\.com$ [NC]
+    RewriteRule ^(.*)$ https://vivek-yadav.com/$1 [L,R=301]
+
     # Redirect HTTP to HTTPS
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Redirect /index.html to root / (prevents duplicate homepage indexing)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+    RewriteRule ^index\.html$ https://vivek-yadav.com/ [L,R=301]
 </IfModule>
 
 # Ensure Proper MIME Types
 <IfModule mod_mime.c>
+    AddType application/xml;charset=UTF-8 .xml
+    AddType text/xml;charset=UTF-8 .xml
     AddType image/webp .webp
     AddType image/png .png
     AddType image/jpeg .jpg .jpeg
@@ -22,6 +32,22 @@
     AddType text/css .css
     AddType application/json .json
     AddType application/manifest+json .webmanifest
+</IfModule>
+
+# Enable Gzip / Deflate Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/manifest+json
+    AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
 # Browser Caching
@@ -39,9 +65,14 @@
     ExpiresByType application/manifest+json "access plus 1 week"
 </IfModule>
 
-# Security Headers
+# Security & Crawler Headers
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Prevent indexing of zip packages
+    <FilesMatch "\.zip$">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
 </IfModule>

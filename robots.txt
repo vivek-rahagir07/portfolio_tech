@@ -3,9 +3,7 @@
 User-agent: *
 Allow: /
 Disallow: /offline.html
-
-# Host
-Host: https://vivek-yadav.com
+Disallow: /*.zip$
 
 # Sitemap
 Sitemap: https://vivek-yadav.com/sitemap.xml

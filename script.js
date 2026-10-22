@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bottomDock.setAttribute('aria-label', 'Mobile Navigation');
             bottomDock.innerHTML = `
                 <div class="dock-glider" id="dockGlider"></div>
-                <a href="index.html" class="dock-item" data-tab="home" aria-label="Home">
+                <a href="/" class="dock-item" data-tab="home" aria-label="Home">
                     <div class="dock-icon-wrap">
                         <i class="fa-solid fa-house dock-icon"></i>
                         <img src="photos/navbar.png" alt="Home Tab" class="dock-avatar-img">
