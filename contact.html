@@ -60,11 +60,14 @@
         }
     }
     </script>
+    <!-- Performance Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Non-render-blocking FontAwesome -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     
     <script>
@@ -89,7 +92,7 @@
     <main id="main-content">
         
         <nav>
-            <div class="logo"><a href="/"><img src="photos/logo.png" alt="Vivek Yadav Logo"></a></div>
+            <div class="logo"><a href="/"><img src="photos/logo-opt.webp" alt="Vivek Yadav Logo" width="48" height="48" fetchpriority="low" decoding="async"></a></div>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -303,8 +306,8 @@
         </footer>
     </main>
 
-    <script src="webmcp.js"></script>
-    <script src="script.js"></script>
+    <script defer src="webmcp.js"></script>
+    <script defer src="script.js"></script>
     <script>
         
         const testimonialsData = [

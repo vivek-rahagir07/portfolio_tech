@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vivek-portfolio-v7';
+const CACHE_NAME = 'vivek-portfolio-v8';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -23,14 +23,14 @@ const urlsToCache = [
     '/scroll-jacking.css',
     '/manifest.json',
     '/favicon.ico',
+    '/photos/logo-opt.webp',
+    '/photos/hero-portrait.webp',
+    '/photos/hero-scratch.webp',
     '/photos/logo.png',
-    '/photos/image.png',
-    '/photos/image copy.png',
-    '/photos/image%20copy.png',
     '/photos/apple-touch-icon.png',
     '/photos/favicon-32x32.png',
     '/photos/favicon-64x64.png',
-    'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap',
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&display=swap',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
