@@ -13,6 +13,13 @@
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # Serve Markdown representation when agents request text/markdown
+    RewriteCond %{HTTP:Accept} text/markdown [NC,OR]
+    RewriteCond %{HTTP:Accept} text/x-markdown [NC]
+    RewriteCond %{REQUEST_URI} ^/?$ [OR]
+    RewriteCond %{REQUEST_URI} ^/index(\.html)?$ [NC]
+    RewriteRule ^.*$ /index.md [L]
+
     # Redirect /index.html to root / (prevents duplicate homepage indexing)
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
     RewriteRule ^index\.html$ https://vivek-yadav.com/ [L,R=301]
@@ -22,6 +29,8 @@
 <IfModule mod_mime.c>
     AddType application/xml;charset=UTF-8 .xml
     AddType text/xml;charset=UTF-8 .xml
+    AddType text/markdown;charset=UTF-8 .md
+    AddType text/plain;charset=UTF-8 .txt
     AddType image/webp .webp
     AddType image/png .png
     AddType image/jpeg .jpg .jpeg
@@ -38,6 +47,7 @@
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/markdown
     AddOutputFilterByType DEFLATE text/xml
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
@@ -55,9 +65,12 @@
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
     ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/markdown "access plus 1 hour"
+    ExpiresByType text/plain "access plus 1 day"
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/json "access plus 1 day"
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
@@ -65,11 +78,36 @@
     ExpiresByType application/manifest+json "access plus 1 week"
 </IfModule>
 
-# Security & Crawler Headers
+# Security, Agent Headers & Link Headers
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header append Vary "Accept"
+
+    # RFC 8288 Link headers for agent-readiness and alternate formats
+    Header set Link '</llms.txt>; rel="describedby"; type="text/plain", </index.md>; rel="alternate"; type="text/markdown", </.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"'
+
+    # Strip Link headers from static media and binary assets
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|mp4|webm|zip|woff2?|ttf|eot)$">
+        Header unset Link
+    </FilesMatch>
+
+    # Explicit Content-Type and CORS for agent discovery endpoints
+    <FilesMatch "^server-card\.json$">
+        Header set Content-Type "application/json; charset=UTF-8"
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+
+    <FilesMatch "^llms(-full)?\.txt$">
+        Header set Content-Type "text/plain; charset=UTF-8"
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+
+    <FilesMatch "^index\.md$">
+        Header set Content-Type "text/markdown; charset=UTF-8"
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
     
     # Prevent indexing of zip packages
     <FilesMatch "\.zip$">

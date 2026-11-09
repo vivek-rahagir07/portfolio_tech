@@ -5,5 +5,8 @@ Allow: /
 Disallow: /offline.html
 Disallow: /*.zip$
 
+# Content Signals
+Content-Signal: search=yes, ai-train=no
+
 # Sitemap
 Sitemap: https://vivek-yadav.com/sitemap.xml

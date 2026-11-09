@@ -1,0 +1,46 @@
+# Vivek Yadav
+
+> Portfolio of Vivek Yadav — Full Stack Developer & Systems Engineer building scalable web applications, real-time architectures, and IoT solutions.
+
+## Summary
+Vivek Yadav is a software engineer based in Gurugram, India. He builds production-grade web systems, high-concurrency backends, responsive client applications, and embedded IoT firmware. His core stack includes HTML5, CSS3, JavaScript, React, Node.js, PHP, Laravel, PostgreSQL, MySQL, Supabase, and C++ for microcontrollers.
+
+## Primary Pages
+- [Home](https://vivek-yadav.com/): Interactive portfolio, career journey timeline, and overview.
+- [About](https://vivek-yadav.com/about.html): Background, technical evolution, problem-solving mindset, and milestones.
+- [Skills](https://vivek-yadav.com/skills.html): Full breakdown of languages, frameworks, databases, DevOps, and IoT capabilities.
+- [Projects](https://vivek-yadav.com/projects.html): Complete showcase of production platforms, utilities, and experiments.
+- [Developer Guide](https://vivek-yadav.com/developer-guide.html): Technical guides, architecture blueprints, database patterns, and API designs.
+- [IOT](https://vivek-yadav.com/iot.html): Embedded hardware, microcontrollers (ESP32, Arduino), sensors, and communication protocols.
+- [Contact](https://vivek-yadav.com/contact.html): Contact channels, project consultation, and availability for hire.
+- [Terms](https://vivek-yadav.com/terms.html): Terms of service, acceptable use, and agent interaction terms.
+
+## Featured Projects
+- [CognitoAttend](https://vivek-yadav.com/project-cognitoattend.html): Cognitive facial recognition and attendance automation platform with real-time verification.
+- [JhatpatSewa](https://vivek-yadav.com/project-jhatpatsewa.html): Full-scale on-demand home service marketplace featuring real-time provider matching, payment integration, and relational database architecture.
+- [NeoRide](https://vivek-yadav.com/project-neoride.html): Pure DOM-rendered driving physics engine built without graphics or canvas assets.
+- [Star Cadet](https://vivek-yadav.com/project-starcadet.html): HTML5 Canvas space simulation platform engineered for consistent 60 FPS performance.
+- [MediaConverter](https://vivek-yadav.com/project-mediaconverter.html): High-speed client-side and server-backed media processing and transcoding tool.
+- [NeoStream](https://vivek-yadav.com/project-neostream.html): Real-time multimedia streaming and playback dashboard.
+
+## Technical Skills & Stack
+- Languages: JavaScript (ES6+), TypeScript, PHP, Python, C++, SQL, HTML5, CSS3
+- Frontend: React, Redux, Responsive UI/UX, Canvas API, CSS Grid/Flexbox, DOM Optimization
+- Backend: Node.js, Express.js, Laravel, RESTful APIs, WebSockets, Microservices
+- Databases & Storage: PostgreSQL, MySQL, Redis, Supabase, Firebase
+- Systems & IoT: ESP32, ESP8266, Arduino, MQTT, HTTP/REST, Sensor Networks, Serial Protocols
+- Developer Tools: Git, GitHub, Docker, Linux/Unix shell, Postman, Apache/Nginx
+
+## Direct Contact
+- Email: [vivekhr36.2007@gmail.com](mailto:vivekhr36.2007@gmail.com)
+- Phone: [+919996445592](tel:+919996445592)
+- Location: Gurugram, Haryana, India
+- GitHub: [https://github.com/vivek-rahagir07](https://github.com/vivek-rahagir07)
+- LinkedIn: [https://linkedin.com/in/vivek-yadav-1142213a0/](https://linkedin.com/in/vivek-yadav-1142213a0/)
+
+## Agent & Machine Resources
+- MCP Server Card: [https://vivek-yadav.com/.well-known/mcp/server-card.json](https://vivek-yadav.com/.well-known/mcp/server-card.json)
+- Markdown Representation: [https://vivek-yadav.com/index.md](https://vivek-yadav.com/index.md)
+- Content-Signal: search=yes, ai-train=no
+- Canonical Site: [https://vivek-yadav.com/](https://vivek-yadav.com/)
+

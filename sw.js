@@ -1,7 +1,9 @@
-const CACHE_NAME = 'vivek-portfolio-v6';
+const CACHE_NAME = 'vivek-portfolio-v7';
 const urlsToCache = [
     '/',
     '/index.html',
+    '/index.md',
+    '/llms.txt',
     '/about.html',
     '/skills.html',
     '/projects.html',
@@ -10,10 +12,12 @@ const urlsToCache = [
     '/iot.html',
     '/terminal.html',
     '/contact.html',
+    '/terms.html',
     '/offline.html',
     '/style.css',
     '/terminal.css',
     '/script.js',
+    '/webmcp.js',
     '/skills.js',
     '/terminal.js',
     '/scroll-jacking.css',
@@ -64,6 +68,17 @@ self.addEventListener('fetch', event => {
         url.pathname.endsWith('.ogg')
     ) {
         return;
+    }
+
+    // Serve Markdown representation when agents request text/markdown
+    const acceptHeader = event.request.headers.get('accept') || '';
+    if (acceptHeader.includes('text/markdown')) {
+        if (url.pathname === '/' || url.pathname === '/index.html') {
+            event.respondWith(
+                caches.match('/index.md').then(cached => cached || fetch('/index.md'))
+            );
+            return;
+        }
     }
 
     event.respondWith(

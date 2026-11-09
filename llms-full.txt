@@ -1,0 +1,89 @@
+# Vivek Yadav — Full Developer Dossier & System Reference
+
+> Complete documentation of Vivek Yadav's engineering profile, project architectures, technical capabilities, and agent interaction specifications.
+
+## 1. Overview & Professional Identity
+Vivek Yadav is a Full Stack Developer, Systems Architect, and IoT Engineer located in Gurugram, Haryana, India. He builds resilient web applications, data-intensive backend architectures, and embedded electronics.
+
+- Canonical URL: https://vivek-yadav.com/
+- Contact Email: vivekhr36.2007@gmail.com
+- Phone: +919996445592
+- Location: Gurugram, Haryana, India
+- GitHub: https://github.com/vivek-rahagir07
+- LinkedIn: https://linkedin.com/in/vivek-yadav-1142213a0/
+
+---
+
+## 2. Core Technical Competencies
+
+### Frontend Development
+- Languages & Core: HTML5 (Semantic, Accessible), CSS3/Modern CSS (Grid, Flexbox, Custom Properties, Glassmorphism), Modern JavaScript (ES2022+).
+- Frameworks & Libraries: React, Redux, DOM manipulation, HTML5 Canvas 2D rendering.
+- Performance: 60 FPS animations, sub-second initial paint, asset optimization, service worker offline caching.
+
+### Backend Engineering
+- Environments & Frameworks: Node.js, Express.js, PHP, Laravel.
+- API Design: RESTful endpoints, WebSockets (real-time bidirectionality), Server-Sent Events (SSE), RPC patterns.
+- Authentication & Security: JWT, OAuth2, session management, CSRF/XSS protection, role-based access control (RBAC).
+
+### Data & Storage
+- Relational Databases: PostgreSQL (complex joins, indexing, query optimization, triggers), MySQL.
+- In-Memory & Caching: Redis (caching, pub/sub, session state).
+- BaaS & Cloud DBs: Supabase, Firebase (Firestore, Auth).
+
+### Embedded & IoT Systems
+- Platforms: ESP32, ESP8266, Arduino AVR/ARM.
+- Protocols & Communication: MQTT, WebSockets, HTTP REST over Wi-Fi, SPI, I2C, UART.
+- Applications: Sensor telemetry, hardware-to-cloud pipelines, remote telemetry dashboards.
+
+---
+
+## 3. Production Projects & Architectural Details
+
+### CognitoAttend
+- URL: https://vivek-yadav.com/project-cognitoattend.html
+- Purpose: Frictionless identity tracking and cognitive attendance monitoring.
+- Architecture: Microservice backend powered by Node.js and PostgreSQL. Features real-time state synchronization and automated attendance reporting.
+
+### JhatpatSewa
+- URL: https://vivek-yadav.com/project-jhatpatsewa.html
+- Purpose: On-demand marketplace connecting consumers with vetted home service technicians in real time.
+- Architecture: Laravel backend, MySQL relational model, integrated payment gateways, dynamic scheduling, and geolocation-based dispatch.
+
+### NeoRide
+- URL: https://vivek-yadav.com/project-neoride.html
+- Purpose: Demonstration of pure DOM rendering capabilities without canvas or graphic textures.
+- Highlights: Interactive vehicular physics, obstacle collision detection, and procedural movement utilizing CSS transforms and requestAnimationFrame.
+
+### Star Cadet
+- URL: https://vivek-yadav.com/project-starcadet.html
+- Purpose: Gamified interactive STEM education tool.
+- Highlights: Custom 2D particle engine, mathematical simulation, and stable 60 FPS rendering cycle tuned for low-spec client hardware.
+
+### MediaConverter
+- URL: https://vivek-yadav.com/project-mediaconverter.html
+- Purpose: Universal format conversion engine for images, documents, and audio.
+- Highlights: Hybrid client-side WebAssembly and server-side processing for instant conversions.
+
+---
+
+## 4. Site Map & Navigation
+- https://vivek-yadav.com/ — Homepage
+- https://vivek-yadav.com/about.html — About & Career Journey
+- https://vivek-yadav.com/skills.html — Skill Matrix
+- https://vivek-yadav.com/projects.html — Project Gallery
+- https://vivek-yadav.com/developer-guide.html — Comprehensive Engineering Handbook
+- https://vivek-yadav.com/iot.html — Internet of Things & Hardware
+- https://vivek-yadav.com/gallery.html — Visual Showcase
+- https://vivek-yadav.com/terminal.html — Interactive Terminal Interface
+- https://vivek-yadav.com/contact.html — Direct Inquiries & Contact
+- https://vivek-yadav.com/terms.html — Terms of Service & Legal Notices
+
+---
+
+## 5. Machine & AI Agent Integration
+- MCP Server Card: https://vivek-yadav.com/.well-known/mcp/server-card.json
+- WebMCP: Client-side tools registered on `navigator.modelContext` (`get_profile`, `get_projects`, `contact_inquiry`).
+- Content-Signal: search=yes, ai-train=no
+- Accept Header: Pass `Accept: text/markdown` on any page or `/` to receive clean Markdown text.
+

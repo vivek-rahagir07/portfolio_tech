@@ -2435,12 +2435,55 @@ strong {
 
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 1.5rem;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.08);
     margin-top: 50px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
+}
+
+.footer-contact {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-primary, #ffffff);
+}
+
+.footer-contact a {
+    color: var(--accent, #60a5fa);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-contact a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary, #9ca3af);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent, #60a5fa);
+}
+
+.footer-copy {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin: 0;
 }
 
 

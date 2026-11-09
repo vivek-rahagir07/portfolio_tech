@@ -1,0 +1,85 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card.json",
+  "name": "vivek-yadav-portfolio",
+  "version": "1.0.0",
+  "description": "Official MCP server and agent discovery endpoint for Vivek Yadav's developer portfolio, projects, skills, and contact services.",
+  "url": "https://vivek-yadav.com/.well-known/mcp/server-card.json",
+  "endpointUrl": "https://vivek-yadav.com/api/mcp",
+  "homepage": "https://vivek-yadav.com",
+  "endpoints": {
+    "http": "https://vivek-yadav.com/api/mcp",
+    "sse": "https://vivek-yadav.com/api/mcp/sse"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "get_bio",
+      "description": "Retrieve Vivek Yadav's biography, background, technical focus, and journey.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_projects",
+      "description": "Retrieve portfolio projects, architectures, tech stacks, and source links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Filter by category: fullstack, iot, frontend, backend"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_skills",
+      "description": "List technical competencies, languages, frameworks, databases, and IoT capabilities.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_contact_info",
+      "description": "Retrieve verified contact details for Vivek Yadav.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "https://vivek-yadav.com/llms.txt",
+      "name": "llms.txt",
+      "description": "Concise LLM summary and guide to the website and its key endpoints",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://vivek-yadav.com/index.md",
+      "name": "index.md",
+      "description": "Full Markdown representation of the portfolio homepage",
+      "mimeType": "text/markdown"
+    }
+  ],
+  "contact": {
+    "name": "Vivek Yadav",
+    "email": "vivekhr36.2007@gmail.com",
+    "telephone": "+919996445592",
+    "url": "https://vivek-yadav.com/contact.html"
+  }
+}
+

@@ -32,6 +32,11 @@
     <link rel="apple-touch-icon" href="photos/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="photos/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="photos/logo.png">
+
+    <!-- Machine-Readable Discovery & Agent Links -->
+    <link rel="describedby" type="text/plain" href="https://vivek-yadav.com/llms.txt">
+    <link rel="alternate" type="text/markdown" href="https://vivek-yadav.com/index.md">
+    <link rel="service-desc" type="application/json" href="https://vivek-yadav.com/.well-known/mcp/server-card.json">
     
     <script type="application/ld+json">
     {
@@ -42,25 +47,144 @@
                 "@id": "https://vivek-yadav.com/#website",
                 "url": "https://vivek-yadav.com/",
                 "name": "Vivek Yadav Portfolio",
-                "description": "Portfolio of Vivek Yadav — Full Stack Developer & Engineer",
+                "description": "Portfolio of Vivek Yadav — Full Stack Developer & Systems Engineer",
                 "publisher": {
                     "@type": "Person",
-                    "name": "Vivek Yadav"
+                    "@id": "https://vivek-yadav.com/#person"
                 }
             },
             {
                 "@type": "Person",
                 "@id": "https://vivek-yadav.com/#person",
                 "name": "Vivek Yadav",
-                "jobTitle": "Full Stack Developer",
-                "url": "https://vivek-yadav.com",
+                "jobTitle": "Full Stack Developer & Systems Engineer",
+                "url": "https://vivek-yadav.com/",
+                "email": "vivekhr36.2007@gmail.com",
+                "telephone": "+919996445592",
                 "image": "https://vivek-yadav.com/photos/logo.png",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Gurugram",
+                    "addressRegion": "Haryana",
+                    "addressCountry": "India"
+                },
                 "sameAs": [
                     "https://github.com/vivek-rahagir07",
                     "https://linkedin.com/in/vivek-yadav-1142213a0/"
                 ],
-                "description": "Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, PostgreSQL, Firebase, Supabase, and MySQL.",
+                "worksFor": {
+                    "@type": "Organization",
+                    "@id": "https://vivek-yadav.com/#organization"
+                },
+                "description": "Portfolio of Vivek Yadav — a Full Stack Developer who builds with HTML, CSS, JavaScript, React, Node.js, PHP, Laravel, PostgreSQL, Firebase, Supabase, and MySQL.",
                 "knowsAbout": ["HTML", "CSS", "JavaScript", "React", "Node.js", "PHP", "Laravel", "PostgreSQL", "Firebase", "Supabase", "MySQL", "REST APIs", "IoT", "Full Stack Development", "Web Development"]
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://vivek-yadav.com/#organization",
+                "name": "Vivek Yadav Engineering",
+                "alternateName": "Vivek Yadav Web & Software Development",
+                "url": "https://vivek-yadav.com/",
+                "logo": "https://vivek-yadav.com/photos/logo.png",
+                "image": "https://vivek-yadav.com/photos/logo.png",
+                "description": "Professional Full Stack Web Development, Cloud Backend Architecture, and IoT Engineering Services.",
+                "email": "vivekhr36.2007@gmail.com",
+                "telephone": "+919996445592",
+                "founder": {
+                    "@type": "Person",
+                    "@id": "https://vivek-yadav.com/#person"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Gurugram",
+                    "addressRegion": "Haryana",
+                    "addressCountry": "India"
+                },
+                "sameAs": [
+                    "https://github.com/vivek-rahagir07",
+                    "https://linkedin.com/in/vivek-yadav-1142213a0/"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+919996445592",
+                    "contactType": "customer service",
+                    "email": "vivekhr36.2007@gmail.com",
+                    "availableLanguage": ["English", "Hindi"]
+                }
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://vivek-yadav.com/#webpage",
+                "url": "https://vivek-yadav.com/",
+                "name": "Vivek Yadav | Full Stack Developer & Systems Engineer",
+                "isPartOf": {
+                    "@id": "https://vivek-yadav.com/#website"
+                },
+                "about": {
+                    "@id": "https://vivek-yadav.com/#person"
+                },
+                "description": "Portfolio of Vivek Yadav — Full Stack Developer specializing in HTML, CSS, JavaScript, React, Node.js, PHP, Laravel, PostgreSQL, Firebase, Supabase, and MySQL."
+            },
+            {
+                "@type": "Service",
+                "@id": "https://vivek-yadav.com/#service-webdev",
+                "name": "Full Stack Web & Application Development",
+                "serviceType": "Software Development",
+                "provider": {
+                    "@id": "https://vivek-yadav.com/#organization"
+                },
+                "description": "End-to-end full stack web applications with modern frontend interfaces and secure, scalable backend architectures."
+            },
+            {
+                "@type": "Service",
+                "@id": "https://vivek-yadav.com/#service-iot",
+                "name": "IoT & Embedded Systems Engineering",
+                "serviceType": "IoT Architecture",
+                "provider": {
+                    "@id": "https://vivek-yadav.com/#organization"
+                },
+                "description": "Embedded firmware development, microcontroller sensor integration (ESP32, Arduino), MQTT protocols, and hardware telemetry dashboards."
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://vivek-yadav.com/#app-cognitoattend",
+                "name": "CognitoAttend",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web",
+                "description": "Smart cognitive attendance tracking system designed for frictionless operations.",
+                "author": {
+                    "@id": "https://vivek-yadav.com/#person"
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://vivek-yadav.com/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What services and technologies does Vivek Yadav specialize in?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Vivek specializes in full stack development using JavaScript/TypeScript, React, Node.js, PHP, Laravel, PostgreSQL, MySQL, and Supabase, as well as IoT firmware and embedded systems."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How can I contact Vivek Yadav for client work or collaboration?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You can reach Vivek directly via email at vivekhr36.2007@gmail.com, telephone at +919996445592, or via the contact page at https://vivek-yadav.com/contact.html."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Is Vivek Yadav available for remote or on-site engineering roles?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes, Vivek is based in Gurugram, India, and is open to remote global opportunities as well as local engagements."
+                        }
+                    }
+                ]
             }
         ]
     }
@@ -397,11 +521,41 @@
         </section>
 
 
+        <!-- Machine-annotated WebMCP Agent Form -->
+        <div style="display:none;" aria-hidden="true">
+            <form id="agent-contact-form" action="contact.html" method="GET" toolname="contact_vivek" tooldescription="Submit an inquiry, message, or project proposal to Vivek Yadav">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
         <footer>
-            <p>Designed and Built by Vivek Yadav &copy; 2026</p>
+            <div class="footer-contact">
+                <p>
+                    <i class="fa-solid fa-envelope"></i> <a href="mailto:vivekhr36.2007@gmail.com">vivekhr36.2007@gmail.com</a>
+                    &nbsp;|&nbsp;
+                    <i class="fa-solid fa-phone"></i> <a href="tel:+919996445592">+91 99964 45592</a>
+                    &nbsp;|&nbsp;
+                    <i class="fa-solid fa-location-dot"></i> Gurugram, Haryana, India
+                </p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="projects.html">Projects</a>
+                <a href="developer-guide.html">Dev Guide</a>
+                <a href="iot.html">IOT</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms &amp; Conditions</a>
+            </div>
+            <p class="footer-copy">Designed and Built by Vivek Yadav &copy; 2026</p>
         </footer>
     </main>
 
+    <script src="webmcp.js"></script>
     <script src="script.js"></script>
     <script src="particle-reveal.js"></script>
 </body>
