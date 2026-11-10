@@ -899,11 +899,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     const overlayImg = new Image();
-    overlayImg.src = 'photos/hero-scratch.webp';
+    overlayImg.src = 'photos/image.png';
     overlayImg.onerror = () => {
         if (!overlayImg.dataset.triedFallback) {
             overlayImg.dataset.triedFallback = 'true';
-            overlayImg.src = 'photos/image.png';
+            overlayImg.src = 'photos/image copy.png';
         }
     };
     

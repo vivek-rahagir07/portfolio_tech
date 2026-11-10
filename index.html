@@ -189,21 +189,9 @@
         ]
     }
     </script>
-    <!-- Performance Resource Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Combined & Display-Swapped Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Preload Critical LCP Hero Image -->
-    <link rel="preload" as="image" href="photos/hero-portrait.webp" type="image/webp" fetchpriority="high">
-
     <link rel="stylesheet" href="style.css">
-
-    <!-- Non-render-blocking FontAwesome Icons -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
         if ('serviceWorker' in navigator) {
@@ -218,12 +206,89 @@
             });
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+        const urlParams = new URLSearchParams(window.location.search);
+        const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless|inspection/i.test(navigator.userAgent);
+        
+        if (isBot) {
+            document.write('<style>#intro-overlay { display: none !important; }</style>');
+            window.skipPreloader = true;
+        }
+    </script>
+    <noscript><style>#intro-overlay { display: none !important; }</style></noscript>
 </head>
 <body>
+    
+    <div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;">
+        <div class="ui-wrapper" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
+            <canvas id="particle-reveal-canvas-index" style="display: block; z-index: 1;"></canvas>
+            <div class="signature-quote" style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; z-index: 2; opacity: 0; transition: opacity 0.8s ease-in-out; pointer-events: none;">
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap');
+                    .signature-svg {
+                        max-width: 90vw;
+                        height: auto;
+                        overflow: visible;
+                    }
+                    .signature-text {
+                        font-family: 'Mrs Saint Delafield', cursive;
+                        font-size: 8rem;
+                        fill: transparent;
+                        stroke: #fff;
+                        stroke-width: 1.5;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        filter: drop-shadow(0 0 3px rgba(255,255,255,0.7));
+                    }
+                    .letter {
+                        stroke-dasharray: 500;
+                        stroke-dashoffset: 500;
+                    }
+                    .signature-quote.reveal .letter {
+                        animation: drawInk 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    }
+                    @keyframes drawInk {
+                        0% { stroke-dashoffset: 500; fill: transparent; }
+                        70% { fill: transparent; }
+                        100% { stroke-dashoffset: 0; fill: #fff; }
+                    }
+                    @media (max-width: 768px) {
+                        .signature-text { font-size: 5rem; }
+                    }
+                </style>
+                <svg width="600" height="150" viewBox="0 0 600 150" class="signature-svg">
+                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="signature-text" id="ink-text"></text>
+                </svg>
+                <script>
+                    (function() {
+                        const str = "Vivek Yadav";
+                        const textEl = document.getElementById('ink-text');
+                        let delay = 0;
+                        for (let i = 0; i < str.length; i++) {
+                            const char = str[i];
+                            const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+                            tspan.textContent = char;
+                            tspan.classList.add('letter');
+                            if (char !== ' ') {
+                                tspan.style.animationDelay = delay + 's';
+                                delay += 0.23; 
+                            } else {
+                                delay += 0.12;
+                            }
+                            textEl.appendChild(tspan);
+                        }
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+
     <main id="main-content">
         
         <nav>
-            <div class="logo"><a href="/"><img src="photos/logo-opt.webp" alt="Vivek Yadav Logo" width="48" height="48" fetchpriority="low" decoding="async"></a></div>
+            <div class="logo"><a href="/"><img src="photos/logo.png" alt="Vivek Yadav Logo"></a></div>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -270,10 +335,7 @@
             </div>
             <div class="hero-image">
                 <div id="scratch-container">
-                    <picture>
-                        <source srcset="photos/hero-portrait.webp" type="image/webp">
-                        <img src="photos/hero-portrait.webp" alt="Vivek Yadav Portrait" id="under-image" width="1062" height="1062" fetchpriority="high" decoding="async">
-                    </picture>
+                    <img src="photos/image copy.png" alt="Vivek Yadav Portrait" id="under-image" onerror="if(this.src.indexOf('photos/image.png')===-1){this.src='photos/image.png';}">
                     <canvas id="scratch-canvas"></canvas>
                 </div>
                 <div class="image-glow"></div>
@@ -482,15 +544,8 @@
         </footer>
     </main>
 
-    <script defer src="webmcp.js"></script>
-    <script defer src="script.js"></script>
-    <script>
-        if (new URLSearchParams(window.location.search).has('preloader')) {
-            const s = document.createElement('script');
-            s.src = 'particle-reveal.js';
-            s.defer = true;
-            document.body.appendChild(s);
-        }
-    </script>
+    <script src="webmcp.js"></script>
+    <script src="script.js"></script>
+    <script src="particle-reveal.js"></script>
 </body>
 </html>
